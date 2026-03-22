@@ -1,5 +1,5 @@
 #!/bin/bash
-cp zshrc_config.sh ~/.zshrc
+cp zshrc.sh ~/.zshrc
 cp .wezterm.lua ~/.wezterm.lua
 mkdir -p ~/.config
 cp starship.toml ~/.config/starship.toml
