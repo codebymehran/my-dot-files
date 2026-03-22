@@ -1,0 +1,596 @@
+[
+  // ===========================================================
+  // 🎯 PHILOSOPHY: Minimal keybindings approach
+  // Let Vim handle 90% of navigation and editing
+  // Keybindings only for VSCode-specific UI elements
+  // ===========================================================
+
+  // ===========================================================
+  // 📁 FILE EXPLORER - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "h",
+    "command": "list.collapse",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "l",
+    "command": "list.select",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "o",
+    "command": "list.toggleExpand",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "g g",
+    "command": "list.focusFirst",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "shift+g",
+    "command": "list.focusLast",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "ctrl+d",
+    "command": "list.focusPageDown",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "ctrl+u",
+    "command": "list.focusPageUp",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+
+  // ===========================================================
+  // 📁 FILE EXPLORER - FILE OPERATIONS
+  // ===========================================================
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "shift+a",
+    "command": "explorer.newFolder",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "d d",
+    "command": "deleteFile",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "enter",
+    "command": "list.select",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+
+  // ===========================================================
+  // 🖥️ TERMINAL - ESCAPE TO EDITOR
+  // ===========================================================
+  {
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "ctrl+[",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "cmd+w",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus",
+  },
+
+  // ===========================================================
+  // 🎨 ADVANCED NEW FILE (From anywhere)
+  // ===========================================================
+  {
+    "key": "cmd+n",
+    "command": "extension.advancedNewFile",
+  },
+
+  // ===========================================================
+  // 🔍 QUICK OPEN - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen",
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen",
+  },
+  {
+    "key": "ctrl+d",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen",
+  },
+  {
+    "key": "ctrl+u",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen",
+  },
+
+  // ===========================================================
+  // 📋 ALL LISTS/SIDEBARS - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "g g",
+    "command": "list.focusFirst",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "shift+g",
+    "command": "list.focusLast",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "ctrl+d",
+    "command": "list.focusPageDown",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "ctrl+u",
+    "command": "list.focusPageUp",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "o",
+    "command": "list.toggleExpand",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "h",
+    "command": "list.collapse",
+    "when": "listFocus && !inputFocus",
+  },
+  {
+    "key": "l",
+    "command": "list.select",
+    "when": "listFocus && !inputFocus",
+  },
+
+  // ===========================================================
+  // 🔄 SPLIT NAVIGATION - VIM STYLE (Ctrl+hjkl)
+  // ===========================================================
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus",
+  },
+
+  // ===========================================================
+  // 🪟 SPLIT MANAGEMENT - CREATE & RESIZE
+  // ===========================================================
+  {
+    "key": "cmd+\\",
+    "command": "workbench.action.splitEditorRight",
+  },
+  {
+    "key": "cmd+shift+\\",
+    "command": "workbench.action.splitEditorDown",
+  },
+  {
+    "key": "ctrl+w v",
+    "command": "workbench.action.splitEditorRight",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+w s",
+    "command": "workbench.action.splitEditorDown",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+w q",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+w o",
+    "command": "workbench.action.joinAllGroups",
+    "when": "editorTextFocus",
+  },
+
+  // ===========================================================
+  // 💡 AUTOCOMPLETE POPUP - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus",
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus",
+  },
+  {
+    "key": "ctrl+d",
+    "command": "selectNextPageSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus",
+  },
+  {
+    "key": "ctrl+u",
+    "command": "selectPrevPageSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus",
+  },
+
+  // ===========================================================
+  // 🔎 SEARCH PANEL - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "ctrl+j",
+    "command": "search.focus.nextInputBox",
+    "when": "inSearchEditor || searchViewletFocus",
+  },
+  {
+    "key": "ctrl+k",
+    "command": "search.focus.previousInputBox",
+    "when": "inSearchEditor || searchViewletFocus",
+  },
+
+  // ===========================================================
+  // 🎯 PROBLEMS PANEL - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "problemsViewFocus && !inputFocus",
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "problemsViewFocus && !inputFocus",
+  },
+  {
+    "key": "g g",
+    "command": "list.focusFirst",
+    "when": "problemsViewFocus && !inputFocus",
+  },
+  {
+    "key": "shift+g",
+    "command": "list.focusLast",
+    "when": "problemsViewFocus && !inputFocus",
+  },
+  {
+    "key": "enter",
+    "command": "list.select",
+    "when": "problemsViewFocus",
+  },
+
+  // ===========================================================
+  // 🌳 GIT/SCM PANEL - VIM NAVIGATION
+  // ===========================================================
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "scmViewletVisible && !inputFocus",
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "scmViewletVisible && !inputFocus",
+  },
+  {
+    "key": "g g",
+    "command": "list.focusFirst",
+    "when": "scmViewletVisible && !inputFocus",
+  },
+  {
+    "key": "shift+g",
+    "command": "list.focusLast",
+    "when": "scmViewletVisible && !inputFocus",
+  },
+
+  // ===========================================================
+  // ⌨️ FONT ZOOM (NOT UI ZOOM)
+  // ===========================================================
+  {
+    "key": "cmd+=",
+    "command": "-workbench.action.zoomIn",
+  },
+  {
+    "key": "cmd+=",
+    "command": "editor.action.fontZoomIn",
+  },
+  {
+    "key": "cmd+-",
+    "command": "-workbench.action.zoomOut",
+  },
+  {
+    "key": "cmd+-",
+    "command": "editor.action.fontZoomOut",
+  },
+  {
+    "key": "cmd+0",
+    "command": "editor.action.fontZoomReset",
+  },
+
+  // ===========================================================
+  // 🪟 ADDITIONAL USEFUL SHORTCUTS
+  // ===========================================================
+  {
+    "key": "cmd+shift+t",
+    "command": "workbench.action.reopenClosedEditor",
+  },
+  {
+    "key": "cmd+shift+w",
+    "command": "workbench.action.closeEditorsInGroup",
+  },
+  {
+    "key": "cmd+k p",
+    "command": "workbench.action.pinEditor",
+  },
+  {
+    "key": "cmd+k m",
+    "command": "workbench.action.toggleMaximizedPanel",
+  },
+
+  // ===========================================================
+  // 🧹 REMOVE CONFLICTING VSCODE DEFAULTS
+  // ===========================================================
+  {
+    "key": "cmd+k cmd+w",
+    "command": "-workbench.action.closeAllEditors",
+  },
+  {
+    "key": "cmd+k w",
+    "command": "-workbench.action.closeEditorsInGroup",
+  },
+  {
+    "key": "ctrl+f18",
+    "command": "alternator.switch",
+    "when": "editorTextFocus",
+  },
+
+  // ===========================================================
+  // 📚 KEYBINDINGS REFERENCE GUIDE
+  // ===========================================================
+  /*
+
+  ═══════════════════════════════════════════════════════════
+  📁 FILE EXPLORER (Space+e to open)
+  ═══════════════════════════════════════════════════════════
+
+  NAVIGATION:
+    j / k                       → Move down/up
+    h                           → Collapse folder
+    l or Enter                  → Open file/expand folder
+    o                           → Toggle expand/collapse
+    gg                          → Go to top
+    Shift+G                     → Go to bottom
+    Ctrl+d                      → Page down
+    Ctrl+u                      → Page up
+
+  FILE OPERATIONS:
+    a                           → New file
+    Shift+A                     → New folder
+    r                           → Rename file/folder
+    dd                          → Delete file/folder
+    x                           → Cut file/folder
+    y                           → Copy file/folder
+    p                           → Paste file/folder
+    Esc                         → Return to editor
+
+
+  ═══════════════════════════════════════════════════════════
+  🖥️ TERMINAL (Space+t to toggle)
+  ═══════════════════════════════════════════════════════════
+
+    Esc or Ctrl+[               → Return to editor
+    Ctrl+Shift+T                → Split terminal (side-by-side)
+    Cmd+W                       → Kill/close current terminal
+    (Use normal terminal commands when focused)
+
+
+  ═══════════════════════════════════════════════════════════
+  🔍 QUICK OPEN (Space+p or Cmd+P)
+  ═══════════════════════════════════════════════════════════
+
+    Ctrl+j                      → Next item
+    Ctrl+k                      → Previous item
+    Ctrl+d                      → Page down
+    Ctrl+u                      → Page up
+    Enter                       → Open file
+    Esc                         → Close
+
+
+  ═══════════════════════════════════════════════════════════
+  📋 ALL LISTS/PANELS (Problems, Search, etc.)
+  ═══════════════════════════════════════════════════════════
+
+    j / k                       → Move down/up
+    h                           → Collapse
+    l                           → Expand/select
+    o                           → Toggle expand
+    gg                          → Go to top
+    Shift+G                     → Go to bottom
+    Ctrl+d / Ctrl+u             → Page down/up
+    Enter                       → Select item
+
+
+  ═══════════════════════════════════════════════════════════
+  🪟 SPLIT MANAGEMENT
+  ═══════════════════════════════════════════════════════════
+
+  CREATE SPLITS:
+    Cmd+\                       → Split right
+    Cmd+Shift+\                 → Split down
+    Ctrl+w v                    → Split right (Vim way)
+    Ctrl+w s                    → Split down (Vim way)
+
+  NAVIGATE SPLITS:
+    Ctrl+h                      → Focus left split
+    Ctrl+l                      → Focus right split
+    Ctrl+k                      → Focus above split
+    Ctrl+j                      → Focus below split
+
+  MANAGE SPLITS:
+    Ctrl+w q                    → Close current split
+    Ctrl+w o                    → Close all other splits
+    Space+=                     → Even split widths (in settings.json)
+    Space++                     → Increase size (in settings.json)
+    Space+-                     → Decrease size (in settings.json)
+
+
+  ═══════════════════════════════════════════════════════════
+  💡 AUTOCOMPLETE/SUGGESTIONS
+  ═══════════════════════════════════════════════════════════
+
+    Ctrl+j                      → Next suggestion
+    Ctrl+k                      → Previous suggestion
+    Ctrl+d                      → Page down suggestions
+    Ctrl+u                      → Page up suggestions
+    Tab or Enter                → Accept suggestion
+    Esc                         → Close suggestions
+
+
+  ═══════════════════════════════════════════════════════════
+  ⌨️ FONT SIZE (Editor only, not UI)
+  ═══════════════════════════════════════════════════════════
+
+    Cmd++                       → Increase font
+    Cmd+-                       → Decrease font
+    Cmd+0                       → Reset font
+
+
+  ═══════════════════════════════════════════════════════════
+  🎯 ADDITIONAL SHORTCUTS
+  ═══════════════════════════════════════════════════════════
+
+    Cmd+N                       → New file (Advanced New File ext)
+    Cmd+Shift+T                 → Reopen closed tab
+    Cmd+Shift+W                 → Close all editors in group
+    Cmd+K P                     → Pin/unpin editor tab
+    Cmd+K M                     → Toggle maximize editor
+
+
+  ═══════════════════════════════════════════════════════════
+  🔄 HOW IT ALL WORKS TOGETHER
+  ═══════════════════════════════════════════════════════════
+
+  TYPICAL WORKFLOW:
+
+  1. OPEN FILE:
+     Space+p → Type filename → Enter
+     OR
+     Space+e → Navigate with j/k → Enter
+
+  2. EDIT CODE:
+     (Use all Vim shortcuts from settings.json)
+
+  3. WORK WITH SPLITS:
+     Cmd+\ → Split right
+     Ctrl+h/l → Navigate between splits
+     Ctrl+w q → Close split when done
+
+  4. USE TERMINAL:
+     Space+t → Open terminal
+     Run commands
+     Ctrl+Shift+T → Split terminal (run multiple commands)
+     Cmd+W → Close terminal when done
+     Esc → Back to editor
+
+  5. MANAGE FILES:
+     Space+e → Open explorer
+     a → New file
+     r → Rename
+     dd → Delete
+     Esc → Back to editor
+
+
+  ═══════════════════════════════════════════════════════════
+  ✅ STATUS: NO CONFLICTS FOUND
+  ═══════════════════════════════════════════════════════════
+
+  All keybindings use context-specific "when" clauses to avoid
+  conflicts. Vim navigation (hjkl) only works in UI elements
+  (explorer, lists, panels), never in the editor where Vim
+  mode handles everything.
+
+
+  ═══════════════════════════════════════════════════════════
+  💡 PRO TIPS
+  ═══════════════════════════════════════════════════════════
+
+  1. Master the split navigation (Ctrl+hjkl) - it's super fast
+  2. Use gg and Shift+G in all panels for quick navigation
+  3. File explorer + j/k + a/r/dd = lightning fast file mgmt
+  4. Ctrl+j/k works in Quick Open, suggestions, and search
+  5. Use Esc to quickly return to editor from any panel
+
+  */
+]

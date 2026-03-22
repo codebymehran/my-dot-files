@@ -1,0 +1,912 @@
+{
+  // ===========================================================
+  // 🎨 EDITOR BASICS
+  // ===========================================================
+  "editor.fontFamily": "'Monolisa', 'JetBrains Mono', 'FiraCode', Consolas, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.lineHeight": 1.6,
+  "editor.tabSize": 2,
+
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "on",
+  "editor.renderWhitespace": "selection",
+  "editor.stickyScroll.enabled": true,
+  "explorer.autoReveal": "focusNoScroll",
+  "search.quickOpen.includeSymbols": true,
+  "search.quickOpen.includeHistory": true,
+  "editor.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "smooth",
+  // 🆕 IMPROVEMENT #15: Keep cursor centered with context
+  "editor.cursorSurroundingLines": 8,
+
+  // ===========================================================
+  // 🎯 CODE INTELLIGENCE
+  // ===========================================================
+  "editor.linkedEditing": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.symbolPath": "on",
+
+  "editor.tabCompletion": "on",
+  "editor.suggestSelection": "first",
+  "editor.inlineSuggest.enabled": true,
+  "editor.snippetSuggestions": "top",
+
+  "editor.suggest.preview": false,
+  "editor.suggest.showInlineDetails": false,
+
+  "editor.showUnused": true,
+  "editor.semanticHighlighting.enabled": true,
+  // 🔧 IMPROVEMENT #14: Reduced sticky scroll lines
+  "editor.stickyScroll.maxLineCount": 3,
+  "editor.stickyScroll.scrollWithEditor": true,
+  "editor.lineNumbers": "relative",
+  "editor.renderLineHighlight": "all",
+
+  // ===========================================================
+  // 🚀 JAVASCRIPT/TYPESCRIPT
+  // ===========================================================
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // ===========================================================
+  // 🐍 PYTHON CONFIGURATION
+  // ===========================================================
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnType": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+    },
+    "editor.rulers": [88],
+  },
+
+  "python.languageServer": "Pylance",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+
+  "isort.args": ["--profile", "black"],
+
+  "autoDocstring.docstringFormat": "google",
+  "autoDocstring.startOnNewLine": false,
+
+  // ===========================================================
+  // 💾 AUTO-SAVE & FORMATTING
+  // ===========================================================
+  "files.autoSave": "onFocusChange",
+  // 🔧 IMPROVEMENT #13: Less aggressive auto-save
+  "files.autoSaveDelay": 2000,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit",
+  },
+
+  // ===========================================================
+  // 📁 FILE ASSOCIATIONS
+  // ===========================================================
+  // 🔧 IMPROVEMENT #7: Removed aggressive JS→JSX mapping
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "*.css": "tailwindcss",
+    "*.py": "python",
+    "requirements.txt": "pip-requirements",
+    "Pipfile": "toml",
+    ".env": "dotenv",
+  },
+
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.git": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.pyc": true,
+    "**/.venv": false,
+    "**/venv": false,
+  },
+
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.venv/**": true,
+    "**/venv/**": true,
+  },
+
+  // ===========================================================
+  // ⚛️ REACT + TAILWIND + EMMET
+  // ===========================================================
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "python": "python",
+  },
+  "emmet.triggerExpansionOnTab": true,
+
+  "tailwindCSS.emmetCompletions": true,
+  // 🆕 IMPROVEMENT #8: Enhanced Tailwind regex for JSX
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
+    ["className=[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
+  ],
+
+  "css.lint.unknownAtRules": "ignore",
+
+  // ===========================================================
+  // 🔍 SEARCH
+  // ===========================================================
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.pyc": true,
+    "**/.venv": true,
+    "**/venv": true,
+  },
+
+  "search.smartCase": true,
+  "search.followSymlinks": false,
+
+  // ===========================================================
+  // 🖥️ TERMINAL
+  // ===========================================================
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+
+  // ===========================================================
+  // 🎯 WORKBENCH - MINIMAL UI
+  // ===========================================================
+  "workbench.activityBar.location": "top",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "vscode-icons",
+
+  "workbench.tree.indent": 15,
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  "window.commandCenter": false,
+  "workbench.editor.tabCloseButton": "right",
+  "workbench.editor.showTabs": "multiple",
+
+  // ===========================================================
+  // 🔀 GIT
+  // ===========================================================
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "always",
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.experimental.showMoves": true,
+  "merge-conflict.autoNavigateNextConflict.enabled": true,
+
+  // ===========================================================
+  // ⚠️ ERROR LENS
+  // ===========================================================
+  "errorLens.enabled": true,
+  "errorLens.fontSize": "0.9em",
+  "errorLens.fontWeight": "400",
+  "errorLens.messageEnabled": true,
+
+  // ===========================================================
+  // 💬 BETTER COMMENTS - OPTIMIZED FOR WHITE THEME
+  // ===========================================================
+  "colorful-comments.tags": [
+    {
+      "tag": "===",
+      "color": "#0066CC",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false,
+    },
+    {
+      "tag": "---",
+      "color": "#00A3CC",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false,
+    },
+    {
+      "tag": "...",
+      "color": "#4A90E2",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "*",
+      "color": "#1FA73F",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false,
+    },
+    {
+      "tag": "?",
+      "color": "#7D3C98",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": true,
+    },
+    {
+      "tag": "@",
+      "color": "#D68910",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "^",
+      "color": "#474747",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": true,
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "+",
+      "color": "#00B050",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "-",
+      "color": "#C70039",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "//",
+      "color": "#999999",
+      "strikethrough": true,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "$",
+      "color": "#E67E22",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "%",
+      "color": "#D4009E",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "&",
+      "color": "#8A4FFF",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "~",
+      "color": "#00CED1",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "=",
+      "color": "#B8860B",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": ">",
+      "color": "#556B2F",
+      "strikethrough": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+  ],
+
+  // ===========================================================
+  // 🚀 VIM CONFIGURATION – CLEAN & ERGONOMIC
+  // ===========================================================
+  "vim.leader": "<space>",
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.duration": 300,
+  "vim.camelCaseMotion.enable": true,
+  "vim.smartcase": true,
+  "vim.ignorecase": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.visualstar": true,
+  "vim.smartRelativeLine": true,
+
+  "vim.sneak": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.easymotion": false,
+  "vim.surround": true,
+  "vim.startInInsertMode": false,
+  "vim.timeout": 200,
+
+  // ===========================================================
+  // ⚡ INSERT MODE – ESCAPE
+  // ===========================================================
+  "vim.insertModeKeyBindings": [
+    { "before": ["j", "j"], "after": ["<Esc>"] },
+    { "before": [";", ";"], "after": ["<Esc>", "A"] },
+    { "before": [",", ","], "after": ["<Esc>", "I"] },
+  ],
+
+  // ===========================================================
+  // 🔧 CTRL KEY HANDLING – KEEP ONLY WHAT YOU NEED
+  // ===========================================================
+  // 🔧 IMPROVEMENT #9: Removed <C-k> conflict
+  "vim.handleKeys": {
+    "<C-s>": false,
+    "<C-w>": false,
+    "<C-z>": false,
+    "<C-f>": false,
+    "<C-n>": false,
+    "<C-p>": false,
+    "<C-b>": false,
+
+    "<C-d>": true,
+    "<C-u>": true,
+    "<C-o>": true,
+    "<C-i>": true,
+    "<C-a>": true,
+    "<C-x>": true,
+    "<C-v>": true,
+    "<C-h>": true,
+    "<C-j>": true,
+    "<C-k>": true,
+    "<C-l>": true,
+  },
+
+  // ===========================================================
+  // 🎯 NORMAL MODE – ESSENTIAL ERGONOMIC REMAPS
+  // ===========================================================
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "<Tab>"],
+      "commands": ["alternator.switch", "extension.vim_escape"],
+    },
+
+    { "before": ["<leader>", "/"], "commands": [":noh"] },
+
+    {
+      "before": ["{"],
+      "after": ["{", "z", "z"],
+    },
+    {
+      "before": ["}"],
+      "after": ["}", "z", "z"],
+    },
+
+    // Redo (ergonomic)
+    { "before": ["U"], "after": ["<C-r>"] },
+    { "before": ["B"], "after": ["<C-v>"] },
+
+    // =======================================================
+    // 🪟 WINDOW NAVIGATION
+    // =======================================================
+    { "before": ["<leader>", "h"], "commands": ["workbench.action.navigateLeft"] },
+    { "before": ["<leader>", "j"], "commands": ["workbench.action.navigateDown"] },
+    { "before": ["<leader>", "k"], "commands": ["workbench.action.navigateUp"] },
+    { "before": ["<leader>", "l"], "commands": ["workbench.action.navigateRight"] },
+
+    // =======================================================
+    // 💾 SAVE / CLOSE (Mac-native muscle memory)
+    // =======================================================
+    { "before": ["<D-s>"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<D-w>"], "commands": ["workbench.action.closeActiveEditor"] },
+
+    // =======================================================
+    // 🔍 IDE / WORKSPACE NAVIGATION
+    // =======================================================
+    { "before": ["<leader>", "e"], "commands": ["workbench.view.explorer"] },
+    { "before": ["<leader>", "t"], "commands": ["workbench.action.terminal.toggleTerminal"] },
+    { "before": ["<leader>", "p"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["<leader>", "f"], "commands": ["workbench.action.findInFiles"] },
+    { "before": ["<leader>", "b"], "commands": ["workbench.action.toggleSidebarVisibility"] },
+    // 🆕 IMPROVEMENT #4: Quick recent files
+    { "before": ["<leader>", "r"], "commands": ["workbench.action.openRecent"] },
+    // 🆕 IMPROVEMENT #11: Zen mode toggle
+    { "before": ["<leader>", "z"], "commands": ["workbench.action.toggleZenMode"] },
+
+    // =======================================================
+    // 🛠️ CODE ACTIONS
+    // =======================================================
+    { "before": ["<leader>", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["<leader>", "R"], "commands": ["editor.action.rename"] },
+    { "before": ["<leader>", "S"], "commands": ["workbench.action.showAllSymbols"] },
+    { "before": ["<leader>", "m"], "commands": ["references-view.findReferences"] },
+
+    // =======================================================
+    // 🐍 PYTHON SPECIFIC (Using Right Cmd as Hyper Key)
+    // =======================================================
+    // Note: Right Cmd is mapped to Ctrl+Opt+Shift in Karabiner
+
+    // =======================================================
+    // 📄 FILE OPERATIONS
+    // =======================================================
+    { "before": ["<leader>", "w"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"] },
+    { "before": ["<leader>", "o"], "commands": ["workbench.action.closeOtherEditors"] },
+    // 🆕 IMPROVEMENT #6: Close all saved editors
+    { "before": ["<leader>", "q", "a"], "commands": ["workbench.action.closeUnmodifiedEditors"] },
+
+    // =======================================================
+    // 📄 SPLIT CREATION
+    // =======================================================
+    // 🔧 IMPROVEMENT #1: Fixed duplicate - removed <leader>s conflict
+    { "before": ["<leader>", "v"], "commands": ["workbench.action.splitEditorRight"] },
+    { "before": ["<leader>", "\\"], "commands": ["workbench.action.splitEditorDown"] },
+    // 🆕 IMPROVEMENT #5: Better terminal splits
+    { "before": ["<leader>", "t", "v"], "commands": ["workbench.action.terminal.split"] },
+    { "before": ["<leader>", "t", "s"], "commands": ["workbench.action.terminal.splitActiveTab"] },
+    { "before": ["<leader>", "t", "n"], "commands": ["workbench.action.terminal.new"] },
+    { "before": ["<leader>", "t", "k"], "commands": ["workbench.action.terminal.kill"] },
+
+    // =======================================================
+    // 🔍 SEARCH / CENTERING
+    // =======================================================
+    { "before": ["n"], "after": ["n", "z", "z"] },
+    { "before": ["N"], "after": ["N", "z", "z"] },
+    { "before": ["*"], "after": ["*", "z", "z"] },
+    { "before": ["#"], "after": ["#", "z", "z"] },
+
+    // =======================================================
+    // ↔️ KEEP SELECTION AFTER INDENT
+    // =======================================================
+    { "before": [">"], "after": [">", "g", "v"] },
+    { "before": ["<"], "after": ["<", "g", "v"] },
+
+    // =======================================================
+    // 🧭 GO TO DEFINITION / REFERENCES
+    // =======================================================
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+    { "before": ["g", "D"], "commands": ["editor.action.peekDefinition"] },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "h"], "commands": ["editor.action.showHover"] },
+
+    // 🆕 IMPROVEMENT #10: Navigate edit history
+    { "before": ["g", ";"], "commands": ["workbench.action.navigateBack"] },
+    { "before": ["g", ","], "commands": ["workbench.action.navigateForward"] },
+
+    // =======================================================
+    // 🧭 ERROR NAVIGATION
+    // =======================================================
+    { "before": ["]", "d"], "commands": ["editor.action.marker.next"] },
+    { "before": ["[", "d"], "commands": ["editor.action.marker.prev"] },
+
+    // =======================================================
+    // 🧭 BUFFER NAVIGATION
+    // =======================================================
+    { "before": ["<Tab>"], "commands": ["workbench.action.nextEditor"] },
+    { "before": ["<S-Tab>"], "commands": ["workbench.action.previousEditor"] },
+
+    // =======================================================
+    // 🧹 FORMAT & IMPORTS
+    // =======================================================
+    { "before": ["<leader>", ";"], "commands": ["editor.action.formatDocument"] },
+    { "before": ["<leader>", "i"], "commands": ["editor.action.organizeImports"] },
+
+    // =======================================================
+    // 🆕 IMPROVEMENT #12: Quick Git Actions
+    // =======================================================
+    { "before": ["<leader>", "g", "s"], "commands": ["workbench.view.scm"] },
+    { "before": ["<leader>", "g", "c"], "commands": ["git.commit"] },
+    { "before": ["<leader>", "g", "p"], "commands": ["git.push"] },
+    { "before": ["<leader>", "g", "P"], "commands": ["git.pull"] },
+
+    // =======================================================
+    // 🧩 QUALITY OF LIFE MOVEMENT
+    // =======================================================
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] },
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["$"] },
+  ],
+
+  // ===========================================================
+  // 👁️ VISUAL MODE
+  // ===========================================================
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] },
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["$"] },
+
+    { "before": [">"], "after": [">", "g", "v"] },
+    { "before": ["<"], "after": ["<", "g", "v"] },
+
+    { "before": ["g", "c"], "commands": ["editor.action.commentLine"] },
+
+    { "before": ["p"], "after": ["p", "g", "v", "y"] },
+  ],
+
+  // ===========================================================
+  // 🔧 MISC
+  // ===========================================================
+  "telemetry.telemetryLevel": "off",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.accessibilitySupport": "off",
+
+  // ===========================================================
+  // 🌟 PRETTIER
+  // ===========================================================
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.printWidth": 100,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2,
+  "prettier.arrowParens": "avoid",
+  "workbench.editor.tabActionLocation": "right",
+  "workbench.settings.editor": "ui",
+  "eslint.run": "onSave",
+  "workbench.editor.pinnedTabSizing": "compact",
+  "workbench.colorTheme": "Hop Light",
+
+  // ===========================================================
+  // 📚 SHORTCUTS & WORKFLOWS REFERENCE GUIDE
+  // ===========================================================
+  /*
+
+  ═══════════════════════════════════════════════════════════
+  🚀 ESSENTIAL WORKFLOWS
+  ═══════════════════════════════════════════════════════════
+
+  COPY/PASTE ENTIRE FILE BETWEEN FILES:
+    1. File 1: Space+c          → Copy entire file
+    2. Switch: Tab or Space+p   → Switch to File 2
+    3. File 2: Space+Shift+P    → Replace entire file
+
+  MULTI-CURSOR EDITING:
+    1. Move cursor to word
+    2. Press: gb                → Add next occurrence
+    3. Keep pressing gb         → Add more cursors
+    4. Edit all at once!
+    OR
+    1. Move cursor to word
+    2. Press: Space+n           → Select ALL occurrences
+    3. Press: c                 → Change all at once
+
+  SURROUND TEXT (vim.surround):
+    Visual mode:
+    - Select text → S"          → Wrap with "quotes"
+    - Select text → S'          → Wrap with 'quotes'
+    - Select text → S(          → Wrap with ( spaces )
+    - Select text → S)          → Wrap with (no spaces)
+    - Select text → S{          → Wrap with { braces }
+    - Select text → St          → Wrap with <tag>
+
+    Normal mode:
+    - ysiw"                     → Surround word with quotes
+    - cs"'                      → Change " to '
+    - ds"                       → Delete surrounding quotes
+    - dst                       → Delete surrounding tag
+
+  TEXT OBJECTS (Powerful Editing):
+    - ciw                       → Change inner word
+    - ci"                       → Change inside quotes
+    - ci(                       → Change inside parentheses
+    - ci{                       → Change inside braces
+    - cit                       → Change inside HTML tag
+    - dap                       → Delete around paragraph
+    - yiw                       → Yank (copy) inner word
+    - diw                       → Delete inner word
+
+  ═══════════════════════════════════════════════════════════
+  📍 MARKS (BOOKMARKS IN VIM)
+  ═══════════════════════════════════════════════════════════
+
+  BASIC USAGE:
+    ma                          → Set mark 'a' at cursor
+    `a                          → Jump to mark 'a' (exact position)
+    'a                          → Jump to line of mark 'a'
+    ``                          → Toggle between last 2 positions ⭐ MOST USEFUL
+    :marks                      → Show all marks
+
+
+  ═══════════════════════════════════════════════════════════
+  📚 MAIN SHORTCUTS REFERENCE
+  ═══════════════════════════════════════════════════════════
+
+  INSERT MODE:
+    jk or jj                    → Escape to normal mode
+    ;;                          → Jump to end of line
+
+  WORKSPACE NAVIGATION:
+    Space+e                     → File explorer
+    Space+t                     → Toggle terminal
+    Space+p                     → Quick open file
+    Space+r                     → Recent files 🆕
+    Space+f                     → Find in all files
+    Space+b                     → Toggle sidebar
+    Space+z                     → Zen mode 🆕
+    Space+Space                 → Command palette
+    Tab                         → Next tab
+    Shift+Tab                   → Previous tab
+
+  TERMINAL:
+    Space+t                     → Toggle terminal
+    Space+t+v                   → Split terminal vertically 🆕
+    Space+t+s                   → Split terminal horizontally 🆕
+    Space+t+n                   → New terminal
+    Space+t+k                   → Kill terminal
+
+  FILE OPERATIONS:
+    Space+w                     → Save file
+    Space+q                     → Close current file
+    Space+qa                    → Close all saved files 🆕
+    Space+o                     → Close other files
+    Space+c                     → Copy entire file
+    Space+C                     → Copy entire file (keep cursor)
+    Space+P                     → Replace entire file with clipboard
+    Space+A                     → Select all (visual mode)
+    Space+D                     → Delete all content from file
+
+  BUFFER MANAGEMENT:
+    Space+bb                    → Show all open files
+    Space+bo                    → Close all other buffers
+    Space+ba                    → Close all buffers
+    Space+b+p                   → Pin current tab
+    Space+b+u                   → Unpin current tab
+
+  CODE ACTIONS:
+    Space+a                     → Quick fix / code actions
+    Space+R                     → Rename symbol (changed from Space+r) 🔧
+    Space+S                     → Go to symbol in workspace
+    Space+m                     → Find all references
+    Space+;                     → Format document
+    Space+i                     → Organize imports
+
+  GO TO DEFINITION:
+    gd                          → Go to definition
+    gD                          → Peek definition
+    gr                          → Go to references
+    gi                          → Go to implementation
+    gh                          → Show hover info
+    g;                          → Navigate back in edit history 🆕
+    g,                          → Navigate forward in edit history 🆕
+
+  ERROR NAVIGATION:
+    ]d                          → Next error
+    [d                          → Previous error
+
+  GIT SHORTCUTS:
+    Space+g+s                   → Git status 🆕
+    Space+g+c                   → Git commit 🆕
+    Space+g+p                   → Git push 🆕
+    Space+g+P                   → Git pull 🆕
+
+  SPLITS:
+    Space+v                     → Split right
+    Space+\                     → Split down (changed from Space+s) 🔧
+    Ctrl+h/j/k/l                → Navigate between splits
+    Space+h/j/k/l               → Alternative split navigation
+
+
+  ═══════════════════════════════════════════════════════════
+  🐍 PYTHON SHORTCUTS (Right Cmd = Hyper Key)
+  ═══════════════════════════════════════════════════════════
+
+  Note: Right Cmd is mapped to Ctrl+Opt+Shift in Karabiner
+  These shortcuts ONLY work in .py files:
+
+  RUNNING & DEBUGGING:
+    Right Cmd + R               → Run current Python file ⚡
+    Right Cmd + I               → Start interactive REPL
+    Right Cmd + D               → Debug current file
+    Right Cmd + C               → Run selected code only
+
+  TESTING:
+    Right Cmd + T               → Run all tests
+    Right Cmd + F               → Run current test file
+
+  SETUP:
+    Right Cmd + L               → Select Python interpreter
+
+  COMMON WORKFLOW:
+    1. Write code
+    2. Right Cmd + R           → See if it works
+    3. Not working? Right Cmd + D → Debug it
+    4. Want to test snippet? Highlight → Right Cmd + C
+    5. Before commit: Right Cmd + T → Run all tests
+
+
+  ═══════════════════════════════════════════════════════════
+  💡 RECOMMENDED EXTENSIONS
+  ═══════════════════════════════════════════════════════════
+
+  JAVASCRIPT/REACT:
+    ✓ Prettier                 → Auto-formatting (configured)
+    ✓ ESLint                   → Linting (configured)
+    ✓ Error Lens               → Inline errors (enabled)
+    ✓ Colorful Comments        → Comment highlighting (enabled)
+    - Turbo Console Log        → Quick console.log snippets
+    - Live Server              → Live preview for HTML
+    - Alternator               → Toggle between related files
+
+  PYTHON:
+    ✓ Python (Microsoft)       → Core Python support
+    ✓ Pylance (Microsoft)      → Fast IntelliSense
+    ✓ Black Formatter          → Auto-formatting (configured)
+    ✓ isort                    → Import sorting (configured)
+    - autoDocstring            → Generate docstrings (Cmd+Shift+2)
+    - Python Indent            → Better auto-indentation
+    - Python Test Explorer     → Visual test runner
+
+  GENERAL:
+    - Vim (VSCodeVim)          → Already configured!
+    - vscode-icons             → File icons (enabled)
+    - GitLens                  → Advanced Git features
+    - TODO Highlight           → Highlight TODO comments
+    - Bracket Pair Colorizer   → Color matching brackets
+
+
+  ═══════════════════════════════════════════════════════════
+  🎓 LEARNING TIPS
+  ═══════════════════════════════════════════════════════════
+
+  FOR PYTHON BEGINNERS:
+    1. Write code in main.py
+    2. Right Cmd + R to run it
+    3. See output in terminal
+    4. Use Right Cmd + I to experiment with new syntax
+    5. When stuck: Right Cmd + D to debug step-by-step
+
+  FOR VIM BEGINNERS:
+    - Start with: hjkl for movement
+    - Learn: i (insert), Esc (normal), v (visual)
+    - Master: ciw (change word), dd (delete line)
+    - Then learn: text objects (ci", ci(, cit)
+    - Finally: vim.surround (S", cs'", dst)
+
+  FOR REACT DEVELOPERS:
+    - Space+; formats your code instantly
+    - Space+i organizes imports automatically
+    - gd jumps to component definition
+    - gr shows all places component is used
+    - Space+a for quick imports and fixes
+
+
+  ═══════════════════════════════════════════════════════════
+  ⚡ SPEED TIPS
+  ═══════════════════════════════════════════════════════════
+
+  FASTEST FILE NAVIGATION:
+    Space+p → Type few letters → Enter (< 2 seconds to any file)
+
+  FASTEST CODE EDITING:
+    gb to add cursors → Edit once, change everywhere
+
+  FASTEST REFACTORING:
+    Space+R on variable → Rename everywhere in project
+
+  FASTEST DEBUGGING (PYTHON):
+    Click line number (breakpoint) → Right Cmd + D → F10 to step
+
+  FASTEST FORMATTING:
+    Just save! (Cmd+S) → Auto-formats on save
+
+
+═══════════════════════════════════════════════════════════
+  🔧 SETTINGS HIGHLIGHTS
+═══════════════════════════════════════════════════════════
+
+  AUTO-SAVE:           After 2 seconds of inactivity
+  FORMATTERS:          Prettier (JS/React), Black (Python)
+  LINE NUMBERS:        Relative (for Vim motions)
+  STICKY SCROLL:       3 lines (shows context)
+  CURSOR CONTEXT:      8 lines above/below cursor
+  MINIMAP:             Disabled (more screen space)
+  WORD WRAP:           Enabled
+  TAILWIND:            Intellisense for className, cn(), cva()
+
+  PYTHON SPECIFIC:
+  - Auto-format with Black (88 char line length)
+  - Auto-organize imports with isort
+  - Type hints shown inline
+  - pytest for testing
+  - Virtual environment support
+
+
+  ═══════════════════════════════════════════════════════════
+  📝 NOTES
+  ═══════════════════════════════════════════════════════════
+
+  CHANGES FROM ORIGINAL:
+  - Space+r now opens recent files (was rename)
+  - Space+R is now rename (capital R)
+  - Space+s removed (was duplicate)
+  - Space+\ is now split down (clearer than Space+s)
+  - Added Python hyper key shortcuts (Right Cmd)
+  - Added git shortcuts (Space+g+...)
+  - Added zen mode (Space+z)
+  - Improved terminal splits (Space+t+v/s)
+
+  PERFORMANCE:
+  - Hidden: __pycache__, node_modules, .next, dist, build
+  - Excluded from search: Same as above + lock files
+  - File watcher excludes: Same (saves CPU)
+
+  */
+}
