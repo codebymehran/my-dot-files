@@ -1,0 +1,365 @@
+# ============================================================================
+# OH MY ZSH SETUP
+# ============================================================================
+export ZSH="$HOME/.oh-my-zsh"
+
+# Plugins (order matters - zsh-syntax-highlighting should be last)
+plugins=(
+  git
+  npm
+  node
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  colored-man-pages
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# ============================================================================
+# ZSH HISTORY IMPROVEMENTS
+# ============================================================================
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_DUPS      # Don't save duplicate commands
+setopt HIST_IGNORE_SPACE     # Don't save commands starting with space
+setopt SHARE_HISTORY         # Share history between terminals
+setopt INC_APPEND_HISTORY    # Add commands immediately
+
+# ============================================================================
+# SAFETY ALIASES (prevents accidental deletions)
+# ============================================================================
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# ============================================================================
+# QUICK NAVIGATION
+# ============================================================================
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias c='clear'
+alias co='code -r .'  # Open current directory in VS Code
+
+# ============================================================================
+# SMART FILE OPERATIONS
+# ============================================================================
+# Copy with progress bar (requires rsync)
+alias cpv='rsync -ah --info=progress2'
+
+# Create directory and cd into it
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# Move to trash instead of permanent delete (safer)
+alias trash='mv -t ~/.Trash'
+
+# Quick file operations
+alias cx='chmod +x'  # Make file executable
+alias 000='chmod 000'
+alias 644='chmod 644'
+alias 755='chmod 755'
+alias 777='chmod 777'
+
+# ============================================================================
+# PROJECT SHORTCUTS
+# ============================================================================
+alias cbe='cd ~/Code/backend-labs'
+alias cfe='cd ~/Code/frontend-labs'
+alias cpo='cd ~/Code/portfolio'
+
+# ============================================================================
+# GIT ALIASES
+# ============================================================================
+alias gs='git status'
+alias gl='git log --oneline --graph --decorate -10'
+alias gd='git diff'
+alias gco='git checkout'
+alias gb='git branch'
+alias glh='git log -1 --stat'  # Show last commit with file stats
+grc() {
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not in a git repository"
+    return 1
+  fi
+  echo "⚠️  This will reset all changes and delete untracked files"
+  read "confirm?Type 'YES' to continue: "
+  if [[ "$confirm" != "YES" ]]; then
+    echo "❌ Aborted"
+    return 1
+  fi
+  git reset --hard && git clean -fd && echo "✅ Done"
+}
+
+# ============================================================================
+# ENHANCED GIT FUNCTIONS
+# ============================================================================
+
+# Git add + commit + push (with safety checks)
+gacp() {
+  if [[ -z "$1" ]]; then
+    echo "❌ Usage: gacp \"commit message\""
+    return 1
+  fi
+
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not in a git repository"
+    return 1
+  fi
+
+  if [[ -z "$(git status --porcelain)" ]]; then
+    echo "ℹ️  No changes to commit"
+    return 0
+  fi
+
+  echo "📝 Changes to be committed:"
+  git status --short
+  echo ""
+
+  git add . && \
+  git commit -m "$1" && \
+  git push && \
+  echo "✅ Committed and pushed: $1" || \
+  echo "❌ Failed to commit/push"
+}
+
+# Pull all projects
+gitallpull() {
+  for dir in ~/Code/backend-labs ~/Code/frontend-labs ~/Code/portfolio; do
+    if [[ -d "$dir/.git" ]]; then
+      echo "🔄 Pulling in $(basename $dir)..."
+      (cd "$dir" && git pull && echo "✅ Done") || echo "❌ Failed"
+      echo ""
+    else
+      echo "⚠️  $dir is not a git repository"
+    fi
+  done
+}
+
+# Commit + push all projects (interactive)
+gacpall() {
+  for dir in ~/Code/backend-labs ~/Code/frontend-labs ~/Code/portfolio; do
+    if [[ -d "$dir/.git" ]]; then
+      (cd "$dir"
+        if [[ -n "$(git status --porcelain)" ]]; then
+          echo "📝 Changes detected in $(basename $dir):"
+          git status --short
+          echo ""
+          read "msg?Enter commit message (or press Enter to skip): "
+          if [[ -n "$msg" ]]; then
+            git add . && \
+            git commit -m "$msg" && \
+            git push && \
+            echo "✅ Committed and pushed" || \
+            echo "❌ Failed"
+          else
+            echo "⏭️  Skipped"
+          fi
+        else
+          echo "ℹ️  No changes in $(basename $dir)"
+        fi
+        echo ""
+      )
+    fi
+  done
+}
+
+# Wipe all commit history, keep files (⚠️ dangerous!)
+gitwipe() {
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not in a git repository"
+    return 1
+  fi
+
+  echo "⚠️  This will DELETE ALL commit history and force push to remote"
+  read "confirm?Type 'YES' to continue: "
+
+  if [[ "$confirm" != "YES" ]]; then
+    echo "❌ Aborted"
+    return 1
+  fi
+
+  echo "🗑️  Wiping history..."
+  git checkout --orphan temp
+  git add .
+
+  read "msg?Commit message (or press Enter for 'Initial commit'): "
+  git commit -m "${msg:-Initial commit}"
+
+  git branch -D main 2>/dev/null || git branch -D master 2>/dev/null
+  git branch -m main
+
+  echo "🚀 Force pushing..."
+  git push -f origin main
+
+  echo "✅ Done! Clean slate."
+}
+
+# ============================================================================
+# NODE/NPM ALIASES
+# ============================================================================
+alias ni='npm install'
+alias nid='npm install --save-dev'
+alias nrd='npm run dev'
+alias nrb='npm run build'
+alias nrs='npm run start'
+alias nrt='npm run test'
+alias nup='npm update'
+
+# ============================================================================
+# QUICK EDIT & RELOAD
+# ============================================================================
+alias zshconfig='${EDITOR:-nano} ~/.zshrc'
+alias zshreload='source ~/.zshrc'
+alias starshipconfig='${EDITOR:-nano} ~/.config/starship.toml'
+
+# ============================================================================
+# USEFUL UTILITIES
+# ============================================================================
+alias ports='lsof -i -P -n | grep LISTEN'  # Show listening ports
+alias myip='curl -s ifconfig.me'            # Show public IP
+alias localip='ipconfig getifaddr en0'      # Show local IP
+
+# ============================================================================
+# LS / EZA (brew install eza)
+# ============================================================================
+if command -v eza &> /dev/null; then
+  alias ls='eza --icons=always --group-directories-first'
+  alias ll='eza -l --icons=always --group-directories-first'
+  alias la='eza -la --icons=always --group-directories-first'
+  alias lt='eza --tree --icons=always -a -I "node_modules|.git" -L 3'
+else
+  alias ls='ls -h'
+  alias ll='ls -lh'
+  alias la='ls -lah'
+  if command -v tree &> /dev/null; then
+    alias lt='tree -L 2'
+  fi
+fi
+
+# ============================================================================
+# HELP COMMAND - Show all shortcuts
+# ============================================================================
+shortcuts() {
+  echo ""
+  echo "╔══════════════════════════════════════════════════════════════════════╗"
+  echo "║                    🚀 Terminal Shortcuts Reference                   ║"
+  echo "╠══════════════════════════════════════════════════════════════════════╣"
+  echo "║                                                                      ║"
+  echo "║  📁 NAVIGATION                                                        ║"
+  echo "║    ..               → Go up one directory                            ║"
+  echo "║    ...              → Go up two directories                          ║"
+  echo "║    ....             → Go up three directories                        ║"
+  echo "║    .....            → Go up four directories                         ║"
+  echo "║    c                → Clear screen                                   ║"
+  echo "║                                                                      ║"
+  echo "║  📂 PROJECT SHORTCUTS                                                 ║"
+  echo "║    cbe              → Go to Backend Labs                             ║"
+  echo "║    cfe              → Go to Frontend Labs                            ║"
+  echo "║    cpo              → Go to Portfolio                                ║"
+  echo "║    co               → Open current folder in VS Code                 ║"
+  echo "║                                                                      ║"
+  echo "║  📋 FILE OPERATIONS                                                   ║"
+  echo "║    mkcd <dir>       → Create directory and cd into it                ║"
+  echo "║    cpv <src> <dst>  → Copy with progress bar                         ║"
+  echo "║    trash <file>     → Move to trash (safer than rm)                  ║"
+  echo "║    cx <file>        → Make file executable                           ║"
+  echo "║    ls / ll / la     → List files                                     ║"
+  echo "║    lt               → List files in tree view                        ║"
+  echo "║                                                                      ║"
+  echo "║  🔄 GIT COMMANDS                                                      ║"
+  echo "║    gacp \"msg\"       → Add, commit & push with message                ║"
+  echo "║    gacpall          → Interactive commit & push all projects         ║"
+  echo "║    gitallpull       → Pull latest changes from all projects          ║"
+  echo "║    gitwipe          → Wipe ALL history, keep files (⚠️ dangerous!)    ║"
+  echo "║    gs               → Git status                                     ║"
+  echo "║    gl               → Git log (last 10, with graph)                  ║"
+  echo "║    gd               → Git diff                                       ║"
+  echo "║    gco <branch>     → Git checkout branch                            ║"
+  echo "║    gb               → Git branch list                                ║"
+  echo "║    grc              → Git reset hard & clean (⚠️ dangerous!)          ║"
+  echo "║                                                                      ║"
+  echo "║  📦 NODE/NPM SHORTCUTS                                                ║"
+  echo "║    ni               → npm install                                    ║"
+  echo "║    nid              → npm install --save-dev                         ║"
+  echo "║    nrd              → npm run dev                                    ║"
+  echo "║    nrb              → npm run build                                  ║"
+  echo "║    nrs              → npm run start                                  ║"
+  echo "║    nrt              → npm run test                                   ║"
+  echo "║                                                                      ║"
+  echo "║  🛠️  SYSTEM & UTILITIES                                               ║"
+  echo "║    c                → Clear screen                                   ║"
+  echo "║    ports            → Show listening ports                           ║"
+  echo "║    myip             → Show public IP address                         ║"
+  echo "║    localip          → Show local IP address                          ║"
+  echo "║    zshconfig        → Edit this terminal config                      ║"
+  echo "║    zshreload        → Reload terminal config                         ║"
+  echo "║    starshipconfig   → Edit Starship prompt config                    ║"
+  echo "║    shortcuts        → Show this help message                         ║"
+  echo "║                                                                      ║"
+  echo "║  💡 PRO TIPS                                                          ║"
+  echo "║    • Use Tab for auto-completion                                     ║"
+  echo "║    • Use Ctrl+R for history search (fuzzy find)                      ║"
+  echo "║    • Type '..' to go up one directory                                ║"
+  echo "║    • Commands starting with space won't be saved in history          ║"
+  echo "║                                                                      ║"
+  echo "╚══════════════════════════════════════════════════════════════════════╝"
+  echo ""
+}
+
+# ============================================================================
+# FZF SETUP (fuzzy finder — brew install fzf)
+# ============================================================================
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
+  export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+  export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+  export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind '?:toggle-preview' --height 50%"
+
+  # Fuzzy project switcher
+  proj() {
+    local dir
+    dir=$(find ~/Code -maxdepth 2 -type d 2>/dev/null | fzf --height 40% --reverse --border) || return
+    cd "$dir" || return
+  }
+fi
+
+# ============================================================================
+# BAT — better cat (brew install bat)
+# ============================================================================
+if command -v bat &> /dev/null; then
+  export BAT_THEME="tokyonight_night"
+  alias cat='bat'
+  alias catp='bat --plain'
+fi
+
+# ============================================================================
+# ZOXIDE — smart cd (brew install zoxide)
+# ============================================================================
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+fi
+
+# ============================================================================
+# FNM — Node version manager (brew install fnm)
+# ============================================================================
+if command -v fnm &> /dev/null; then
+  eval "$(fnm env --use-on-cd)"
+fi
+
+# ============================================================================
+# THEFUCK — correct mistyped commands (brew install thefuck)
+# ============================================================================
+if command -v thefuck &> /dev/null; then
+  eval "$(thefuck --alias)"
+  eval "$(thefuck --alias fk)"
+fi
+
+# ============================================================================
+# STARSHIP PROMPT
+# ============================================================================
+eval "$(starship init zsh)"

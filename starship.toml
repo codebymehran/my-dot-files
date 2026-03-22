@@ -1,0 +1,109 @@
+# ============================================
+# STARSHIP PROMPT - CLEAN & COMPACT
+# ============================================
+
+add_newline = false
+right_format = "$cmd_duration$time"
+
+# ---------------------------
+# MAIN PROMPT (left side)
+# ---------------------------
+format = "$directory $git_branch $git_status$character"
+
+# ---------------------------
+# PROMPT CHARACTER
+# ---------------------------
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+vicmd_symbol   = "[❮](bold yellow)"
+
+# ---------------------------
+# DIRECTORY
+# ---------------------------
+[directory]
+truncation_length = 2
+truncate_to_repo = true
+format = "[$path]($style) "
+style = "bold cyan"
+read_only = " 🔒"
+read_only_style = "red"
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "📄 "
+"Downloads" = "📥 "
+"Music"     = "🎵 "
+"Pictures"  = "🖼️ "
+"Code"      = "💻 "
+
+# ---------------------------
+# GIT BRANCH
+# ---------------------------
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bold green"
+truncation_length = 15
+truncation_symbol = "…"
+
+# ---------------------------
+# GIT STATUS
+# ---------------------------
+[git_status]
+format = "([$all_status$ahead_behind]($style))"
+style = "bold yellow"
+up_to_date = ""
+conflicted = "⚠️ "
+untracked = "⚡"
+modified = "⚡"
+staged = "●"
+renamed = "»"
+deleted = "✖"
+ahead = "↑${count}"
+diverged = "↕${ahead_count}↓${count}"
+behind = "↓${count}"
+stashed = "📦"
+
+# ---------------------------
+# TIME (RIGHT PROMPT)
+# ---------------------------
+[time]
+disabled = false
+format = "[$time]($style)"
+time_format = "%I:%M %p"
+style = "fg:#6c7086"
+
+# ---------------------------
+# DISABLED MODULES
+# ---------------------------
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[package]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[git_commit]
+disabled = true
+
+# ---------------------------
+# EXECUTION TIME (RIGHT)
+# ---------------------------
+[cmd_duration]
+min_time = 5_000
+format = "took [$duration]($style) "
+style = "bold yellow"
+show_milliseconds = false
+disabled = false

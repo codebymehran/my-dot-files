@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f0f4;
+    --border: #e2e2ea;
+    --text: #111118;
+    --muted: #7a7a90;
+    --c-nav:   #0369a1; --cbg-nav:   #e0f2fe;
+    --c-proj:  #6d28d9; --cbg-proj:  #ede9fe;
+    --c-file:  #16a34a; --cbg-file:  #dcfce7;
+    --c-git:   #c2410c; --cbg-git:   #ffedd5;
+    --c-npm:   #b45309; --cbg-npm:   #fef3c7;
+    --c-sys:   #0f766e; --cbg-sys:   #ccfbf1;
+    --c-star:  #1d4ed8; --cbg-star:  #dbeafe;
+    --c-zsh:   #7c3aed; --cbg-zsh:   #ede9fe;
+    --c-tools: #0e7490; --cbg-tools: #cffafe;
+  }
+  body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); padding: 48px 28px; }
+  .page { max-width: 1080px; margin: 0 auto; }
+
+  header { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 2px solid var(--border); padding-bottom: 22px; margin-bottom: 40px; }
+  h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; }
+  h1 span { color: #0369a1; }
+  .header-sub { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+  .header-right { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--muted); text-align: right; line-height: 1.9; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card.full { grid-column: 1 / -1; }
+
+  .card-header { display: flex; align-items: center; gap: 8px; padding: 11px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .card-header h2 { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .card-header .count { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--muted); font-weight: 700; }
+  .brew-badge { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; background: #fef3c7; color: #92400e; padding: 2px 7px; border-radius: 4px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  tr { border-bottom: 1px solid var(--border); }
+  tr:last-child { border-bottom: none; }
+  tr:hover { background: var(--surface2); }
+  td { padding: 8px 16px; vertical-align: top; }
+  td:first-child { width: 40%; }
+
+  .tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.74rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+  .desc { font-size: 0.8rem; color: var(--muted); font-family: 'Space Mono', monospace; line-height: 1.5; }
+  .note { font-size: 0.68rem; color: #0e7490; font-family: 'Space Mono', monospace; margin-top: 3px; }
+  .warn { font-size: 0.68rem; color: #c2410c; font-family: 'Space Mono', monospace; margin-top: 2px; }
+
+  .nav   .tag { color: var(--c-nav);   background: var(--cbg-nav); }
+  .proj  .tag { color: var(--c-proj);  background: var(--cbg-proj); }
+  .file  .tag { color: var(--c-file);  background: var(--cbg-file); }
+  .git   .tag { color: var(--c-git);   background: var(--cbg-git); }
+  .npm   .tag { color: var(--c-npm);   background: var(--cbg-npm); }
+  .sys   .tag { color: var(--c-sys);   background: var(--cbg-sys); }
+  .star  .tag { color: var(--c-star);  background: var(--cbg-star); }
+  .zsh   .tag { color: var(--c-zsh);   background: var(--cbg-zsh); }
+  .tools .tag { color: var(--c-tools); background: var(--cbg-tools); }
+
+  .install-banner {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .install-banner p { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: #92400e; white-space: nowrap; }
+  .install-banner code { font-family: 'Space Mono', monospace; font-size: 0.72rem; background: #fef3c7; color: #78350f; padding: 4px 10px; border-radius: 5px; border: 1px solid #fde68a; user-select: all; }
+
+  footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  footer p { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; }
+  .li { display: flex; align-items: center; gap: 4px; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--muted); }
+  .ld { width: 8px; height: 8px; border-radius: 50%; }
+
+  @media (max-width: 680px) {
+    .grid { grid-template-columns: 1fr; }
+    .card.full { grid-column: 1; }
+    header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <h1>Terminal <span>Cheatsheet</span></h1>
+      <p class="header-sub">zshrc_config.sh · starship.toml · macOS</p>
+    </div>
+    <div class="header-right">
+      type <code>shortcuts</code> in terminal for full ref<br>
+      zsh + Oh My Zsh + Starship prompt
+    </div>
+  </header>
+
+  <!-- BREW INSTALL BANNER -->
+  <div class="install-banner">
+    <p>📦 Install all optional tools at once:</p>
+    <code>brew install eza bat zoxide fnm fzf thefuck</code>
+    <p style="color:#78350f;font-size:0.65rem;">All tools are optional — zshrc falls back gracefully if not installed</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- NAVIGATION -->
+    <div class="card nav">
+      <div class="card-header"><h2>📁 Navigation</h2><span class="count">7</span></div>
+      <table>
+        <tr><td><span class="tag">..</span></td><td><span class="desc">Go up one directory</span></td></tr>
+        <tr><td><span class="tag">...</span></td><td><span class="desc">Go up two directories</span></td></tr>
+        <tr><td><span class="tag">....</span></td><td><span class="desc">Go up three directories</span></td></tr>
+        <tr><td><span class="tag">.....</span></td><td><span class="desc">Go up four directories</span></td></tr>
+        <tr><td><span class="tag">c</span></td><td><span class="desc">Clear screen</span></td></tr>
+        <tr><td><span class="tag">co</span></td><td><span class="desc">Open current folder in VS Code</span></td></tr>
+        <tr>
+          <td><span class="tag">cd / z &lt;name&gt;</span></td>
+          <td>
+            <span class="desc">Smart jump — learns your most visited dirs</span>
+            <div class="note">⬡ zoxide · brew install zoxide · e.g. z proj</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="card proj">
+      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">4</span></div>
+      <table>
+        <tr><td><span class="tag">cbe</span></td><td><span class="desc">cd ~/Code/backend-labs</span></td></tr>
+        <tr><td><span class="tag">cfe</span></td><td><span class="desc">cd ~/Code/frontend-labs</span></td></tr>
+        <tr><td><span class="tag">cpo</span></td><td><span class="desc">cd ~/Code/portfolio</span></td></tr>
+        <tr>
+          <td><span class="tag">proj</span></td>
+          <td>
+            <span class="desc">Fuzzy search all ~/Code dirs, pick and cd</span>
+            <div class="note">⬡ requires fzf · brew install fzf</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- FILE OPS -->
+    <div class="card file">
+      <div class="card-header"><h2>📋 File Operations</h2><span class="count">9</span></div>
+      <table>
+        <tr>
+          <td><span class="tag">ls / ll / la</span></td>
+          <td>
+            <span class="desc">List files · long view · show hidden files</span>
+            <div class="note">⬡ eza: adds icons + colours · brew install eza</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">lt</span></td>
+          <td>
+            <span class="desc">Tree view, 3 levels, ignores node_modules/.git</span>
+            <div class="note">⬡ eza · brew install eza</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">cat &lt;file&gt;</span></td>
+          <td>
+            <span class="desc">View file contents with syntax highlighting</span>
+            <div class="note">⬡ bat · brew install bat · catp for plain output</div>
+          </td>
+        </tr>
+        <tr><td><span class="tag">mkcd &lt;dir&gt;</span></td><td><span class="desc">Create directory and cd into it</span></td></tr>
+        <tr><td><span class="tag">cpv &lt;src&gt; &lt;dst&gt;</span></td><td><span class="desc">Copy with rsync progress bar</span></td></tr>
+        <tr><td><span class="tag">trash &lt;file&gt;</span></td><td><span class="desc">Move to ~/.Trash — safer than rm</span></td></tr>
+        <tr><td><span class="tag">cx &lt;file&gt;</span></td><td><span class="desc">Make file executable (chmod +x)</span></td></tr>
+        <tr><td><span class="tag">644 / 755 / 777</span></td><td><span class="desc">Set file permissions quickly</span></td></tr>
+        <tr><td><span class="tag">rm / cp / mv</span></td><td><span class="desc">Interactive — always prompts before overwrite</span></td></tr>
+      </table>
+    </div>
+
+    <!-- NPM -->
+    <div class="card npm">
+      <div class="card-header"><h2>📦 Node / npm</h2><span class="count">8</span></div>
+      <table>
+        <tr>
+          <td><span class="tag">fnm use &lt;ver&gt;</span></td>
+          <td>
+            <span class="desc">Switch Node version · auto-switches on cd</span>
+            <div class="note">⬡ fnm · brew install fnm · replaces nvm</div>
+          </td>
+        </tr>
+        <tr><td><span class="tag">ni</span></td><td><span class="desc">npm install</span></td></tr>
+        <tr><td><span class="tag">nid</span></td><td><span class="desc">npm install --save-dev</span></td></tr>
+        <tr><td><span class="tag">nrd</span></td><td><span class="desc">npm run dev</span></td></tr>
+        <tr><td><span class="tag">nrb</span></td><td><span class="desc">npm run build</span></td></tr>
+        <tr><td><span class="tag">nrs</span></td><td><span class="desc">npm run start</span></td></tr>
+        <tr><td><span class="tag">nrt</span></td><td><span class="desc">npm run test</span></td></tr>
+        <tr><td><span class="tag">nup</span></td><td><span class="desc">npm update</span></td></tr>
+      </table>
+    </div>
+
+    <!-- GIT FULL WIDTH -->
+    <div class="card full git">
+      <div class="card-header"><h2>🔄 Git Commands</h2><span class="count">12</span></div>
+      <table>
+        <tr><td><span class="tag">gs</span></td><td><span class="desc">git status</span></td></tr>
+        <tr><td><span class="tag">gl</span></td><td><span class="desc">git log — last 10 commits, graph + branch decorators</span></td></tr>
+        <tr><td><span class="tag">glh</span></td><td><span class="desc">Last commit with file-by-file stats (what changed)</span></td></tr>
+        <tr><td><span class="tag">gd</span></td><td><span class="desc">git diff — unstaged changes</span></td></tr>
+        <tr><td><span class="tag">gco &lt;branch&gt;</span></td><td><span class="desc">git checkout branch</span></td></tr>
+        <tr><td><span class="tag">gb</span></td><td><span class="desc">List all branches</span></td></tr>
+        <tr><td><span class="tag">gp</span></td><td><span class="desc">git pull</span></td></tr>
+        <tr><td><span class="tag">gaa</span></td><td><span class="desc">git add --all</span></td></tr>
+        <tr><td><span class="tag">gcm "msg"</span></td><td><span class="desc">git commit -m "message"</span></td></tr>
+        <tr><td><span class="tag">gacp "msg"</span></td><td><span class="desc">Add all → commit → push in one command</span></td></tr>
+        <tr><td><span class="tag">gacpall</span></td><td><span class="desc">Interactive commit + push across all 3 projects</span></td></tr>
+        <tr><td><span class="tag">gitallpull</span></td><td><span class="desc">Pull latest in backend-labs, frontend-labs, portfolio</span></td></tr>
+        <tr>
+          <td><span class="tag">grc</span></td>
+          <td>
+            <span class="desc">git reset --hard + delete all untracked files · requires YES</span>
+            <div class="warn">⚠ destructive — all uncommitted work is gone</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">gitwipe</span></td>
+          <td>
+            <span class="desc">Delete entire commit history, keep files, force push · requires YES</span>
+            <div class="warn">⚠ irreversible — only use on throwaway/personal repos</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- TOOLS FULL WIDTH -->
+    <div class="card full tools">
+      <div class="card-header">
+        <h2>🔧 Optional Tools</h2>
+        <span class="brew-badge">brew install eza bat zoxide fnm fzf thefuck</span>
+      </div>
+      <table>
+        <tr>
+          <td><span class="tag">eza</span></td>
+          <td>
+            <span class="desc">Better ls — file icons, colour coding, git status in listings, tree view</span>
+            <div class="note">brew install eza · replaces ls/ll/la/lt automatically when installed</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">bat</span></td>
+          <td>
+            <span class="desc">Better cat — syntax highlighting, line numbers, git diff markers in output</span>
+            <div class="note">brew install bat · replaces cat automatically · use catp for plain output · theme: tokyonight_night</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">zoxide</span></td>
+          <td>
+            <span class="desc">Smart cd — tracks visited dirs, jump anywhere with a partial name · e.g. z back jumps to backend-labs</span>
+            <div class="note">brew install zoxide · replaces cd automatically · the more you use it, the smarter it gets</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">fnm</span></td>
+          <td>
+            <span class="desc">Fast Node version manager — install, switch, auto-switch per project via .nvmrc or .node-version</span>
+            <div class="note">brew install fnm · usage: fnm install 20 · fnm use 20 · fnm list · auto-switches on cd</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">fzf</span></td>
+          <td>
+            <span class="desc">Fuzzy finder — Ctrl+R for history search · Ctrl+T for file picker · used by proj command</span>
+            <div class="note">brew install fzf · preview window shows file contents via bat · Alt+C for fuzzy dir jump</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">thefuck / fk</span></td>
+          <td>
+            <span class="desc">Mistype a command? Run fk and it auto-corrects it — e.g. git psuh → suggests git push</span>
+            <div class="note">brew install thefuck · type fk after any failed command to fix it</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SYSTEM -->
+    <div class="card sys">
+      <div class="card-header"><h2>🛠 System &amp; Utils</h2><span class="count">6</span></div>
+      <table>
+        <tr><td><span class="tag">ports</span></td><td><span class="desc">Show all listening ports</span></td></tr>
+        <tr><td><span class="tag">myip</span></td><td><span class="desc">Show public IP (via ifconfig.me)</span></td></tr>
+        <tr><td><span class="tag">localip</span></td><td><span class="desc">Show local IP address (en0)</span></td></tr>
+        <tr><td><span class="tag">shortcuts</span></td><td><span class="desc">Print full reference in terminal</span></td></tr>
+        <tr><td><span class="tag">zshconfig</span></td><td><span class="desc">Edit ~/.zshrc in $EDITOR</span></td></tr>
+        <tr><td><span class="tag">zshreload</span></td><td><span class="desc">Reload ~/.zshrc without restarting terminal</span></td></tr>
+      </table>
+    </div>
+
+    <!-- STARSHIP -->
+    <div class="card star">
+      <div class="card-header"><h2>🚀 Starship Prompt</h2></div>
+      <table>
+        <tr><td><span class="tag">starshipconfig</span></td><td><span class="desc">Edit ~/.config/starship.toml</span></td></tr>
+        <tr><td><span class="tag">Left prompt</span></td><td><span class="desc">dir → git branch → git status → ❯ character</span></td></tr>
+        <tr><td><span class="tag">Right prompt</span></td><td><span class="desc">Command duration (only if &gt;5s) · clock HH:MM AM/PM</span></td></tr>
+        <tr><td><span class="tag">⚡ modified</span></td><td><span class="desc">Unstaged changes in working tree</span></td></tr>
+        <tr><td><span class="tag">● staged</span></td><td><span class="desc">Changes added to index (git add)</span></td></tr>
+        <tr><td><span class="tag">↑↓ count</span></td><td><span class="desc">Commits ahead / behind remote</span></td></tr>
+        <tr><td><span class="tag">❯ green / red</span></td><td><span class="desc">Last command succeeded / failed</span></td></tr>
+      </table>
+    </div>
+
+    <!-- ZSH CONFIG -->
+    <div class="card zsh">
+      <div class="card-header"><h2>⚙ zsh Notes</h2></div>
+      <table>
+        <tr><td><span class="tag">History</span></td><td><span class="desc">10k entries · deduped · shared across terminals · space-prefix = not saved</span></td></tr>
+        <tr><td><span class="tag">Plugins</span></td><td><span class="desc">git · npm · node · zsh-autosuggestions · zsh-syntax-highlighting · colored-man-pages</span></td></tr>
+        <tr><td><span class="tag">Ctrl+R</span></td><td><span class="desc">Fuzzy history search with preview (fzf)</span></td></tr>
+        <tr><td><span class="tag">Ctrl+T</span></td><td><span class="desc">Fuzzy file picker — inserts path into command (fzf)</span></td></tr>
+        <tr><td><span class="tag">Tab</span></td><td><span class="desc">Auto-complete commands, paths, git branches</span></td></tr>
+        <tr><td><span class="tag">auto_cd</span></td><td><span class="desc">Type a folder name without cd to jump into it</span></td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- FILE LOCATIONS -->
+  <div style="margin-top:18px; background:#ffffff; border:1px solid #e2e2ea; border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+    <div style="padding:11px 16px; background:#f0f0f4; border-bottom:1px solid #e2e2ea; display:flex; align-items:center; gap:8px;">
+      <span style="font-size:0.95rem;">📍</span>
+      <h2 style="font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#7a7a90;">Config File Locations</h2>
+    </div>
+    <table style="width:100%; border-collapse:collapse;">
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px; width:40%;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#0e7490; background:#cffafe;">zshrc_config.sh</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">→ ~/.zshrc</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#0e7490; background:#cffafe;">starship.toml</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">→ ~/.config/starship.toml</span></td>
+      </tr>
+      <tr>
+        <td style="padding:9px 16px;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#0e7490; background:#cffafe;">.wezterm.lua</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">→ ~/.wezterm.lua</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- SETUP NOTES -->
+  <div style="margin-top:18px; background:#ffffff; border:1px solid #e2e2ea; border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+    <div style="padding:11px 16px; background:#f0f0f4; border-bottom:1px solid #e2e2ea; display:flex; align-items:center; gap:8px;">
+      <span style="font-size:0.95rem;">💡</span>
+      <h2 style="font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#7a7a90;">Setup Notes</h2>
+    </div>
+    <table style="width:100%; border-collapse:collapse;">
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px; width:40%;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#6d28d9; background:#ede9fe;">Install order</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">Homebrew → Oh My Zsh → zsh plugins → Starship → optional tools → drop config files in</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#6d28d9; background:#ede9fe;">Nerd Font</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">WezTerm uses MesloLGS Nerd Font Mono — install from nerdfonts.com or Starship symbols show as broken squares</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#6d28d9; background:#ede9fe;">zoxide warm-up</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">z doesn't work instantly — use cd normally for a few days and zoxide learns your dirs in the background</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#6d28d9; background:#ede9fe;">fnm vs nvm</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">If you used nvm before, remove it from ~/.zshrc first — fnm and nvm conflict with each other</span></td>
+      </tr>
+      <tr>
+        <td style="padding:9px 16px;"><span style="display:inline-block; font-family:'Space Mono',monospace; font-size:0.74rem; font-weight:700; padding:2px 7px; border-radius:4px; color:#6d28d9; background:#ede9fe;">Plugin errors</span></td>
+        <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">If shell throws errors on startup, zsh plugins aren't installed yet — install them before copying zshrc</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <footer>
+    <p>zshrc_config.sh · starship.toml · macOS · zsh + Starship</p>
+    <div class="legend">
+      <div class="li"><div class="ld" style="background:#0369a1"></div>Navigation</div>
+      <div class="li"><div class="ld" style="background:#6d28d9"></div>Projects</div>
+      <div class="li"><div class="ld" style="background:#16a34a"></div>Files</div>
+      <div class="li"><div class="ld" style="background:#c2410c"></div>Git</div>
+      <div class="li"><div class="ld" style="background:#b45309"></div>npm</div>
+      <div class="li"><div class="ld" style="background:#0e7490"></div>Tools</div>
+      <div class="li"><div class="ld" style="background:#0f766e"></div>System</div>
+      <div class="li"><div class="ld" style="background:#1d4ed8"></div>Starship</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
