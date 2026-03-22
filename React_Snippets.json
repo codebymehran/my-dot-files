@@ -1,0 +1,453 @@
+{
+  // ===========================================================
+  // 🖨️ CONSOLE
+  // ===========================================================
+
+  // cl → console.log()
+  // Cursor lands inside the parens, ready to type
+  "Console Log": {
+    "prefix": "cl",
+    "body": ["console.log($1);"]
+  },
+
+  // clv → console.log('label:', value)
+  // Useful when you want a label alongside the value
+  "Console Log Labeled": {
+    "prefix": "clv",
+    "body": ["console.log('$1:', $1);"]
+  },
+
+  // ===========================================================
+  // ⚛️ REACT HOOKS
+  // ===========================================================
+
+  // us → const [count, setCount] = useState()
+  // Type the state name ONCE — setter is auto-capitalized
+  // e.g. type "count" → get [count, setCount]
+  "React useState": {
+    "prefix": "us",
+    "body": [
+      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState($2);"
+    ]
+  },
+
+  // ue → useEffect with dependency array
+  // $1 = body, $2 = deps. Leave $2 empty for [] (run once)
+  "React useEffect": {
+    "prefix": "ue",
+    "body": ["useEffect(() => {", "  $1", "}, [$2]);"]
+  },
+
+  // ucb → useCallback
+  // $1 = body, $2 = deps
+  "React useCallback": {
+    "prefix": "ucb",
+    "body": ["useCallback(() => {", "  $1", "}, [$2]);"]
+  },
+
+  // umm → useMemo
+  // $1 = body, $2 = deps
+  "React useMemo": {
+    "prefix": "umm",
+    "body": ["useMemo(() => {", "  $1", "}, [$2]);"]
+  },
+
+  // ur → useRef
+  // $1 = initial value (default null)
+  "React useRef": {
+    "prefix": "ur",
+    "body": ["const ${1:ref} = useRef($2);"]
+  },
+
+  // uc → useContext
+  "React useContext": {
+    "prefix": "uc",
+    "body": ["const ${1:value} = useContext($2);"]
+  },
+
+  // ucxt → create a Context + Provider in one go
+  // Replace MyContext with your context name (e.g. AuthContext, ThemeContext)
+  "React Context + Provider": {
+    "prefix": "ucxt",
+    "body": [
+      "import { createContext, useContext, useState } from 'react'",
+      "",
+      "const ${1:My}Context = createContext(null)",
+      "",
+      "export const use${1:My}Context = () => useContext(${1:My}Context)",
+      "",
+      "export const ${1:My}Provider = ({ children }) => {",
+      "  const [${2:state}, set${2/(.*)/${1:/capitalize}/}] = useState($3)",
+      "",
+      "  return (",
+      "    <${1:My}Context.Provider value={{ ${2:state}, set${2/(.*)/${1:/capitalize}/} }}>",
+      "      {children}",
+      "    </${1:My}Context.Provider>",
+      "  )",
+      "}"
+    ],
+    "description": "React Context + Provider boilerplate",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // urd → useReducer with reducer function stub
+  // $1 = state name, $2 = initialState body
+  "React useReducer": {
+    "prefix": "urd",
+    "body": [
+      "const reducer = (state, action) => {",
+      "  switch (action.type) {",
+      "    case '${1:ACTION}': {",
+      "      return { ...state, $2 }",
+      "    }",
+      "    default:",
+      "      return state",
+      "  }",
+      "}",
+      "",
+      "const [state, dispatch] = useReducer(reducer, { $3 })"
+    ],
+    "description": "React useReducer with reducer stub",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // ⚛️ REACT COMPONENTS
+  // ===========================================================
+
+  // rafce → basic arrow function component, named after filename
+  "React Function Component": {
+    "prefix": "rafce",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "    </div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "React arrow function component",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // rafcep → component with typed Props interface (TypeScript only)
+  // Type component name once — used in interface, component, and export
+  "React Function Component with Props (TS)": {
+    "prefix": "rafcep",
+    "body": [
+      "interface ${1:${TM_FILENAME_BASE}}Props {",
+      "  $2",
+      "}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = ({ $3 }: ${1:${TM_FILENAME_BASE}}Props) => {",
+      "  return (",
+      "    <div>",
+      "      $4",
+      "    </div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "React arrow function component with Props interface (TypeScript)",
+    "scope": "typescript,typescriptreact"
+  },
+
+  // rafcepjs → component with props, plain JavaScript (no TypeScript)
+  // Use this in .js / .jsx files — no interface, just destructured props
+  "React Function Component with Props (JS)": {
+    "prefix": "rafcepjs",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE}} = ({ $2 }) => {",
+      "  return (",
+      "    <div>",
+      "      $3",
+      "    </div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "React arrow function component with props (JavaScript)",
+    "scope": "javascript,javascriptreact"
+  },
+
+  // arafce → async server component (Next.js)
+  "Async React Function Component": {
+    "prefix": "arafce",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE}} = async () => {",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "    </div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+
+  // arafcep → async server component with Props (Next.js)
+  "Async React Function Component with Props": {
+    "prefix": "arafcep",
+    "body": [
+      "interface ${1:${TM_FILENAME_BASE}}Props {",
+      "  $2",
+      "}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = async ({ $3 }: ${1:${TM_FILENAME_BASE}}Props) => {",
+      "  return (",
+      "    <div>",
+      "      $4",
+      "    </div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+
+  // ===========================================================
+  // 📦 IMPORTS
+  // ===========================================================
+
+  // imp → import X from 'Y'
+  // Tab order: name first ($1), then path ($2)
+  "import": {
+    "prefix": "imp",
+    "body": ["import ${1:module} from '${2:path}'"],
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // imd → import { X } from 'Y'
+  "importDestructing": {
+    "prefix": "imd",
+    "body": ["import { ${1:module} } from '${2:path}'"],
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // ===========================================================
+  // 🔁 REDUX TOOLKIT
+  // ===========================================================
+
+  // rxslice → full Redux slice boilerplate
+  // Tab order: slice name ($1) → store key name ($2) → initialState body ($3)
+  "reduxSlice": {
+    "prefix": "rxslice",
+    "body": [
+      "import { createSlice } from '@reduxjs/toolkit'",
+      "",
+      "const initialState = {",
+      "  ${3}",
+      "}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = createSlice({",
+      "  name: '${2:second}',",
+      "  initialState,",
+      "  reducers: {}",
+      "});",
+      "",
+      "export const {} = ${1:${TM_FILENAME_BASE}}.actions",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}.reducer"
+    ],
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // ===========================================================
+  // 🛠️ UTILITY
+  // ===========================================================
+
+  // todo → // TODO: note
+  "TODO Comment": {
+    "prefix": "todo",
+    "body": ["// TODO: $1"]
+  },
+
+  // try → try/catch block with error logged
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (error) {",
+      "  console.error(error);",
+      "  $2",
+      "}"
+    ]
+  },
+
+  // afn → async arrow function (standalone, not a component)
+  // Useful for event handlers, API calls, utils
+  "Async Arrow Function": {
+    "prefix": "afn",
+    "body": ["const ${1:fn} = async ($2) => {", "  $3", "};"]
+  },
+
+  // ===========================================================
+  // 🔺 NEXT.JS — APP ROUTER
+  // ===========================================================
+
+  // npage → basic App Router page (Server Component by default)
+  // Drop this in any app/*/page.jsx file
+  "Next.js Page": {
+    "prefix": "npage",
+    "body": [
+      "export default function ${1:${TM_FILENAME_BASE}}Page() {",
+      "  return (",
+      "    <main>",
+      "      $2",
+      "    </main>",
+      "  )",
+      "}"
+    ],
+    "description": "Next.js App Router page component",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nlayout → App Router layout wrapper
+  // Drop this in any app/*/layout.jsx file
+  "Next.js Layout": {
+    "prefix": "nlayout",
+    "body": [
+      "export default function ${1:${TM_FILENAME_BASE}}Layout({ children }) {",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "      {children}",
+      "    </div>",
+      "  )",
+      "}"
+    ],
+    "description": "Next.js App Router layout component",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nloading → loading.jsx skeleton shown during Suspense
+  "Next.js Loading": {
+    "prefix": "nloading",
+    "body": [
+      "export default function Loading() {",
+      "  return (",
+      "    <div>",
+      "      $1",
+      "    </div>",
+      "  )",
+      "}"
+    ],
+    "description": "Next.js loading.jsx for Suspense fallback",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nerror → error.jsx boundary — MUST be a Client Component
+  "Next.js Error Boundary": {
+    "prefix": "nerror",
+    "body": [
+      "'use client'",
+      "",
+      "export default function Error({ error, reset }) {",
+      "  return (",
+      "    <div>",
+      "      <h2>Something went wrong</h2>",
+      "      <p>{error.message}</p>",
+      "      <button onClick={reset}>Try again</button>",
+      "    </div>",
+      "  )",
+      "}"
+    ],
+    "description": "Next.js error.jsx boundary (must be Client Component)",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nroute → App Router API route handler (route.js)
+  // GET + POST stubs — delete whichever you don't need
+  "Next.js API Route": {
+    "prefix": "nroute",
+    "body": [
+      "import { NextResponse } from 'next/server'",
+      "",
+      "export async function GET(request) {",
+      "  try {",
+      "    $1",
+      "    return NextResponse.json({ $2 })",
+      "  } catch (error) {",
+      "    return NextResponse.json({ error: error.message }, { status: 500 })",
+      "  }",
+      "}",
+      "",
+      "export async function POST(request) {",
+      "  try {",
+      "    const body = await request.json()",
+      "    $3",
+      "    return NextResponse.json({ $4 }, { status: 201 })",
+      "  } catch (error) {",
+      "    return NextResponse.json({ error: error.message }, { status: 500 })",
+      "  }",
+      "}"
+    ],
+    "description": "Next.js App Router API route handler",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nmeta → static metadata export for SEO
+  // Add to any page.jsx to set the <title> and <meta description>
+  "Next.js Metadata": {
+    "prefix": "nmeta",
+    "body": [
+      "export const metadata = {",
+      "  title: '${1:Page Title}',",
+      "  description: '${2:Page description}',",
+      "}"
+    ],
+    "description": "Next.js static metadata export",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ncc → 'use client' directive
+  // Needed whenever you use hooks, event handlers, or browser APIs
+  "Next.js use client": {
+    "prefix": "ncc",
+    "body": ["'use client'", ""],
+    "description": "Next.js use client directive",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nlink → Next.js <Link> component
+  "Next.js Link": {
+    "prefix": "nlink",
+    "body": ["<Link href=\"${1:/}\">${2:label}</Link>"],
+    "description": "Next.js Link component",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nimg → Next.js <Image> component with required props
+  "Next.js Image": {
+    "prefix": "nimg",
+    "body": [
+      "<Image",
+      "  src=\"${1:/image.png}\"",
+      "  alt=\"${2:description}\"",
+      "  width={${3:500}}",
+      "  height={${4:300}}",
+      "/>"
+    ],
+    "description": "Next.js Image component",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nrouter → useRouter + usePathname hooks (Client Component only)
+  "Next.js Router Hooks": {
+    "prefix": "nrouter",
+    "body": [
+      "const router = useRouter()",
+      "const pathname = usePathname()"
+    ],
+    "description": "Next.js useRouter and usePathname hooks",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  }
+}
+
