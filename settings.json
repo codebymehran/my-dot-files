@@ -191,6 +191,7 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.shellIntegration.enabled": false,
 
   // ===========================================================
   // 🎯 WORKBENCH - MINIMAL UI
