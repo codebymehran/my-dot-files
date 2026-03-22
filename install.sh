@@ -1,6 +1,6 @@
 #!/bin/bash
 cp zshrc.sh ~/.zshrc
-cp .wezterm.lua ~/.wezterm.lua
+cp wezterm.lua ~/.wezterm.lua
 mkdir -p ~/.config
 cp starship.toml ~/.config/starship.toml
 cp settings.json ~/Library/Application\ Support/Code/User/settings.json
