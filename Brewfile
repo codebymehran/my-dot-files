@@ -1,15 +1,22 @@
 # Core CLI tools
-brew "neovim"
-brew "node"
 brew "starship"
 brew "fzf"
 brew "eza"
+brew "bat"           # Better cat (used in zshrc + FZF preview)
+brew "zoxide"        # Smart cd (used in zshrc)
+brew "ripgrep"       # Fast file search (used by FZF_DEFAULT_COMMAND)
+brew "lazygit"       # Visual git TUI
+brew "thefuck"       # Correct mistyped commands
+brew "fnm"           # Node version manager (replaces static brew node)
+
+# ZSH plugins
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh-vi-mode"
 
 # Optional CLI tools
 brew "tree"
+brew "rsync"         # Used by cpv alias in zshrc
 
 # GUI Apps
 cask "visual-studio-code"
