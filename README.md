@@ -7,7 +7,7 @@ Personal config files for macOS dev environment.
 ## What's included
 
 | File | Location | Purpose |
-|------|--------|--------|
+|------|----------|---------|
 | zshrc.sh | ~/.zshrc | Shell config — aliases, functions, tools |
 | starship.toml | ~/.config/starship.toml | Prompt appearance |
 | wezterm.lua | ~/.wezterm.lua | WezTerm terminal config |
@@ -15,8 +15,11 @@ Personal config files for macOS dev environment.
 | settings.json | ~/Library/Application Support/Code/User/settings.json | VS Code settings |
 | keybindings.json | ~/Library/Application Support/Code/User/keybindings.json | VS Code keybindings |
 | React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
+| vscode-extensions.txt | local file in repo | VS Code extensions list |
+| cheatsheets | ~/Desktop/cheatsheets | HTML reference files |
 
 ---
+
 ## Apps
 
 ### Development
@@ -42,7 +45,9 @@ Personal config files for macOS dev environment.
 ### Media / Browser
 - Google Chrome
 - IINA
+
 ---
+
 ## Setup (New Machine)
 
 ```bash
@@ -68,20 +73,37 @@ exec zsh
 
 ---
 
-## Install dependencies
+## Install Apps (Homebrew)
 
-### Core
-```bash
-brew install starship zsh-autosuggestions zsh-syntax-highlighting
-```
-# Install apps
 ```bash
 brew bundle
 ```
-### Optional (recommended)
+
+---
+
+## VS Code Extensions
+
 ```bash
+cat vscode-extensions.txt | xargs -L 1 code --install-extension
+```
+
+---
+
+## Install dependencies (manual)
+
+```bash
+brew install starship zsh-autosuggestions zsh-syntax-highlighting
 brew install eza bat zoxide fnm fzf thefuck
 ```
+
+---
+
+## Manual Apps (App Store)
+
+Install these manually:
+
+- BetterSnapTool
+- ScreenBrush
 
 ---
 
@@ -89,11 +111,16 @@ brew install eza bat zoxide fnm fzf thefuck
 
 Uses **MesloLGL Nerd Font Mono**
 
-Install from: https://www.nerdfonts.com/
+Install via Homebrew or from:
+https://www.nerdfonts.com/
 
 ---
 
 ## Notes
 
-- Always push your changes to GitHub before running update  
-- Update process deletes the local repo and installs fresh copy  
+- Always push your changes to GitHub before running update
+- Update process deletes the local repo and installs a fresh copy
+- `install.sh` only handles dotfiles
+- Apps are installed separately using `brew bundle`
+- VS Code extensions are installed separately
+- This repo does not use a `macos.sh`
