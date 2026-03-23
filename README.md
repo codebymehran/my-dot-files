@@ -144,3 +144,4 @@ https://www.nerdfonts.com/
 - `install.sh` only handles dotfiles
 - Apps are installed separately using `brew bundle`
 - VS Code extensions are installed separately
+- Mac OS settings can be installed using `bash macos.sh`
