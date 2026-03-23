@@ -2,34 +2,70 @@
 
 Personal config files for macOS dev environment.
 
+---
+
 ## What's included
 
 | File | Location | Purpose |
-|------|----------|---------|
-| `zshrc_config.sh` | `~/.zshrc` | Shell config — aliases, functions, tools |
-| `starship.toml` | `~/.config/starship.toml` | Prompt appearance |
-| `.wezterm.lua` | `~/.wezterm.lua` | WezTerm terminal config |
-| `settings.json` | `~/Library/Application Support/Code/User/settings.json` | VS Code settings |
-| `keybindings.json` | `~/Library/Application Support/Code/User/keybindings.json` | VS Code keybindings |
+|------|--------|--------|
+| zshrc.sh | ~/.zshrc | Shell config — aliases, functions, tools |
+| starship.toml | ~/.config/starship.toml | Prompt appearance |
+| wezterm.lua | ~/.wezterm.lua | WezTerm terminal config |
+| karabiner.json | ~/.config/karabiner/karabiner.json | Keyboard remapping |
+| settings.json | ~/Library/Application Support/Code/User/settings.json | VS Code settings |
+| keybindings.json | ~/Library/Application Support/Code/User/keybindings.json | VS Code keybindings |
+| React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
 
-## Setup on a new Mac
+---
+
+## Setup (New Machine)
 
 ```bash
+cd ~
 git clone https://github.com/codebymehran/my-dot-files.git
 cd my-dot-files
 bash install.sh
+exec zsh
 ```
 
-## Install dependencies first
+---
+
+## Update (After changes on GitHub)
 
 ```bash
-# Core
-brew install starship zsh-autosuggestions zsh-syntax-highlighting
+cd ~
+rm -rf my-dot-files
+git clone https://github.com/codebymehran/my-dot-files.git
+cd my-dot-files
+bash install.sh
+exec zsh
+```
 
-# Optional tools (recommended)
+---
+
+## Install dependencies
+
+### Core
+```bash
+brew install starship zsh-autosuggestions zsh-syntax-highlighting
+```
+
+### Optional (recommended)
+```bash
 brew install eza bat zoxide fnm fzf thefuck
 ```
 
+---
+
 ## Font
 
-Uses **MesloLGL Nerd Font Mono** — install from [nerdfonts.com](https://www.nerdfonts.com) before running the install script.
+Uses **MesloLGL Nerd Font Mono**
+
+Install from: https://www.nerdfonts.com/
+
+---
+
+## Notes
+
+- Always push your changes to GitHub before running update  
+- Update process deletes the local repo and installs fresh copy  
