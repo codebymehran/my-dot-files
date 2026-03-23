@@ -74,7 +74,10 @@ exec zsh
 ```bash
 brew install starship zsh-autosuggestions zsh-syntax-highlighting
 ```
-
+# Install apps
+```bash
+brew bundle
+```
 ### Optional (recommended)
 ```bash
 brew install eza bat zoxide fnm fzf thefuck
