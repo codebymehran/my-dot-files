@@ -16,10 +16,11 @@ cp settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 cp keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
 cp React_Snippets.code-snippets "$HOME/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets"
 
-# 👇 new lines
-cp karabiner-cheatsheet.html "$HOME/Desktop/karabiner-cheatsheet.html"
-cp snippets-cheatsheet.html "$HOME/Desktop/snippets-cheatsheet.html"
-cp terminal-cheatsheet.html "$HOME/Desktop/terminal-cheatsheet.html"
+# cheatsheets folder
+mkdir -p "$HOME/Desktop/cheatsheets"
+cp karabiner-cheatsheet.html "$HOME/Desktop/cheatsheets/"
+cp snippets-cheatsheet.html "$HOME/Desktop/cheatsheets/"
+cp terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/"
 
 echo "✅ Dotfiles installed successfully"
 echo "👉 Run: exec zsh"
