@@ -107,7 +107,14 @@ This script currently includes:
 ```bash
 cat vscode-extensions.txt | xargs -L 1 code --install-extension
 ```
+## Git Setup
 
+Configure Git with default settings, aliases, and identity:
+
+```bash
+cd ~/my-dot-files
+bash git.sh
+```
 ---
 
 ## Install dependencies (manual)
@@ -145,3 +152,4 @@ https://www.nerdfonts.com/
 - Apps are installed separately using `brew bundle`
 - VS Code extensions are installed separately
 - Mac OS settings can be installed using `bash macos.sh`
+- Git Configuration `bash git.sh`
