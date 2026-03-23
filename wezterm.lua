@@ -15,7 +15,7 @@ config.color_scheme = DARK
 -- ============================================
 -- FONT
 -- ============================================
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
+config.font = wezterm.font("MesloLGL Nerd Font Mono")
 config.font_size = 19
 config.line_height = 1.2
 
