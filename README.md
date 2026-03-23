@@ -17,7 +17,32 @@ Personal config files for macOS dev environment.
 | React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
 
 ---
+## Apps
 
+### Development
+- Visual Studio Code
+- WezTerm
+- iTerm2
+- Karabiner-Elements
+
+### Productivity
+- Raycast
+- Contexts
+- CleanShot
+- PopClip
+- Itsycal
+
+### Utilities
+- AppCleaner
+- The Unarchiver
+- HiddenBar
+- KeyboardCleanTool
+- Mic Drop
+
+### Media / Browser
+- Google Chrome
+- IINA
+---
 ## Setup (New Machine)
 
 ```bash
