@@ -1,0 +1,13 @@
+bubersson.theme-hop-light
+gitkendra.hop-light-with-italics
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+formulahendry.auto-rename-tag
+ritwickdey.liveserver
+sleistner.vscode-fileutils
+vscode-icons-team.vscode-icons
+vscodevim.vim
+wallabyjs.console-ninja
+yoavbls.pretty-ts-errors
+chakrounanas.turbo-console-log
+wayou.vscode-todo-highlight
