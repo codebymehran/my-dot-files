@@ -27,6 +27,16 @@ setopt SHARE_HISTORY         # Share history between terminals
 setopt INC_APPEND_HISTORY    # Add commands immediately
 
 # ============================================================================
+# PROJECTS — edit this list to add/remove projects
+# Used by: gitallpull, gacpall
+# ============================================================================
+PROJECTS=(
+  ~/Code/backend-labs
+  ~/Code/frontend-labs
+  ~/Code/portfolio
+)
+
+# ============================================================================
 # SAFETY ALIASES (prevents accidental deletions)
 # ============================================================================
 alias rm='rm -i'
@@ -55,7 +65,10 @@ mkcd() {
 }
 
 # Move to trash instead of permanent delete (safer)
-alias trash='mv -t ~/.Trash'
+# macOS-compatible syntax
+trash() {
+  mv "$@" ~/.Trash/
+}
 
 # Quick file operations
 alias cx='chmod +x'  # Make file executable
@@ -128,7 +141,7 @@ gacp() {
 
 # Pull all projects
 gitallpull() {
-  for dir in ~/Code/backend-labs ~/Code/frontend-labs ~/Code/portfolio; do
+  for dir in "${PROJECTS[@]}"; do
     if [[ -d "$dir/.git" ]]; then
       echo "🔄 Pulling in $(basename $dir)..."
       (cd "$dir" && git pull && echo "✅ Done") || echo "❌ Failed"
@@ -141,7 +154,7 @@ gitallpull() {
 
 # Commit + push all projects (interactive)
 gacpall() {
-  for dir in ~/Code/backend-labs ~/Code/frontend-labs ~/Code/portfolio; do
+  for dir in "${PROJECTS[@]}"; do
     if [[ -d "$dir/.git" ]]; then
       (cd "$dir"
         if [[ -n "$(git status --porcelain)" ]]; then
@@ -318,6 +331,11 @@ if command -v fzf &> /dev/null; then
   export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
   export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
   export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind '?:toggle-preview' --height 50%"
+
+  # Use ripgrep for fzf if available (much faster file search)
+  if command -v rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+  fi
 
   # Fuzzy project switcher
   proj() {
