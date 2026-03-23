@@ -2,6 +2,8 @@
 
 set -e
 
+cd "$(dirname "$0")"
+
 echo "⚙️ Installing dotfiles..."
 
 mkdir -p "$HOME/.config"
