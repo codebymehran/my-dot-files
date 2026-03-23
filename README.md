@@ -123,4 +123,3 @@ https://www.nerdfonts.com/
 - `install.sh` only handles dotfiles
 - Apps are installed separately using `brew bundle`
 - VS Code extensions are installed separately
-- This repo does not use a `macos.sh`
