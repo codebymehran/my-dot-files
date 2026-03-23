@@ -81,6 +81,27 @@ brew bundle
 
 ---
 
+
+## macOS Settings
+
+Apply macOS preferences:
+
+```bash
+cd ~/my-dot-files
+bash macos.sh
+```
+
+This script currently includes:
+- Finder preferences
+- Dock preferences
+- Keyboard repeat settings
+- Trackpad preferences
+- Screenshot preferences
+- Spotlight shortcut disabled for Raycast
+- Battery / power preferences
+
+---
+
 ## VS Code Extensions
 
 ```bash
