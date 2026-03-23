@@ -16,11 +16,13 @@ git config --global user.email "mehran@mehrankhan.net"
 # -----------------------------
 
 git config --global init.defaultBranch main
-git config --global pull.rebase false
-git config --global pull.ff only
-git config --global push.default simple
+
+# Rebase local commits on top of pulled changes (cleaner history than merge)
+# If you prefer merge commits, change to: pull.rebase false
+git config --global pull.rebase true
+
 git config --global color.ui auto
-git config --global core.editor "nvim"
+git config --global core.editor "code --wait"
 git config --global core.autocrlf input
 
 # -----------------------------
@@ -29,7 +31,10 @@ git config --global core.autocrlf input
 
 git config --global status.branch true
 git config --global status.short true
-git config --global help.autocorrect 1
+
+# Wait 1 second before auto-running corrected command (gives you time to cancel)
+git config --global help.autocorrect 10
+
 git config --global diff.colorMoved zebra
 
 # -----------------------------
