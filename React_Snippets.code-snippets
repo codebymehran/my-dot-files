@@ -448,6 +448,41 @@
     ],
     "description": "Next.js useRouter and usePathname hooks",
     "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // 🔺 NEXT.JS — APP ROUTER (additional hooks)
+  // ===========================================================
+
+  // nparams → useParams hook (read dynamic route segments)
+  "Next.js useParams": {
+    "prefix": "nparams",
+    "body": [
+      "const params = useParams()"
+    ],
+    "description": "Next.js useParams hook for dynamic route segments",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // nsearch → useSearchParams hook (read query string)
+  "Next.js useSearchParams": {
+    "prefix": "nsearch",
+    "body": [
+      "const searchParams = useSearchParams()",
+      "const ${1:value} = searchParams.get('${2:key}')"
+    ],
+    "description": "Next.js useSearchParams hook for reading query params",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // 🛠️ UTILITY (additional)
+  // ===========================================================
+
+  // clj → console.log(JSON.stringify()) — for logging objects
+  "Console Log JSON": {
+    "prefix": "clj",
+    "body": ["console.log(JSON.stringify($1, null, 2));"],
+    "description": "console.log with JSON.stringify for readable object logging"
   }
 }
-
