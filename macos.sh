@@ -174,6 +174,36 @@ sudo pmset -b lessbright 1
 sudo pmset -c powernap 1
 sudo pmset -b powernap 0
 
+# -----------------------------
+# Extra Developer Tweaks
+# -----------------------------
+
+# Disable startup sound
+sudo nvram StartupMute=%01
+
+# Disable quarantine prompt
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Avoid .DS_Store on network drives
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Show full path in Finder title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Disable window animations
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+
+# Disable press-and-hold (enable key repeat)
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Disable Time Machine prompts
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Disable auto rearrange Spaces
+defaults write com.apple.dock mru-spaces -bool false
 
 # -----------------------------
 # Apply changes
