@@ -186,7 +186,7 @@
   // ===========================================================
   // 🖥️ TERMINAL
   // ===========================================================
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontFamily": "JetBrains Mono Nerd Font",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.cursorBlinking": true,
