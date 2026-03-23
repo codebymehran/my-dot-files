@@ -11,5 +11,5 @@ cp settings.json ~/Library/Application\ Support/Code/User/settings.json
 cp keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 cp React_Snippets.code-snippets ~/Library/Application\ Support/Code/User/snippets/React_Snippets.code-snippets
 
-source ~/.zshrc
+
 echo "✅ Done"
