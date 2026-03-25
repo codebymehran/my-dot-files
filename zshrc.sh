@@ -85,6 +85,7 @@ alias cbe='cd ~/Code/backend-labs'
 alias cfe='cd ~/Code/frontend-labs'
 alias cpo='cd ~/Code/portfolio'
 alias cex='cd ~/Code/explore'
+alias cdf='cd ~/Code/my-dot-files'  # go to dotfiles repo
 
 # ============================================================================
 # GIT ALIASES
@@ -246,6 +247,12 @@ alias ducks='du -cksh * | sort -rh | head -15'
 
 # Open current git repo in browser
 alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/\/github.com\//;s/\.git$//")'
+
+# ============================================================================
+# SCRIPTS
+# ============================================================================
+alias nna='bash ~/Code/my-dot-files/scripts/new-next-app.sh'
+alias clone='bash ~/Code/my-dot-files/scripts/git-clone-and-setup-dev-environment.sh'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
