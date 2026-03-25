@@ -85,7 +85,7 @@ alias cbe='cd ~/Code/backend-labs'
 alias cfe='cd ~/Code/frontend-labs'
 alias cpo='cd ~/Code/portfolio'
 alias cex='cd ~/Code/explore'
-alias cdf='cd ~/Code/my-dot-files'  # go to dotfiles repo
+alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
 
 # ============================================================================
 # GIT ALIASES
@@ -251,8 +251,8 @@ alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/
 # ============================================================================
 # SCRIPTS
 # ============================================================================
-alias nna='bash ~/Code/my-dot-files/new-next-app.sh'
-alias clone='bash ~/Code/my-dot-files/git-clone-and-setup-dev-environment.sh'
+alias nna='bash ~/my-dot-files/new-next-app.sh'
+alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
