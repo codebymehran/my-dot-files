@@ -66,6 +66,15 @@ copy karabiner-cheatsheet.html "$HOME/Desktop/cheatsheets/karabiner-cheatsheet.h
 copy snippets-cheatsheet.html "$HOME/Desktop/cheatsheets/snippets-cheatsheet.html" "snippets-cheatsheet"
 copy terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/terminal-cheatsheet.html" "terminal-cheatsheet"
 
+# -----------------------------
+# Make scripts executable
+# -----------------------------
+
+echo ""
+echo "🔧 Making scripts executable..."
+chmod +x scripts/*.sh
+echo "  ✅ scripts/ are ready"
+
 echo ""
 echo "✅ Dotfiles installed successfully"
 echo ""
@@ -73,3 +82,7 @@ echo "💡 To apply changes:"
 echo "   • Terminal  → exec zsh (or open a new tab)"
 echo "   • VS Code   → Restart VS Code"
 echo "   • Karabiner → It reloads automatically"
+echo ""
+echo "⚡ Available scripts:"
+echo "   nna <name>   → Create new Next.js project"
+echo "   clone <url>  → Clone & open any GitHub repo"
