@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title New Next.js App
+# @raycast.mode fullOutput
+
+# Optional parameters:
+# @raycast.icon 🚀
+# @raycast.argument1 { "type": "text", "placeholder": "project-name" }
+
+# Documentation:
+# @raycast.description Scaffolds a new Next.js project with TypeScript, Tailwind, ESLint + shadcn/ui
+
 set -e
 
 # ============================================================================
@@ -49,6 +61,32 @@ npx create-next-app@latest "$TARGET" \
 cd "$TARGET"
 
 # -----------------------------
+# Append to .gitignore
+# -----------------------------
+
+echo ""
+echo "📝 Updating .gitignore..."
+cat >> .gitignore << 'GITIGNORE'
+
+# Environment
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/settings.json
+GITIGNORE
+echo "  ✅ .gitignore updated"
+
+# -----------------------------
 # Init shadcn/ui
 # -----------------------------
 
@@ -85,7 +123,5 @@ echo "✅ Project ready!"
 echo ""
 echo "📍 $TARGET"
 echo ""
-echo "👉 Next steps:"
-echo "   nrd          → start dev server"
-echo "   gacp \"msg\"   → commit and push when ready"
-echo "   ghopen       → open on GitHub once remote is added"
+echo "🚀 Starting dev server..."
+npm run dev
