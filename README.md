@@ -161,11 +161,12 @@ Or browse the full list at: https://www.nerdfonts.com/
 
 ## Scripts
 
-Reusable shell scripts in the `repo root. All work from terminal directly or via Raycast.
+Reusable shell scripts in the repo root. All work from terminal directly or via Raycast.
 
 | Script | Alias | Usage |
 |--------|-------|-------|
 | new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
 | git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
+| clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
 
 Aliases are defined in `zshrc.sh` and available after `exec zsh`.
