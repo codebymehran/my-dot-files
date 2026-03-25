@@ -60,6 +60,14 @@ if [[ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighti
 else
   echo "  ✅ zsh-syntax-highlighting already installed — skipping"
 fi
+
+if [[ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode" ]]; then
+  git clone https://github.com/jeffreytse/zsh-vi-mode \
+    "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
+  echo "  ✅ zsh-vi-mode installed"
+else
+  echo "  ✅ zsh-vi-mode already installed — skipping"
+fi
 echo ""
 
 # -----------------------------
