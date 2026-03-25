@@ -26,7 +26,7 @@ copy() {
   local dst="$2"
   local label="$3"
 
-  read "confirm?  Copy $label? (Y/n): "
+  read -p "  Copy $label? (Y/n): " confirm
   if [[ "$confirm" == "n" || "$confirm" == "N" ]]; then
     echo "  ⏭️  Skipped $label"
   else
