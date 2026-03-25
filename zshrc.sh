@@ -10,6 +10,7 @@ plugins=(
   node
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-vi-mode
   colored-man-pages
 )
 
@@ -223,6 +224,29 @@ alias nrt='npm run test'
 alias nup='npm update'
 
 # ============================================================================
+# DEV UTILITIES
+# ============================================================================
+
+# Kill process on a specific port
+killport() {
+  lsof -ti tcp:"$1" | xargs kill -9 && echo "✅ Killed port $1"
+}
+
+# Kill all node processes
+alias killnode='pkill -f node && echo "✅ All node processes killed"'
+
+# Clear all node_modules recursively from current directory
+cleannm() {
+  find . -name "node_modules" -type d -prune -exec rm -rf {} + && echo "✅ node_modules cleared"
+}
+
+# Check what's eating your disk
+alias ducks='du -cksh * | sort -rh | head -15'
+
+# Open current git repo in browser
+alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/\/github.com\//;s/\.git$//")'
+
+# ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
 alias zshconfig='${EDITOR:-nano} ~/.zshrc'
@@ -308,6 +332,11 @@ shortcuts() {
   echo "║    ports            → Show listening ports                           ║"
   echo "║    myip             → Show public IP address                         ║"
   echo "║    localip          → Show local IP address                          ║"
+  echo "║    killport <port>  → Kill process on port                           ║"
+  echo "║    killnode         → Kill all node processes                        ║"
+  echo "║    cleannm          → Delete all node_modules recursively            ║"
+  echo "║    ducks            → Show largest files/dirs in current directory   ║"
+  echo "║    ghopen           → Open current repo in browser                   ║"
   echo "║    zshconfig        → Edit this terminal config                      ║"
   echo "║    zshreload        → Reload terminal config                         ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
