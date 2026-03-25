@@ -49,13 +49,15 @@ Personal config files for macOS dev environment.
 
 ## Setup (New Machine)
 
-**Step 1 — Bootstrap** (Homebrew, Oh My Zsh, ZSH plugins, Node):
+**Step 1 — Bootstrap** (Homebrew, Oh My Zsh, ZSH plugins, Node, SSH key):
 ```bash
 cd ~
 git clone https://github.com/codebymehran/my-dot-files.git
 cd my-dot-files
 bash bootstrap.sh
 ```
+
+> `bootstrap.sh` will generate an SSH key and prompt you to add it to GitHub. Follow the on-screen instructions before continuing.
 
 **Step 2 — Install dotfiles:**
 ```bash
