@@ -304,6 +304,36 @@
       </table>
     </div>
 
+    <!-- DEV UTILITIES -->
+    <div class="card file">
+      <div class="card-header"><h2>⚡ Dev Utilities</h2><span class="count">5</span></div>
+      <table>
+        <tr>
+          <td><span class="tag">killport &lt;port&gt;</span></td>
+          <td>
+            <span class="desc">Kill process running on a port</span>
+            <div class="note">e.g. killport 3000</div>
+          </td>
+        </tr>
+        <tr><td><span class="tag">killnode</span></td><td><span class="desc">Kill all running node processes</span></td></tr>
+        <tr>
+          <td><span class="tag">cleannm</span></td>
+          <td>
+            <span class="desc">Delete all node_modules folders recursively</span>
+            <div class="note">runs from current directory downward</div>
+          </td>
+        </tr>
+        <tr><td><span class="tag">ducks</span></td><td><span class="desc">Show top 15 largest files/dirs in current directory</span></td></tr>
+        <tr>
+          <td><span class="tag">ghopen</span></td>
+          <td>
+            <span class="desc">Open current git repo in browser</span>
+            <div class="note">must be inside a git repo with a GitHub remote</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
     <!-- STARSHIP -->
     <div class="card star">
       <div class="card-header"><h2>🚀 Starship Prompt</h2></div>
@@ -383,6 +413,182 @@
         <td style="padding:9px 16px;"><span style="font-size:0.8rem; color:#7a7a90; font-family:'Space Mono',monospace;">If shell throws errors on startup, zsh plugins aren't installed yet — install them before copying zshrc</span></td>
       </tr>
     </table>
+  </div>
+
+  <!-- WORKFLOWS -->
+  <div style="margin-top:18px; background:#ffffff; border:1px solid #e2e2ea; border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+    <div style="padding:11px 16px; background:#f0f0f4; border-bottom:1px solid #e2e2ea; display:flex; align-items:center; gap:8px;">
+      <span style="font-size:0.95rem;">🔁</span>
+      <h2 style="font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#7a7a90;">Daily Workflows</h2>
+    </div>
+
+    <!-- Workflow rows -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
+
+      <!-- Start a new project -->
+      <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
+        <div style="font-size:0.7rem; font-weight:700; color:#0369a1; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">🆕 Start a new project</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-family:'Space Mono',monospace; font-size:0.72rem;">
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">1</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">mkcd ~/Code/my-project</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">create + enter folder</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">2</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">ni</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">npm install dependencies</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">3</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">co</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">open in VS Code</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">4</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">nrd</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">npm run dev</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daily git routine -->
+      <div style="padding:16px 20px;">
+        <div style="font-size:0.7rem; font-weight:700; color:#c2410c; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">📅 Daily git routine</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-family:'Space Mono',monospace; font-size:0.72rem;">
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">1</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">gitallpull</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">pull latest on all projects</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">2</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">gs</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">check what changed</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">3</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">gd</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">review your changes</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">4</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">gacp "your message"</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">add, commit, push</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
+
+      <!-- Dev server issues -->
+      <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
+        <div style="font-size:0.7rem; font-weight:700; color:#0f766e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">🔥 Dev server not starting</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-family:'Space Mono',monospace; font-size:0.72rem;">
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">1</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">killport 3000</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">free the port</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">2</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">killnode</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">kill zombie node processes</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">3</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">cleannm && ni</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">nuke + reinstall node_modules</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">4</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">nrd</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">try again</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore unfamiliar project -->
+      <div style="padding:16px 20px;">
+        <div style="font-size:0.7rem; font-weight:700; color:#6d28d9; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">🔍 Explore unfamiliar project</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-family:'Space Mono',monospace; font-size:0.72rem;">
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">1</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">lt</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">see folder structure as tree</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">2</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">cat package.json</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">check scripts + dependencies</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">3</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">gl</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">see recent commit history</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">4</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">co</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">open in VS Code</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr;">
+
+      <!-- Switch between projects -->
+      <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
+        <div style="font-size:0.7rem; font-weight:700; color:#b45309; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">⚡ Jump between projects fast</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-family:'Space Mono',monospace; font-size:0.72rem;">
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">→</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">proj</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">fuzzy search all ~/Code dirs</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">→</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">z frontend</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">jump to frontend-labs instantly</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">→</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">cfe / cbe / cpo</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">direct project shortcuts</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disk getting full -->
+      <div style="padding:16px 20px;">
+        <div style="font-size:0.7rem; font-weight:700; color:#0e7490; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">🧹 Clean up disk space</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-family:'Space Mono',monospace; font-size:0.72rem;">
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">1</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">ducks</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">find what's eating space</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">2</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">cleannm</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">remove all node_modules</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">3</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">brew cleanup</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">remove old brew versions</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:baseline;">
+            <span style="color:#7a7a90; min-width:18px;">4</span>
+            <span style="background:#f0f0f4; padding:2px 8px; border-radius:4px; color:#111118;">trash &lt;folder&gt;</span>
+            <span style="color:#7a7a90; font-size:0.65rem;">safely move to trash</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <footer>
