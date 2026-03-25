@@ -251,8 +251,8 @@ alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/
 # ============================================================================
 # SCRIPTS
 # ============================================================================
-alias nna='bash ~/Code/my-dot-files/scripts/new-next-app.sh'
-alias clone='bash ~/Code/my-dot-files/scripts/git-clone-and-setup-dev-environment.sh'
+alias nna='bash ~/Code/my-dot-files/new-next-app.sh'
+alias clone='bash ~/Code/my-dot-files/git-clone-and-setup-dev-environment.sh'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
