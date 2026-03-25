@@ -73,7 +73,7 @@ copy terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/terminal-cheatsheet.htm
 echo ""
 echo "🔧 Making scripts executable..."
 chmod +x ./*.sh
-echo "  ✅ scripts are ready"
+echo "  ✅ scripts/ are ready"
 
 echo ""
 echo "✅ Dotfiles installed successfully"
@@ -85,4 +85,5 @@ echo "   • Karabiner → It reloads automatically"
 echo ""
 echo "⚡ Available scripts:"
 echo "   nna <name>   → Create new Next.js project"
-echo "   clone <url>  → Clone & open any GitHub repo"
+echo "   clone <url>      → Clone & explore any GitHub repo"
+echo "   cloneown <url>   → Clone your own repo into ~/Code"
