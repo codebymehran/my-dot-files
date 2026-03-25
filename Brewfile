@@ -12,7 +12,6 @@ brew "fnm"           # Node version manager (replaces static brew node)
 # ZSH plugins
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-brew "zsh-vi-mode"
 
 # Optional CLI tools
 brew "tree"
