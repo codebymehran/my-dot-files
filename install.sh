@@ -5,24 +5,56 @@ set -e
 cd "$(dirname "$0")"
 
 echo "⚙️ Installing dotfiles..."
+echo ""
+
+# -----------------------------
+# Helper
+# -----------------------------
+
+copy() {
+  local src="$1"
+  local dst="$2"
+  local label="$3"
+
+  read "confirm?  Copy $label? (Y/n): "
+  if [[ "$confirm" == "n" || "$confirm" == "N" ]]; then
+    echo "  ⏭️  Skipped $label"
+  else
+    cp "$src" "$dst"
+    echo "  ✅ $label"
+  fi
+}
+
+# -----------------------------
+# Create directories
+# -----------------------------
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.config/karabiner"
 mkdir -p "$HOME/Library/Application Support/Code/User/snippets"
-
-cp zshrc.sh "$HOME/.zshrc"
-cp wezterm.lua "$HOME/.wezterm.lua"
-cp starship.toml "$HOME/.config/starship.toml"
-cp karabiner.json "$HOME/.config/karabiner/karabiner.json"
-cp settings.json "$HOME/Library/Application Support/Code/User/settings.json"
-cp keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json"
-cp React_Snippets.code-snippets "$HOME/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets"
-
-# cheatsheets folder
 mkdir -p "$HOME/Desktop/cheatsheets"
-cp karabiner-cheatsheet.html "$HOME/Desktop/cheatsheets/"
-cp snippets-cheatsheet.html "$HOME/Desktop/cheatsheets/"
-cp terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/"
 
+# -----------------------------
+# Copy files
+# -----------------------------
+
+echo "📂 Select files to copy (press Enter to confirm, n to skip):"
+echo ""
+
+copy zshrc.sh "$HOME/.zshrc" "zshrc"
+copy wezterm.lua "$HOME/.wezterm.lua" "wezterm.lua"
+copy starship.toml "$HOME/.config/starship.toml" "starship.toml"
+copy karabiner.json "$HOME/.config/karabiner/karabiner.json" "karabiner.json"
+copy settings.json "$HOME/Library/Application Support/Code/User/settings.json" "VS Code settings"
+copy keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json" "VS Code keybindings"
+copy React_Snippets.code-snippets "$HOME/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets" "React snippets"
+
+echo ""
+echo "📄 Cheatsheets:"
+copy karabiner-cheatsheet.html "$HOME/Desktop/cheatsheets/karabiner-cheatsheet.html" "karabiner-cheatsheet"
+copy snippets-cheatsheet.html "$HOME/Desktop/cheatsheets/snippets-cheatsheet.html" "snippets-cheatsheet"
+copy terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/terminal-cheatsheet.html" "terminal-cheatsheet"
+
+echo ""
 echo "✅ Dotfiles installed successfully"
 echo "👉 Run: exec zsh"
