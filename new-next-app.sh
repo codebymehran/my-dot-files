@@ -42,7 +42,9 @@ npx create-next-app@latest "$TARGET" \
   --app \
   --src-dir \
   --import-alias "@/*" \
-  --no-turbopack
+  --no-turbopack \
+  --no-experimental-react-compiler \
+  --yes
 
 cd "$TARGET"
 
@@ -53,9 +55,7 @@ cd "$TARGET"
 echo ""
 echo "🎨 Initialising shadcn/ui..."
 npx shadcn@latest init \
-  --style default \
   --base-color zinc \
-  --css-variables \
   --yes
 
 # -----------------------------
