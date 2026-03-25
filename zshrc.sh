@@ -84,6 +84,7 @@ alias 777='chmod 777'
 alias cbe='cd ~/Code/backend-labs'
 alias cfe='cd ~/Code/frontend-labs'
 alias cpo='cd ~/Code/portfolio'
+alias cex='cd ~/Code/explore'
 
 # ============================================================================
 # GIT ALIASES
@@ -297,6 +298,7 @@ shortcuts() {
   echo "║    cbe              → Go to Backend Labs                             ║"
   echo "║    cfe              → Go to Frontend Labs                            ║"
   echo "║    cpo              → Go to Portfolio                                ║"
+  echo "║    cex              → Go to ~/Code/explore (throwaway clones)        ║"
   echo "║    co               → Open current folder in VS Code                 ║"
   echo "║                                                                      ║"
   echo "║  📋 FILE OPERATIONS                                                   ║"
