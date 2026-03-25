@@ -111,15 +111,6 @@ npx shadcn@latest init \
   --defaults \
   --yes
 
-# -----------------------------
-# Init git repo
-# -----------------------------
-
-echo ""
-echo "🔧 Setting up Git..."
-git init
-git add .
-git commit -m "Initial commit — Next.js + TypeScript + Tailwind + shadcn/ui"
 
 # -----------------------------
 # Open in VS Code
@@ -127,7 +118,7 @@ git commit -m "Initial commit — Next.js + TypeScript + Tailwind + shadcn/ui"
 
 echo ""
 echo "🖥️  Opening in VS Code..."
-code -r .
+/usr/local/bin/code -r .
 
 # -----------------------------
 # Done
@@ -138,5 +129,5 @@ echo "✅ Project ready!"
 echo ""
 echo "📍 $TARGET"
 echo ""
-echo "🚀 Starting dev server..."
-npm run dev
+echo "💡 To start the dev server:"
+echo "   cd $TARGET && npm run dev"
