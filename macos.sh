@@ -238,6 +238,15 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 
 # -----------------------------
+# Chrome
+# -----------------------------
+
+echo "🌐 Configuring Chrome..."
+
+# Disable swipe-back on horizontal scroll (stops accidental back navigation)
+defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
+
+# -----------------------------
 # Apply changes
 # -----------------------------
 
