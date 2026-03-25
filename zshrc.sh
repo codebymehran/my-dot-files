@@ -253,6 +253,7 @@ alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/
 # ============================================================================
 alias nna='bash ~/my-dot-files/new-next-app.sh'
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
+alias cloneown='bash ~/my-dot-files/clone-own.sh'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
@@ -306,6 +307,7 @@ shortcuts() {
   echo "║    cfe              → Go to Frontend Labs                            ║"
   echo "║    cpo              → Go to Portfolio                                ║"
   echo "║    cex              → Go to ~/Code/explore (throwaway clones)        ║"
+  echo "║    cloneown <url>   → Clone your own repo into ~/Code               ║"
   echo "║    co               → Open current folder in VS Code                 ║"
   echo "║                                                                      ║"
   echo "║  📋 FILE OPERATIONS                                                   ║"
