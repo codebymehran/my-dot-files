@@ -28,14 +28,18 @@ setopt SHARE_HISTORY         # Share history between terminals
 setopt INC_APPEND_HISTORY    # Add commands immediately
 
 # ============================================================================
-# PROJECTS — edit this list to add/remove projects
+# PROJECTS — auto-discovered from ~/Code (excludes explore and my-dot-files)
 # Used by: gitallpull, gacpall
 # ============================================================================
-PROJECTS=(
-  ~/Code/backend-labs
-  ~/Code/frontend-labs
-  ~/Code/portfolio
-)
+PROJECTS=()
+if [[ -d "$HOME/Code" ]]; then
+  for dir in "$HOME/Code"/*/; do
+    dirname=$(basename "$dir")
+    if [[ "$dirname" != "explore" && "$dirname" != "my-dot-files" && -d "$dir/.git" ]]; then
+      PROJECTS+=("${dir%/}")
+    fi
+  done
+fi
 
 # ============================================================================
 # SAFETY ALIASES (prevents accidental deletions)
@@ -80,10 +84,8 @@ alias 777='chmod 777'
 
 # ============================================================================
 # PROJECT SHORTCUTS
+# Use zoxide (z) to jump to projects — e.g. z task-manager
 # ============================================================================
-alias cbe='cd ~/Code/backend-labs'
-alias cfe='cd ~/Code/frontend-labs'
-alias cpo='cd ~/Code/portfolio'
 alias cex='cd ~/Code/explore'
 alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
 
@@ -303,11 +305,9 @@ shortcuts() {
   echo "║    c                → Clear screen                                   ║"
   echo "║                                                                      ║"
   echo "║  📂 PROJECT SHORTCUTS                                                 ║"
-  echo "║    cbe              → Go to Backend Labs                             ║"
-  echo "║    cfe              → Go to Frontend Labs                            ║"
-  echo "║    cpo              → Go to Portfolio                                ║"
   echo "║    cex              → Go to ~/Code/explore (throwaway clones)        ║"
   echo "║    cloneown <url>   → Clone your own repo into ~/Code               ║"
+  echo "║    z <name>         → Jump to any project (zoxide learns from usage) ║"
   echo "║    co               → Open current folder in VS Code                 ║"
   echo "║                                                                      ║"
   echo "║  📋 FILE OPERATIONS                                                   ║"
