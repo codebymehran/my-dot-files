@@ -54,8 +54,6 @@ npx create-next-app@latest "$TARGET" \
   --app \
   --src-dir \
   --import-alias "@/*" \
-  --no-turbopack \
-  --no-experimental-react-compiler \
   --yes
 
 cd "$TARGET"
