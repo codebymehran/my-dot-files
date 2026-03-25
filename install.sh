@@ -72,7 +72,7 @@ copy terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/terminal-cheatsheet.htm
 
 echo ""
 echo "🔧 Making scripts executable..."
-chmod +x scripts/*.sh
+chmod +x ./*.sh
 echo "  ✅ scripts/ are ready"
 
 echo ""
