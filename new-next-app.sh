@@ -111,6 +111,52 @@ npx shadcn@latest init \
   --defaults \
   --yes
 
+# -----------------------------
+# Clean up boilerplate
+# -----------------------------
+
+echo ""
+echo "🧹 Cleaning up boilerplate..."
+
+# Remove all SVGs from public/
+find public/ -name "*.svg" -delete
+echo "  ✅ SVGs removed from public/"
+
+# Remove favicon
+rm -f public/favicon.ico
+echo "  ✅ favicon.ico removed"
+
+# Bare minimum layout.tsx
+cat > src/app/layout.tsx << 'EOF'
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "App",
+  description: "",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+EOF
+echo "  ✅ layout.tsx stripped"
+
+# Bare minimum page.tsx
+cat > src/app/page.tsx << 'EOF'
+export default function Home() {
+  return <main></main>;
+}
+EOF
+echo "  ✅ page.tsx stripped"
 
 # -----------------------------
 # Open in VS Code
