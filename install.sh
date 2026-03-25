@@ -67,4 +67,8 @@ copy terminal-cheatsheet.html "$HOME/Desktop/cheatsheets/terminal-cheatsheet.htm
 
 echo ""
 echo "✅ Dotfiles installed successfully"
-echo "👉 Run: exec zsh"
+echo ""
+echo "💡 To apply changes:"
+echo "   • Terminal  → exec zsh (or open a new tab)"
+echo "   • VS Code   → Restart VS Code"
+echo "   • Karabiner → It reloads automatically"
