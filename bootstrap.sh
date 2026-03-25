@@ -60,14 +60,6 @@ if [[ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighti
 else
   echo "  ✅ zsh-syntax-highlighting already installed — skipping"
 fi
-
-if [[ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode" ]]; then
-  git clone https://github.com/jeffreytse/zsh-vi-mode \
-    "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
-  echo "  ✅ zsh-vi-mode installed"
-else
-  echo "  ✅ zsh-vi-mode already installed — skipping"
-fi
 echo ""
 
 # -----------------------------
@@ -91,6 +83,34 @@ fnm default lts-latest
 echo "  ✅ Node $(node -v) installed"
 echo ""
 
+
+# -----------------------------
+# SSH Key for GitHub
+# -----------------------------
+
+echo "🔑 Setting up SSH key for GitHub..."
+
+SSH_KEY="$HOME/.ssh/id_ed25519"
+
+if [[ -f "$SSH_KEY" ]]; then
+  echo "  ✅ SSH key already exists — skipping"
+else
+  read -p "  Enter your GitHub email: " github_email
+  ssh-keygen -t ed25519 -C "$github_email" -f "$SSH_KEY" -N ""
+  eval "$(ssh-agent -s)" > /dev/null
+  ssh-add "$SSH_KEY"
+  echo ""
+  echo "  ✅ SSH key generated"
+  echo ""
+  echo "  📋 Copy the public key below and add it to GitHub:"
+  echo "     GitHub → Settings → SSH and GPG keys → New SSH key"
+  echo ""
+  cat "$SSH_KEY.pub"
+  echo ""
+  read -p "  Press Enter once you've added the key to GitHub..."
+  ssh -T git@github.com 2>&1 | grep -q "successfully authenticated" && echo "  ✅ GitHub SSH connection verified" || echo "  ⚠️  Could not verify — you can test later with: ssh -T git@github.com"
+fi
+echo ""
 # -----------------------------
 # Done
 # -----------------------------
