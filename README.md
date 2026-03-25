@@ -1,5 +1,4 @@
 # my-dot-files
-
 Personal config files for macOS dev environment.
 
 ---
@@ -50,12 +49,34 @@ Personal config files for macOS dev environment.
 
 ## Setup (New Machine)
 
+**Step 1 — Bootstrap** (Homebrew, Oh My Zsh, ZSH plugins, Node):
 ```bash
 cd ~
 git clone https://github.com/codebymehran/my-dot-files.git
 cd my-dot-files
+bash bootstrap.sh
+```
+
+**Step 2 — Install dotfiles:**
+```bash
 bash install.sh
 exec zsh
+```
+
+**Step 3 — Install apps:**
+```bash
+brew bundle
+```
+
+**Step 4 — One-time configs** (run once, not needed on updates):
+```bash
+bash git.sh
+bash macos.sh
+```
+
+**Step 5 — VS Code extensions:**
+```bash
+cat vscode-extensions.txt | xargs -L 1 code --install-extension
 ```
 
 ---
@@ -71,57 +92,24 @@ bash install.sh
 exec zsh
 ```
 
----
-
-## Install Apps (Homebrew)
-
-```bash
-brew bundle
-```
+> Always push your changes to GitHub before running update — the local repo is deleted first.
 
 ---
-
 
 ## macOS Settings
 
-Apply macOS preferences:
-
 ```bash
-cd ~/my-dot-files
 bash macos.sh
 ```
 
-This script currently includes:
-- Finder preferences
-- Dock preferences
-- Keyboard repeat settings
-- Trackpad preferences
-- Screenshot preferences
-- Spotlight shortcut disabled for Raycast
-- Battery / power preferences
+Includes: Finder, Dock, Keyboard, Trackpad, Screenshots, Spotlight, Battery/Power settings.
 
 ---
 
-## VS Code Extensions
-
-```bash
-cat vscode-extensions.txt | xargs -L 1 code --install-extension
-```
 ## Git Setup
 
-Configure Git with default settings, aliases, and identity:
-
 ```bash
-cd ~/my-dot-files
 bash git.sh
-```
----
-
-## Install dependencies (manual)
-
-```bash
-brew install starship zsh-autosuggestions zsh-syntax-highlighting
-brew install eza bat zoxide fnm fzf thefuck
 ```
 
 ---
@@ -129,18 +117,33 @@ brew install eza bat zoxide fnm fzf thefuck
 ## Manual Apps (App Store)
 
 Install these manually:
-
 - BetterSnapTool
 - ScreenBrush
 
 ---
 
-## Font
+## Fonts
 
-Uses **MesloLGL Nerd Font Mono**
+Already included in Brewfile and installed automatically with `brew bundle`:
 
-Install via Homebrew or from:
-https://www.nerdfonts.com/
+```bash
+brew install --cask font-meslo-lg-nerd-font       # MesloLGS — used in WezTerm
+brew install --cask font-jetbrains-mono-nerd-font  # JetBrains Mono — used in VS Code
+brew install --cask font-fira-code                 # Fira Code — ligatures
+```
+
+Other great coding fonts worth trying:
+
+```bash
+brew install --cask font-monaspace               # Monaspace — GitHub's font family (5 styles)
+brew install --cask font-commit-mono             # Commit Mono — clean, neutral
+brew install --cask font-geist-mono              # Geist Mono — by Vercel
+brew install --cask font-cascadia-code           # Cascadia Code — Microsoft, great ligatures
+brew install --cask font-sf-mono                 # SF Mono — Apple's own monospace
+brew install --cask font-victor-mono             # Victor Mono — cursive italics
+```
+
+Or browse the full list at: https://www.nerdfonts.com/
 
 ---
 
@@ -148,8 +151,8 @@ https://www.nerdfonts.com/
 
 - Always push your changes to GitHub before running update
 - Update process deletes the local repo and installs a fresh copy
+- `bootstrap.sh` is for fresh machines only — skip on updates
 - `install.sh` only handles dotfiles
-- Apps are installed separately using `brew bundle`
+- Apps are installed separately via `brew bundle`
 - VS Code extensions are installed separately
-- Mac OS settings can be installed using `bash macos.sh`
-- Git Configuration `bash git.sh`
+- `git.sh` and `macos.sh` are one-time setup scripts
