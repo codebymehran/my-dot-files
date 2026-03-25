@@ -42,6 +42,7 @@ copy() {
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.config/karabiner"
 mkdir -p "$HOME/Library/Application Support/Code/User/snippets"
+mkdir -p "$HOME/Code/explore"
 mkdir -p "$HOME/Desktop/cheatsheets"
 
 # -----------------------------
