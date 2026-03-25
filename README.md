@@ -161,7 +161,7 @@ Or browse the full list at: https://www.nerdfonts.com/
 
 ## Scripts
 
-Reusable shell scripts in the `scripts/` folder. All work from terminal directly or via Raycast.
+Reusable shell scripts in the `repo root. All work from terminal directly or via Raycast.
 
 | Script | Alias | Usage |
 |--------|-------|-------|
