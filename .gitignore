@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Backups created by install.sh
+*.backup
+
+# Editor
+.vscode/
+*.swp
+*.swo
