@@ -110,7 +110,7 @@ echo "  ✅ .gitignore updated"
 echo ""
 echo "🎨 Initialising shadcn/ui..."
 npx shadcn@latest init \
-  --base-color zinc \
+  --defaults \
   --yes
 
 # -----------------------------
