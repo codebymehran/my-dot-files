@@ -8,6 +8,16 @@ echo "⚙️ Installing dotfiles..."
 echo ""
 
 # -----------------------------
+# Auto-backup Karabiner config
+# -----------------------------
+
+if [[ -f "$HOME/.config/karabiner/karabiner.json" ]]; then
+  cp "$HOME/.config/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json.backup"
+  echo "💾 Karabiner config backed up → karabiner.json.backup"
+  echo ""
+fi
+
+# -----------------------------
 # Helper
 # -----------------------------
 
