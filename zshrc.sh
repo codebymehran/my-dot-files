@@ -137,6 +137,17 @@ gacp() {
   git status --short
   echo ""
 
+  local branch
+  branch=$(git symbolic-ref --short HEAD)
+  if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+    echo "⚠️  You are on '$branch'. Are you sure you want to push directly?"
+    read "confirm?Type 'YES' to continue: "
+    if [[ "$confirm" != "YES" ]]; then
+      echo "❌ Aborted"
+      return 1
+    fi
+  fi
+
   git add . && \
   git commit -m "$1" && \
   git push && \
