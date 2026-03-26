@@ -8,6 +8,7 @@ brew "ripgrep"       # Fast file search (used by FZF_DEFAULT_COMMAND)
 brew "lazygit"       # Visual git TUI
 brew "thefuck"       # Correct mistyped commands
 brew "fnm"           # Node version manager (replaces static brew node)
+brew "gh"            # GitHub CLI — create repos, PRs, issues from terminal
 
 # ZSH plugins
 brew "zsh-autosuggestions"
