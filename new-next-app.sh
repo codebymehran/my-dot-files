@@ -65,12 +65,10 @@ cd "$TARGET"
 echo ""
 echo "📁 Creating folder structure..."
 mkdir -p src/components
-mkdir -p src/lib
 mkdir -p src/hooks
 mkdir -p src/types
 mkdir -p src/context
 echo "  ✅ src/components"
-echo "  ✅ src/lib"
 echo "  ✅ src/hooks"
 echo "  ✅ src/types"
 echo "  ✅ src/context"
