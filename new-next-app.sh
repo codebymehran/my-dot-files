@@ -180,9 +180,21 @@ echo "  ✅ prettier.config.js created"
 # -----------------------------
 
 echo ""
-echo "🔐 Creating .env.local..."
+echo "🔐 Creating .env files..."
 touch .env.local
 echo "  ✅ .env.local created"
+
+cat > .env.example << 'EOF'
+# Copy this file to .env.local and fill in the values
+
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Add your secret keys below
+# OPENAI_API_KEY=
+# DATABASE_URL=
+EOF
+echo "  ✅ .env.example created"
 
 # -----------------------------
 # Git commit
