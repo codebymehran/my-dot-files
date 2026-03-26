@@ -1,4 +1,9 @@
 # ============================================================================
+# PATH
+# ============================================================================
+export PATH="$HOME/my-dot-files:$PATH"
+
+# ============================================================================
 # OH MY ZSH SETUP
 # ============================================================================
 export ZSH="$HOME/.oh-my-zsh"
@@ -260,13 +265,6 @@ alias ducks='du -cksh * | sort -rh | head -15'
 
 # Open current git repo in browser
 alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/\/github.com\//;s/\.git$//")'
-
-# Create a new private GitHub repo from current directory and push
-ghcreate() {
-  local name="${1:-$(basename $PWD)}"
-  gh repo create "$name" --private --source=. --remote=origin --push && \
-  echo "✅ Repo created and pushed: https://github.com/$(gh api user -q .login)/$name"
-}
 
 # ============================================================================
 # SCRIPTS
