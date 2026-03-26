@@ -35,6 +35,9 @@
     --vscode-bg: #fef3e2;
     --vscode-border: #f5c842;
     --vscode-text: #92600a;
+    --ctrl-bg: #f3effe;
+    --ctrl-border: #c4a8f5;
+    --ctrl-text: #7c3aed;
   }
 
   body {
@@ -156,6 +159,7 @@
   kbd.mod    { background: var(--opt-bg);   border-color: var(--opt-border);   color: var(--opt-text);   font-weight: 600; }
   kbd.plain  { background: #1e2235; border-color: #2a2e42; color: var(--text2); }
   kbd.vscode { background: var(--vscode-bg); border-color: var(--vscode-border); color: var(--vscode-text); font-weight: 600; }
+  kbd.ctrl   { background: var(--ctrl-bg);  border-color: var(--ctrl-border);  color: var(--ctrl-text);  font-weight: 600; }
 
   .plus  { color: var(--muted); font-size: 0.6rem; font-family: 'JetBrains Mono', monospace; margin: 0 1px; }
   .desc  { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-left: 4px; }
@@ -466,7 +470,14 @@
       <div class="section-label">Text</div>
       <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>W</kbd></div><span class="result">change case</span></div>
       <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>T</kbd></div><span class="result">search snippets</span></div>
-      <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>X</kbd></div><span class="result">generate paragraphs</span></div>
+      <div class="divider"></div>
+      <div class="section-label">Window Management</div>
+      <div class="row"><div class="keys"><kbd class="ctrl">Ctrl</kbd><span class="plus">+</span><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>←</kbd></div><span class="result">left half</span></div>
+      <div class="row"><div class="keys"><kbd class="ctrl">Ctrl</kbd><span class="plus">+</span><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>→</kbd></div><span class="result">right half</span></div>
+      <div class="row"><div class="keys"><kbd class="ctrl">Ctrl</kbd><span class="plus">+</span><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>↑</kbd></div><span class="result">top half</span></div>
+      <div class="row"><div class="keys"><kbd class="ctrl">Ctrl</kbd><span class="plus">+</span><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>↓</kbd></div><span class="result">bottom half</span></div>
+      <div class="row"><div class="keys"><kbd class="ctrl">Ctrl</kbd><span class="plus">+</span><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>C</kbd></div><span class="result">center</span></div>
+      <div class="row"><div class="keys"><kbd class="ctrl">Ctrl</kbd><span class="plus">+</span><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>Return</kbd></div><span class="result">maximize</span></div>
     </div>
   </div>
 
