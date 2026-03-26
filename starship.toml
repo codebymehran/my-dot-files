@@ -3,7 +3,7 @@
 # ============================================
 
 add_newline = false
-right_format = "$cmd_duration$time"
+right_format = "$cmd_duration"
 
 # ---------------------------
 # MAIN PROMPT (left side)
@@ -66,13 +66,10 @@ behind = "↓${count}"
 stashed = "📦"
 
 # ---------------------------
-# TIME (RIGHT PROMPT)
+# TIME (DISABLED)
 # ---------------------------
 [time]
-disabled = false
-format = "[$time]($style)"
-time_format = "%I:%M %p"
-style = "fg:#6c7086"
+disabled = true
 
 # ---------------------------
 # DISABLED MODULES
