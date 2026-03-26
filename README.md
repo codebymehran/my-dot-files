@@ -116,6 +116,60 @@ bash git.sh
 
 ---
 
+## GitHub CLI (gh)
+
+`gh` lets you create repos, open PRs, and manage GitHub without leaving the terminal.
+
+### First-time setup (run once)
+
+**Step 1 — Install:**
+```bash
+brew install gh
+```
+
+**Step 2 — Login:**
+```bash
+gh auth login
+```
+Choose: GitHub.com → SSH → Yes (upload your existing SSH key) → Login with a web browser → follow the prompt.
+
+**Step 3 — Verify:**
+```bash
+gh auth status
+```
+
+---
+
+### Creating a repo for a new project
+
+After running `nna my-project`, your project has a local git repo but no GitHub remote yet. To create one:
+
+```bash
+ghcreate
+```
+
+That's it. It creates a private repo named after your current folder, sets it as origin, and pushes everything.
+
+Or with a custom name:
+```bash
+ghcreate my-custom-name
+```
+
+---
+
+### Other useful gh commands
+
+```bash
+gh repo view --web        # Open current repo on GitHub in browser
+gh pr create              # Create a pull request
+gh pr list                # List open PRs
+gh issue create           # Create an issue
+gh issue list             # List open issues
+gh repo list              # List all your repos
+```
+
+---
+
 ## Manual Apps (App Store)
 
 Install these manually:
@@ -170,5 +224,13 @@ Reusable shell scripts in the repo root. All work from terminal directly or via 
 | new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
 | git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
 | clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
+
+### GitHub CLI aliases (defined in zshrc)
+
+| Alias | Usage |
+|-------|-------|
+| `ghcreate` | `ghcreate` — create private GitHub repo from current folder and push |
+| `ghcreate <name>` | `ghcreate my-name` — same but with a custom repo name |
+| `ghopen` | Opens current repo on GitHub in browser |
 
 Aliases are defined in `zshrc.sh` and available after `exec zsh`.
