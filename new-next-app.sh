@@ -111,6 +111,11 @@ npx shadcn@latest init \
   --defaults \
   --yes
 
+echo ""
+echo "🧩 Installing shadcn components..."
+npx shadcn@latest add button input card dialog form select sonner dropdown-menu --yes
+echo "  ✅ button, input, card, dialog, form, select, sonner, dropdown-menu"
+
 # -----------------------------
 # Clean up boilerplate
 # -----------------------------
@@ -118,16 +123,13 @@ npx shadcn@latest init \
 echo ""
 echo "🧹 Cleaning up boilerplate..."
 
-# Remove all SVGs from public/
 find public/ -name "*.svg" -delete
 echo "  ✅ SVGs removed from public/"
 
-# Remove favicon
 rm -f public/favicon.ico
 echo "  ✅ favicon.ico removed"
 
-# Bare minimum layout.tsx
-cat > src/app/layout.tsx << 'EOF'
+cat > src/app/layout.tsx << 'LAYOUT'
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -147,16 +149,52 @@ export default function RootLayout({
     </html>
   );
 }
-EOF
+LAYOUT
 echo "  ✅ layout.tsx stripped"
 
-# Bare minimum page.tsx
-cat > src/app/page.tsx << 'EOF'
+cat > src/app/page.tsx << 'PAGE'
 export default function Home() {
   return <main></main>;
 }
-EOF
+PAGE
 echo "  ✅ page.tsx stripped"
+
+# -----------------------------
+# Prettier config
+# -----------------------------
+
+echo ""
+echo "✨ Adding Prettier config..."
+cat > prettier.config.js << 'PRETTIER'
+module.exports = {
+  singleQuote: true,
+  trailingComma: 'es5',
+  printWidth: 100,
+  semi: true,
+  tabWidth: 2,
+  arrowParens: 'avoid',
+};
+PRETTIER
+echo "  ✅ prettier.config.js created"
+
+# -----------------------------
+# .env.local
+# -----------------------------
+
+echo ""
+echo "🔐 Creating .env.local..."
+touch .env.local
+echo "  ✅ .env.local created"
+
+# -----------------------------
+# Git commit
+# -----------------------------
+
+echo ""
+echo "🔧 Committing..."
+git add .
+git commit -m "chore: clean up boilerplate, add prettier config" --allow-empty
+echo "  ✅ Committed"
 
 # -----------------------------
 # Open in VS Code
