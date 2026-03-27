@@ -151,9 +151,9 @@ gh auth status
 ```
 You should see something like:
 
-✓ Logged in to github.com as codebymehran
-✓ Git operations for github.com configured to use ssh
-✓ Token scopes include: repo, delete_repo
+- ✓ Logged in to github.com as codebymehran
+- ✓ Git operations for github.com configured to use ssh
+- ✓ Token scopes include: repo, delete_repo
 
 ✅ If you see delete_repo in scopes, repodelete.sh will be able to remove repos safely.
 ---
