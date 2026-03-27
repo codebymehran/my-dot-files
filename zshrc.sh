@@ -148,14 +148,16 @@ gacp() {
   branch=$(git symbolic-ref --short HEAD)
   if [[ "$branch" == "main" || "$branch" == "master" ]]; then
     echo "⚠️  You are on '$branch'. Are you sure you want to push directly?"
-    read "confirm?Type 'YES' to continue: "
-    if [[ "$confirm" != "YES" ]]; then
+    read "confirm?Type 'y' or Enter to continue: "
+    # Convert input to lowercase
+    confirm="${confirm,,}"
+    if [[ "$confirm" != "y" && "$confirm" != "" ]]; then
       echo "❌ Aborted"
       return 1
     fi
   fi
 
-  git add . && \
+  git add -A && \
   git commit -m "$1" && \
   git push && \
   echo "✅ Committed and pushed: $1" || \
