@@ -1,35 +1,139 @@
 #!/bin/bash
 
 # ============================================================================
-# repodelete.sh
-# Deletes a project locally from ~/Code AND removes it from GitHub
-# Usage: repodelete <project-name>
+# repodelete.sh (ultimate version)
+# Safe repo deletion with:
+# - Trash instead of rm
+# - Auto-detect current repo
+# - Fuzzy search
+# - Interactive picker
 # ============================================================================
 
-set -e
+set -euo pipefail
 
-if [ -z "$1" ]; then
-  echo "❌ Usage: repodelete <project-name>"
+CODE_DIR="$HOME/Code"
+DRY_RUN="${2:-}"
+
+# -----------------------------
+# Helpers
+# -----------------------------
+
+choose_project() {
+  echo "📂 Select a project:"
+  mapfile -t PROJECTS < <(ls -1 "$CODE_DIR")
+
+  select PROJECT_NAME in "${PROJECTS[@]}"; do
+    if [ -n "$PROJECT_NAME" ]; then
+      echo "  → Selected: $PROJECT_NAME"
+      break
+    else
+      echo "Invalid selection"
+    fi
+  done
+}
+
+fuzzy_match() {
+  local input="$1"
+  match=$(ls -1 "$CODE_DIR" | grep -i "$input" | head -n 1 || true)
+  echo "$match"
+}
+
+move_to_trash() {
+  local path="$1"
+
+  if command -v trash >/dev/null 2>&1; then
+    trash "$path"
+  else
+    mv "$path" "$HOME/.Trash/"
+  fi
+}
+
+# -----------------------------
+# Determine project
+# -----------------------------
+
+PROJECT_NAME="${1:-}"
+
+if [ -z "$PROJECT_NAME" ]; then
+  choose_project
+elif [ "$PROJECT_NAME" == "." ]; then
+  PROJECT_NAME=$(basename "$(pwd)")
+  echo "📍 Auto-detected current repo: $PROJECT_NAME"
+elif [ ! -d "$CODE_DIR/$PROJECT_NAME" ]; then
+  echo "🔎 Trying fuzzy match..."
+  MATCH=$(fuzzy_match "$PROJECT_NAME")
+
+  if [ -n "$MATCH" ]; then
+    echo "  → Did you mean: $MATCH ?"
+    read -p "Use this? (Y/n): " confirm
+    if [[ "$confirm" != "n" && "$confirm" != "N" ]]; then
+      PROJECT_NAME="$MATCH"
+    else
+      choose_project
+    fi
+  else
+    echo "❌ No match found"
+    choose_project
+  fi
+fi
+
+TARGET="$CODE_DIR/$PROJECT_NAME"
+
+# -----------------------------
+# Safety check
+# -----------------------------
+
+if [[ "$TARGET" != "$CODE_DIR/"* ]]; then
+  echo "❌ Refusing to delete outside ~/Code"
   exit 1
 fi
 
-PROJECT_NAME="$1"
-TARGET="$HOME/Code/$PROJECT_NAME"
+# -----------------------------
+# Detect GitHub repo
+# -----------------------------
+
+REPO=""
+
+if [ -d "$TARGET/.git" ]; then
+  echo "🔍 Detecting GitHub repo..."
+  set +e
+  REPO=$(cd "$TARGET" && gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null)
+  set -e
+fi
+
+if [ -z "$REPO" ]; then
+  USERNAME=$(gh api user -q .login)
+  REPO="$USERNAME/$PROJECT_NAME"
+fi
 
 # -----------------------------
 # Confirm
 # -----------------------------
 
 echo ""
-echo "⚠️  This will permanently delete:"
-echo "   📁 Local:  $TARGET"
-echo "   ☁️  GitHub: $PROJECT_NAME"
+echo "⚠️  This will move to Trash and delete GitHub repo:"
+echo "   📁 Local → Trash: $TARGET"
+echo "   ☁️  GitHub: $REPO"
 echo ""
-read -p "Type the project name to confirm: " CONFIRM
 
-if [ "$CONFIRM" != "$PROJECT_NAME" ]; then
-  echo "❌ Name didn't match — aborted"
+read -p "Type DELETE to confirm: " CONFIRM
+
+if [ "$CONFIRM" != "DELETE" ]; then
+  echo "❌ Cancelled"
   exit 1
+fi
+
+# -----------------------------
+# Dry run
+# -----------------------------
+
+if [ "$DRY_RUN" == "--dry-run" ]; then
+  echo ""
+  echo "🧪 DRY RUN"
+  echo "Would delete:"
+  echo "  - GitHub: $REPO"
+  echo "  - Local → Trash: $TARGET"
+  exit 0
 fi
 
 # -----------------------------
@@ -38,23 +142,30 @@ fi
 
 echo ""
 echo "☁️  Deleting GitHub repo..."
-if gh repo delete "$PROJECT_NAME" --yes 2>/dev/null; then
+
+set +e
+gh repo delete "$REPO" --yes
+GH_STATUS=$?
+set -e
+
+if [ $GH_STATUS -eq 0 ]; then
   echo "  ✅ GitHub repo deleted"
 else
-  echo "  ⚠️  GitHub repo not found or already deleted — skipping"
+  echo "  ⚠️  Failed (may not exist or no permission)"
 fi
 
 # -----------------------------
-# Delete local folder
+# Move local to Trash
 # -----------------------------
 
 echo ""
-echo "📁 Deleting local folder..."
+echo "🗑️  Moving to Trash..."
+
 if [ -d "$TARGET" ]; then
-  rm -rf "$TARGET"
-  echo "  ✅ Local folder deleted"
+  move_to_trash "$TARGET"
+  echo "  ✅ Moved to Trash"
 else
-  echo "  ⚠️  Local folder not found — skipping"
+  echo "  ⚠️  Local folder not found"
 fi
 
 # -----------------------------
@@ -62,5 +173,5 @@ fi
 # -----------------------------
 
 echo ""
-echo "✅ $PROJECT_NAME has been fully removed"
+echo "✅ $PROJECT_NAME cleanup complete"
 echo ""
