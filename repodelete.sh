@@ -7,6 +7,7 @@
 # - Auto-detect current repo
 # - Fuzzy search
 # - Interactive picker
+# - Friendly yes/no confirmation
 # ============================================================================
 set -euo pipefail
 
@@ -71,8 +72,8 @@ elif [ ! -d "$CODE_DIR/$PROJECT_NAME" ]; then
 
   if [ -n "$MATCH" ]; then
     echo "  → Did you mean: $MATCH ?"
-    read -p "Use this? (Y/n): " confirm
-    if [[ "$confirm" != "n" && "$confirm" != "N" ]]; then
+    read -p "Use this? (y/N): " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
       PROJECT_NAME="$MATCH"
     else
       choose_project
@@ -113,7 +114,7 @@ if [ -z "$REPO" ]; then
 fi
 
 # -----------------------------
-# Confirm
+# Confirm deletion (friendly)
 # -----------------------------
 
 echo ""
@@ -122,9 +123,9 @@ echo "   📁 Local → Trash: $TARGET"
 echo "   ☁️  GitHub: $REPO"
 echo ""
 
-read -p "Type DELETE to confirm: " CONFIRM
+read -p "Are you sure you want to proceed? (y/N): " CONFIRM
 
-if [ "$CONFIRM" != "DELETE" ]; then
+if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
   echo "❌ Cancelled"
   exit 1
 fi
