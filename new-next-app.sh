@@ -197,14 +197,16 @@ EOF
 echo "  ✅ .env.example created"
 
 # -----------------------------
-# Git commit
+# Clean git history — single commit
 # -----------------------------
 
 echo ""
-echo "🔧 Committing..."
+echo "🔧 Resetting git history to single clean commit..."
+rm -rf .git
+git init
 git add .
-git commit -m "chore: clean up boilerplate, add prettier config" --allow-empty
-echo "  ✅ Committed"
+git commit -m "chore: initial setup"
+echo "  ✅ Clean initial commit"
 
 # -----------------------------
 # Open in VS Code
@@ -225,3 +227,6 @@ echo "📍 $TARGET"
 echo ""
 echo "💡 To start the dev server:"
 echo "   cd $TARGET && npm run dev"
+echo ""
+echo "💡 When ready to push to GitHub:"
+echo "   ghcreate"
