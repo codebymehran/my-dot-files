@@ -133,11 +133,29 @@ gh auth login
 ```
 Choose: GitHub.com → SSH → Yes (upload your existing SSH key) → Login with a web browser → follow the prompt.
 
-**Step 3 — Verify:**
+
+**Step 3 — Give delete permissions (optional, required for repodelete.sh):**
+
+Some scripts (like repodelete.sh) need permission to delete repos. Make sure your token includes delete_repo:
+
+```bash
+gh auth refresh -h github.com -s delete_repo
+```
+This opens a browser and updates your authentication token.
+You only need to do this once per machine.
+
+**Step 4 — Verify authentication and scopes:**
+
 ```bash
 gh auth status
 ```
+You should see something like:
 
+✓ Logged in to github.com as codebymehran
+✓ Git operations for github.com configured to use ssh
+✓ Token scopes include: repo, delete_repo
+
+** ✅ If you see delete_repo in scopes, repodelete.sh will be able to remove repos safely.**
 ---
 
 ### Creating a repo for a new project
@@ -219,11 +237,15 @@ Or browse the full list at: https://www.nerdfonts.com/
 
 Reusable shell scripts in the repo root. All work from terminal directly or via Raycast.
 
-| Script | Alias | Usage |
-|--------|-------|-------|
-| new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
-| git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
-| clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
+| Script                                 | Alias        | Usage                                                                                                                                    |
+| -------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| new-next-app.sh                        | `nna`        | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui                                                                         |
+| git-clone-and-setup-dev-environment.sh | `clone`      | `clone <url>` — clones into ~/Code/explore and opens in VS Code                                                                          |
+| clone-own.sh                           | `cloneown`   | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code                                                                 |
+| repodelete.sh                          | `repodelete` | `repodelete <project-name>` — safely deletes a project locally (via Trash) **and** removes it from GitHub (requires `delete_repo` scope) |
+
+
+
 
 ### GitHub CLI aliases (defined in zshrc)
 
