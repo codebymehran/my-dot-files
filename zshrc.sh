@@ -4,6 +4,12 @@
 export PATH="$HOME/my-dot-files:$PATH"
 
 # ============================================================================
+# DEFAULT EDITOR
+# ============================================================================
+export EDITOR="code"
+export VISUAL="code --wait"
+
+# ============================================================================
 # OH MY ZSH SETUP
 # ============================================================================
 export ZSH="$HOME/.oh-my-zsh"
@@ -232,6 +238,21 @@ gitwipe() {
   echo "✅ Done! Clean slate."
 }
 
+# Create GitHub repo from current local project and push
+# Usage: ghcreate (uses folder name) or ghcreate my-name (custom name)
+ghcreate() {
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not a git repo — run this from inside your project"
+    return 1
+  fi
+  local name="${1:-$(basename $PWD)}"
+  gh repo create "$name" --private --source=. --remote=origin --push
+}
+
+# Git stash
+alias gst='git stash'
+alias gstp='git stash pop'
+
 # ============================================================================
 # NODE/NPM ALIASES
 # ============================================================================
@@ -270,6 +291,11 @@ alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/
 # SCRIPTS
 # ============================================================================
 alias nna='bash ~/my-dot-files/new-next-app.sh'
+_nna_completion() {
+  local projects=($(ls ~/Code))
+  compadd -S '' -- $projects
+}
+compdef _nna_completion nna
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
 
@@ -321,9 +347,12 @@ shortcuts() {
   echo "║    c                → Clear screen                                   ║"
   echo "║                                                                      ║"
   echo "║  📂 PROJECT SHORTCUTS                                                 ║"
+  echo "║    nna <n>       → Scaffold new Next.js project into ~/Code       ║"
   echo "║    cex              → Go to ~/Code/explore (throwaway clones)        ║"
-  echo "║    cloneown <url>   → Clone your own repo into ~/Code               ║"
-  echo "║    z <name>         → Jump to any project (zoxide learns from usage) ║"
+  echo "║    cdf              → Go to ~/my-dot-files                           ║"
+  echo "║    clone <url>      → Clone repo and set up dev environment          ║"
+  echo "║    cloneown <url>   → Clone your own repo into ~/Code                ║"
+  echo "║    z <n>         → Jump to any project (zoxide learns from usage) ║"
   echo "║    co               → Open current folder in VS Code                 ║"
   echo "║                                                                      ║"
   echo "║  📋 FILE OPERATIONS                                                   ║"
@@ -333,6 +362,8 @@ shortcuts() {
   echo "║    cx <file>        → Make file executable                           ║"
   echo "║    ls / ll / la     → List files                                     ║"
   echo "║    lt               → List files in tree view                        ║"
+  echo "║    cat <file>       → View file with syntax highlighting (bat)       ║"
+  echo "║    catp <file>      → View file plain (no highlighting)              ║"
   echo "║                                                                      ║"
   echo "║  🔄 GIT COMMANDS                                                      ║"
   echo "║    gacp \"msg\"       → Add, commit & push with message                ║"
@@ -341,10 +372,16 @@ shortcuts() {
   echo "║    gitwipe          → Wipe ALL history, keep files (⚠️ dangerous!)    ║"
   echo "║    gs               → Git status                                     ║"
   echo "║    gl               → Git log (last 10, with graph)                  ║"
+  echo "║    glh              → Last commit with file stats                    ║"
   echo "║    gd               → Git diff                                       ║"
   echo "║    gco <branch>     → Git checkout branch                            ║"
   echo "║    gb               → Git branch list                                ║"
   echo "║    grc              → Git reset hard & clean (⚠️ dangerous!)          ║"
+  echo "║    gst              → git stash                                      ║"
+  echo "║    gstp             → git stash pop                                  ║"
+  echo "║    ghcreate         → Create private GitHub repo + push              ║"
+  echo "║    ghcreate <n>  → Same but with a custom repo name               ║"
+  echo "║    ghopen           → Open current repo on GitHub in browser         ║"
   echo "║                                                                      ║"
   echo "║  📦 NODE/NPM SHORTCUTS                                                ║"
   echo "║    ni               → npm install                                    ║"
@@ -353,9 +390,9 @@ shortcuts() {
   echo "║    nrb              → npm run build                                  ║"
   echo "║    nrs              → npm run start                                  ║"
   echo "║    nrt              → npm run test                                   ║"
+  echo "║    nup              → npm update                                     ║"
   echo "║                                                                      ║"
   echo "║  🛠️  SYSTEM & UTILITIES                                               ║"
-  echo "║    c                → Clear screen                                   ║"
   echo "║    ports            → Show listening ports                           ║"
   echo "║    myip             → Show public IP address                         ║"
   echo "║    localip          → Show local IP address                          ║"
@@ -363,8 +400,7 @@ shortcuts() {
   echo "║    killnode         → Kill all node processes                        ║"
   echo "║    cleannm          → Delete all node_modules recursively            ║"
   echo "║    ducks            → Show largest files/dirs in current directory   ║"
-  echo "║    ghopen           → Open current repo in browser                   ║"
-  echo "║    zshconfig        → Edit this terminal config                      ║"
+  echo "║    zshconfig        → Edit this terminal config (opens VS Code)      ║"
   echo "║    zshreload        → Reload terminal config                         ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
   echo "║    shortcuts        → Show this help message                         ║"
@@ -372,8 +408,8 @@ shortcuts() {
   echo "║  💡 PRO TIPS                                                          ║"
   echo "║    • Use Tab for auto-completion                                     ║"
   echo "║    • Use Ctrl+R for history search (fuzzy find)                      ║"
-  echo "║    • Type '..' to go up one directory                                ║"
   echo "║    • Commands starting with space won't be saved in history          ║"
+  echo "║    • nna <tab> shows existing ~/Code projects to avoid duplicates    ║"
   echo "║                                                                      ║"
   echo "╚══════════════════════════════════════════════════════════════════════╝"
   echo ""
