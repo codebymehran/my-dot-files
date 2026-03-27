@@ -238,8 +238,8 @@
         <tr>
           <td><span class="tag">ghcreate</span></td>
           <td>
-            <span class="desc">Create private GitHub repo from current local project + push</span>
-            <div class="note">run once when you decide to keep a project · requires gh cli</div>
+            <span class="desc">Create public GitHub repo from current local project + push · prints repo URL on success</span>
+            <div class="note">ghcreate --private for private · ghcreate &lt;name&gt; for custom name · requires gh cli</div>
           </td>
         </tr>
         <tr>
@@ -319,8 +319,8 @@
         <tr><td><span class="tag">myip</span></td><td><span class="desc">Show public IP (via ifconfig.me)</span></td></tr>
         <tr><td><span class="tag">localip</span></td><td><span class="desc">Show local IP address (en0)</span></td></tr>
         <tr><td><span class="tag">shortcuts</span></td><td><span class="desc">Print full reference in terminal</span></td></tr>
-        <tr><td><span class="tag">zshconfig</span></td><td><span class="desc">Edit ~/.zshrc in $EDITOR (VS Code)</span></td></tr>
-        <tr><td><span class="tag">zshreload</span></td><td><span class="desc">Reload ~/.zshrc without restarting terminal</span></td></tr>
+        <tr><td><span class="tag">zc</span></td><td><span class="desc">Edit ~/.zshrc in $EDITOR (VS Code)</span></td></tr>
+        <tr><td><span class="tag">zr</span></td><td><span class="desc">Reload ~/.zshrc without restarting terminal</span></td></tr>
       </table>
     </div>
 
@@ -335,12 +335,12 @@
             <div class="note">e.g. killport 3000</div>
           </td>
         </tr>
-        <tr><td><span class="tag">killnode</span></td><td><span class="desc">Kill all running node processes</span></td></tr>
+        <tr><td><span class="tag">killnode</span></td><td><span class="desc">Kill all running node processes · prints friendly message if none found</span></td></tr>
         <tr>
           <td><span class="tag">cleannm</span></td>
           <td>
-            <span class="desc">Delete all node_modules folders recursively</span>
-            <div class="note">runs from current directory downward</div>
+            <span class="desc">Move all node_modules folders to Trash — shows count, requires YES confirmation</span>
+            <div class="note">runs from current directory downward · safer than rm -rf</div>
           </td>
         </tr>
         <tr><td><span class="tag">ducks</span></td><td><span class="desc">Show top 15 largest files/dirs in current directory</span></td></tr>
@@ -454,7 +454,7 @@
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">nrd</span><span class="wf-desc">npm run dev</span></div>
           <div class="wf-step"><span class="wf-num">5</span><span class="wf-cmd">ghcreate</span><span class="wf-desc">when ready — push to GitHub</span></div>
         </div>
-        <div class="wf-note" style="color:#0369a1;">💡 ghcreate is separate — only run when you're keeping the project</div>
+        <div class="wf-note" style="color:#0369a1;">💡 ghcreate = public by default · add --private flag for private repos</div>
       </div>
 
       <!-- Daily git routine -->
