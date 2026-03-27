@@ -43,15 +43,27 @@ ls -la
 if [ -f "package.json" ]; then
   echo "📦 Installing dependencies..."
   if ! npm install; then
-    echo "⚠️ npm install failed, retrying with --force..."
-    npm install --force
+    echo "⚠️  npm install failed, retrying with --force..."
+    if ! npm install --force; then
+      echo "❌ npm install failed — open the project and check manually"
+      exit 1
+    fi
   fi
 else
   echo "ℹ️  No package.json found — skipping npm install"
 fi
 
 echo "🚀 Opening in existing VS Code window..."
-code -r .
+if command -v code &> /dev/null; then
+  code -r .
+elif [ -f "/opt/homebrew/bin/code" ]; then
+  /opt/homebrew/bin/code -r .
+elif [ -f "/usr/local/bin/code" ]; then
+  /usr/local/bin/code -r .
+else
+  open -a "Visual Studio Code" .
+fi
 
+echo ""
 echo "✅ Done! Project is at ~/Code/explore/$REPO_NAME"
 echo "🧹 When finished: trash $REPO_NAME"
