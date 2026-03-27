@@ -1,14 +1,13 @@
 #!/bin/bash
 
 # ============================================================================
-# repodelete.sh (ultimate version)
+# repodelete.sh (macOS-ready, bulletproof)
 # Safe repo deletion with:
 # - Trash instead of rm
 # - Auto-detect current repo
 # - Fuzzy search
 # - Interactive picker
 # ============================================================================
-
 set -euo pipefail
 
 CODE_DIR="$HOME/Code"
@@ -20,8 +19,15 @@ DRY_RUN="${2:-}"
 
 choose_project() {
   echo "📂 Select a project:"
-  mapfile -t PROJECTS < <(ls -1 "$CODE_DIR")
 
+  # Read folder names into an array (Bash 3.2 compatible)
+  PROJECTS=()
+  while IFS= read -r line; do
+    PROJECTS+=("$line")
+  done < <(ls -1 "$CODE_DIR")
+
+  # Interactive select
+  PS3="Enter number: "
   select PROJECT_NAME in "${PROJECTS[@]}"; do
     if [ -n "$PROJECT_NAME" ]; then
       echo "  → Selected: $PROJECT_NAME"
