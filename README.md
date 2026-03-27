@@ -155,7 +155,7 @@ You should see something like:
 ✓ Git operations for github.com configured to use ssh
 ✓ Token scopes include: repo, delete_repo
 
-** ✅ If you see delete_repo in scopes, repodelete.sh will be able to remove repos safely.**
+✅ If you see delete_repo in scopes, repodelete.sh will be able to remove repos safely.
 ---
 
 ### Creating a repo for a new project
