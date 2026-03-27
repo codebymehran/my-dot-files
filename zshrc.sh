@@ -259,7 +259,7 @@ ghcreate() {
 
   name="${name:-$(basename $PWD)}"
 
-  if ! git rev-parse HEAD &>/dev/null; then
+  if [[ -z "$(git log --oneline -1 2>/dev/null)" ]]; then
     echo "❌ No commits yet — add some files first:"
     echo "   touch README.md && git add . && git commit -m 'initial commit'"
     echo "   Then run ghcreate again"
@@ -430,8 +430,8 @@ shortcuts() {
   echo "║    gst              → git stash                                      ║"
   echo "║    gstp             → git stash pop                                  ║"
   echo "║    ghcreate         → Create public GitHub repo + push               ║"
-  echo "║    ghcreate --private → Same but private                           ║"
-  echo "║    ghcreate <n> [--private] → Custom name, optional private        ║"
+  echo "║    ghcreate --private → Same but private                             ║"
+  echo "║    ghcreate <n> [--private] → Custom name, optional private          ║"
   echo "║    ghopen           → Open current repo on GitHub in browser         ║"
   echo "║                                                                      ║"
   echo "║  📦 NODE/NPM SHORTCUTS                                                ║"
@@ -449,10 +449,10 @@ shortcuts() {
   echo "║    localip          → Show local IP address                          ║"
   echo "║    killport <port>  → Kill process on port                           ║"
   echo "║    killnode         → Kill all node processes                        ║"
-  echo "║    cleannm          → Delete all node_modules recursively            ║"
+  echo "║    cleannm          → Move node_modules to Trash (with confirmation) ║"
   echo "║    ducks            → Show largest files/dirs in current directory   ║"
   echo "║    zc               → Edit zsh config (opens VS Code)               ║"
-  echo "║    zr               → Reload zsh config                            ║"
+  echo "║    zr               → Reload zsh config                             ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
   echo "║    shortcuts        → Show this help message                         ║"
   echo "║                                                                      ║"
