@@ -80,11 +80,7 @@ mkcd() {
   mkdir -p "$1" && cd "$1"
 }
 
-# Move to trash instead of permanent delete (safer)
-# macOS-compatible syntax
-trash() {
-  mv "$@" ~/.Trash/
-}
+# trash CLI installed via Homebrew (bootstrap.sh) — no override needed
 
 # Quick file operations
 alias cx='chmod +x'  # Make file executable
@@ -238,18 +234,55 @@ gitwipe() {
   echo "✅ Done! Clean slate."
 }
 
+# Create public GitHub repo from current local project and push
+# Usage:
+#   ghcreate                   → public repo, uses folder name
+#   ghcreate my-name           → public repo, custom name
+#   ghcreate --private         → private repo, uses folder name
+#   ghcreate my-name --private → private repo, custom name
 ghcreate() {
-  # Check if we are inside a Git repository
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
-    echo "❌ Not a git repo — run this from inside your project"
+    echo "❌ Not a git repo — run: git init && git add . && git commit -m 'initial commit'"
     return 1
   fi
 
-  # Use the argument as the repo name, or default to the current folder name
-  local name="${1:-$(basename $PWD)}"
+  local name=""
+  local visibility="--public"
 
-  # Create a private GitHub repository, add remote 'origin', and push
-  gh repo create "$name" --private --source=. --remote=origin --push
+  for arg in "$@"; do
+    if [[ "$arg" == "--private" ]]; then
+      visibility="--private"
+    else
+      name="$arg"
+    fi
+  done
+
+  name="${name:-$(basename $PWD)}"
+
+  if ! git rev-parse HEAD &>/dev/null; then
+    echo "❌ No commits yet — add some files first:"
+    echo "   touch README.md && git add . && git commit -m 'initial commit'"
+    echo "   Then run ghcreate again"
+    return 1
+  fi
+
+  echo "🚀 Creating ${visibility/--/} repo: $name"
+  gh repo create "$name" "$visibility" || { echo "❌ Failed to create repo"; return 1; }
+
+  local username
+  username=$(gh api user -q .login)
+  local repo_url="https://github.com/$username/$name.git"
+
+  if git remote get-url origin &>/dev/null; then
+    echo "⚠️  Remote 'origin' already exists — updating to new repo"
+    git remote set-url origin "$repo_url"
+  else
+    git remote add origin "$repo_url"
+  fi
+
+  git push -u origin main && \
+    echo "✅ Done — https://github.com/$username/$name" || \
+    echo "❌ Push failed"
 }
 
 # Git stash
@@ -277,11 +310,23 @@ killport() {
 }
 
 # Kill all node processes
-alias killnode='pkill -f node && echo "✅ All node processes killed"'
+alias killnode='pkill -f node && echo "✅ All node processes killed" || echo "ℹ️  No node processes found"'
 
 # Clear all node_modules recursively from current directory
 cleannm() {
-  find . -name "node_modules" -type d -prune -exec rm -rf {} + && echo "✅ node_modules cleared"
+  local count
+  count=$(find . -name "node_modules" -type d -prune | wc -l | tr -d ' ')
+  if [[ "$count" -eq 0 ]]; then
+    echo "ℹ️  No node_modules found"
+    return 0
+  fi
+  echo "⚠️  Found $count node_modules folder(s) — move to Trash?"
+  read "confirm?Type 'YES' to continue: "
+  if [[ "$confirm" != "YES" ]]; then
+    echo "❌ Aborted"
+    return 1
+  fi
+  find . -name "node_modules" -type d -prune -exec trash {} + && echo "✅ node_modules moved to Trash"
 }
 
 # Check what's eating your disk
@@ -306,8 +351,8 @@ alias repodelete='bash ~/my-dot-files/repodelete.sh'
 # ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
-alias zshconfig='${EDITOR:-nano} ~/.zshrc'
-alias zshreload='source ~/.zshrc'
+alias zc='${EDITOR:-nano} ~/.zshrc'       # Edit zsh config
+alias zr='source ~/.zshrc'               # Reload zsh config
 alias starshipconfig='${EDITOR:-nano} ~/.config/starship.toml'
 
 # ============================================================================
@@ -384,8 +429,9 @@ shortcuts() {
   echo "║    grc              → Git reset hard & clean (⚠️ dangerous!)          ║"
   echo "║    gst              → git stash                                      ║"
   echo "║    gstp             → git stash pop                                  ║"
-  echo "║    ghcreate         → Create private GitHub repo + push              ║"
-  echo "║    ghcreate <n>  → Same but with a custom repo name               ║"
+  echo "║    ghcreate         → Create public GitHub repo + push               ║"
+  echo "║    ghcreate --private → Same but private                           ║"
+  echo "║    ghcreate <n> [--private] → Custom name, optional private        ║"
   echo "║    ghopen           → Open current repo on GitHub in browser         ║"
   echo "║                                                                      ║"
   echo "║  📦 NODE/NPM SHORTCUTS                                                ║"
@@ -405,8 +451,8 @@ shortcuts() {
   echo "║    killnode         → Kill all node processes                        ║"
   echo "║    cleannm          → Delete all node_modules recursively            ║"
   echo "║    ducks            → Show largest files/dirs in current directory   ║"
-  echo "║    zshconfig        → Edit this terminal config (opens VS Code)      ║"
-  echo "║    zshreload        → Reload terminal config                         ║"
+  echo "║    zc               → Edit zsh config (opens VS Code)               ║"
+  echo "║    zr               → Reload zsh config                            ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
   echo "║    shortcuts        → Show this help message                         ║"
   echo "║                                                                      ║"
