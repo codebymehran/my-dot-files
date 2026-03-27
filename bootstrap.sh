@@ -27,6 +27,19 @@ fi
 echo ""
 
 # -----------------------------
+# Install trash CLI
+# -----------------------------
+
+if ! command -v trash &> /dev/null; then
+  echo "🗑️ Installing trash CLI..."
+  brew install trash
+  echo "  ✅ trash installed"
+else
+  echo "  ✅ trash already installed — skipping"
+fi
+echo ""
+
+# -----------------------------
 # Oh My Zsh
 # -----------------------------
 
@@ -91,7 +104,6 @@ fnm default lts-latest
 echo "  ✅ Node $(node -v) installed"
 echo ""
 
-
 # -----------------------------
 # SSH Key for GitHub
 # -----------------------------
@@ -119,6 +131,7 @@ else
   ssh -T git@github.com 2>&1 | grep -q "successfully authenticated" && echo "  ✅ GitHub SSH connection verified" || echo "  ⚠️  Could not verify — you can test later with: ssh -T git@github.com"
 fi
 echo ""
+
 # -----------------------------
 # Done
 # -----------------------------
