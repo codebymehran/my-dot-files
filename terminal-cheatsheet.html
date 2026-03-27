@@ -239,7 +239,7 @@
           <td><span class="tag">ghcreate</span></td>
           <td>
             <span class="desc">Create public GitHub repo from current local project + push · prints repo URL on success</span>
-            <div class="note">ghcreate --private for private · ghcreate &lt;name&gt; for custom name · requires gh cli</div>
+            <div class="note">ghcreate --private for private · ghcreate &lt;name&gt; for custom name · requires gh cli · must have at least one commit</div>
           </td>
         </tr>
         <tr>
@@ -454,7 +454,7 @@
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">nrd</span><span class="wf-desc">npm run dev</span></div>
           <div class="wf-step"><span class="wf-num">5</span><span class="wf-cmd">ghcreate</span><span class="wf-desc">when ready — push to GitHub</span></div>
         </div>
-        <div class="wf-note" style="color:#0369a1;">💡 ghcreate = public by default · add --private flag for private repos</div>
+        <div class="wf-note" style="color:#0369a1;">💡 ghcreate = public by default · add --private flag for private · needs at least one commit</div>
       </div>
 
       <!-- Daily git routine -->
@@ -477,7 +477,7 @@
         <div style="display:flex; flex-direction:column; gap:6px;">
           <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">killport 3000</span><span class="wf-desc">free the port</span></div>
           <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">killnode</span><span class="wf-desc">kill zombie node processes</span></div>
-          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">cleannm && ni</span><span class="wf-desc">nuke + reinstall node_modules</span></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">cleannm && ni</span><span class="wf-desc">trash + reinstall node_modules</span></div>
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">nrd</span><span class="wf-desc">try again</span></div>
         </div>
       </div>
