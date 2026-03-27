@@ -238,31 +238,18 @@ gitwipe() {
   echo "✅ Done! Clean slate."
 }
 
-# --------------------------------------
-# ghcreate
-# Creates a GitHub repository from the current local Git repo
-# Defaults to public repo, but can be made private
-# Usage:
-#   ghcreate                  → public repo, folder name as repo name
-#   ghcreate my-app           → public repo named "my-app"
-#   ghcreate my-app private   → private repo named "my-app"
-# --------------------------------------
-
 ghcreate() {
+  # Check if we are inside a Git repository
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "❌ Not a git repo — run this from inside your project"
     return 1
   fi
 
+  # Use the argument as the repo name, or default to the current folder name
   local name="${1:-$(basename $PWD)}"
-  local visibility="${2:-public}"  # default = public
 
-  if [[ "$visibility" != "public" && "$visibility" != "private" ]]; then
-    echo "❌ Invalid visibility: $visibility — must be 'public' or 'private'"
-    return 1
-  fi
-
-  gh repo create "$name" --"$visibility" --source=. --remote=origin --push
+  # Create a private GitHub repository, add remote 'origin', and push
+  gh repo create "$name" --private --source=. --remote=origin --push
 }
 
 # Git stash
