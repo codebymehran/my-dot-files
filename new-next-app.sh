@@ -197,6 +197,15 @@ EOF
 echo "  ✅ .env.example created"
 
 # -----------------------------
+# .nvmrc
+# -----------------------------
+
+echo ""
+echo "📌 Creating .nvmrc..."
+node --version > .nvmrc
+echo "  ✅ .nvmrc created ($(node --version))"
+
+# -----------------------------
 # Clean git history — single commit
 # -----------------------------
 
