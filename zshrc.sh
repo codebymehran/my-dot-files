@@ -238,15 +238,74 @@ gitwipe() {
   echo "✅ Done! Clean slate."
 }
 
-# Create GitHub repo from current local project and push
-# Usage: ghcreate (uses folder name) or ghcreate my-name (custom name)
+# Create a GitHub repo from the current directory using GitHub CLI (gh)
+# Features:
+# - Defaults to current folder name if repo name not provided
+# - Public repo by default (can override with --private)
+# - Optional description and organization support
+# - Interactive prompts if arguments are missing
+# - Pushes current repo to GitHub and sets origin remote
+
 ghcreate() {
+
+  # Ensure we are inside a git repository
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "❌ Not a git repo — run this from inside your project"
     return 1
   fi
-  local name="${1:-$(basename $PWD)}"
-  gh repo create "$name" --private --source=. --remote=origin --push
+
+  # Arguments:
+  # $1 = repo name
+  # $2 = visibility (--public or --private)
+  # $3 = description
+  # $4 = organization (optional)
+  local name="$1"
+  local visibility="$2"
+  local description="$3"
+  local org="$4"
+
+  # Set repo name (default: current folder name)
+  # Prompt user if not provided
+  if [ -z "$name" ]; then
+    name=$(basename "$PWD")
+    read -p "📦 Repo name [$name]: " input
+    name="${input:-$name}"
+  fi
+
+  # Set visibility (default: public)
+  # Prompt user if not provided
+  if [ -z "$visibility" ]; then
+    read -p "🌍 Visibility (public/private) [public]: " input
+    visibility="${input:---public}"
+  fi
+
+  # Set description (optional)
+  # Prompt user if not provided
+  if [ -z "$description" ]; then
+    read -p "📝 Description (optional): " description
+  fi
+
+  # Set organization (optional)
+  # If empty, repo will be created under personal account
+  if [ -z "$org" ]; then
+    read -p "🏢 Organization (leave blank for personal): " org
+  fi
+
+  # Build full repo target
+  # Format: "org/repo" if org provided, otherwise just "repo"
+  local target="$name"
+  if [ -n "$org" ]; then
+    target="$org/$name"
+  fi
+
+  # Create the GitHub repository and push local code
+  gh repo create "$target" \
+    "$visibility" \
+    --description "$description" \
+    --source=. \
+    --remote=origin \
+    --push
+
 }
 
 # Git stash
