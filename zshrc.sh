@@ -298,6 +298,7 @@ _nna_completion() {
 compdef _nna_completion nna
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
+alias repodelete='bash ~/my-dot-files/repodelete.sh'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
@@ -352,6 +353,7 @@ shortcuts() {
   echo "║    cdf              → Go to ~/my-dot-files                           ║"
   echo "║    clone <url>      → Clone repo and set up dev environment          ║"
   echo "║    cloneown <url>   → Clone your own repo into ~/Code                ║"
+  echo "║    repodelete <n> → Delete local folder + GitHub repo                ║"
   echo "║    z <n>         → Jump to any project (zoxide learns from usage) ║"
   echo "║    co               → Open current folder in VS Code                 ║"
   echo "║                                                                      ║"
