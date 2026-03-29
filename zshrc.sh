@@ -14,15 +14,15 @@ export VISUAL="code --wait"
 # ============================================================================
 export ZSH="$HOME/.oh-my-zsh"
 
-# Plugins (order matters - zsh-syntax-highlighting should be last)
+# Plugins (order matters - zsh-syntax-highlighting must be last, zsh-vi-mode second to last)
 plugins=(
   git
   npm
   node
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-vi-mode
   colored-man-pages
+  zsh-autosuggestions
+  zsh-vi-mode
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -35,8 +35,7 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 setopt HIST_IGNORE_DUPS      # Don't save duplicate commands
 setopt HIST_IGNORE_SPACE     # Don't save commands starting with space
-setopt SHARE_HISTORY         # Share history between terminals
-setopt INC_APPEND_HISTORY    # Add commands immediately
+setopt SHARE_HISTORY         # Share history between terminals (implies incremental append)
 
 # ============================================================================
 # PROJECTS — auto-discovered from ~/Code (excludes explore and my-dot-files)
@@ -149,19 +148,19 @@ gacp() {
   if [[ "$branch" == "main" || "$branch" == "master" ]]; then
     echo "⚠️  You are on '$branch'. Are you sure you want to push directly?"
     read "confirm?Type 'y' or Enter to continue: "
-    # Convert input to lowercase
-    confirm="${confirm,,}"
+    # Convert input to lowercase (zsh syntax)
+    confirm="${confirm:l}"
     if [[ "$confirm" != "y" && "$confirm" != "" ]]; then
       echo "❌ Aborted"
       return 1
     fi
   fi
 
-  git add -A && \
-  git commit -m "$1" && \
-  git push && \
-  echo "✅ Committed and pushed: $1" || \
-  echo "❌ Failed to commit/push"
+  if git add -A && git commit -m "$1" && git push; then
+    echo "✅ Committed and pushed: $1"
+  else
+    echo "❌ Failed to commit/push"
+  fi
 }
 
 # Pull all projects
@@ -188,11 +187,11 @@ gacpall() {
           echo ""
           read "msg?Enter commit message (or press Enter to skip): "
           if [[ -n "$msg" ]]; then
-            git add . && \
-            git commit -m "$msg" && \
-            git push && \
-            echo "✅ Committed and pushed" || \
-            echo "❌ Failed"
+            if git add . && git commit -m "$msg" && git push; then
+              echo "✅ Committed and pushed"
+            else
+              echo "❌ Failed"
+            fi
           else
             echo "⏭️  Skipped"
           fi
@@ -230,8 +229,10 @@ gitwipe() {
   git branch -D main 2>/dev/null || git branch -D master 2>/dev/null
   git branch -m main
 
+  local current_branch
+  current_branch=$(git symbolic-ref --short HEAD)
   echo "🚀 Force pushing..."
-  git push -f origin main
+  git push -f origin "$current_branch"
 
   echo "✅ Done! Clean slate."
 }
@@ -282,7 +283,9 @@ ghcreate() {
     git remote add origin "$repo_url"
   fi
 
-  git push -u origin main && \
+  local branch
+  branch=$(git symbolic-ref --short HEAD)
+  git push -u origin "$branch" && \
     echo "✅ Done — https://github.com/$username/$name" || \
     echo "❌ Push failed"
 }
@@ -353,9 +356,9 @@ alias repodelete='bash ~/my-dot-files/repodelete.sh'
 # ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
-alias zc='${EDITOR:-nano} ~/.zshrc'       # Edit zsh config
+alias zc="${EDITOR:-nano} ~/.zshrc"       # Edit zsh config
 alias zr='source ~/.zshrc'               # Reload zsh config
-alias starshipconfig='${EDITOR:-nano} ~/.config/starship.toml'
+alias starshipconfig="${EDITOR:-nano} ~/.config/starship.toml"
 
 # ============================================================================
 # USEFUL UTILITIES
@@ -518,8 +521,7 @@ fi
 # THEFUCK — correct mistyped commands (brew install thefuck)
 # ============================================================================
 if command -v thefuck &> /dev/null; then
-  eval "$(thefuck --alias)"
-  eval "$(thefuck --alias fk)"
+  eval "$(thefuck --alias fuck fk)"
 fi
 
 # ============================================================================
