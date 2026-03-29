@@ -223,7 +223,15 @@ echo "  ✅ Clean initial commit"
 
 echo ""
 echo "🖥️  Opening in VS Code..."
-/usr/local/bin/code -r .
+if command -v code &> /dev/null; then
+  code -r .
+elif [ -f "/opt/homebrew/bin/code" ]; then
+  /opt/homebrew/bin/code -r .
+elif [ -f "/usr/local/bin/code" ]; then
+  /usr/local/bin/code -r .
+else
+  open -a "Visual Studio Code" .
+fi
 
 # -----------------------------
 # Done
