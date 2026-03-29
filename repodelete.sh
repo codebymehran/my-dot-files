@@ -114,6 +114,19 @@ if [ -z "$REPO" ]; then
 fi
 
 # -----------------------------
+# Dry run
+# -----------------------------
+
+if [ "$DRY_RUN" == "--dry-run" ]; then
+  echo ""
+  echo "🧪 DRY RUN"
+  echo "Would delete:"
+  echo "  - GitHub: $REPO"
+  echo "  - Local → Trash: $TARGET"
+  exit 0
+fi
+
+# -----------------------------
 # Confirm deletion (friendly)
 # -----------------------------
 
@@ -128,19 +141,6 @@ read -p "Are you sure you want to proceed? (y/N): " CONFIRM
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
   echo "❌ Cancelled"
   exit 1
-fi
-
-# -----------------------------
-# Dry run
-# -----------------------------
-
-if [ "$DRY_RUN" == "--dry-run" ]; then
-  echo ""
-  echo "🧪 DRY RUN"
-  echo "Would delete:"
-  echo "  - GitHub: $REPO"
-  echo "  - Local → Trash: $TARGET"
-  exit 0
 fi
 
 # -----------------------------
