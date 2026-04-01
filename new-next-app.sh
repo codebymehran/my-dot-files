@@ -21,6 +21,25 @@ set -e
 # ============================================================================
 
 # -----------------------------
+# Preflight checks
+# -----------------------------
+
+echo ""
+echo "🔍 Checking dependencies..."
+missing=()
+for cmd in node npx git; do
+  if ! command -v "$cmd" &> /dev/null; then
+    missing+=("$cmd")
+  fi
+done
+if [[ ${#missing[@]} -gt 0 ]]; then
+  echo "❌ Missing required tools: ${missing[*]}"
+  echo "   Please install them before running this script."
+  exit 1
+fi
+echo "  ✅ node $(node --version), npx, git — all good"
+
+# -----------------------------
 # Validate input
 # -----------------------------
 
@@ -68,10 +87,15 @@ mkdir -p src/components
 mkdir -p src/hooks
 mkdir -p src/types
 mkdir -p src/context
+mkdir -p src/mock
+touch src/mock/data.js
+mkdir -p src/docs
 echo "  ✅ src/components"
 echo "  ✅ src/hooks"
 echo "  ✅ src/types"
 echo "  ✅ src/context"
+echo "  ✅ src/mock (data.js)"
+echo "  ✅ src/docs"
 
 # -----------------------------
 # Append to .gitignore
@@ -113,6 +137,11 @@ echo ""
 echo "🧩 Installing shadcn components..."
 npx shadcn@latest add button input card dialog form select sonner dropdown-menu --yes
 echo "  ✅ button, input, card, dialog, form, select, sonner, dropdown-menu"
+
+echo ""
+echo "🎨 Installing Claude theme..."
+npx shadcn@latest add https://tweakcn.com/r/themes/claude.json --yes
+echo "  ✅ Claude theme installed"
 
 # -----------------------------
 # Clean up boilerplate
@@ -156,6 +185,19 @@ export default function Home() {
 }
 PAGE
 echo "  ✅ page.tsx stripped"
+
+echo ""
+echo "🖱️  Patching globals.css for cursor: pointer..."
+cat >> src/app/globals.css << 'CSS'
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+CSS
+echo "  ✅ globals.css cursor patch applied"
 
 # -----------------------------
 # Prettier config
@@ -230,7 +272,7 @@ elif [ -f "/opt/homebrew/bin/code" ]; then
 elif [ -f "/usr/local/bin/code" ]; then
   /usr/local/bin/code -r .
 else
-  open -a "Visual Studio Code" .
+  open -a "Visual Studio Code" . || echo "⚠️  Could not open VS Code — open manually"
 fi
 
 # -----------------------------
