@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   :root {
     --bg: #f5f5f7;
     --surface: #ffffff;
@@ -16,14 +16,14 @@
     --text: #111118;
     --muted: #9090a0;
     --subtle: #666678;
-
+ 
     --react:   #0284c7;
     --next:    #111118;
     --redux:   #7c3aed;
     --util:    #c2410c;
     --import:  #16a34a;
     --console: #dc2626;
-
+ 
     --react-bg:   #e0f2fe;
     --next-bg:    #f1f1f5;
     --redux-bg:   #ede9fe;
@@ -31,7 +31,7 @@
     --import-bg:  #dcfce7;
     --console-bg: #fee2e2;
   }
-
+ 
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
@@ -40,9 +40,9 @@
     padding: 56px 40px;
     line-height: 1.5;
   }
-
+ 
   .page { max-width: 1160px; margin: 0 auto; }
-
+ 
   header {
     display: flex;
     align-items: flex-end;
@@ -51,10 +51,10 @@
     margin-bottom: 40px;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
   h1 .accent { color: var(--react); }
-
+ 
   .header-meta {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
@@ -62,7 +62,7 @@
     margin-top: 10px;
     letter-spacing: 0.02em;
   }
-
+ 
   .header-right {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
@@ -70,7 +70,7 @@
     text-align: right;
     line-height: 2;
   }
-
+ 
   .hint {
     display: inline-block;
     background: var(--surface);
@@ -80,12 +80,12 @@
     color: var(--subtle);
     letter-spacing: 0.04em;
   }
-
+ 
   .sections { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
+ 
   .section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   .section.wide { grid-column: 1 / -1; }
-
+ 
   .section-header {
     display: flex;
     align-items: center;
@@ -93,9 +93,9 @@
     padding: 14px 20px;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .section-header .icon { font-size: 1rem; line-height: 1; }
-
+ 
   .section-header h2 {
     font-size: 0.7rem;
     font-weight: 600;
@@ -103,7 +103,7 @@
     text-transform: uppercase;
     color: var(--subtle);
   }
-
+ 
   .section-header .count {
     margin-left: auto;
     font-family: 'JetBrains Mono', monospace;
@@ -114,9 +114,9 @@
     border-radius: 20px;
     padding: 2px 9px;
   }
-
+ 
   .snippet-list { padding: 6px 0; }
-
+ 
   .snippet {
     display: grid;
     grid-template-columns: 130px 1fr;
@@ -126,12 +126,12 @@
     transition: background 0.12s;
     gap: 4px;
   }
-
+ 
   .snippet:last-child { border-bottom: none; }
   .snippet:hover { background: var(--surface-hover); }
-
+ 
   .prefix-wrap { display: flex; align-items: center; }
-
+ 
   .snippet-prefix {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
@@ -141,18 +141,18 @@
     letter-spacing: 0.01em;
     white-space: nowrap;
   }
-
+ 
   .console .snippet-prefix { color: var(--console); background: var(--console-bg); }
   .react   .snippet-prefix { color: var(--react);   background: var(--react-bg); }
   .next    .snippet-prefix { color: var(--next);    background: var(--next-bg); }
   .redux   .snippet-prefix { color: var(--redux);   background: var(--redux-bg); }
   .util    .snippet-prefix { color: var(--util);    background: var(--util-bg); }
   .imp     .snippet-prefix { color: var(--import);  background: var(--import-bg); }
-
+ 
   .snippet-info { padding-left: 4px; }
-
+ 
   .snippet-name { font-size: 0.88rem; font-weight: 500; color: var(--text); line-height: 1.3; }
-
+ 
   .snippet-desc {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.68rem;
@@ -160,7 +160,7 @@
     margin-top: 3px;
     line-height: 1.5;
   }
-
+ 
   .badge {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
@@ -172,11 +172,11 @@
     vertical-align: middle;
     letter-spacing: 0.04em;
   }
-
+ 
   .badge-ts   { background: rgba(59,130,246,0.15); color: #60a5fa; }
   .badge-js   { background: rgba(234,179,8,0.15);  color: #facc15; }
   .badge-next { background: var(--next-bg);         color: var(--subtle); }
-
+ 
   .preview {
     background: #f8f8fc;
     border-top: 1px solid var(--border);
@@ -188,12 +188,12 @@
     overflow-x: auto;
     color: #555;
   }
-
+ 
   .preview .kw  { color: #7c3aed; }
   .preview .fn  { color: #0284c7; }
   .preview .str { color: #16a34a; }
   .preview .ph  { color: #9090a0; }
-
+ 
   footer {
     margin-top: 32px;
     padding-top: 20px;
@@ -202,11 +202,11 @@
     justify-content: space-between;
     align-items: center;
   }
-
+ 
   footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); }
-
+ 
   .legend { display: flex; gap: 18px; }
-
+ 
   .legend-item {
     display: flex;
     align-items: center;
@@ -215,9 +215,9 @@
     font-size: 0.65rem;
     color: var(--muted);
   }
-
+ 
   .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
-
+ 
   @media (max-width: 760px) {
     body { padding: 32px 20px; }
     .sections { grid-template-columns: 1fr; }
@@ -229,20 +229,20 @@
 </head>
 <body>
 <div class="page">
-
+ 
   <header>
     <div>
       <h1>Snippets <span class="accent">Cheatsheet</span></h1>
-      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 37 snippets</p>
+      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 41 snippets</p>
     </div>
     <div class="header-right">
       React · Next.js App Router · Redux Toolkit<br>
       <span class="hint">prefix → Tab to expand</span>
     </div>
   </header>
-
+ 
   <div class="sections">
-
+ 
     <!-- Console -->
     <div class="section console">
       <div class="section-header">
@@ -263,11 +263,11 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- Imports -->
     <div class="section imp">
       <div class="section-header">
-        <span class="icon">📦</span><h2>Imports</h2><span class="count">8</span>
+        <span class="icon">📦</span><h2>Imports</h2><span class="count">12</span>
       </div>
       <div class="snippet-list">
         <div class="snippet">
@@ -302,9 +302,25 @@
           <div class="prefix-wrap"><span class="snippet-prefix">iui</span></div>
           <div class="snippet-info"><div class="snippet-name">shadcn UI Components</div><div class="snippet-desc">import { } from '@/components/ui' — cursor inside {}</div></div>
         </div>
+        <div class="snippet">
+          <div class="prefix-wrap"><span class="snippet-prefix">irus</span></div>
+          <div class="snippet-info"><div class="snippet-name">Import useState</div><div class="snippet-desc">import { useState } from 'react'</div></div>
+        </div>
+        <div class="snippet">
+          <div class="prefix-wrap"><span class="snippet-prefix">irue</span></div>
+          <div class="snippet-info"><div class="snippet-name">Import useEffect</div><div class="snippet-desc">import { useEffect } from 'react'</div></div>
+        </div>
+        <div class="snippet">
+          <div class="prefix-wrap"><span class="snippet-prefix">irhooks</span></div>
+          <div class="snippet-info"><div class="snippet-name">Import useState + useEffect</div><div class="snippet-desc">import { useState, useEffect } from 'react'</div></div>
+        </div>
+        <div class="snippet">
+          <div class="prefix-wrap"><span class="snippet-prefix">irr</span></div>
+          <div class="snippet-info"><div class="snippet-name">Import React</div><div class="snippet-desc">import React from 'react'</div></div>
+        </div>
       </div>
     </div>
-
+ 
     <!-- React Hooks -->
     <div class="section react wide">
       <div class="section-header">
@@ -345,7 +361,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- React Components -->
     <div class="section react">
       <div class="section-header">
@@ -374,7 +390,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- Redux -->
     <div class="section redux">
       <div class="section-header">
@@ -387,19 +403,19 @@
         </div>
       </div>
       <div class="preview"><span class="kw">import</span> { createSlice } <span class="kw">from</span> <span class="str">'@reduxjs/toolkit'</span>
-
+ 
 <span class="kw">const</span> initialState = { <span class="ph">...</span> }
-
+ 
 <span class="kw">const</span> <span class="fn">mySlice</span> = <span class="fn">createSlice</span>({
   name: <span class="str">'mySlice'</span>,
   initialState,
   reducers: {}
 })
-
+ 
 <span class="kw">export const</span> {} = mySlice.actions
 <span class="kw">export default</span> mySlice.reducer</div>
     </div>
-
+ 
     <!-- Utility -->
     <div class="section util">
       <div class="section-header">
@@ -420,7 +436,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- Next.js -->
     <div class="section next wide">
       <div class="section-header">
@@ -469,11 +485,11 @@
         </div>
       </div>
     </div>
-
+ 
   </div>
-
+ 
   <footer>
-    <p>React_Snippets.code-snippets &nbsp;·&nbsp; MERN + Next.js App Router &nbsp;·&nbsp; 37 snippets</p>
+    <p>React_Snippets.code-snippets &nbsp;·&nbsp; MERN + Next.js App Router &nbsp;·&nbsp; 41 snippets</p>
     <div class="legend">
       <div class="legend-item"><div class="legend-dot" style="background:var(--react)"></div>React</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--next)"></div>Next.js</div>
@@ -483,7 +499,7 @@
       <div class="legend-item"><div class="legend-dot" style="background:var(--console)"></div>Console</div>
     </div>
   </footer>
-
+ 
 </div>
 </body>
 </html>
