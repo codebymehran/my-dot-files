@@ -130,6 +130,7 @@ find public/ -name "*.svg" -delete
 echo "  ✅ SVGs removed from public/"
  
 rm -f public/favicon.ico
+rm -f src/app/favicon.ico
 echo "  ✅ favicon.ico removed"
  
 cat > src/app/layout.tsx << 'LAYOUT'
