@@ -287,6 +287,38 @@
     "scope": "typescript,typescriptreact,javascript,javascriptreact"
   },
 
+  // irus → import { useState } from 'react'
+  "Import useState": {
+    "prefix": "irus",
+    "body": ["import { useState } from 'react'"],
+    "description": "Import useState from react",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // irue → import { useEffect } from 'react'
+  "Import useEffect": {
+    "prefix": "irue",
+    "body": ["import { useEffect } from 'react'"],
+    "description": "Import useEffect from react",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // irhooks → import { useState, useEffect } from 'react'
+  "Import useState + useEffect": {
+    "prefix": "irhooks",
+    "body": ["import { useState, useEffect } from 'react'"],
+    "description": "Import useState and useEffect from react",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
+  // irr → import React from 'react'
+  "Import React": {
+    "prefix": "irr",
+    "body": ["import React from 'react'"],
+    "description": "Import React default export",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+
   // ===========================================================
   // 🔁 REDUX TOOLKIT
   // ===========================================================
