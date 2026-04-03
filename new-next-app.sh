@@ -1,51 +1,51 @@
 #!/bin/bash
- 
+
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title New Next.js App
 # @raycast.mode fullOutput
- 
+
 # Optional parameters:
 # @raycast.icon 🚀
 # @raycast.argument1 { "type": "text", "placeholder": "project-name" }
- 
+
 # Documentation:
 # @raycast.description Scaffolds a new Next.js project with TypeScript, Tailwind, ESLint + shadcn/ui
- 
+
 set -e
- 
+
 # ============================================================================
 # new-next-app.sh
 # Creates a new Next.js project with TypeScript, Tailwind, ESLint + shadcn/ui
 # Usage: bash new-next-app.sh <project-name>
 # ============================================================================
- 
+
 # -----------------------------
 # Validate input
 # -----------------------------
- 
+
 if [ -z "$1" ]; then
   echo "❌ Usage: bash new-next-app.sh <project-name>"
   exit 1
 fi
- 
+
 PROJECT_NAME="$1"
 TARGET="$HOME/Code/$PROJECT_NAME"
- 
+
 if [ -d "$TARGET" ]; then
   echo "❌ '$TARGET' already exists — choose a different name"
   exit 1
 fi
- 
+
 echo ""
 echo "🚀 Creating Next.js project: $PROJECT_NAME"
 echo "📍 Location: $TARGET"
 echo ""
- 
+
 # -----------------------------
 # Create Next.js app
 # -----------------------------
- 
+
 echo "⚙️  Running create-next-app..."
 npx create-next-app@latest "$TARGET" \
   --typescript \
@@ -55,13 +55,13 @@ npx create-next-app@latest "$TARGET" \
   --src-dir \
   --import-alias "@/*" \
   --yes
- 
+
 cd "$TARGET"
- 
+
 # -----------------------------
 # Scaffold folder structure
 # -----------------------------
- 
+
 echo ""
 echo "📁 Creating folder structure..."
 mkdir -p src/components
@@ -77,71 +77,71 @@ echo "  ✅ src/types"
 echo "  ✅ src/context"
 echo "  ✅ src/mock (data.js)"
 echo "  ✅ src/docs"
- 
+
 # -----------------------------
 # Append to .gitignore
 # -----------------------------
- 
+
 echo ""
 echo "📝 Updating .gitignore..."
 cat >> .gitignore << 'GITIGNORE'
- 
+
 # Environment
 .env.local
 .env.*.local
- 
+
 # macOS
 .DS_Store
 .AppleDouble
 .LSOverride
- 
+
 # Logs
 *.log
 npm-debug.log*
- 
+
 # Editor
 .vscode/settings.json
 GITIGNORE
 echo "  ✅ .gitignore updated"
- 
+
 # -----------------------------
 # Init shadcn/ui
 # -----------------------------
- 
+
 echo ""
 echo "🎨 Initialising shadcn/ui..."
 npx shadcn@latest init \
   --defaults \
   --yes
- 
+
 echo ""
 echo "🧩 Installing shadcn components..."
-npx shadcn@latest add button input card dialog form select sonner dropdown-menu --yes
+npx shadcn@latest add button input card dialog form select sonner dropdown-menu --yes --overwrite
 echo "  ✅ button, input, card, dialog, form, select, sonner, dropdown-menu"
- 
+
 # -----------------------------
 # Clean up boilerplate
 # -----------------------------
- 
+
 echo ""
 echo "🧹 Cleaning up boilerplate..."
- 
+
 find public/ -name "*.svg" -delete
 echo "  ✅ SVGs removed from public/"
- 
+
 rm -f public/favicon.ico
 rm -f src/app/favicon.ico
 echo "  ✅ favicon.ico removed"
- 
+
 cat > src/app/layout.tsx << 'LAYOUT'
 import type { Metadata } from "next";
 import "./globals.css";
- 
+
 export const metadata: Metadata = {
   title: "App",
   description: "",
 };
- 
+
 export default function RootLayout({
   children,
 }: {
@@ -155,18 +155,18 @@ export default function RootLayout({
 }
 LAYOUT
 echo "  ✅ layout.tsx stripped"
- 
+
 cat > src/app/page.tsx << 'PAGE'
 export default function Home() {
   return <main></main>;
 }
 PAGE
 echo "  ✅ page.tsx stripped"
- 
+
 echo ""
 echo "🖱️  Patching globals.css for cursor: pointer..."
 cat >> src/app/globals.css << 'CSS'
- 
+
 @layer base {
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -175,11 +175,11 @@ cat >> src/app/globals.css << 'CSS'
 }
 CSS
 echo "  ✅ globals.css cursor patch applied"
- 
+
 # -----------------------------
 # Prettier config
 # -----------------------------
- 
+
 echo ""
 echo "✨ Adding Prettier config..."
 cat > prettier.config.js << 'PRETTIER'
@@ -193,41 +193,41 @@ module.exports = {
 };
 PRETTIER
 echo "  ✅ prettier.config.js created"
- 
+
 # -----------------------------
 # .env.local
 # -----------------------------
- 
+
 echo ""
 echo "🔐 Creating .env files..."
 touch .env.local
 echo "  ✅ .env.local created"
- 
+
 cat > .env.example << 'EOF'
 # Copy this file to .env.local and fill in the values
- 
+
 # App
 NEXT_PUBLIC_APP_URL=http://localhost:3000
- 
+
 # Add your secret keys below
 # OPENAI_API_KEY=
 # DATABASE_URL=
 EOF
 echo "  ✅ .env.example created"
- 
+
 # -----------------------------
 # .nvmrc
 # -----------------------------
- 
+
 echo ""
 echo "📌 Creating .nvmrc..."
 node --version > .nvmrc
 echo "  ✅ .nvmrc created ($(node --version))"
- 
+
 # -----------------------------
 # Clean git history — single commit
 # -----------------------------
- 
+
 echo ""
 echo "🔧 Resetting git history to single clean commit..."
 rm -rf .git
@@ -235,11 +235,11 @@ git init
 git add .
 git commit -m "chore: initial setup"
 echo "  ✅ Clean initial commit"
- 
+
 # -----------------------------
 # Open in VS Code
 # -----------------------------
- 
+
 echo ""
 echo "🖥️  Opening in VS Code..."
 if command -v code &> /dev/null; then
@@ -251,11 +251,11 @@ elif [ -f "/usr/local/bin/code" ]; then
 else
   open -a "Visual Studio Code" . || echo "⚠️  Could not open VS Code — open manually"
 fi
- 
+
 # -----------------------------
 # Done
 # -----------------------------
- 
+
 echo ""
 echo "✅ Project ready!"
 echo ""
