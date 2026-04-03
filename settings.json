@@ -18,7 +18,6 @@
   "editor.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "smooth",
-  // 🆕 IMPROVEMENT #15: Keep cursor centered with context
   "editor.cursorSurroundingLines": 8,
 
   // ===========================================================
@@ -41,7 +40,6 @@
 
   "editor.showUnused": true,
   "editor.semanticHighlighting.enabled": true,
-  // 🔧 IMPROVEMENT #14: Reduced sticky scroll lines
   "editor.stickyScroll.maxLineCount": 3,
   "editor.stickyScroll.scrollWithEditor": true,
   "editor.lineNumbers": "relative",
@@ -89,7 +87,6 @@
   // 💾 AUTO-SAVE & FORMATTING
   // ===========================================================
   "files.autoSave": "onFocusChange",
-  // 🔧 IMPROVEMENT #13: Less aggressive auto-save
   "files.autoSaveDelay": 2000,
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -106,7 +103,6 @@
   // ===========================================================
   // 📁 FILE ASSOCIATIONS
   // ===========================================================
-  // 🔧 IMPROVEMENT #7: Removed aggressive JS→JSX mapping
   "files.associations": {
     "*.jsx": "javascriptreact",
     "*.css": "tailwindcss",
@@ -154,7 +150,6 @@
   "emmet.triggerExpansionOnTab": true,
 
   "tailwindCSS.emmetCompletions": true,
-  // 🆕 IMPROVEMENT #8: Enhanced Tailwind regex for JSX
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
@@ -408,14 +403,11 @@
   // ===========================================================
   "vim.insertModeKeyBindings": [
     { "before": ["j", "j"], "after": ["<Esc>"] },
-    { "before": [";", ";"], "after": ["<Esc>", "A"] },
-    { "before": [",", ","], "after": ["<Esc>", "I"] },
   ],
 
   // ===========================================================
   // 🔧 CTRL KEY HANDLING – KEEP ONLY WHAT YOU NEED
   // ===========================================================
-  // 🔧 IMPROVEMENT #9: Removed <C-k> conflict
   "vim.handleKeys": {
     "<C-s>": false,
     "<C-w>": false,
@@ -484,9 +476,7 @@
     { "before": ["<leader>", "p"], "commands": ["workbench.action.quickOpen"] },
     { "before": ["<leader>", "f"], "commands": ["workbench.action.findInFiles"] },
     { "before": ["<leader>", "b"], "commands": ["workbench.action.toggleSidebarVisibility"] },
-    // 🆕 IMPROVEMENT #4: Quick recent files
     { "before": ["<leader>", "r"], "commands": ["workbench.action.openRecent"] },
-    // 🆕 IMPROVEMENT #11: Zen mode toggle
     { "before": ["<leader>", "z"], "commands": ["workbench.action.toggleZenMode"] },
 
     // =======================================================
@@ -498,26 +488,18 @@
     { "before": ["<leader>", "m"], "commands": ["references-view.findReferences"] },
 
     // =======================================================
-    // 🐍 PYTHON SPECIFIC (Using Right Cmd as Hyper Key)
-    // =======================================================
-    // Note: Right Cmd is mapped to Ctrl+Opt+Shift in Karabiner
-
-    // =======================================================
     // 📄 FILE OPERATIONS
     // =======================================================
     { "before": ["<leader>", "w"], "commands": ["workbench.action.files.save"] },
     { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"] },
     { "before": ["<leader>", "o"], "commands": ["workbench.action.closeOtherEditors"] },
-    // 🆕 IMPROVEMENT #6: Close all saved editors
     { "before": ["<leader>", "q", "a"], "commands": ["workbench.action.closeUnmodifiedEditors"] },
 
     // =======================================================
     // 📄 SPLIT CREATION
     // =======================================================
-    // 🔧 IMPROVEMENT #1: Fixed duplicate - removed <leader>s conflict
     { "before": ["<leader>", "v"], "commands": ["workbench.action.splitEditorRight"] },
     { "before": ["<leader>", "\\"], "commands": ["workbench.action.splitEditorDown"] },
-    // 🆕 IMPROVEMENT #5: Better terminal splits
     { "before": ["<leader>", "t", "v"], "commands": ["workbench.action.terminal.split"] },
     { "before": ["<leader>", "t", "s"], "commands": ["workbench.action.terminal.splitActiveTab"] },
     { "before": ["<leader>", "t", "n"], "commands": ["workbench.action.terminal.new"] },
@@ -546,7 +528,6 @@
     { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
     { "before": ["g", "h"], "commands": ["editor.action.showHover"] },
 
-    // 🆕 IMPROVEMENT #10: Navigate edit history
     { "before": ["g", ";"], "commands": ["workbench.action.navigateBack"] },
     { "before": ["g", ","], "commands": ["workbench.action.navigateForward"] },
 
@@ -691,32 +672,31 @@
   ═══════════════════════════════════════════════════════════
 
   INSERT MODE:
-    jk or jj                    → Escape to normal mode
-    ;;                          → Jump to end of line
+    jj                          → Escape to normal mode
 
   WORKSPACE NAVIGATION:
     Space+e                     → File explorer
     Space+t                     → Toggle terminal
     Space+p                     → Quick open file
-    Space+r                     → Recent files 🆕
+    Space+r                     → Recent files
     Space+f                     → Find in all files
     Space+b                     → Toggle sidebar
-    Space+z                     → Zen mode 🆕
+    Space+z                     → Zen mode
     Space+Space                 → Command palette
     Tab                         → Next tab
     Shift+Tab                   → Previous tab
 
   TERMINAL:
     Space+t                     → Toggle terminal
-    Space+t+v                   → Split terminal vertically 🆕
-    Space+t+s                   → Split terminal horizontally 🆕
+    Space+t+v                   → Split terminal vertically
+    Space+t+s                   → Split terminal horizontally
     Space+t+n                   → New terminal
     Space+t+k                   → Kill terminal
 
   FILE OPERATIONS:
     Space+w                     → Save file
     Space+q                     → Close current file
-    Space+qa                    → Close all saved files 🆕
+    Space+qa                    → Close all saved files
     Space+o                     → Close other files
     Space+c                     → Copy entire file
     Space+C                     → Copy entire file (keep cursor)
@@ -733,7 +713,7 @@
 
   CODE ACTIONS:
     Space+a                     → Quick fix / code actions
-    Space+R                     → Rename symbol (changed from Space+r) 🔧
+    Space+R                     → Rename symbol
     Space+S                     → Go to symbol in workspace
     Space+m                     → Find all references
     Space+;                     → Format document
@@ -745,22 +725,22 @@
     gr                          → Go to references
     gi                          → Go to implementation
     gh                          → Show hover info
-    g;                          → Navigate back in edit history 🆕
-    g,                          → Navigate forward in edit history 🆕
+    g;                          → Navigate back in edit history
+    g,                          → Navigate forward in edit history
 
   ERROR NAVIGATION:
     ]d                          → Next error
     [d                          → Previous error
 
   GIT SHORTCUTS:
-    Space+g+s                   → Git status 🆕
-    Space+g+c                   → Git commit 🆕
-    Space+g+p                   → Git push 🆕
-    Space+g+P                   → Git pull 🆕
+    Space+g+s                   → Git status
+    Space+g+c                   → Git commit
+    Space+g+p                   → Git push
+    Space+g+P                   → Git pull
 
   SPLITS:
     Space+v                     → Split right
-    Space+\                     → Split down (changed from Space+s) 🔧
+    Space+\                     → Split down
     Ctrl+h/j/k/l                → Navigate between splits
     Space+h/j/k/l               → Alternative split navigation
 
@@ -903,6 +883,7 @@
   - Added git shortcuts (Space+g+...)
   - Added zen mode (Space+z)
   - Improved terminal splits (Space+t+v/s)
+  - Removed ;; and ,, insert bindings (caused typing delay)
 
   PERFORMANCE:
   - Hidden: __pycache__, node_modules, .next, dist, build
