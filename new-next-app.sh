@@ -111,7 +111,6 @@ echo "  ✅ .gitignore updated"
 echo ""
 echo "🎨 Initialising shadcn/ui..."
 npx shadcn@latest init \
-  --defaults \
   --yes
 
 echo ""
