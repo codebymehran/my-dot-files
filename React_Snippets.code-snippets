@@ -3,18 +3,10 @@
   // 🖨️ CONSOLE
   // ===========================================================
 
-  // cl → console.log()
-  // Cursor lands inside the parens, ready to type
+  // cl → console.log('label:', value)
   "Console Log": {
     "prefix": "cl",
-    "body": ["console.log($1);"]
-  },
-
-  // clv → console.log('label:', value)
-  // Useful when you want a label alongside the value
-  "Console Log Labeled": {
-    "prefix": "clv",
-    "body": ["console.log('$1:', $1);"]
+    "body": "console.log('${1:label}:', ${2:value});"
   },
 
   // clj → console.log(JSON.stringify()) — for logging objects
@@ -22,6 +14,34 @@
     "prefix": "clj",
     "body": ["console.log(JSON.stringify($1, null, 2));"],
     "description": "console.log with JSON.stringify for readable object logging"
+  },
+
+  // cgroup → console.group block
+  "Console Group": {
+    "prefix": "cgroup",
+    "body": [
+      "console.group('${1:label}');",
+      "console.log('${2:key}:', ${3:value});",
+      "console.groupEnd();"
+    ]
+  },
+
+  // cw → console.warn
+  "Console Warn": {
+    "prefix": "cw",
+    "body": "console.warn('${1:label}:', ${2:value});"
+  },
+
+  // ce → console.error
+  "Console Error": {
+    "prefix": "ce",
+    "body": "console.error('${1:label}:', ${2:value});"
+  },
+
+  // ct → console.table
+  "Console Table": {
+    "prefix": "ct",
+    "body": "console.table(${1:array});"
   },
 
   // ===========================================================
@@ -558,5 +578,274 @@
     ],
     "description": "Next.js useSearchParams hook for reading query params",
     "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // 📐 SECTION HEADERS
+  // ===========================================================
+
+  // sec → custom section header with editable label
+  "Section Header": {
+    "prefix": "sec",
+    "body": "// ─── ${1:Section} ────────────────────────────────────────────────────────────"
+  },
+
+  "Imports Section": {
+    "prefix": "sec-imp",
+    "body": "// ─── Imports ────────────────────────────────────────────────────────────────"
+  },
+
+  "Component Section": {
+    "prefix": "sec-comp",
+    "body": "// ─── Component ──────────────────────────────────────────────────────────────"
+  },
+
+  "State Section": {
+    "prefix": "sec-state",
+    "body": "// ─── State ────────────────────────────────────────────────────────────────"
+  },
+
+  "Handlers Section": {
+    "prefix": "sec-hand",
+    "body": "// ─── Handlers ─────────────────────────────────────────────────────────────"
+  },
+
+  "Early Returns Section": {
+    "prefix": "sec-early",
+    "body": "// ─── Early Returns ───────────────────────────────────────────────────────────"
+  },
+
+  "Render Section": {
+    "prefix": "sec-render",
+    "body": "// ─── Render ──────────────────────────────────────────────────────────────────"
+  },
+
+  "Derived State Section": {
+    "prefix": "sec-derived",
+    "body": "// ─── Derived State ───────────────────────────────────────────────────────────"
+  },
+
+  "Effects Section": {
+    "prefix": "sec-effect",
+    "body": "// ─── Effects ─────────────────────────────────────────────────────────────────"
+  },
+
+  "Refs Section": {
+    "prefix": "sec-refs",
+    "body": "// ─── Refs ────────────────────────────────────────────────────────────────────"
+  },
+
+  // ===========================================================
+  // 💬 COMMENT STYLES
+  // ===========================================================
+
+  // c! → warning comment
+  "Warning Comment": {
+    "prefix": "c!",
+    "body": "//! ${1:Warning}"
+  },
+
+  // c? → question comment
+  "Question Comment": {
+    "prefix": "c?",
+    "body": "//? ${1:Question}"
+  },
+
+  // c* → highlight comment
+  "Highlight Comment": {
+    "prefix": "c*",
+    "body": "//* ${1:Note}"
+  },
+
+  // ctodo → todo comment
+  "Todo Comment": {
+    "prefix": "ctodo",
+    "body": "// TODO: ${1:Task}"
+  },
+
+  // ===========================================================
+  // 📝 JSDOC
+  // ===========================================================
+
+  // jsdoc → JSDoc block for a component with props
+  "JSDoc Component": {
+    "prefix": "jsdoc",
+    "body": [
+      "/**",
+      " * @param {object}   props",
+      " * @param {${1:type}} props.${2:propName} - ${3:description}",
+      " */"
+    ]
+  },
+
+  // jsprop → single JSDoc prop line (add more params)
+  "JSDoc Prop Line": {
+    "prefix": "jsprop",
+    "body": " * @param {${1:type}} props.${2:propName} - ${3:description}"
+  },
+
+  // ===========================================================
+  // ⚛️ COMPONENT SCAFFOLDS
+  // ===========================================================
+
+  // rcomp → full client component with state, handlers, render sections
+  "React Component Scaffold": {
+    "prefix": "rcomp",
+    "body": [
+      "'use client';",
+      "",
+      "// ─── Imports ────────────────────────────────────────────────────────────────",
+      "import { useState } from 'react';",
+      "",
+      "// ─── Component ──────────────────────────────────────────────────────────────",
+      "// ${1:What this component does}",
+      "// ${2:What it does NOT do / what the parent owns}",
+      "",
+      "/**",
+      " * @param {object}   props",
+      " * @param {${3:type}} props.${4:propName} - ${5:description}",
+      " */",
+      "const ${6:ComponentName} = ({ ${4:propName} }) => {",
+      "",
+      "  // ─── State ────────────────────────────────────────────────────────────────",
+      "  const [${7:value}, set${7/(.*)/${1:/capitalize}/}] = useState(${8:null});",
+      "",
+      "  // ─── Handlers ─────────────────────────────────────────────────────────────",
+      "  const handle${9:Action} = () => {",
+      "    $0",
+      "  };",
+      "",
+      "  // ─── Render ───────────────────────────────────────────────────────────────",
+      "  return (",
+      "    <div>",
+      "      ",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${6:ComponentName};"
+    ]
+  },
+
+  // rcomp-pure → pure presentational component, no state, with early return
+  "React Component Scaffold No State": {
+    "prefix": "rcomp-pure",
+    "body": [
+      "// ─── Imports ────────────────────────────────────────────────────────────────",
+      "import $0 from '@/components/${1:Component}';",
+      "",
+      "// ─── Component ──────────────────────────────────────────────────────────────",
+      "// ${2:What this component does — pure presentational, no state}",
+      "",
+      "/**",
+      " * @param {object}   props",
+      " * @param {${3:type}} props.${4:propName} - ${5:description}",
+      " */",
+      "const ${6:ComponentName} = ({ ${4:propName} }) => {",
+      "",
+      "  // ─── Early Returns ──────────────────────────────────────────────────────",
+      "  if (!${4:propName}?.length) return <p className=\"text-sm text-muted-foreground\">${7:Nothing here yet.}</p>;",
+      "",
+      "  // ─── Render ─────────────────────────────────────────────────────────────",
+      "  return (",
+      "    <div>",
+      "      ",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${6:ComponentName};"
+    ]
+  },
+
+  // ===========================================================
+  // ⚛️ REACT HOOKS (ADDITIONAL)
+  // ===========================================================
+
+  // uem → useEffect on mount only (empty deps)
+  "useEffect Mount": {
+    "prefix": "uem",
+    "body": [
+      "useEffect(() => {",
+      "  $0",
+      "}, []);"
+    ]
+  },
+
+  // ued → useEffect with dependency
+  "useEffect Dependency": {
+    "prefix": "ued",
+    "body": [
+      "useEffect(() => {",
+      "  $0",
+      "}, [${1:dependency}]);"
+    ]
+  },
+
+  // uec → useEffect with cleanup function
+  "useEffect Cleanup": {
+    "prefix": "uec",
+    "body": [
+      "useEffect(() => {",
+      "  $0",
+      "  return () => {",
+      "    ${1:// cleanup}",
+      "  };",
+      "}, [${2:dependency}]);"
+    ]
+  },
+
+  // ===========================================================
+  // 🔀 EARLY RETURNS
+  // ===========================================================
+
+  // er-load → early return while loading
+  "Early Return Loading": {
+    "prefix": "er-load",
+    "body": "if (isLoading) return <p className=\"text-sm text-muted-foreground\">Loading...</p>;"
+  },
+
+  // er-error → early return on error
+  "Early Return Error": {
+    "prefix": "er-error",
+    "body": "if (error) return <p className=\"text-sm text-red-500\">{error}</p>;"
+  },
+
+  // er-empty → early return on empty list
+  "Early Return Empty": {
+    "prefix": "er-empty",
+    "body": "if (!${1:items}?.length) return <p className=\"text-sm text-muted-foreground\">${2:Nothing here yet.}</p>;"
+  },
+
+  // ===========================================================
+  // 🛠️ UTILITY (ADDITIONAL)
+  // ===========================================================
+
+  // hsubmit → form submit handler with trim + guard
+  "Handler Submit": {
+    "prefix": "hsubmit",
+    "body": [
+      "function handleSubmit(e) {",
+      "  e.preventDefault();",
+      "  const trimmed = ${1:value}.trim();",
+      "  if (!trimmed) return;",
+      "  ${2:onAction}(trimmed);",
+      "  ${3:setValue('');}",
+      "}"
+    ]
+  },
+
+  // maplist → map over array to render components
+  "Map List": {
+    "prefix": "maplist",
+    "body": [
+      "{${1:items}.map(${2:item} => (",
+      "  <${3:Component}",
+      "    key={${2:item}.id}",
+      "    ${2:item}={${2:item}}",
+      "    $0",
+      "  />",
+      "))}"
+    ]
   }
 }
