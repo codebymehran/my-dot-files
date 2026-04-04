@@ -224,6 +224,80 @@
     .section.wide { grid-column: 1; }
     header { flex-direction: column; align-items: flex-start; gap: 16px; }
     .snippet { grid-template-columns: 110px 1fr; }
+    .workflow-body { flex-direction: column; }
+  }
+
+  /* ── Workflow ── */
+  .workflow {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .workflow-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .workflow-header .icon { font-size: 1rem; line-height: 1; }
+
+  .workflow-header h2 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  .workflow-body {
+    display: flex;
+    gap: 0;
+    padding: 6px 0;
+  }
+
+  .workflow-col {
+    flex: 1;
+    padding: 10px 20px;
+    border-right: 1px solid var(--border);
+  }
+
+  .workflow-col:last-child { border-right: none; }
+
+  .workflow-step {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .workflow-step:last-child { border-bottom: none; }
+
+  .workflow-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--subtle);
+    margin-bottom: 5px;
+    letter-spacing: 0.02em;
+  }
+
+  .workflow-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .wprefix {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--react);
+    background: var(--react-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
   }
 </style>
 </head>
@@ -233,13 +307,53 @@
   <header>
     <div>
       <h1>Snippets <span class="accent">Cheatsheet</span></h1>
-      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 55 snippets</p>
+      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 74 snippets</p>
     </div>
     <div class="header-right">
       React · Next.js App Router · Redux Toolkit<br>
       <span class="hint">prefix → Tab to expand</span>
     </div>
   </header>
+
+  <!-- Workflow -->
+  <div class="workflow">
+    <div class="workflow-header">
+      <span class="icon">⚡</span>
+      <h2>Component Workflow</h2>
+    </div>
+    <div class="workflow-body">
+      <div class="workflow-col">
+        <div class="workflow-step">
+          <div class="workflow-label">Start every file</div>
+          <div class="workflow-line"><span class="wprefix">rcomp</span> or <span class="wprefix">rcomp-pure</span> → Tab through placeholders</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-label">As you build each section</div>
+          <div class="workflow-line"><span class="wprefix">sec-state</span> <span class="wprefix">sec-hand</span> <span class="wprefix">sec-render</span> to mark sections</div>
+          <div class="workflow-line"><span class="wprefix">us</span> for each new useState &nbsp;·&nbsp; <span class="wprefix">maplist</span> when rendering a list</div>
+          <div class="workflow-line"><span class="wprefix">er-empty</span> immediately in list components — you know you'll need it</div>
+          <div class="workflow-line"><span class="wprefix">er-load</span> and <span class="wprefix">er-error</span> — slots ready for when APIs arrive</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-label">After it works</div>
+          <div class="workflow-line"><span class="wprefix">jsdoc</span> + <span class="wprefix">jsprop</span> to document props</div>
+        </div>
+      </div>
+      <div class="workflow-col">
+        <div class="workflow-step">
+          <div class="workflow-label">While debugging</div>
+          <div class="workflow-line"><span class="wprefix">cl</span> for quick logs &nbsp;·&nbsp; <span class="wprefix">ct</span> when debugging an array</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-label">Leaving notes</div>
+          <div class="workflow-line"><span class="wprefix">cwarn</span> above anything tricky — e.g. the onMouseDown fix</div>
+          <div class="workflow-line"><span class="wprefix">cquest</span> when unsure about a decision — revisit later</div>
+          <div class="workflow-line"><span class="wprefix">ctodo</span> for anything to come back to</div>
+          <div class="workflow-line"><span class="wprefix">chigh</span> above a bug fix — stands out when reading back</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="sections">
 
@@ -562,7 +676,7 @@
           <div class="snippet-info"><div class="snippet-name">Question</div><div class="snippet-desc">//? decision you're not sure about yet</div></div>
         </div>
         <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">c*</span></div>
+          <div class="prefix-wrap"><span class="snippet-prefix">chigh</span></div>
           <div class="snippet-info"><div class="snippet-name">Highlight</div><div class="snippet-desc">//* pattern worth remembering across the codebase</div></div>
         </div>
         <div class="snippet">
