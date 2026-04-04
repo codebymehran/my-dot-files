@@ -651,9 +651,9 @@
     "body": "//? ${1:Question}"
   },
 
-  // c* → highlight comment
+  // chigh → highlight comment
   "Highlight Comment": {
-    "prefix": "c*",
+    "prefix": "chigh",
     "body": "//* ${1:Note}"
   },
 
