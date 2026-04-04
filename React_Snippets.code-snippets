@@ -639,15 +639,15 @@
   // 💬 COMMENT STYLES
   // ===========================================================
 
-  // c! → warning comment
+  // cwarn → warning comment
   "Warning Comment": {
-    "prefix": "c!",
+    "prefix": "cwarn",
     "body": "//! ${1:Warning}"
   },
 
-  // c? → question comment
+  // cquest → question comment
   "Question Comment": {
-    "prefix": "c?",
+    "prefix": "cquest",
     "body": "//? ${1:Question}"
   },
 
