@@ -19,6 +19,9 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "smooth",
   "editor.cursorSurroundingLines": 8,
+  "editor.letterSpacing": 0.5,
+  "editor.padding.top": 16,
+  "editor.padding.bottom": 16,
 
   // ===========================================================
   // 🎯 CODE INTELLIGENCE
@@ -67,11 +70,12 @@
     "editor.rulers": [88],
   },
 
-  "python.languageServer": "Pylance",
+  // Pylance off — not actively coding in Python, switch to "Pylance" when needed
+  "python.languageServer": "None",
   "python.analysis.autoImportCompletions": true,
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoSearchPaths": true,
-  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.diagnosticMode": "openFilesOnly",
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.variableTypes": true,
 
@@ -86,13 +90,13 @@
   // ===========================================================
   // 💾 AUTO-SAVE & FORMATTING
   // ===========================================================
-  "files.autoSave": "onFocusChange",
+  "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 2000,
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
 
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   "editor.codeActionsOnSave": {
@@ -227,7 +231,7 @@
   "errorLens.messageEnabled": true,
 
   // ===========================================================
-  // 💬 BETTER COMMENTS - OPTIMIZED FOR WHITE THEME
+  // 💬 COLORFUL COMMENTS - OPTIMIZED FOR WHITE THEME
   // ===========================================================
   "colorful-comments.tags": [
     {
@@ -401,33 +405,17 @@
   // ===========================================================
   // ⚡ INSERT MODE – ESCAPE
   // ===========================================================
-  "vim.insertModeKeyBindings": [
-    { "before": ["j", "j"], "after": ["<Esc>"] },
-  ],
+  "vim.insertModeKeyBindings": [{ "before": ["j", "j"], "after": ["<Esc>"] }],
 
   // ===========================================================
-  // 🔧 CTRL KEY HANDLING – KEEP ONLY WHAT YOU NEED
+  // 🔧 CTRL KEY HANDLING – ONLY WHAT VIM NEEDS
+  // No Ctrl keys used for navigation or editor actions — all
+  // replaced with <leader> bindings. Only keeping core Vim ops.
   // ===========================================================
   "vim.handleKeys": {
-    "<C-s>": false,
-    "<C-w>": false,
-    "<C-z>": false,
-    "<C-f>": false,
-    "<C-n>": false,
-    "<C-p>": false,
-    "<C-b>": false,
-
-    "<C-d>": true,
-    "<C-u>": true,
-    "<C-o>": true,
-    "<C-i>": true,
-    "<C-a>": true,
-    "<C-x>": true,
-    "<C-v>": true,
-    "<C-h>": true,
-    "<C-j>": true,
-    "<C-k>": true,
-    "<C-l>": true,
+    "<C-a>": true,  // increment number under cursor
+    "<C-x>": true,  // decrement number under cursor
+    "<C-v>": true,  // visual block mode
   },
 
   // ===========================================================
@@ -544,13 +532,19 @@
     { "before": ["<S-Tab>"], "commands": ["workbench.action.previousEditor"] },
 
     // =======================================================
+    // 🧩 MOVE LINES
+    // =======================================================
+    { "before": ["<leader>", "M", "j"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["<leader>", "M", "k"], "commands": ["editor.action.moveLinesUpAction"] },
+
+    // =======================================================
     // 🧹 FORMAT & IMPORTS
     // =======================================================
     { "before": ["<leader>", ";"], "commands": ["editor.action.formatDocument"] },
     { "before": ["<leader>", "i"], "commands": ["editor.action.organizeImports"] },
 
     // =======================================================
-    // 🆕 IMPROVEMENT #12: Quick Git Actions
+    // 🆕 Quick Git Actions
     // =======================================================
     { "before": ["<leader>", "g", "s"], "commands": ["workbench.view.scm"] },
     { "before": ["<leader>", "g", "c"], "commands": ["git.commit"] },
@@ -604,7 +598,15 @@
   "workbench.settings.editor": "ui",
   "eslint.run": "onSave",
   "workbench.editor.pinnedTabSizing": "compact",
-  "workbench.colorTheme": "Hop Light",
+  "workbench.colorTheme": "Hop Light (Italics)",
+
+  // ===========================================================
+  // ⚙️ PERFORMANCE
+  // ===========================================================
+  // Runs Vim extension on its own thread — prevents keystroke lag
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
 
   // ===========================================================
   // 📚 SHORTCUTS & WORKFLOWS REFERENCE GUIDE
@@ -645,15 +647,42 @@
     - ds"                       → Delete surrounding quotes
     - dst                       → Delete surrounding tag
 
-  TEXT OBJECTS (Powerful Editing):
-    - ciw                       → Change inner word
-    - ci"                       → Change inside quotes
-    - ci(                       → Change inside parentheses
-    - ci{                       → Change inside braces
-    - cit                       → Change inside HTML tag
-    - dap                       → Delete around paragraph
-    - yiw                       → Yank (copy) inner word
-    - diw                       → Delete inner word
+  ═══════════════════════════════════════════════════════════
+  🎯 TEXT OBJECTS – THINK OPERATION FIRST, NOT MOVEMENT
+  ═══════════════════════════════════════════════════════════
+
+  The Vim mindset: stop thinking "where do I need to move?"
+  Start thinking "what do I want to change?"
+
+  PATTERN: verb + i/a + target
+    - verb:   c (change), d (delete), y (yank/copy)
+    - i/a:    i = inside (just content), a = around (includes brackets)
+    - target: " ' ( [ { t (tag)
+
+  MOST USED:
+    ciw                         → Change inner word (cursor anywhere on word)
+    daw                         → Delete word + trailing space (clean line)
+    diw                         → Delete word only (leaves space)
+    ci"                         → Change inside "quotes"
+    ci'                         → Change inside 'quotes'
+    ci(                         → Change inside (parens)
+    ci{                         → Change inside {braces}
+    ci[                         → Change inside [brackets]
+    cit                         → Change inside <tag>
+    di"                         → Delete inside quotes
+    yi"                         → Copy inside quotes
+
+  REAL EXAMPLES:
+    const name = "Alice"        → cursor on Alice → ci" → type new value
+    function greet(userName)    → cursor on userName → ci( → type new arg
+    const obj = { key: "val" }  → cursor on key → ciw → type new key
+    import { A, B, C } from ... → cursor on B → daw → removes B cleanly
+
+  NUMBER TRICK (works everywhere):
+    3yy                         → Copy 3 lines down from cursor
+    5dd                         → Delete 5 lines
+    3j                          → Move down 3 lines
+    d3w                         → Delete 3 words forward
 
   ═══════════════════════════════════════════════════════════
   📍 MARKS (BOOKMARKS IN VIM)
@@ -666,13 +695,31 @@
     ``                          → Toggle between last 2 positions ⭐ MOST USEFUL
     :marks                      → Show all marks
 
-
   ═══════════════════════════════════════════════════════════
   📚 MAIN SHORTCUTS REFERENCE
   ═══════════════════════════════════════════════════════════
 
   INSERT MODE:
     jj                          → Escape to normal mode
+
+  UNDO / REDO:
+    u                           → Undo ⭐ use this, not Cmd+Z
+    U                           → Redo
+
+  MOVEMENT (no arrow keys, no mouse):
+    h j k l                     → left, down, up, right
+    H                           → Jump to start of line (^)
+    L                           → Jump to end of line ($)
+    J                           → Jump 5 lines down
+    K                           → Jump 5 lines up
+    w                           → Next word
+    b                           → Previous word
+    e                           → End of current word
+    {  }                        → Jump between blank lines
+    gg                          → Top of file
+    G                           → Bottom of file
+    f<char>                     → Jump to char on current line
+    s<char><char>               → Sneak: jump anywhere on screen (2 chars)
 
   WORKSPACE NAVIGATION:
     Space+e                     → File explorer
@@ -682,7 +729,6 @@
     Space+f                     → Find in all files
     Space+b                     → Toggle sidebar
     Space+z                     → Zen mode
-    Space+Space                 → Command palette
     Tab                         → Next tab
     Shift+Tab                   → Previous tab
 
@@ -698,18 +744,6 @@
     Space+q                     → Close current file
     Space+qa                    → Close all saved files
     Space+o                     → Close other files
-    Space+c                     → Copy entire file
-    Space+C                     → Copy entire file (keep cursor)
-    Space+P                     → Replace entire file with clipboard
-    Space+A                     → Select all (visual mode)
-    Space+D                     → Delete all content from file
-
-  BUFFER MANAGEMENT:
-    Space+bb                    → Show all open files
-    Space+bo                    → Close all other buffers
-    Space+ba                    → Close all buffers
-    Space+b+p                   → Pin current tab
-    Space+b+u                   → Unpin current tab
 
   CODE ACTIONS:
     Space+a                     → Quick fix / code actions
@@ -718,6 +752,8 @@
     Space+m                     → Find all references
     Space+;                     → Format document
     Space+i                     → Organize imports
+    Space+M+j                   → Move line/selection down
+    Space+M+k                   → Move line/selection up
 
   GO TO DEFINITION:
     gd                          → Go to definition
@@ -741,37 +777,21 @@
   SPLITS:
     Space+v                     → Split right
     Space+\                     → Split down
-    Ctrl+h/j/k/l                → Navigate between splits
-    Space+h/j/k/l               → Alternative split navigation
+    Space+h/j/k/l               → Navigate between splits
+    Space+t+v                   → Split terminal vertically
+    Space+t+s                   → Split terminal horizontally
 
-
-  ═══════════════════════════════════════════════════════════
-  🐍 PYTHON SHORTCUTS (Right Cmd = Hyper Key)
-  ═══════════════════════════════════════════════════════════
-
-  Note: Right Cmd is mapped to Ctrl+Opt+Shift in Karabiner
-  These shortcuts ONLY work in .py files:
-
-  RUNNING & DEBUGGING:
-    Right Cmd + R               → Run current Python file ⚡
-    Right Cmd + I               → Start interactive REPL
-    Right Cmd + D               → Debug current file
-    Right Cmd + C               → Run selected code only
-
-  TESTING:
-    Right Cmd + T               → Run all tests
-    Right Cmd + F               → Run current test file
-
-  SETUP:
-    Right Cmd + L               → Select Python interpreter
-
-  COMMON WORKFLOW:
-    1. Write code
-    2. Right Cmd + R           → See if it works
-    3. Not working? Right Cmd + D → Debug it
-    4. Want to test snippet? Highlight → Right Cmd + C
-    5. Before commit: Right Cmd + T → Run all tests
-
+  COLORFUL COMMENTS:
+    //! comment                 → Red bold — warnings, critical notes
+    //? comment                 → Purple italic — questions, uncertainty
+    //* comment                 → Green — important notes
+    // todo comment             → Orange — tasks to do
+    // === comment              → Blue bold — major section headers
+    // --- comment              → Teal bold — sub-section headers
+    // // comment               → Grey strikethrough — dead/disabled code
+    // @ comment                → Yellow — references, links
+    // + comment                → Green — additions
+    // - comment                → Red — removals
 
   ═══════════════════════════════════════════════════════════
   💡 RECOMMENDED EXTENSIONS
@@ -788,7 +808,7 @@
 
   PYTHON:
     ✓ Python (Microsoft)       → Core Python support
-    ✓ Pylance (Microsoft)      → Fast IntelliSense
+    ✓ Pylance (Microsoft)      → Fast IntelliSense (currently OFF)
     ✓ Black Formatter          → Auto-formatting (configured)
     ✓ isort                    → Import sorting (configured)
     - autoDocstring            → Generate docstrings (Cmd+Shift+2)
@@ -800,34 +820,29 @@
     - vscode-icons             → File icons (enabled)
     - GitLens                  → Advanced Git features
     - TODO Highlight           → Highlight TODO comments
-    - Bracket Pair Colorizer   → Color matching brackets
-
 
   ═══════════════════════════════════════════════════════════
-  🎓 LEARNING TIPS
+  🎓 VIM LEARNING PATH
   ═══════════════════════════════════════════════════════════
 
-  FOR PYTHON BEGINNERS:
-    1. Write code in main.py
-    2. Right Cmd + R to run it
-    3. See output in terminal
-    4. Use Right Cmd + I to experiment with new syntax
-    5. When stuck: Right Cmd + D to debug step-by-step
+  STAGE 1 – MOVEMENT (you are here ✅):
+    hjkl, H/L, J/K, w/b/e, {/}, gg/G, f<char>, sneak (s)
 
-  FOR VIM BEGINNERS:
-    - Start with: hjkl for movement
-    - Learn: i (insert), Esc (normal), v (visual)
-    - Master: ciw (change word), dd (delete line)
-    - Then learn: text objects (ci", ci(, cit)
-    - Finally: vim.surround (S", cs'", dst)
+  STAGE 2 – TEXT OBJECTS (learn these next):
+    ciw, ci", ci(, daw, diw, yi"
+    Rule: think operation first, not where to move
 
-  FOR REACT DEVELOPERS:
-    - Space+; formats your code instantly
-    - Space+i organizes imports automatically
-    - gd jumps to component definition
-    - gr shows all places component is used
-    - Space+a for quick imports and fixes
+  STAGE 3 – OPERATORS + COUNTS:
+    3yy, 5dd, d3w, c2w
+    Rule: number + verb + motion = precise editing
 
+  STAGE 4 – MARKS & JUMPS:
+    ma, `a, `` (toggle last position)
+    gi (jump back to last insert point)
+
+  STAGE 5 – MACROS:
+    qa → record, q → stop, @a → replay
+    Use for repetitive multi-step edits
 
   ═══════════════════════════════════════════════════════════
   ⚡ SPEED TIPS
@@ -836,59 +851,74 @@
   FASTEST FILE NAVIGATION:
     Space+p → Type few letters → Enter (< 2 seconds to any file)
 
-  FASTEST CODE EDITING:
-    gb to add cursors → Edit once, change everywhere
+  FASTEST WORD EDIT:
+    ciw → type new word (no need to move to start of word first)
+
+  FASTEST STRING EDIT:
+    ci" or ci' (cursor anywhere inside the string)
 
   FASTEST REFACTORING:
     Space+R on variable → Rename everywhere in project
 
-  FASTEST DEBUGGING (PYTHON):
-    Click line number (breakpoint) → Right Cmd + D → F10 to step
-
   FASTEST FORMATTING:
-    Just save! (Cmd+S) → Auto-formats on save
+    Just save! (Cmd+S or Space+w) → Auto-formats on save
 
+  FASTEST MULTI-EDIT:
+    gb → add cursor on next occurrence → keep pressing → edit all at once
 
-═══════════════════════════════════════════════════════════
+  FASTEST COMMENT TOGGLE:
+    gc (visual mode) → toggle comment on selected lines
+
+  FASTEST HOVER INFO:
+    gh → show type info / docs without leaving keyboard
+
+  ═══════════════════════════════════════════════════════════
   🔧 SETTINGS HIGHLIGHTS
-═══════════════════════════════════════════════════════════
+  ═══════════════════════════════════════════════════════════
 
   AUTO-SAVE:           After 2 seconds of inactivity
-  FORMATTERS:          Prettier (JS/React), Black (Python)
+  FORMATTERS:          Prettier (JS/React), Black (Python, when active)
   LINE NUMBERS:        Relative (for Vim motions)
   STICKY SCROLL:       3 lines (shows context)
   CURSOR CONTEXT:      8 lines above/below cursor
   MINIMAP:             Disabled (more screen space)
   WORD WRAP:           Enabled
   TAILWIND:            Intellisense for className, cn(), cva()
+  VIM THREAD:          Isolated (extensions.experimental.affinity)
+  FORMAT ON PASTE:     Disabled (use save to format instead)
+  LETTER SPACING:      0.5 (slightly more readable)
+  EDITOR PADDING:      16px top/bottom (breathing room)
 
-  PYTHON SPECIFIC:
+  PYTHON (when you need it):
+  - Switch "python.languageServer" to "Pylance"
+  - Switch "python.analysis.diagnosticMode" to "workspace"
   - Auto-format with Black (88 char line length)
   - Auto-organize imports with isort
-  - Type hints shown inline
-  - pytest for testing
-  - Virtual environment support
-
 
   ═══════════════════════════════════════════════════════════
-  📝 NOTES
+  📝 CHANGES FROM ORIGINAL
   ═══════════════════════════════════════════════════════════
-
-  CHANGES FROM ORIGINAL:
-  - Space+r now opens recent files (was rename)
-  - Space+R is now rename (capital R)
-  - Space+s removed (was duplicate)
-  - Space+\ is now split down (clearer than Space+s)
-  - Added Python hyper key shortcuts (Right Cmd)
-  - Added git shortcuts (Space+g+...)
-  - Added zen mode (Space+z)
-  - Improved terminal splits (Space+t+v/s)
-  - Removed ;; and ,, insert bindings (caused typing delay)
 
   PERFORMANCE:
-  - Hidden: __pycache__, node_modules, .next, dist, build
-  - Excluded from search: Same as above + lock files
-  - File watcher excludes: Same (saves CPU)
+  - vim.handleKeys cleaned to 3 entries only (C-a, C-x, C-v)
+  - extensions.experimental.affinity added (Vim on own thread)
+  - python.languageServer set to None (not actively using Python)
+  - editor.formatOnPaste disabled (format on save is enough)
+
+  UI:
+  - editor.letterSpacing 0.5 added
+  - editor.padding.top/bottom 16 added
+
+  COMMENTS:
+  - Section header renamed to Colorful Comments (was Better Comments)
+  - Colorful Comments tag reference added to shortcuts guide
+
+  VIM:
+  - Removed all Ctrl key references from guide (not used on Mac)
+  - Added full Text Objects reference section
+  - Added Vim Learning Path (staged progression)
+  - u/U for undo/redo highlighted (replace Cmd+Z habit)
+  - Added missing speed tips: gb multi-cursor, gc comment, gh hover
 
   */
 }
