@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VS Code Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --off: #f5f4f1;
+  --ink: #111111;
+  --mid: #444444;
+  --faint: #777777;
+  --rule: #dedbd4;
+  --kbd-bg: #eeebe6;
+  --kbd-border: #ccc9c0;
+  --red: #c9290a;
+  --green: #1a8f34;
+  --purple: #6b2f8a;
+  --orange: #c96a00;
+  --blue: #0055aa;
+  --teal: #007a99;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.header-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.5px;
+}
+
+/* ── MINDSET ── */
+.mindset {
+  border: 1.5px solid var(--ink);
+  padding: 7px 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  margin-bottom: 12px;
+  background: var(--off);
+}
+.mindset .bad { text-decoration: line-through; color: var(--faint); }
+.mindset .good { color: var(--green); font-weight: 500; }
+.mindset .arrow { color: var(--faint); margin: 0 8px; }
+
+/* ── VIM STAGES ── */
+.stages-wrap {
+  border: 1px solid var(--rule);
+  margin-bottom: 14px;
+}
+
+.stages-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding: 5px 8px 4px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--off);
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.stage {
+  padding: 8px 10px;
+  border-right: 1px solid var(--rule);
+}
+.stage:last-child { border-right: none; }
+
+.stage.active {
+  background: var(--off);
+  outline: 1.5px solid var(--ink);
+  outline-offset: -1px;
+}
+
+.stage-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  color: var(--faint);
+  letter-spacing: 0.8px;
+  margin-bottom: 3px;
+}
+
+.stage-name {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.stage-keys {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* ── 3 COLUMN LAYOUT ── */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+/* ── BLOCK ── */
+.block {
+  border: 1px solid var(--rule);
+  margin-bottom: 10px;
+}
+
+.block-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding: 5px 8px 4px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--off);
+}
+
+/* ── TABLE ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) td { background: var(--off); }
+
+td {
+  padding: 4px 8px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--rule);
+  font-size: 11.5px;
+  color: var(--mid);
+}
+
+tr:last-child td { border-bottom: none; }
+
+td.desc { width: 55%; }
+td.keys { width: 45%; text-align: right; white-space: nowrap; }
+
+/* ── KBD ── */
+kbd {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--ink);
+  display: inline-block;
+}
+
+/* ── TEXT OBJECTS ── */
+.pattern {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 5px 8px;
+  background: var(--off);
+  border-bottom: 1px solid var(--rule);
+  color: var(--mid);
+}
+.pattern .verb { color: var(--red); font-weight: 500; }
+.pattern .ia { color: var(--blue); font-weight: 500; }
+.pattern .target { color: var(--green); font-weight: 500; }
+
+td.to-key {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  width: 36%;
+}
+
+/* ── COMMENT TAGS ── */
+td.ctag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  width: 32%;
+}
+
+/* ── SETTINGS ── */
+td.skey {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+  width: 38%;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+td.sval { font-size: 11.5px; color: var(--mid); }
+
+/* ── PERF ── */
+td.pkey {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink);
+  width: 50%;
+}
+td.pval { font-size: 11px; color: var(--faint); }
+
+.py-note {
+  padding: 7px 8px;
+  border-top: 1px dashed var(--rule);
+  font-size: 11px;
+  color: var(--faint);
+  line-height: 1.5;
+}
+.py-note code {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--kbd-bg);
+  padding: 0 4px;
+  border-radius: 2px;
+  color: var(--ink);
+}
+
+/* ── FOOTER ── */
+footer {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── PRINT ── */
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5px; }
+  .page { padding: 14px 14px 20px; max-width: 100%; }
+  .columns { gap: 8px; }
+  .block { margin-bottom: 6px; }
+  td, .stage-keys, .pval, .py-note { color: #333 !important; }
+  td.skey, .faint, .header-meta, .stage-num, .block-title, .stages-title { color: #555 !important; }
+  kbd { background: #e8e8e8 !important; border-color: #aaa !important; border-bottom-width: 1px; color: #111 !important; }
+  tr:nth-child(even) td { background: #f2f2f2 !important; }
+  .block-title, .stages-title, .stage { background: #f2f2f2 !important; }
+  .stage.active { outline: 1.5px solid #111 !important; background: #e8e8e8 !important; }
+  .mindset { border-color: #111 !important; background: #f2f2f2 !important; }
+  .mindset .good { color: #155c25 !important; }
+  .mindset .bad { color: #888 !important; }
+  .pattern .verb { color: #a02000 !important; }
+  .pattern .ia { color: #003d99 !important; }
+  .pattern .target { color: #155c25 !important; }
+  @page { margin: 1cm; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>VS Code Cheatsheet</h1>
+  <span class="header-meta">mac · vscodevim · space = leader</span>
+</header>
+
+<div class="mindset">
+  <span class="bad">Where do I need to move?</span>
+  <span class="arrow">→</span>
+  <span class="good">What do I want to change?</span>
+</div>
+
+<div class="stages-wrap">
+  <div class="stages-title">Vim Learning Path</div>
+  <div class="stages">
+    <div class="stage active">
+      <div class="stage-num">STAGE 01</div>
+      <div class="stage-name">Movement ✅</div>
+      <div class="stage-keys">hjkl &nbsp;H/L &nbsp;J/K<br>w/b/e &nbsp;{/}<br>gg/G &nbsp;f &nbsp;sneak</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">STAGE 02</div>
+      <div class="stage-name">Text Objects</div>
+      <div class="stage-keys">ciw &nbsp;ci" &nbsp;ci(<br>daw &nbsp;diw &nbsp;yi"<br>op first, not where</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">STAGE 03</div>
+      <div class="stage-name">Counts</div>
+      <div class="stage-keys">3yy &nbsp;5dd<br>d3w &nbsp;c2w<br>N + verb + motion</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">STAGE 04</div>
+      <div class="stage-name">Marks</div>
+      <div class="stage-keys">ma &nbsp;set mark<br>`a &nbsp;jump exact<br>`` &nbsp;toggle last</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">STAGE 05</div>
+      <div class="stage-name">Macros</div>
+      <div class="stage-keys">qa &nbsp;record<br>q &nbsp;&nbsp;stop<br>@a &nbsp;replay</div>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+
+  <!-- COL 1 -->
+  <div>
+    <div class="block">
+      <div class="block-title">Movement</div>
+      <table>
+        <tr><td class="desc">Start / end of line</td><td class="keys"><kbd>H</kbd> <kbd>L</kbd></td></tr>
+        <tr><td class="desc">5 lines down / up</td><td class="keys"><kbd>J</kbd> <kbd>K</kbd></td></tr>
+        <tr><td class="desc">Next / prev word</td><td class="keys"><kbd>w</kbd> <kbd>b</kbd></td></tr>
+        <tr><td class="desc">End of word</td><td class="keys"><kbd>e</kbd></td></tr>
+        <tr><td class="desc">Jump blank lines</td><td class="keys"><kbd>{</kbd> <kbd>}</kbd></td></tr>
+        <tr><td class="desc">Top / bottom file</td><td class="keys"><kbd>gg</kbd> <kbd>G</kbd></td></tr>
+        <tr><td class="desc">Jump to char on line</td><td class="keys"><kbd>f</kbd><kbd>char</kbd></td></tr>
+        <tr><td class="desc">Sneak — anywhere</td><td class="keys"><kbd>s</kbd><kbd>2chars</kbd></td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Editing</div>
+      <table>
+        <tr><td class="desc">Escape to normal</td><td class="keys"><kbd>jj</kbd></td></tr>
+        <tr><td class="desc">Undo / Redo</td><td class="keys"><kbd>u</kbd> <kbd>U</kbd></td></tr>
+        <tr><td class="desc">Delete line</td><td class="keys"><kbd>dd</kbd></td></tr>
+        <tr><td class="desc">Copy line / N lines</td><td class="keys"><kbd>yy</kbd> <kbd>3yy</kbd></td></tr>
+        <tr><td class="desc">Paste</td><td class="keys"><kbd>p</kbd></td></tr>
+        <tr><td class="desc">Delete to end</td><td class="keys"><kbd>D</kbd></td></tr>
+        <tr><td class="desc">Move line down / up</td><td class="keys"><kbd>Spc</kbd><kbd>Mj</kbd> <kbd>Mk</kbd></td></tr>
+        <tr><td class="desc">Toggle comment</td><td class="keys"><kbd>gc</kbd></td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Text Objects</div>
+      <div class="pattern">
+        <span class="verb">c/d/y</span>
+        <span style="color:var(--faint)"> + </span>
+        <span class="ia">i/a</span>
+        <span style="color:var(--faint)"> + </span>
+        <span class="target">" ' ( [ { t</span>
+      </div>
+      <table>
+        <tr><td class="to-key">ciw</td><td>Change inner word</td></tr>
+        <tr><td class="to-key">daw</td><td>Delete word + space</td></tr>
+        <tr><td class="to-key">ci"</td><td>Change inside "quotes"</td></tr>
+        <tr><td class="to-key">ci'</td><td>Change inside 'quotes'</td></tr>
+        <tr><td class="to-key">ci(</td><td>Change inside (parens)</td></tr>
+        <tr><td class="to-key">ci{</td><td>Change inside {braces}</td></tr>
+        <tr><td class="to-key">ci[</td><td>Change inside [brackets]</td></tr>
+        <tr><td class="to-key">cit</td><td>Change inside &lt;tag&gt;</td></tr>
+        <tr><td class="to-key">yi"</td><td>Copy inside quotes</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- COL 2 -->
+  <div>
+    <div class="block">
+      <div class="block-title">Workspace</div>
+      <table>
+        <tr><td class="desc">Quick open file</td><td class="keys"><kbd>Spc</kbd><kbd>p</kbd></td></tr>
+        <tr><td class="desc">Recent files</td><td class="keys"><kbd>Spc</kbd><kbd>r</kbd></td></tr>
+        <tr><td class="desc">Find in all files</td><td class="keys"><kbd>Spc</kbd><kbd>f</kbd></td></tr>
+        <tr><td class="desc">File explorer</td><td class="keys"><kbd>Spc</kbd><kbd>e</kbd></td></tr>
+        <tr><td class="desc">Toggle sidebar</td><td class="keys"><kbd>Spc</kbd><kbd>b</kbd></td></tr>
+        <tr><td class="desc">Zen mode</td><td class="keys"><kbd>Spc</kbd><kbd>z</kbd></td></tr>
+        <tr><td class="desc">Next / prev tab</td><td class="keys"><kbd>Tab</kbd> <kbd>⇧Tab</kbd></td></tr>
+        <tr><td class="desc">Save / close file</td><td class="keys"><kbd>Spc</kbd><kbd>w</kbd> <kbd>q</kbd></td></tr>
+        <tr><td class="desc">Close other files</td><td class="keys"><kbd>Spc</kbd><kbd>o</kbd></td></tr>
+        <tr><td class="desc">Toggle terminal</td><td class="keys"><kbd>Spc</kbd><kbd>t</kbd></td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Splits &amp; Terminal</div>
+      <table>
+        <tr><td class="desc">Split right / down</td><td class="keys"><kbd>Spc</kbd><kbd>v</kbd> <kbd>\</kbd></td></tr>
+        <tr><td class="desc">Navigate splits</td><td class="keys"><kbd>Spc</kbd><kbd>h/j/k/l</kbd></td></tr>
+        <tr><td class="desc">Split terminal vert</td><td class="keys"><kbd>Spc</kbd><kbd>tv</kbd></td></tr>
+        <tr><td class="desc">Split terminal horiz</td><td class="keys"><kbd>Spc</kbd><kbd>ts</kbd></td></tr>
+        <tr><td class="desc">New / kill terminal</td><td class="keys"><kbd>Spc</kbd><kbd>tn</kbd> <kbd>tk</kbd></td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Git</div>
+      <table>
+        <tr><td class="desc">Status / commit</td><td class="keys"><kbd>Spc</kbd><kbd>gs</kbd> <kbd>gc</kbd></td></tr>
+        <tr><td class="desc">Push / pull</td><td class="keys"><kbd>Spc</kbd><kbd>gp</kbd> <kbd>gP</kbd></td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Colorful Comments</div>
+      <table>
+        <tr><td class="ctag" style="color:var(--red)">//!</td><td>Warning / critical</td></tr>
+        <tr><td class="ctag" style="color:var(--green)">//*</td><td>Important note</td></tr>
+        <tr><td class="ctag" style="color:var(--purple)">//?</td><td>Question / uncertainty</td></tr>
+        <tr><td class="ctag" style="color:var(--orange)">// todo</td><td>Task to do</td></tr>
+        <tr><td class="ctag" style="color:var(--blue)">// ===</td><td>Major section header</td></tr>
+        <tr><td class="ctag" style="color:var(--teal)">// ---</td><td>Sub-section header</td></tr>
+        <tr><td class="ctag" style="color:var(--orange)">// @</td><td>Reference / link</td></tr>
+        <tr><td class="ctag" style="color:var(--green)">// +</td><td>Addition</td></tr>
+        <tr><td class="ctag" style="color:var(--red)">// -</td><td>Removal</td></tr>
+        <tr><td class="ctag" style="color:#888;text-decoration:line-through">// //</td><td>Dead code</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- COL 3 -->
+  <div>
+    <div class="block">
+      <div class="block-title">Code Actions</div>
+      <table>
+        <tr><td class="desc">Quick fix</td><td class="keys"><kbd>Spc</kbd><kbd>a</kbd></td></tr>
+        <tr><td class="desc">Rename symbol</td><td class="keys"><kbd>Spc</kbd><kbd>R</kbd></td></tr>
+        <tr><td class="desc">Symbol in workspace</td><td class="keys"><kbd>Spc</kbd><kbd>S</kbd></td></tr>
+        <tr><td class="desc">Find all references</td><td class="keys"><kbd>Spc</kbd><kbd>m</kbd></td></tr>
+        <tr><td class="desc">Format document</td><td class="keys"><kbd>Spc</kbd><kbd>;</kbd></td></tr>
+        <tr><td class="desc">Organize imports</td><td class="keys"><kbd>Spc</kbd><kbd>i</kbd></td></tr>
+        <tr><td class="desc">Go to definition</td><td class="keys"><kbd>gd</kbd></td></tr>
+        <tr><td class="desc">Peek definition</td><td class="keys"><kbd>gD</kbd></td></tr>
+        <tr><td class="desc">Go to references</td><td class="keys"><kbd>gr</kbd></td></tr>
+        <tr><td class="desc">Show hover info</td><td class="keys"><kbd>gh</kbd></td></tr>
+        <tr><td class="desc">Next / prev error</td><td class="keys"><kbd>]d</kbd> <kbd>[d</kbd></td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Settings</div>
+      <table>
+        <tr><td class="skey">Auto Save</td><td class="sval">After 2s inactivity</td></tr>
+        <tr><td class="skey">JS Format</td><td class="sval">Prettier</td></tr>
+        <tr><td class="skey">Py Format</td><td class="sval">Black (88 chars)</td></tr>
+        <tr><td class="skey">Line Nums</td><td class="sval">Relative</td></tr>
+        <tr><td class="skey">Sticky Scroll</td><td class="sval">3 lines context</td></tr>
+        <tr><td class="skey">Minimap</td><td class="sval">Disabled</td></tr>
+        <tr><td class="skey">Padding</td><td class="sval">16px top / bottom</td></tr>
+        <tr><td class="skey">Letter Spacing</td><td class="sval">0.5</td></tr>
+        <tr><td class="skey">Theme</td><td class="sval">Hop Light (Italics)</td></tr>
+        <tr><td class="skey">Tailwind</td><td class="sval">cn(), cva(), className</td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Performance</div>
+      <table>
+        <tr><td class="pkey">experimental.affinity</td><td class="pval">Vim on own thread</td></tr>
+        <tr><td class="pkey">handleKeys → 3 only</td><td class="pval">C-a, C-x, C-v</td></tr>
+        <tr><td class="pkey">languageServer: None</td><td class="pval">Pylance off</td></tr>
+        <tr><td class="pkey">formatOnPaste: false</td><td class="pval">Format on save only</td></tr>
+      </table>
+      <div class="py-note">🐍 Python: set <code>languageServer</code> → <code>"Pylance"</code> and <code>diagnosticMode</code> → <code>"workspace"</code></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>vscode cheatsheet · mac · vscodevim</span>
+  <span>Spc = Space (leader key)</span>
+</footer>
+
+</div>
+</body>
+</html>
