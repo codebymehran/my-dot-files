@@ -180,13 +180,13 @@ export function cn(...inputs: ClassValue[]) {
 UTILS
 echo "  ✅ src/lib/utils.ts (cn helper)"
 
-cat > src/lib/data.ts << 'DATA'
+cat > src/lib/mock.ts << 'MOCK'
 // ─── Mock Data ───────────────────────────────────────────────────────────────
 // Temporary data for development — replace with real API calls
 
 export const placeholder = [];
-DATA
-echo "  ✅ src/lib/data.ts"
+MOCK
+echo "  ✅ src/lib/mock.ts"
 
 # -----------------------------
 # Types barrel file
@@ -513,7 +513,7 @@ echo "│  ├── hooks/useLocalStorage.ts               │"
 echo "│  ├── types/index.ts                         │"
 echo "│  ├── context/index.ts                       │"
 echo "│  ├── lib/                                   │"
-echo "│  │   ├── data.ts                            │"
+echo "│  │   ├── mock.ts                             │"
 echo "│  │   └── utils.ts                           │"
 echo "│  └── docs/                                  │"
 echo "└─────────────────────────────────────────────┘"
