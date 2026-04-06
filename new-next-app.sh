@@ -189,6 +189,63 @@ MOCK
 echo "  ✅ src/lib/mock.ts"
 
 # -----------------------------
+# API client
+# -----------------------------
+
+mkdir -p src/lib/api
+cat > src/lib/api/client.ts << 'CLIENT'
+// ─── API Client ──────────────────────────────────────────────────────────────
+// Base fetch wrapper — use this for all external API calls
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
+
+type RequestOptions = RequestInit & {
+  params?: Record<string, string>;
+};
+
+async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
+  const { params, ...init } = options;
+
+  const url = new URL(`${BASE_URL}${endpoint}`, window.location.origin);
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
+  }
+
+  const res = await fetch(url.toString(), {
+    headers: {
+      'Content-Type': 'application/json',
+      ...init.headers,
+    },
+    ...init,
+  });
+
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status} ${res.statusText}`);
+  }
+
+  return res.json() as Promise<T>;
+}
+
+export const api = {
+  get: <T>(endpoint: string, options?: RequestOptions) =>
+    request<T>(endpoint, { ...options, method: 'GET' }),
+
+  post: <T>(endpoint: string, body: unknown, options?: RequestOptions) =>
+    request<T>(endpoint, { ...options, method: 'POST', body: JSON.stringify(body) }),
+
+  put: <T>(endpoint: string, body: unknown, options?: RequestOptions) =>
+    request<T>(endpoint, { ...options, method: 'PUT', body: JSON.stringify(body) }),
+
+  patch: <T>(endpoint: string, body: unknown, options?: RequestOptions) =>
+    request<T>(endpoint, { ...options, method: 'PATCH', body: JSON.stringify(body) }),
+
+  delete: <T>(endpoint: string, options?: RequestOptions) =>
+    request<T>(endpoint, { ...options, method: 'DELETE' }),
+};
+CLIENT
+echo "  ✅ src/lib/api/client.ts"
+
+# -----------------------------
 # Types barrel file
 # -----------------------------
 
@@ -432,6 +489,7 @@ cat > .env.example << 'EOF'
 
 # App
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=
 
 # Add your secret keys below
 # OPENAI_API_KEY=
@@ -513,6 +571,7 @@ echo "│  ├── hooks/useLocalStorage.ts               │"
 echo "│  ├── types/index.ts                         │"
 echo "│  ├── context/index.ts                       │"
 echo "│  ├── lib/                                   │"
+echo "│  │   ├── api/client.ts                      │"
 echo "│  │   ├── mock.ts                             │"
 echo "│  │   └── utils.ts                           │"
 echo "│  └── docs/                                  │"
