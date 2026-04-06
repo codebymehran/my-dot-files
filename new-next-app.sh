@@ -65,19 +65,12 @@ cd "$TARGET"
 echo ""
 echo "📁 Creating folder structure..."
 
-# Components — features + shared
 mkdir -p src/components/features/placeholder
 mkdir -p src/components/shared
-
-# Hooks, types, context
 mkdir -p src/hooks
 mkdir -p src/types
 mkdir -p src/context
-
-# Lib — utils, data, helpers
 mkdir -p src/lib
-
-# Docs
 mkdir -p src/docs
 
 echo "  ✅ src/components/features/placeholder"
@@ -95,7 +88,6 @@ echo "  ✅ src/docs"
 echo ""
 echo "🧩 Scaffolding component files..."
 
-# Feature placeholder component
 cat > src/components/features/placeholder/Sidebar.tsx << 'SIDEBAR'
 // ─── Imports ────────────────────────────────────────────────────────────────
 
@@ -115,7 +107,6 @@ export default Sidebar;
 SIDEBAR
 echo "  ✅ src/components/features/placeholder/Sidebar.tsx"
 
-# Shared — LoadingSpinner
 cat > src/components/shared/LoadingSpinner.tsx << 'SPINNER'
 // ─── Component ──────────────────────────────────────────────────────────────
 // Reusable loading spinner — drop anywhere you need a loading state
@@ -132,7 +123,6 @@ export default LoadingSpinner;
 SPINNER
 echo "  ✅ src/components/shared/LoadingSpinner.tsx"
 
-# Shared — EmptyState
 cat > src/components/shared/EmptyState.tsx << 'EMPTY'
 // ─── Component ──────────────────────────────────────────────────────────────
 // Reusable empty state — use in any list when there's nothing to show
@@ -151,7 +141,6 @@ export default EmptyState;
 EMPTY
 echo "  ✅ src/components/shared/EmptyState.tsx"
 
-# Shared — PageHeader
 cat > src/components/shared/PageHeader.tsx << 'HEADER'
 // ─── Component ──────────────────────────────────────────────────────────────
 // Reusable page header — title + optional subtitle
@@ -181,7 +170,6 @@ echo "  ✅ src/components/shared/PageHeader.tsx"
 echo ""
 echo "🔧 Creating lib files..."
 
-# utils.ts — cn helper
 cat > src/lib/utils.ts << 'UTILS'
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -192,7 +180,6 @@ export function cn(...inputs: ClassValue[]) {
 UTILS
 echo "  ✅ src/lib/utils.ts (cn helper)"
 
-# data.ts — mock data placeholder
 cat > src/lib/data.ts << 'DATA'
 // ─── Mock Data ───────────────────────────────────────────────────────────────
 // Temporary data for development — replace with real API calls
@@ -202,13 +189,65 @@ DATA
 echo "  ✅ src/lib/data.ts"
 
 # -----------------------------
+# Types barrel file
+# -----------------------------
+
+cat > src/types/index.ts << 'TYPES'
+// ─── Shared Types ────────────────────────────────────────────────────────────
+// Add shared types here as your project grows
+// e.g. User, ApiResponse, etc.
+TYPES
+echo "  ✅ src/types/index.ts"
+
+# -----------------------------
+# Context barrel file
+# -----------------------------
+
+cat > src/context/index.ts << 'CONTEXT'
+// ─── Context Exports ─────────────────────────────────────────────────────────
+// Export all context providers from here for clean imports
+CONTEXT
+echo "  ✅ src/context/index.ts"
+
+# -----------------------------
+# useLocalStorage hook
+# -----------------------------
+
+cat > src/hooks/useLocalStorage.ts << 'LOCALSTORAGE'
+import { useState, useEffect } from 'react';
+
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === 'undefined') return initialValue;
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? (JSON.parse(item) as T) : initialValue;
+    } catch {
+      return initialValue;
+    }
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      window.localStorage.setItem(key, JSON.stringify(storedValue));
+    } catch {
+      console.warn(`useLocalStorage: could not save key "${key}"`);
+    }
+  }, [key, storedValue]);
+
+  return [storedValue, setStoredValue] as const;
+}
+LOCALSTORAGE
+echo "  ✅ src/hooks/useLocalStorage.ts"
+
+# -----------------------------
 # App route folders
 # -----------------------------
 
 echo ""
 echo "📂 Creating app route groups..."
 
-# Auth routes
 mkdir -p src/app/\(auth\)/login
 cat > src/app/\(auth\)/login/page.tsx << 'LOGINPAGE'
 export default function LoginPage() {
@@ -221,7 +260,6 @@ export default function LoginPage() {
 LOGINPAGE
 echo "  ✅ src/app/(auth)/login/page.tsx"
 
-# Dashboard routes
 mkdir -p src/app/\(dashboard\)/dashboard
 cat > src/app/\(dashboard\)/dashboard/page.tsx << 'DASHPAGE'
 export default function DashboardPage() {
@@ -233,6 +271,37 @@ export default function DashboardPage() {
 }
 DASHPAGE
 echo "  ✅ src/app/(dashboard)/dashboard/page.tsx"
+
+cat > src/app/\(dashboard\)/dashboard/loading.tsx << 'LOADING'
+import LoadingSpinner from '@/components/shared/LoadingSpinner';
+
+export default function Loading() {
+  return <LoadingSpinner />;
+}
+LOADING
+echo "  ✅ src/app/(dashboard)/dashboard/loading.tsx"
+
+# -----------------------------
+# .vscode/settings.json
+# -----------------------------
+
+echo ""
+echo "🔧 Creating .vscode/settings.json..."
+mkdir -p .vscode
+cat > .vscode/settings.json << 'VSCODE'
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"]
+  ],
+  "css.lint.unknownAtRules": "ignore"
+}
+VSCODE
+echo "  ✅ .vscode/settings.json"
 
 # -----------------------------
 # Append to .gitignore
@@ -425,28 +494,29 @@ echo "✅ Project ready!"
 echo ""
 echo "📍 $TARGET"
 echo ""
-echo "┌─────────────────────────────────────────┐"
-echo "│  src/                                   │"
-echo "│  ├── app/                               │"
-echo "│  │   ├── (auth)/login/page.tsx          │"
-echo "│  │   ├── (dashboard)/dashboard/page.tsx │"
-echo "│  │   ├── layout.tsx                     │"
-echo "│  │   └── page.tsx                       │"
-echo "│  ├── components/                        │"
-echo "│  │   ├── features/placeholder/          │"
-echo "│  │   │   └── Sidebar.tsx                │"
-echo "│  │   └── shared/                        │"
-echo "│  │       ├── EmptyState.tsx             │"
-echo "│  │       ├── LoadingSpinner.tsx         │"
-echo "│  │       └── PageHeader.tsx             │"
-echo "│  ├── lib/                               │"
-echo "│  │   ├── data.ts                        │"
-echo "│  │   └── utils.ts                       │"
-echo "│  ├── hooks/                             │"
-echo "│  ├── types/                             │"
-echo "│  ├── context/                           │"
-echo "│  └── docs/                              │"
-echo "└─────────────────────────────────────────┘"
+echo "┌─────────────────────────────────────────────┐"
+echo "│  src/                                       │"
+echo "│  ├── app/                                   │"
+echo "│  │   ├── (auth)/login/page.tsx              │"
+echo "│  │   ├── (dashboard)/dashboard/             │"
+echo "│  │   │   ├── page.tsx                       │"
+echo "│  │   │   └── loading.tsx                    │"
+echo "│  │   ├── layout.tsx                         │"
+echo "│  │   └── page.tsx                           │"
+echo "│  ├── components/                            │"
+echo "│  │   ├── features/placeholder/Sidebar.tsx   │"
+echo "│  │   └── shared/                            │"
+echo "│  │       ├── EmptyState.tsx                 │"
+echo "│  │       ├── LoadingSpinner.tsx             │"
+echo "│  │       └── PageHeader.tsx                 │"
+echo "│  ├── hooks/useLocalStorage.ts               │"
+echo "│  ├── types/index.ts                         │"
+echo "│  ├── context/index.ts                       │"
+echo "│  ├── lib/                                   │"
+echo "│  │   ├── data.ts                            │"
+echo "│  │   └── utils.ts                           │"
+echo "│  └── docs/                                  │"
+echo "└─────────────────────────────────────────────┘"
 echo ""
 echo "💡 To start the dev server:"
 echo "   cd $TARGET && npm run dev"
