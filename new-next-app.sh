@@ -70,16 +70,20 @@ mkdir -p src/components/shared
 mkdir -p src/hooks
 mkdir -p src/types
 mkdir -p src/context
-mkdir -p src/lib
-mkdir -p src/docs
+mkdir -p src/lib/api
+mkdir -p src/services
+mkdir -p src/mocks
+mkdir -p docs
 
 echo "  ✅ src/components/features/placeholder"
 echo "  ✅ src/components/shared"
 echo "  ✅ src/hooks"
 echo "  ✅ src/types"
 echo "  ✅ src/context"
-echo "  ✅ src/lib"
-echo "  ✅ src/docs"
+echo "  ✅ src/lib/api"
+echo "  ✅ src/services"
+echo "  ✅ src/mocks"
+echo "  ✅ docs/ (root)"
 
 # -----------------------------
 # Scaffold component files
@@ -180,24 +184,16 @@ export function cn(...inputs: ClassValue[]) {
 UTILS
 echo "  ✅ src/lib/utils.ts (cn helper)"
 
-cat > src/lib/mock.ts << 'MOCK'
-// ─── Mock Data ───────────────────────────────────────────────────────────────
-// Temporary data for development — replace with real API calls
-
-export const placeholder = [];
-MOCK
-echo "  ✅ src/lib/mock.ts"
-
 # -----------------------------
-# API client
+# API client + endpoints + barrel
 # -----------------------------
 
-mkdir -p src/lib/api
 cat > src/lib/api/client.ts << 'CLIENT'
 // ─── API Client ──────────────────────────────────────────────────────────────
 // Base fetch wrapper — use this for all external API calls
+// Components should never import this directly — use src/services/ instead
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? '';
 
 type RequestOptions = RequestInit & {
   params?: Record<string, string>;
@@ -206,7 +202,7 @@ type RequestOptions = RequestInit & {
 async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
   const { params, ...init } = options;
 
-  const url = new URL(`${BASE_URL}${endpoint}`, window.location.origin);
+  const url = new URL(`${BASE_URL}${endpoint}`);
   if (params) {
     Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
   }
@@ -243,7 +239,77 @@ export const api = {
     request<T>(endpoint, { ...options, method: 'DELETE' }),
 };
 CLIENT
-echo "  ✅ src/lib/api/client.ts"
+echo "  ✅ src/lib/api/client.ts (window.location.origin removed)"
+
+cat > src/lib/api/endpoints.ts << 'ENDPOINTS'
+// ─── API Endpoints ───────────────────────────────────────────────────────────
+// Keep all URL strings here — import into services, never into components
+
+export const endpoints = {
+  // auth
+  auth: {
+    login: '/auth/login',
+    logout: '/auth/logout',
+    me: '/auth/me',
+  },
+  // add more resource groups as your app grows
+};
+ENDPOINTS
+echo "  ✅ src/lib/api/endpoints.ts"
+
+cat > src/lib/api/index.ts << 'APIBARREL'
+export { api } from './client';
+export { endpoints } from './endpoints';
+APIBARREL
+echo "  ✅ src/lib/api/index.ts (barrel)"
+
+# -----------------------------
+# Services
+# -----------------------------
+
+cat > src/services/auth.service.ts << 'AUTHSERVICE'
+// ─── Auth Service ────────────────────────────────────────────────────────────
+// All auth-related API calls — import this in hooks/components, not api directly
+
+import { api } from '@/lib/api';
+import { endpoints } from '@/lib/api';
+
+export const authService = {
+  login: (credentials: { email: string; password: string }) =>
+    api.post(endpoints.auth.login, credentials),
+
+  logout: () =>
+    api.post(endpoints.auth.logout, {}),
+
+  getMe: () =>
+    api.get(endpoints.auth.me),
+};
+AUTHSERVICE
+echo "  ✅ src/services/auth.service.ts"
+
+cat > src/services/index.ts << 'SERVICESBARREL'
+// ─── Services Barrel ─────────────────────────────────────────────────────────
+// Export all services from here for clean imports
+
+export { authService } from './auth.service';
+SERVICESBARREL
+echo "  ✅ src/services/index.ts (barrel)"
+
+# -----------------------------
+# Mocks
+# -----------------------------
+
+cat > src/mocks/index.ts << 'MOCKS'
+// ─── Mock Data ───────────────────────────────────────────────────────────────
+// Temporary data for development — replace with real API calls via services/
+
+export const mockUser = {
+  id: '1',
+  name: 'Jane Doe',
+  email: 'jane@example.com',
+};
+MOCKS
+echo "  ✅ src/mocks/index.ts"
 
 # -----------------------------
 # Types barrel file
@@ -337,6 +403,36 @@ export default function Loading() {
 }
 LOADING
 echo "  ✅ src/app/(dashboard)/dashboard/loading.tsx"
+
+cat > src/app/\(dashboard\)/dashboard/error.tsx << 'ERROR'
+'use client';
+
+import { useEffect } from 'react';
+
+interface ErrorProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}
+
+export default function Error({ error, reset }: ErrorProps) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <main className="flex flex-col items-center justify-center p-8 gap-4">
+      <p className="text-sm text-muted-foreground">Something went wrong.</p>
+      <button
+        onClick={reset}
+        className="text-sm underline underline-offset-4 hover:text-foreground"
+      >
+        Try again
+      </button>
+    </main>
+  );
+}
+ERROR
+echo "  ✅ src/app/(dashboard)/dashboard/error.tsx"
 
 # -----------------------------
 # .vscode/settings.json
@@ -458,13 +554,14 @@ CSS
 echo "  ✅ globals.css cursor patch applied"
 
 # -----------------------------
-# Prettier config
+# Prettier config (ESM-safe)
 # -----------------------------
 
 echo ""
 echo "✨ Adding Prettier config..."
-cat > prettier.config.js << 'PRETTIER'
-module.exports = {
+cat > prettier.config.mjs << 'PRETTIER'
+/** @type {import('prettier').Config} */
+const config = {
   singleQuote: true,
   trailingComma: 'es5',
   printWidth: 100,
@@ -472,8 +569,10 @@ module.exports = {
   tabWidth: 2,
   arrowParens: 'avoid',
 };
+
+export default config;
 PRETTIER
-echo "  ✅ prettier.config.js created"
+echo "  ✅ prettier.config.mjs created (ESM-safe)"
 
 # -----------------------------
 # .env.local
@@ -496,15 +595,6 @@ NEXT_PUBLIC_API_URL=
 # DATABASE_URL=
 EOF
 echo "  ✅ .env.example created"
-
-# -----------------------------
-# Install cn dependencies
-# -----------------------------
-
-echo ""
-echo "📦 Installing cn() dependencies..."
-npm install clsx tailwind-merge
-echo "  ✅ clsx + tailwind-merge installed"
 
 # -----------------------------
 # .nvmrc
@@ -552,30 +642,38 @@ echo "✅ Project ready!"
 echo ""
 echo "📍 $TARGET"
 echo ""
-echo "┌─────────────────────────────────────────────┐"
-echo "│  src/                                       │"
-echo "│  ├── app/                                   │"
-echo "│  │   ├── (auth)/login/page.tsx              │"
-echo "│  │   ├── (dashboard)/dashboard/             │"
-echo "│  │   │   ├── page.tsx                       │"
-echo "│  │   │   └── loading.tsx                    │"
-echo "│  │   ├── layout.tsx                         │"
-echo "│  │   └── page.tsx                           │"
-echo "│  ├── components/                            │"
-echo "│  │   ├── features/placeholder/Sidebar.tsx   │"
-echo "│  │   └── shared/                            │"
-echo "│  │       ├── EmptyState.tsx                 │"
-echo "│  │       ├── LoadingSpinner.tsx             │"
-echo "│  │       └── PageHeader.tsx                 │"
-echo "│  ├── hooks/useLocalStorage.ts               │"
-echo "│  ├── types/index.ts                         │"
-echo "│  ├── context/index.ts                       │"
-echo "│  ├── lib/                                   │"
-echo "│  │   ├── api/client.ts                      │"
-echo "│  │   ├── mock.ts                             │"
-echo "│  │   └── utils.ts                           │"
-echo "│  └── docs/                                  │"
-echo "└─────────────────────────────────────────────┘"
+echo "┌─────────────────────────────────────────────────┐"
+echo "│  src/                                           │"
+echo "│  ├── app/                                       │"
+echo "│  │   ├── (auth)/login/page.tsx                  │"
+echo "│  │   ├── (dashboard)/dashboard/                 │"
+echo "│  │   │   ├── page.tsx                           │"
+echo "│  │   │   ├── loading.tsx                        │"
+echo "│  │   │   └── error.tsx                          │"
+echo "│  │   ├── layout.tsx                             │"
+echo "│  │   └── page.tsx                               │"
+echo "│  ├── components/                                │"
+echo "│  │   ├── features/placeholder/Sidebar.tsx       │"
+echo "│  │   └── shared/                                │"
+echo "│  │       ├── EmptyState.tsx                     │"
+echo "│  │       ├── LoadingSpinner.tsx                 │"
+echo "│  │       └── PageHeader.tsx                     │"
+echo "│  ├── hooks/useLocalStorage.ts                   │"
+echo "│  ├── types/index.ts                             │"
+echo "│  ├── context/index.ts                           │"
+echo "│  ├── services/                                  │"
+echo "│  │   ├── auth.service.ts                        │"
+echo "│  │   └── index.ts                               │"
+echo "│  ├── mocks/index.ts                             │"
+echo "│  └── lib/                                       │"
+echo "│      ├── api/                                   │"
+echo "│      │   ├── client.ts                          │"
+echo "│      │   ├── endpoints.ts                       │"
+echo "│      │   └── index.ts                           │"
+echo "│      └── utils.ts                               │"
+echo "│                                                 │"
+echo "│  docs/  (root)                                  │"
+echo "└─────────────────────────────────────────────────┘"
 echo ""
 echo "💡 To start the dev server:"
 echo "   cd $TARGET && npm run dev"
