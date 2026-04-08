@@ -58,6 +58,7 @@ echo "📚 Resources:"
 copy react-nextjs-patterns.pdf "$HOME/Desktop/resources/react-nextjs-patterns.pdf" "react-nextjs-patterns"
 copy react-nextjs-resources.pdf "$HOME/Desktop/resources/react-nextjs-resources.pdf" "react-nextjs-resources"
 copy github-and-communities.pdf "$HOME/Desktop/resources/github-and-communities.pdf" "github-and-communities"
+copy react-nextjs-roadmap.pdf "$HOME/Desktop/resources/react-nextjs-roadmap.pdf" "react-nextjs-roadmap"
 # -----------------------------
 # Make scripts executable
 # -----------------------------
