@@ -307,7 +307,7 @@
   <header>
     <div>
       <h1>Snippets <span class="accent">Cheatsheet</span></h1>
-      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 74 snippets</p>
+      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 71 snippets</p>
     </div>
     <div class="header-right">
       React · Next.js App Router · Redux Toolkit<br>
@@ -336,7 +336,7 @@
         </div>
         <div class="workflow-step">
           <div class="workflow-label">After it works</div>
-          <div class="workflow-line"><span class="wprefix">jsdoc</span> + <span class="wprefix">jsprop</span> to document props</div>
+          <div class="workflow-line">Props are typed via the interface in <span class="wprefix">rafcep</span> — no extra doc step needed</div>
         </div>
       </div>
       <div class="workflow-col">
@@ -491,7 +491,7 @@
     <!-- React Components -->
     <div class="section react">
       <div class="section-header">
-        <span class="icon">⚛️</span><h2>React Components</h2><span class="count">5</span>
+        <span class="icon">⚛️</span><h2>React Components</h2><span class="count">4</span>
       </div>
       <div class="snippet-list">
         <div class="snippet">
@@ -499,12 +499,8 @@
           <div class="snippet-info"><div class="snippet-name">Arrow Function Component</div><div class="snippet-desc">Named from filename, default export</div></div>
         </div>
         <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">rafcepjs</span></div>
-          <div class="snippet-info"><div class="snippet-name">Component + Props <span class="badge badge-js">JS</span></div><div class="snippet-desc">Destructured props, plain JavaScript</div></div>
-        </div>
-        <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">rafcep</span></div>
-          <div class="snippet-info"><div class="snippet-name">Component + Props <span class="badge badge-ts">TS</span></div><div class="snippet-desc">TypeScript interface + typed props — .ts/.tsx only</div></div>
+          <div class="snippet-info"><div class="snippet-name">Component + Props <span class="badge badge-ts">TS</span></div><div class="snippet-desc">TypeScript interface + typed props</div></div>
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">arafce</span></div>
@@ -575,23 +571,23 @@
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">npage</span></div>
-          <div class="snippet-info"><div class="snippet-name">Page Component</div><div class="snippet-desc">app/*/page.jsx — Server Component by default</div></div>
+          <div class="snippet-info"><div class="snippet-name">Page Component</div><div class="snippet-desc">app/*/page.tsx — Server Component by default</div></div>
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">nlayout</span></div>
-          <div class="snippet-info"><div class="snippet-name">Layout Component</div><div class="snippet-desc">app/*/layout.jsx — wraps {children}</div></div>
+          <div class="snippet-info"><div class="snippet-name">Layout Component</div><div class="snippet-desc">app/*/layout.tsx — wraps {children}: React.ReactNode</div></div>
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">nloading</span></div>
-          <div class="snippet-info"><div class="snippet-name">Loading Skeleton</div><div class="snippet-desc">loading.jsx — shown during Suspense / navigation</div></div>
+          <div class="snippet-info"><div class="snippet-name">Loading Skeleton</div><div class="snippet-desc">loading.tsx — shown during Suspense / navigation</div></div>
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">nerror</span></div>
-          <div class="snippet-info"><div class="snippet-name">Error Boundary</div><div class="snippet-desc">error.jsx — 'use client' included, has error + reset()</div></div>
+          <div class="snippet-info"><div class="snippet-name">Error Boundary</div><div class="snippet-desc">error.tsx — 'use client' included, typed error + reset()</div></div>
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">nroute</span></div>
-          <div class="snippet-info"><div class="snippet-name">API Route Handler</div><div class="snippet-desc">route.js — GET + POST stubs with try/catch + NextResponse</div></div>
+          <div class="snippet-info"><div class="snippet-name">API Route Handler</div><div class="snippet-desc">route.ts — GET + POST stubs with NextRequest types + NextResponse</div></div>
         </div>
         <div class="snippet">
           <div class="prefix-wrap"><span class="snippet-prefix">nmeta</span></div>
@@ -686,23 +682,6 @@
       </div>
     </div>
 
-    <!-- JSDoc -->
-    <div class="section util">
-      <div class="section-header">
-        <span class="icon">📝</span><h2>JSDoc</h2><span class="count">2</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">jsdoc</span></div>
-          <div class="snippet-info"><div class="snippet-name">Component JSDoc</div><div class="snippet-desc">/** @param {object} props … */ block</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">jsprop</span></div>
-          <div class="snippet-info"><div class="snippet-name">JSDoc Prop Line</div><div class="snippet-desc"> * @param {type} props.name — add extra params</div></div>
-        </div>
-      </div>
-    </div>
-
     <!-- Component Scaffolds -->
     <div class="section react wide">
       <div class="section-header">
@@ -782,7 +761,7 @@
   </div>
 
   <footer>
-    <p>React_Snippets.code-snippets &nbsp;·&nbsp; MERN + Next.js App Router &nbsp;·&nbsp; 74 snippets</p>
+    <p>React_Snippets.code-snippets &nbsp;·&nbsp; MERN + Next.js App Router &nbsp;·&nbsp; 71 snippets</p>
     <div class="legend">
       <div class="legend-item"><div class="legend-dot" style="background:var(--react)"></div>React</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--next)"></div>Next.js</div>
