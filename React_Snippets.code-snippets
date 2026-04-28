@@ -115,7 +115,7 @@
       "}"
     ],
     "description": "React Context + Provider boilerplate",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // urd → useReducer with reducer function stub
@@ -136,7 +136,7 @@
       "const [state, dispatch] = useReducer(reducer, { $3 })"
     ],
     "description": "React useReducer with reducer stub",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
@@ -158,12 +158,12 @@
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
     "description": "React arrow function component",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
-  // rafcep → component with typed Props interface (TypeScript only)
+  // rafcep → component with typed Props interface
   // Type component name once — used in interface, component, and export
-  "React Function Component with Props (TS)": {
+  "React Function Component with Props": {
     "prefix": "rafcep",
     "body": [
       "interface ${1:${TM_FILENAME_BASE}}Props {",
@@ -180,27 +180,8 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
-    "description": "React arrow function component with Props interface (TypeScript)",
+    "description": "React arrow function component with Props interface",
     "scope": "typescript,typescriptreact"
-  },
-
-  // rafcepjs → component with props, plain JavaScript (no TypeScript)
-  // Use this in .js / .jsx files — no interface, just destructured props
-  "React Function Component with Props (JS)": {
-    "prefix": "rafcepjs",
-    "body": [
-      "const ${1:${TM_FILENAME_BASE}} = ({ $2 }) => {",
-      "  return (",
-      "    <div>",
-      "      $3",
-      "    </div>",
-      "  )",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "description": "React arrow function component with props (JavaScript)",
-    "scope": "javascript,javascriptreact"
   },
 
   // arafce → async server component (Next.js)
@@ -216,7 +197,8 @@
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
-    ]
+    ],
+    "scope": "typescript,typescriptreact"
   },
 
   // arafcep → async server component with Props (Next.js)
@@ -236,7 +218,8 @@
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
-    ]
+    ],
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
@@ -248,14 +231,14 @@
   "import": {
     "prefix": "imp",
     "body": ["import ${1:module} from '${2:path}'"],
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // imd → import { X } from 'Y'
   "importDestructing": {
     "prefix": "imd",
     "body": ["import { ${1:module} } from '${2:path}'"],
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // inn → import from 'next/navigation' — useRouter, usePathname, useParams, useSearchParams
@@ -264,7 +247,7 @@
     "prefix": "inn",
     "body": ["import { ${1:useRouter, usePathname, useParams, useSearchParams} } from 'next/navigation'"],
     "description": "Import Next.js navigation hooks",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // inl → import Link from 'next/link'
@@ -272,7 +255,7 @@
     "prefix": "inl",
     "body": ["import Link from 'next/link'"],
     "description": "Import Next.js Link component",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // ini → import Image from 'next/image'
@@ -280,7 +263,7 @@
     "prefix": "ini",
     "body": ["import Image from 'next/image'"],
     "description": "Import Next.js Image component",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // inr → import { NextResponse } from 'next/server'
@@ -288,7 +271,7 @@
     "prefix": "inr",
     "body": ["import { NextResponse } from 'next/server'"],
     "description": "Import NextResponse for API routes",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // icn → import { cn } from '@/lib/utils'
@@ -296,7 +279,7 @@
     "prefix": "icn",
     "body": ["import { cn } from '@/lib/utils'"],
     "description": "Import shadcn cn() classname utility",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // iui → import { } from '@/components/ui' — cursor lands inside {}
@@ -304,7 +287,7 @@
     "prefix": "iui",
     "body": ["import { $1 } from '@/components/ui'"],
     "description": "Import from shadcn barrel file — type component names manually",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // irus → import { useState } from 'react'
@@ -312,7 +295,7 @@
     "prefix": "irus",
     "body": ["import { useState } from 'react'"],
     "description": "Import useState from react",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // irue → import { useEffect } from 'react'
@@ -320,7 +303,7 @@
     "prefix": "irue",
     "body": ["import { useEffect } from 'react'"],
     "description": "Import useEffect from react",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // irhooks → import { useState, useEffect } from 'react'
@@ -328,7 +311,7 @@
     "prefix": "irhooks",
     "body": ["import { useState, useEffect } from 'react'"],
     "description": "Import useState and useEffect from react",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // irr → import React from 'react'
@@ -336,7 +319,7 @@
     "prefix": "irr",
     "body": ["import React from 'react'"],
     "description": "Import React default export",
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
@@ -364,7 +347,7 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}.reducer"
     ],
-    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
@@ -402,7 +385,7 @@
   // ===========================================================
 
   // npage → basic App Router page (Server Component by default)
-  // Drop this in any app/*/page.jsx file
+  // Drop this in any app/*/page.tsx file
   "Next.js Page": {
     "prefix": "npage",
     "body": [
@@ -415,15 +398,15 @@
       "}"
     ],
     "description": "Next.js App Router page component",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nlayout → App Router layout wrapper
-  // Drop this in any app/*/layout.jsx file
+  // Drop this in any app/*/layout.tsx file
   "Next.js Layout": {
     "prefix": "nlayout",
     "body": [
-      "export default function ${1:${TM_FILENAME_BASE}}Layout({ children }) {",
+      "export default function ${1:${TM_FILENAME_BASE}}Layout({ children }: { children: React.ReactNode }) {",
       "  return (",
       "    <div>",
       "      $2",
@@ -433,10 +416,10 @@
       "}"
     ],
     "description": "Next.js App Router layout component",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
-  // nloading → loading.jsx skeleton shown during Suspense
+  // nloading → loading.tsx skeleton shown during Suspense
   "Next.js Loading": {
     "prefix": "nloading",
     "body": [
@@ -448,17 +431,17 @@
       "  )",
       "}"
     ],
-    "description": "Next.js loading.jsx for Suspense fallback",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "description": "Next.js loading.tsx for Suspense fallback",
+    "scope": "typescript,typescriptreact"
   },
 
-  // nerror → error.jsx boundary — MUST be a Client Component
+  // nerror → error.tsx boundary — MUST be a Client Component
   "Next.js Error Boundary": {
     "prefix": "nerror",
     "body": [
       "'use client'",
       "",
-      "export default function Error({ error, reset }) {",
+      "export default function Error({ error, reset }: { error: Error; reset: () => void }) {",
       "  return (",
       "    <div>",
       "      <h2>Something went wrong</h2>",
@@ -468,42 +451,42 @@
       "  )",
       "}"
     ],
-    "description": "Next.js error.jsx boundary (must be Client Component)",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "description": "Next.js error.tsx boundary (must be Client Component)",
+    "scope": "typescript,typescriptreact"
   },
 
-  // nroute → App Router API route handler (route.js)
+  // nroute → App Router API route handler (route.ts)
   // GET + POST stubs — delete whichever you don't need
   "Next.js API Route": {
     "prefix": "nroute",
     "body": [
-      "import { NextResponse } from 'next/server'",
+      "import { NextRequest, NextResponse } from 'next/server'",
       "",
-      "export async function GET(request) {",
+      "export async function GET(request: NextRequest) {",
       "  try {",
       "    $1",
       "    return NextResponse.json({ $2 })",
       "  } catch (error) {",
-      "    return NextResponse.json({ error: error.message }, { status: 500 })",
+      "    return NextResponse.json({ error: (error as Error).message }, { status: 500 })",
       "  }",
       "}",
       "",
-      "export async function POST(request) {",
+      "export async function POST(request: NextRequest) {",
       "  try {",
       "    const body = await request.json()",
       "    $3",
       "    return NextResponse.json({ $4 }, { status: 201 })",
       "  } catch (error) {",
-      "    return NextResponse.json({ error: error.message }, { status: 500 })",
+      "    return NextResponse.json({ error: (error as Error).message }, { status: 500 })",
       "  }",
       "}"
     ],
     "description": "Next.js App Router API route handler",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nmeta → static metadata export for SEO
-  // Add to any page.jsx to set the <title> and <meta description>
+  // Add to any page.tsx to set the <title> and <meta description>
   "Next.js Metadata": {
     "prefix": "nmeta",
     "body": [
@@ -513,7 +496,7 @@
       "}"
     ],
     "description": "Next.js static metadata export",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // ncc → 'use client' directive
@@ -522,7 +505,7 @@
     "prefix": "ncc",
     "body": ["'use client'", ""],
     "description": "Next.js use client directive",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nlink → Next.js <Link> component
@@ -530,7 +513,7 @@
     "prefix": "nlink",
     "body": ["<Link href=\"${1:/}\">${2:label}</Link>"],
     "description": "Next.js Link component",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nimg → Next.js <Image> component with required props
@@ -545,7 +528,7 @@
       "/>"
     ],
     "description": "Next.js Image component",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nrouter → useRouter + usePathname hooks (Client Component only)
@@ -556,7 +539,7 @@
       "const pathname = usePathname()"
     ],
     "description": "Next.js useRouter and usePathname hooks",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nparams → useParams hook (read dynamic route segments)
@@ -566,7 +549,7 @@
       "const params = useParams()"
     ],
     "description": "Next.js useParams hook for dynamic route segments",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // nsearch → useSearchParams hook (read query string)
@@ -577,7 +560,7 @@
       "const ${1:value} = searchParams.get('${2:key}')"
     ],
     "description": "Next.js useSearchParams hook for reading query params",
-    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
@@ -664,27 +647,6 @@
   },
 
   // ===========================================================
-  // 📝 JSDOC
-  // ===========================================================
-
-  // jsdoc → JSDoc block for a component with props
-  "JSDoc Component": {
-    "prefix": "jsdoc",
-    "body": [
-      "/**",
-      " * @param {object}   props",
-      " * @param {${1:type}} props.${2:propName} - ${3:description}",
-      " */"
-    ]
-  },
-
-  // jsprop → single JSDoc prop line (add more params)
-  "JSDoc Prop Line": {
-    "prefix": "jsprop",
-    "body": " * @param {${1:type}} props.${2:propName} - ${3:description}"
-  },
-
-  // ===========================================================
   // ⚛️ COMPONENT SCAFFOLDS
   // ===========================================================
 
@@ -697,22 +659,23 @@
       "// ─── Imports ────────────────────────────────────────────────────────────────",
       "import { useState, useEffect } from 'react';",
       "",
-      "// ─── Component ──────────────────────────────────────────────────────────────",
-      "// What this component does: ${1:...}",
-      "// What it does NOT do: ${2:...}",
-      "// Parent responsibilities: ${3:...}",
+      "// ─── Types ──────────────────────────────────────────────────────────────────",
+      "interface ${1:ComponentName}Props {",
+      "  ${2:propName}: ${3:type};",
+      "  ${4:onAction}: (${5:arg}: ${6:type}) => void;",
+      "}",
       "",
-      "/**",
-      " * @param {object}   props",
-      " * @param {${4:type}}     props.${5:propName} - ${6:description}",
-      " * @param {function} props.${7:onAction} - ${8:description}",
-      " */",
-      "const ${9:ComponentName} = ({ ${5:propName}, ${7:onAction} }) => {",
+      "// ─── Component ──────────────────────────────────────────────────────────────",
+      "// What this component does: ${7:...}",
+      "// What it does NOT do: ${8:...}",
+      "// Parent responsibilities: ${9:...}",
+      "",
+      "const ${1:ComponentName} = ({ ${2:propName}, ${4:onAction} }: ${1:ComponentName}Props) => {",
       "",
       "  // ─── State ────────────────────────────────────────────────────────────────",
       "  const [data, setData] = useState(null);",
       "  const [isLoading, setIsLoading] = useState(true);",
-      "  const [error, setError] = useState(null);",
+      "  const [error, setError] = useState<string | null>(null);",
       "",
       "  // ─── Derived Values ───────────────────────────────────────────────────────",
       "  const derivedValue = data?.filter(item => item.active);",
@@ -726,7 +689,7 @@
       "        setData(response.data);",
       "        setError(null);",
       "      } catch (err) {",
-      "        setError(err.message);",
+      "        setError((err as Error).message);",
       "        setData(null);",
       "      } finally {",
       "        setIsLoading(false);",
@@ -737,7 +700,7 @@
       "",
       "  // ─── Handlers ─────────────────────────────────────────────────────────────",
       "  const handle${11:Action} = () => {",
-      "    ${7:onAction}(data);",
+      "    ${4:onAction}(data);",
       "  };",
       "",
       "  // ─── Early Returns ────────────────────────────────────────────────────────",
@@ -754,8 +717,9 @@
       "  );",
       "};",
       "",
-      "export default ${9:ComponentName};"
-    ]
+      "export default ${1:ComponentName};"
+    ],
+    "scope": "typescript,typescriptreact"
   },
 
   // rcomp-pure → pure presentational component, no state, with early return
@@ -765,14 +729,15 @@
       "// ─── Imports ────────────────────────────────────────────────────────────────",
       "import $0 from '@/components/${1:Component}';",
       "",
+      "// ─── Types ──────────────────────────────────────────────────────────────────",
+      "interface ${6:ComponentName}Props {",
+      "  ${4:propName}: ${3:type};",
+      "}",
+      "",
       "// ─── Component ──────────────────────────────────────────────────────────────",
       "// ${2:What this component does — pure presentational, no state}",
       "",
-      "/**",
-      " * @param {object}   props",
-      " * @param {${3:type}} props.${4:propName} - ${5:description}",
-      " */",
-      "const ${6:ComponentName} = ({ ${4:propName} }) => {",
+      "const ${6:ComponentName} = ({ ${4:propName} }: ${6:ComponentName}Props) => {",
       "",
       "  // ─── Early Returns ──────────────────────────────────────────────────────",
       "  if (!${4:propName}?.length) return <p className=\"text-sm text-muted-foreground\">${7:Nothing here yet.}</p>;",
@@ -786,7 +751,8 @@
       "};",
       "",
       "export default ${6:ComponentName};"
-    ]
+    ],
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
@@ -814,6 +780,7 @@
   },
 
   // uec → useEffect with cleanup function
+  // $0 = effect body (cursor lands here first), $1 = cleanup body, $2 = deps
   "useEffect Cleanup": {
     "prefix": "uec",
     "body": [
@@ -856,7 +823,7 @@
   "Handler Submit": {
     "prefix": "hsubmit",
     "body": [
-      "function handleSubmit(e) {",
+      "function handleSubmit(e: React.FormEvent) {",
       "  e.preventDefault();",
       "  const trimmed = ${1:value}.trim();",
       "  if (!trimmed) return;",
@@ -870,10 +837,9 @@
   "Map List": {
     "prefix": "maplist",
     "body": [
-      "{${1:items}.map(${2:item} => (",
+      "{${1:items}.map((${2:item}) => (",
       "  <${3:Component}",
       "    key={${2:item}.id}",
-      "    ${2:item}={${2:item}}",
       "    $0",
       "  />",
       "))}"
