@@ -14,6 +14,7 @@ Personal config files for macOS dev environment.
 | settings.json | ~/Library/Application Support/Code/User/settings.json | VS Code settings |
 | keybindings.json | ~/Library/Application Support/Code/User/keybindings.json | VS Code keybindings |
 | React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
+| raycast_snippets.json | ~/.config/raycast/snippets/raycast_snippets.json | Raycast text snippets |
 | vscode-extensions.txt | local file in repo | VS Code extensions list |
 | cheatsheets | ~/Desktop/cheatsheets | HTML reference files |
 
@@ -61,7 +62,9 @@ bash bootstrap.sh
 
 **Step 2 — Install dotfiles:**
 ```bash
-bash install.sh
+bash install.sh      # interactive — confirm each file
+# or
+bash install.sh -y   # auto-confirm all files
 exec zsh
 ```
 
@@ -90,7 +93,9 @@ cd ~
 rm -rf my-dot-files
 git clone https://github.com/codebymehran/my-dot-files.git
 cd my-dot-files
-bash install.sh
+bash install.sh      # interactive — confirm each file
+# or
+bash install.sh -y   # auto-confirm all files
 exec zsh
 ```
 
