@@ -11,8 +11,8 @@
 
 # Documentation:
 # @raycast.description Clones a repo into ~/Code/explore, installs dependencies, opens in existing VS Code window
-# @raycast.author bhanu1776
-# @raycast.authorURL https://raycast.com/bhanu1776
+# @raycast.author codebymehran
+# @raycast.authorURL https://raycast.com/codebymehran
 
 set -e
 
