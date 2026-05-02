@@ -354,6 +354,7 @@ compdef _nna_completion nnab
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
+alias codebackup='code --list-extensions > ~/my-dot-files/vscode-extensions.txt && echo "✅ vscode-extensions.txt updated"'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
@@ -411,6 +412,7 @@ shortcuts() {
   echo "║    repodelete <n> → Delete local folder + GitHub repo                ║"
   echo "║    z <n>         → Jump to any project (zoxide learns from usage) ║"
   echo "║    co               → Open current folder in VS Code                 ║"
+  echo "║    codebackup       → Save installed VS Code extensions to repo      ║"
   echo "║                                                                      ║"
   echo "║  📋 FILE OPERATIONS                                                   ║"
   echo "║    mkcd <dir>       → Create directory and cd into it                ║"
