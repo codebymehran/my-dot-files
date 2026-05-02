@@ -99,6 +99,30 @@
   .section-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 500; padding: 2px 7px; border-radius: 4px; }
   .section-desc { font-size: 0.8rem; color: var(--muted); font-family: 'Inter', sans-serif; line-height: 1.5; font-weight: 400; }
 
+  .search-wrap {
+    margin-bottom: 18px;
+  }
+  .search-wrap input {
+    width: 100%;
+    max-width: 380px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-wrap input:focus {
+    border-color: #0369a1;
+  }
+  .search-wrap input::placeholder {
+    color: #9b9baf;
+  }
+  tr.hidden { display: none; }
+
   @media (max-width: 680px) {
     .grid { grid-template-columns: 1fr; }
     .card.full { grid-column: 1; }
@@ -119,6 +143,11 @@
       zsh + Oh My Zsh + Starship prompt
     </div>
   </header>
+
+  <!-- SEARCH -->
+  <div class="search-wrap" style="margin-top:24px;">
+    <input type="text" id="search" placeholder="Filter commands…" autocomplete="off" />
+  </div>
 
   <!-- BREW INSTALL BANNER -->
   <div class="install-banner">
@@ -151,9 +180,22 @@
 
     <!-- PROJECTS -->
     <div class="card proj">
-      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">4</span></div>
+      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">7</span></div>
       <table>
         <tr><td><span class="tag">cex</span></td><td><span class="desc">cd ~/Code/explore — for throwaway clones</span></td></tr>
+        <tr><td><span class="tag">cdf</span></td><td><span class="desc">cd ~/my-dot-files</span></td></tr>
+        <tr><td><span class="tag">nna &lt;name&gt;</span></td><td><span class="desc">Scaffold full Next.js project into ~/Code</span></td></tr>
+        <tr><td><span class="tag">nnab &lt;name&gt;</span></td><td><span class="desc">Scaffold basic Next.js project into ~/Code</span></td></tr>
+        <tr><td><span class="tag">clone &lt;url&gt;</span></td><td><span class="desc">Clone repo into ~/Code/explore + open VS Code</span></td></tr>
+        <tr><td><span class="tag">cloneown &lt;url&gt;</span></td><td><span class="desc">Clone your own repo into ~/Code + open VS Code</span></td></tr>
+        <tr>
+          <td><span class="tag">repodelete &lt;n&gt;</span></td>
+          <td>
+            <span class="desc">Delete local folder + GitHub repo safely</span>
+            <div class="note">supports fuzzy match · interactive picker · --dry-run flag available</div>
+          </td>
+        </tr>
+        <tr><td><span class="tag">codebackup</span></td><td><span class="desc">Save installed VS Code extensions to repo</span></td></tr>
         <tr>
           <td><span class="tag">proj</span></td>
           <td>
@@ -551,5 +593,15 @@
   </footer>
 
 </div>
+<script>
+  const input = document.getElementById('search');
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    document.querySelectorAll('tr').forEach(row => {
+      if (row.closest('thead')) return;
+      row.classList.toggle('hidden', q.length > 0 && !row.textContent.toLowerCase().includes(q));
+    });
+  });
+</script>
 </body>
 </html>
