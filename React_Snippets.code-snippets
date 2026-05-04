@@ -1,5 +1,90 @@
 {
   // ===========================================================
+  // 🤖 AI QUIZ PROMPT — copy this entire file and paste to Claude
+  // ===========================================================
+  //
+  // Here is my VS Code snippets file for React/Next.js.
+  // I want you to help me memorise all my snippet prefixes.
+  //
+  // Please do the following:
+  // 1. Quiz me on Tier 1 snippets first — describe what it generates, I guess the prefix
+  //    OR give me the prefix, I describe what it generates. Mix it up.
+  // 2. If I get it wrong, show me a short example of the output
+  // 3. After Tier 1 is solid, move to Tier 2, then Tier 3
+  // 4. If you spot any missing snippets or improvements, tell me at the end
+  // 5. One question at a time — keep it conversational
+  //
+  // My current progress:
+  // - Tier 1 daily snippets — needs drilling
+  // - Tier 2 Next.js + hooks — needs drilling
+  // - Tier 3 scaffolds + advanced — not started
+  //
+  // TIER 1 — use these every day:
+  //   cl        → console.log with label and value
+  //   clj       → console.log with JSON.stringify (for objects)
+  //   us        → useState (auto-capitalises setter name)
+  //   ue        → useEffect with dep array
+  //   rafce     → arrow function component (named after file)
+  //   rafcep    → arrow function component with Props interface
+  //   imp       → import X from 'Y'
+  //   imd       → import { X } from 'Y'
+  //   try       → try/catch block
+  //   afn       → async arrow function
+  //   ncc       → 'use client' directive
+  //   todo      → // TODO: note
+  //   maplist   → .map() to render list of components with key
+  //   er-load   → early return loading state
+  //   er-error  → early return error state
+  //   er-empty  → early return empty list
+  //
+  // TIER 2 — once Tier 1 is solid:
+  //   uem       → useEffect on mount only (empty deps [])
+  //   ued       → useEffect with specific dependency
+  //   uec       → useEffect with cleanup function
+  //   ur        → useRef
+  //   ucb       → useCallback
+  //   umm       → useMemo
+  //   uc        → useContext
+  //   npage     → Next.js page component
+  //   nlayout   → Next.js layout component
+  //   nroute    → Next.js API route (GET + POST)
+  //   nlink     → Next.js <Link> component
+  //   nimg      → Next.js <Image> component
+  //   nrouter   → useRouter + usePathname hooks
+  //   nmeta     → static metadata export for SEO
+  //   inn       → import from next/navigation
+  //   inl       → import Link from next/link
+  //   ini       → import Image from next/image
+  //   inr       → import NextResponse from next/server
+  //   icn       → import cn from @/lib/utils
+  //   iui       → import from @/components/ui
+  //   irus      → import useState from react
+  //   irue      → import useEffect from react
+  //   irhooks   → import useState + useEffect from react
+  //   hsubmit   → form submit handler with trim + guard
+  //   cw        → console.warn
+  //   ce        → console.error
+  //   ct        → console.table
+  //   cgroup    → console.group block
+  //
+  // TIER 3 — advanced / occasionally used:
+  //   rcomp       → full client component scaffold (state, effects, handlers, early returns)
+  //   rcomp-pure  → pure presentational component scaffold
+  //   ucxt        → React Context + Provider boilerplate
+  //   urd         → useReducer with reducer stub
+  //   rxslice     → Redux Toolkit slice boilerplate
+  //   arafce      → async server component (Next.js)
+  //   arafcep     → async server component with Props (Next.js)
+  //   nloading    → Next.js loading.tsx
+  //   nerror      → Next.js error.tsx boundary (must be client component)
+  //   nparams     → useParams hook
+  //   nsearch     → useSearchParams hook
+  //   sec         → custom section header comment
+  //   sec-imp / sec-comp / sec-state / sec-hand / sec-early / sec-render / sec-derived / sec-effect / sec-refs
+  //   cwarn / cquest / chigh / ctodo → colourful comment shortcuts
+  //   irr         → import React from 'react'
+  //
+  // ===========================================================
   // 🖨️ CONSOLE
   // ===========================================================
 
