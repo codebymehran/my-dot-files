@@ -1,5 +1,85 @@
 [
   // ===========================================================
+  // 🤖 AI QUIZ PROMPT — copy this entire file and paste to Claude
+  // ===========================================================
+  //
+  // Here is my VS Code keybindings.json file.
+  // I want you to help me master all my keyboard shortcuts.
+  //
+  // Please do the following:
+  // 1. Quiz me on Tier 1 first — one at a time, mix both directions:
+  //    either "what does X do?" or "how do you do X?"
+  // 2. If I get it wrong, give me a quick real-world scenario where I'd use it
+  // 3. After Tier 1, move to Tier 2
+  // 4. Note: most of these only work in specific panels (explorer, terminal etc)
+  //    so make sure to tell me the context when quizzing
+  // 5. One question at a time — keep it conversational
+  //
+  // My current progress:
+  // - Tier 1 explorer + terminal — needs drilling
+  // - Tier 2 splits + panels — needs drilling
+  // - Tier 3 everything else — not started
+  //
+  // TIER 1 — file explorer and terminal (use these daily):
+  //   Explorer (open with Space+e):
+  //     j / k           → move down/up
+  //     h               → collapse folder
+  //     l or Enter      → open file or expand folder
+  //     o               → toggle expand/collapse
+  //     gg              → go to top
+  //     Shift+G         → go to bottom
+  //     a               → new file
+  //     Shift+A         → new folder
+  //     r               → rename file/folder
+  //     dd              → delete file/folder
+  //     x               → cut file/folder
+  //     y               → copy file/folder
+  //     p               → paste file/folder
+  //     Esc             → return to editor
+  //
+  //   Terminal (open with Space+t):
+  //     Esc or Ctrl+[   → return to editor
+  //     Ctrl+Shift+T    → split terminal side by side
+  //     Cmd+W           → kill current terminal
+  //
+  // TIER 2 — splits and panels:
+  //   Splits:
+  //     Cmd+\           → split editor right
+  //     Cmd+Shift+\     → split editor down
+  //     Ctrl+w v        → split right (Vim style)
+  //     Ctrl+w s        → split down (Vim style)
+  //     Ctrl+w q        → close current split
+  //     Ctrl+w o        → close all other splits
+  //     Ctrl+h/l/k/j    → navigate between splits
+  //
+  //   Quick Open (Space+p):
+  //     Ctrl+j / Ctrl+k → next/previous item
+  //     Ctrl+d / Ctrl+u → page down/up
+  //
+  //   Autocomplete popup:
+  //     Ctrl+j / Ctrl+k → next/previous suggestion
+  //     Ctrl+d / Ctrl+u → page down/up suggestions
+  //
+  //   All panels (Problems, Search, Git):
+  //     j / k           → move down/up
+  //     gg / Shift+G    → top/bottom
+  //     Enter           → select item
+  //
+  // TIER 3 — everything else:
+  //     Cmd+N           → new file (Advanced New File ext)
+  //     Cmd+Shift+T     → reopen closed tab
+  //     Cmd+Shift+W     → close all editors in group
+  //     Cmd+K P         → pin/unpin editor tab
+  //     Cmd+K M         → toggle maximize editor
+  //     Cmd++ / Cmd+-   → increase/decrease font size (editor only)
+  //     Cmd+0           → reset font size
+  //     Ctrl+F18        → alternator switch (toggle between related files)
+  //
+  // ⚠️  NOTE: Space+= / Space++ / Space+- (split resize) mentioned in the
+  //     reference guide below are NOT actually mapped anywhere — ignore them
+  //     or add them if you want resize shortcuts.
+  //
+  // ===========================================================
   // 🎯 PHILOSOPHY: Minimal keybindings approach
   // Let Vim handle 90% of navigation and editing
   // Keybindings only for VSCode-specific UI elements
@@ -501,9 +581,7 @@
   MANAGE SPLITS:
     Ctrl+w q                    → Close current split
     Ctrl+w o                    → Close all other splits
-    Space+=                     → Even split widths (in settings.json)
-    Space++                     → Increase size (in settings.json)
-    Space+-                     → Decrease size (in settings.json)
+    ⚠️  Space+= / Space++ / Space+- → NOT MAPPED (add if you want resize shortcuts)
 
 
   ═══════════════════════════════════════════════════════════
