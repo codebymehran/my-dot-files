@@ -1672,82 +1672,82 @@
                         ]
                     },
                     {
-                        "description": "Hyper Quick Launch - AI & Dev Tools",
-                        "manipulators": [
-                            {
-                                "description": "Hyper+1 → Claude",
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://claude.ai" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Hyper+2 → ChatGPT",
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://chat.openai.com" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Hyper+3 → Gemini",
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://gemini.google.com" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Hyper+4 → Copilot",
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://copilot.microsoft.com" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Cmd+Hyper+1 → GitHub",
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://github.com" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Cmd+Hyper+2 → Gmail",
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://mail.google.com" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Cmd+Hyper+3 → YouTube",
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open https://youtube.com" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Cmd+Hyper+4 → Localhost:5173",
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "shell_command": "open http://localhost:5173" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
+    "description": "Hyper Quick Launch - AI & Dev Tools",
+    "manipulators": [
+        {
+            "description": "Hyper+1 → Claude",
+            "from": {
+                "key_code": "1",
+                "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://claude.ai" }],
+            "type": "basic"
+        },
+        {
+            "description": "Hyper+2 → ChatGPT",
+            "from": {
+                "key_code": "2",
+                "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://chat.openai.com" }],
+            "type": "basic"
+        },
+        {
+            "description": "Hyper+3 → DeepSeek",
+            "from": {
+                "key_code": "3",
+                "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://chat.deepseek.com" }],
+            "type": "basic"
+        },
+        {
+            "description": "Hyper+4 → v0.dev",
+            "from": {
+                "key_code": "4",
+                "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://v0.dev" }],
+            "type": "basic"
+        },
+        {
+            "description": "Cmd+Hyper+1 → GitHub",
+            "from": {
+                "key_code": "1",
+                "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://github.com" }],
+            "type": "basic"
+        },
+        {
+            "description": "Cmd+Hyper+2 → Gmail",
+            "from": {
+                "key_code": "2",
+                "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://mail.google.com" }],
+            "type": "basic"
+        },
+        {
+            "description": "Cmd+Hyper+3 → Vercel",
+            "from": {
+                "key_code": "3",
+                "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open https://vercel.com" }],
+            "type": "basic"
+        },
+        {
+            "description": "Cmd+Hyper+4 → Localhost:5173",
+            "from": {
+                "key_code": "4",
+                "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [{ "shell_command": "open http://localhost:5173" }],
+            "type": "basic"
+        }
+    ]
+},
                     {
                         "description": "Shift + F6 to low power mode with notification",
                         "manipulators": [
