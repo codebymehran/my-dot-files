@@ -1,3 +1,25 @@
+// ===========================================================
+// 🧠 KARABINER QUIZ PROMPT 
+// ===========================================================
+/*
+Here is my Karabiner-Elements config. I want you to help me master my shortcuts.
+Please do the following:
+1. Quiz me on my shortcuts ONE BY ONE — ask what a key combo does, or what shortcut triggers an action
+2. If I get something wrong, correct me and tell me when I'd actually use it in a real workflow
+3. Focus on shortcuts I might have forgotten or rarely use
+4. Mix directions — sometimes show the keys and ask the action, sometimes describe the action and ask the keys
+5. After the quiz, ask if I want to drill a specific layer (Hyper / Cmd+Hyper / Opt+Hyper / Quick Launch / Chrome / VSCode)
+6. If you spot any gaps, conflicts, or improvements, save them for the end
+7. Keep it conversational — one question at a time, wait for my answer
+
+My current layer awareness:
+- Hyper layer (letters) — daily use but some keys forgotten
+- Cmd + Hyper layer — occasionally forget what's mapped
+- Opt + Hyper layer (coding sequences) — need drilling
+- Quick Launch (numbers) — solid
+- Chrome shortcuts — mostly solid
+- VSCode-specific — need drilling
+*/
 {
     "profiles": [
         {
