@@ -1,4 +1,79 @@
 # ============================================================================
+# 🤖 AI QUIZ PROMPT — copy this entire file and paste to Claude
+# ============================================================================
+#
+# Here is my .zshrc file. I want you to help me master my terminal shortcuts.
+#
+# Please do the following:
+# 1. Start with TIER 1 aliases only — quiz me one by one
+# 2. Ask what a command does, wait for my answer, then correct or confirm
+# 3. If I get something wrong, give me a real example of when I'd use it
+# 4. After Tier 1 is solid, move to Tier 2, then Tier 3
+# 5. If you notice anything broken, missing, or improvable, tell me at the end
+# 6. Keep it conversational — one question at a time
+#
+# My current progress:
+# - Tier 1 daily basics — needs drilling
+# - Tier 2 git + npm + dev — needs drilling
+# - Tier 3 advanced/rarely used — not started
+#
+# TIER 1 — learn these first (daily use):
+#   z <name>       → jump to project with zoxide
+#   co             → open current folder in VS Code
+#   .. ... ....    → go up directories
+#   c              → clear screen
+#   mkcd <dir>     → create dir and cd into it
+#   lt             → tree view of files
+#   gs             → git status
+#   gl             → git log (last 10, graph)
+#   gacp "msg"     → add + commit + push in one command
+#   ni             → npm install
+#   nrd            → npm run dev
+#   nrb            → npm run build
+#   killport <n>   → kill process on port
+#   ports          → show all listening ports
+#   zc             → edit zshrc in VS Code
+#   zr             → reload zshrc
+#   shortcuts      → show help
+#
+# TIER 2 — once Tier 1 is solid:
+#   nna <name>     → scaffold new Next.js app into ~/Code
+#   nnab <name>    → scaffold basic Next.js app
+#   clone <url>    → clone repo + set up dev environment
+#   cloneown <url> → clone your own repo into ~/Code
+#   ghcreate       → create GitHub repo + push current project
+#   ghopen         → open current repo in browser
+#   repodelete     → delete local folder + GitHub repo
+#   gd             → git diff
+#   gco <branch>   → git checkout branch
+#   gb             → list git branches
+#   glh            → last commit with file stats
+#   gst            → git stash
+#   gstp           → git stash pop
+#   grc            → git reset hard + clean (dangerous!)
+#   nid            → npm install --save-dev
+#   nrs            → npm run start
+#   nrt            → npm run test
+#   nup            → npm update
+#   killnode       → kill all node processes
+#   cleannm        → remove all node_modules recursively
+#   myip           → show public IP
+#   localip        → show local IP
+#   cex            → cd to ~/Code/explore
+#   cdf            → cd to ~/my-dot-files
+#   starshipconfig → edit Starship prompt config
+#
+# TIER 3 — advanced/rarely used:
+#   gitallpull     → pull all projects at once
+#   gacpall        → interactive commit + push all projects
+#   gitwipe        → wipe ALL git history (dangerous!)
+#   proj()         → fzf fuzzy project switcher
+#   cpv            → copy with progress bar (rsync)
+#   ducks          → show largest files/dirs in current dir
+#   cx <file>      → make file executable
+#   000/644/755/777 → chmod shortcuts
+#
+# ============================================================================
 # PATH
 # ============================================================================
 export PATH="$HOME/my-dot-files:$PATH"
@@ -354,7 +429,6 @@ compdef _nna_completion nnab
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
-alias codebackup='code --list-extensions > ~/my-dot-files/vscode-extensions.txt && echo "✅ vscode-extensions.txt updated"'
 
 # ============================================================================
 # QUICK EDIT & RELOAD
@@ -396,81 +470,73 @@ shortcuts() {
   echo "║                    🚀 Terminal Shortcuts Reference                   ║"
   echo "╠══════════════════════════════════════════════════════════════════════╣"
   echo "║                                                                      ║"
-  echo "║  📁 NAVIGATION                                                        ║"
-  echo "║    ..               → Go up one directory                            ║"
-  echo "║    ...              → Go up two directories                          ║"
-  echo "║    ....             → Go up three directories                        ║"
-  echo "║    .....            → Go up four directories                         ║"
-  echo "║    c                → Clear screen                                   ║"
-  echo "║                                                                      ║"
-  echo "║  📂 PROJECT SHORTCUTS                                                 ║"
-  echo "║    nna <n>       → Scaffold new Next.js project into ~/Code       ║"
-  echo "║    cex              → Go to ~/Code/explore (throwaway clones)        ║"
-  echo "║    cdf              → Go to ~/my-dot-files                           ║"
-  echo "║    clone <url>      → Clone repo and set up dev environment          ║"
-  echo "║    cloneown <url>   → Clone your own repo into ~/Code                ║"
-  echo "║    repodelete <n> → Delete local folder + GitHub repo                ║"
-  echo "║    z <n>         → Jump to any project (zoxide learns from usage) ║"
+  echo "║  ⭐ TIER 1 — learn these first (daily use)                           ║"
+  echo "║    z <name>         → Jump to any project (zoxide)                   ║"
   echo "║    co               → Open current folder in VS Code                 ║"
-  echo "║    codebackup       → Save installed VS Code extensions to repo      ║"
-  echo "║                                                                      ║"
-  echo "║  📋 FILE OPERATIONS                                                   ║"
+  echo "║    ..  ...  ....    → Go up 1 / 2 / 3 directories                   ║"
+  echo "║    c                → Clear screen                                   ║"
   echo "║    mkcd <dir>       → Create directory and cd into it                ║"
-  echo "║    cpv <src> <dst>  → Copy with progress bar                         ║"
-  echo "║    trash <file>     → Move to trash (safer than rm)                  ║"
-  echo "║    cx <file>        → Make file executable                           ║"
-  echo "║    ls / ll / la     → List files                                     ║"
-  echo "║    lt               → List files in tree view                        ║"
-  echo "║    cat <file>       → View file with syntax highlighting (bat)       ║"
-  echo "║    catp <file>      → View file plain (no highlighting)              ║"
-  echo "║                                                                      ║"
-  echo "║  🔄 GIT COMMANDS                                                      ║"
-  echo "║    gacp \"msg\"       → Add, commit & push with message                ║"
-  echo "║    gacpall          → Interactive commit & push all projects         ║"
-  echo "║    gitallpull       → Pull latest changes from all projects          ║"
-  echo "║    gitwipe          → Wipe ALL history, keep files (⚠️ dangerous!)    ║"
+  echo "║    lt               → Tree view of files                             ║"
   echo "║    gs               → Git status                                     ║"
   echo "║    gl               → Git log (last 10, with graph)                  ║"
-  echo "║    glh              → Last commit with file stats                    ║"
-  echo "║    gd               → Git diff                                       ║"
-  echo "║    gco <branch>     → Git checkout branch                            ║"
-  echo "║    gb               → Git branch list                                ║"
-  echo "║    grc              → Git reset hard & clean (⚠️ dangerous!)          ║"
-  echo "║    gst              → git stash                                      ║"
-  echo "║    gstp             → git stash pop                                  ║"
-  echo "║    ghcreate         → Create public GitHub repo + push               ║"
-  echo "║    ghcreate --private → Same but private                             ║"
-  echo "║    ghcreate <n> [--private] → Custom name, optional private          ║"
-  echo "║    ghopen           → Open current repo on GitHub in browser         ║"
-  echo "║                                                                      ║"
-  echo "║  📦 NODE/NPM SHORTCUTS                                                ║"
+  echo "║    gacp \"msg\"        → Add, commit & push in one command             ║"
   echo "║    ni               → npm install                                    ║"
-  echo "║    nid              → npm install --save-dev                         ║"
   echo "║    nrd              → npm run dev                                    ║"
   echo "║    nrb              → npm run build                                  ║"
+  echo "║    killport <port>  → Kill process on port                           ║"
+  echo "║    ports            → Show all listening ports                       ║"
+  echo "║    zc               → Edit this zshrc in VS Code                    ║"
+  echo "║    zr               → Reload zshrc after editing                    ║"
+  echo "║    shortcuts        → Show this help                                 ║"
+  echo "║                                                                      ║"
+  echo "║  🔥 TIER 2 — once Tier 1 is solid                                    ║"
+  echo "║    nna <name>       → Scaffold new Next.js app into ~/Code           ║"
+  echo "║    nnab <name>      → Scaffold basic Next.js app                     ║"
+  echo "║    clone <url>      → Clone repo and set up dev environment          ║"
+  echo "║    cloneown <url>   → Clone your own repo into ~/Code                ║"
+  echo "║    ghcreate         → Create GitHub repo + push current project      ║"
+  echo "║    ghcreate --private → Same but private                             ║"
+  echo "║    ghopen           → Open current repo on GitHub in browser         ║"
+  echo "║    repodelete       → Delete local folder + GitHub repo              ║"
+  echo "║    gd               → Git diff                                       ║"
+  echo "║    gco <branch>     → Git checkout branch                            ║"
+  echo "║    gb               → List git branches                              ║"
+  echo "║    glh              → Last commit with file stats                    ║"
+  echo "║    gst              → Git stash                                      ║"
+  echo "║    gstp             → Git stash pop                                  ║"
+  echo "║    grc              → Git reset hard & clean (⚠️  dangerous!)         ║"
+  echo "║    nid              → npm install --save-dev                         ║"
   echo "║    nrs              → npm run start                                  ║"
   echo "║    nrt              → npm run test                                   ║"
   echo "║    nup              → npm update                                     ║"
-  echo "║                                                                      ║"
-  echo "║  🛠️  SYSTEM & UTILITIES                                               ║"
-  echo "║    ports            → Show listening ports                           ║"
+  echo "║    killnode         → Kill all node processes                        ║"
+  echo "║    cleannm          → Remove all node_modules recursively            ║"
   echo "║    myip             → Show public IP address                         ║"
   echo "║    localip          → Show local IP address                          ║"
-  echo "║    killport <port>  → Kill process on port                           ║"
-  echo "║    killnode         → Kill all node processes                        ║"
-  echo "║    cleannm          → Move node_modules to Trash (with confirmation) ║"
-  echo "║    ducks            → Show largest files/dirs in current directory   ║"
-  echo "║    zc               → Edit zsh config (opens VS Code)               ║"
-  echo "║    zr               → Reload zsh config                             ║"
+  echo "║    cex              → Go to ~/Code/explore                           ║"
+  echo "║    cdf              → Go to ~/my-dot-files                           ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
-  echo "║    shortcuts        → Show this help message                         ║"
   echo "║                                                                      ║"
-  echo "║  💡 PRO TIPS                                                          ║"
-  echo "║    • Use Tab for auto-completion                                     ║"
-  echo "║    • Use Ctrl+R for history search (fuzzy find)                      ║"
-  echo "║    • Commands starting with space won't be saved in history          ║"
-  echo "║    • nna <tab> shows existing ~/Code projects to avoid duplicates    ║"
-  echo "║                                                                      ║"
+  echo "║  🗄️  TIER 3 — advanced / rarely used                                   ║"
+  echo "║    gitallpull       → Pull latest from all projects at once           ║"
+  echo "║    gacpall          → Interactive commit + push all projects          ║"
+  echo "║    gitwipe          → Wipe ALL git history (⚠️  very dangerous!)       ║"
+  echo "║    proj             → Fuzzy project switcher (fzf)                    ║"
+  echo "║    cpv <src> <dst>  → Copy with progress bar (rsync)                  ║"
+  echo "║    ducks            → Show largest files/dirs in current directory    ║"
+  echo "║    cx <file>        → Make file executable (chmod +x)                 ║"
+  echo "║    000/644/755/777  → Quick chmod shortcuts                           ║"
+  echo "║    trash <file>     → Move to trash (safer than rm)                   ║"
+  echo "║    cat / catp       → Syntax-highlighted file view (bat)              ║"
+  echo "║    ls / ll / la     → List files (eza with icons)                     ║"
+  echo "║                                                                       ║"
+  echo "║  💡 PRO TIPS                                                           ║"
+  echo "║    • Use Tab for auto-completion                                      ║"
+  echo "║    • Use Ctrl+R for fuzzy history search                              ║"
+  echo "║    • Commands starting with space won't be saved in history           ║"
+  echo "║    • nna <tab> shows existing ~/Code projects to avoid duplicates     ║"
+  echo "║    • rm / cp / mv all ask for confirmation (safety aliases)           ║"
+  echo "║                                                                       ║"
   echo "╚══════════════════════════════════════════════════════════════════════╝"
   echo ""
 }
