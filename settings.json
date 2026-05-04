@@ -840,9 +840,56 @@
     ma, `a, `` (toggle last position)
     gi (jump back to last insert point)
 
-  STAGE 5 – MACROS:
+  STAGE 4.5 – SNEAK, CAMELCASE MOTION & VISUAL STAR:
+  ═══════════════════════════════════════════════════════════
+
+  SNEAK (s):
+    s<char><char>               → Jump to any 2-char sequence on screen
+    ;                           → Repeat sneak forward
+    ,                           → Repeat sneak backward
+    S<char><char>               → Sneak backwards
+    Example: s u E → jumps to "uE" in "useState" or "useEffect"
+    Rule: can see it on screen → sneak. Can't see it → /search
+
+  CAMELCASE MOTION (active but invisible!):
+    w                           → next camelCase/snake_case word segment
+    b                           → previous segment
+    e                           → end of segment
+    Example in "getUserProfile":
+      cursor on g → w → jumps to "U" (User)
+      cursor on U → w → jumps to "P" (Profile)
+    Example in "user_profile_data":
+      w moves through user → profile → data individually
+    ciw on "getUserProfile"     → changes only the segment under cursor
+    Rule: w/b/e now work INSIDE words, not just between them
+
+  VISUAL STAR:
+    Select text in visual mode → *  → search for that exact selection
+    Useful for: multi-word searches, selecting then finding all occurrences
+    Example: visually select "btn-primary" → * → jumps to next match
+    vs normal *: only works on single word under cursor
+
+  ═══════════════════════════════════════════════════════════
+  STAGE 5 – DOT REPEAT:
+    .                           → Repeat last change
+    Use case: make a change once, move to next target, press . to repeat
+    Example: ciw → type "new" → Esc → move to next word → .
+    Rule: if you're doing the same edit more than twice, use dot
+
+  STAGE 6 – REGISTERS:
+    "ayy                        → Yank line into register 'a'
+    "ap                         → Paste from register 'a'
+    "by iw                      → Yank word into register 'b'
+    "_d                         → Delete to black hole (don't overwrite clipboard)
+    ""p                         → Paste from default register
+    :reg                        → Show all registers
+    Rule: use "_d when you want to delete without losing your yanked text
+
+  STAGE 7 – MACROS:
     qa → record, q → stop, @a → replay
-    Use for repetitive multi-step edits
+    @@ → replay last macro
+    5@a → replay macro 5 times
+    Use for repetitive multi-step edits that dot repeat can't handle
 
   ═══════════════════════════════════════════════════════════
   ⚡ SPEED TIPS
