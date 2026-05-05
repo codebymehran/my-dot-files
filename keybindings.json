@@ -50,7 +50,7 @@
   //     Ctrl+w s        → split down (Vim style)
   //     Ctrl+w q        → close current split
   //     Ctrl+w o        → close all other splits
-  //     Ctrl+h/l/k/j    → navigate between splits
+  //     Ctrl+h/l/k/j    → navigate between splits (k/j only when not in input)
   //
   //   Quick Open (Space+p):
   //     Ctrl+j / Ctrl+k → next/previous item
@@ -84,6 +84,28 @@
   // Let Vim handle 90% of navigation and editing
   // Keybindings only for VSCode-specific UI elements
   // ===========================================================
+
+  // ===========================================================
+  // 🪟 SPLIT NAVIGATION — Ctrl+hjkl
+  // ===========================================================
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft",
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight",
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp",
+    "when": "!inputFocus",
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown",
+    "when": "!inputFocus",
+  },
 
   // ===========================================================
   // 📁 FILE EXPLORER - VIM NAVIGATION
@@ -575,8 +597,8 @@
   NAVIGATE SPLITS:
     Ctrl+h                      → Focus left split
     Ctrl+l                      → Focus right split
-    Ctrl+k                      → Focus above split
-    Ctrl+j                      → Focus below split
+    Ctrl+k                      → Focus above split (when not in input)
+    Ctrl+j                      → Focus below split (when not in input)
 
   MANAGE SPLITS:
     Ctrl+w q                    → Close current split
