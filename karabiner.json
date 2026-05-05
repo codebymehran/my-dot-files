@@ -1434,9 +1434,9 @@ My current layer awareness:
             "type": "basic"
         },
         {
-            "description": "backslash = %",
+            "description": "Hyper+b = %",
             "from": {
-                "key_code": "backslash",
+                "key_code": "b",
                 "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
             },
             "to": [
@@ -1524,22 +1524,10 @@ My current layer awareness:
                 "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
             },
             "to": [
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                },
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                },
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                },
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                }
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] },
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] },
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] },
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] }
             ],
             "type": "basic"
         },
@@ -1550,14 +1538,8 @@ My current layer awareness:
                 "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
             },
             "to": [
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                },
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                }
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] },
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] }
             ],
             "type": "basic"
         },
@@ -1568,10 +1550,7 @@ My current layer awareness:
                 "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
             },
             "to": [
-                {
-                    "key_code": "return_or_enter",
-                    "modifiers": ["left_shift"]
-                }
+                { "key_code": "return_or_enter", "modifiers": ["left_shift"] }
             ],
             "type": "basic"
         },
