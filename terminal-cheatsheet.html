@@ -180,10 +180,17 @@
 
     <!-- PROJECTS -->
     <div class="card proj">
-      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">7</span></div>
+      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">8</span></div>
       <table>
         <tr><td><span class="tag">cex</span></td><td><span class="desc">cd ~/Code/explore — for throwaway clones</span></td></tr>
         <tr><td><span class="tag">cdf</span></td><td><span class="desc">cd ~/my-dot-files</span></td></tr>
+        <tr>
+          <td><span class="tag">dotinstall</span></td>
+          <td>
+            <span class="desc">Re-clone my-dot-files from GitHub + run install.sh -y + reload shell</span>
+            <div class="note">one command to fully reinstall your dot files on any machine</div>
+          </td>
+        </tr>
         <tr><td><span class="tag">nna &lt;name&gt;</span></td><td><span class="desc">Scaffold full Next.js project into ~/Code</span></td></tr>
         <tr><td><span class="tag">nnab &lt;name&gt;</span></td><td><span class="desc">Scaffold basic Next.js project into ~/Code</span></td></tr>
         <tr><td><span class="tag">clone &lt;url&gt;</span></td><td><span class="desc">Clone repo into ~/Code/explore + open VS Code</span></td></tr>
@@ -507,6 +514,19 @@
           <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">gs</span><span class="wf-desc">check what changed</span></div>
           <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">gd</span><span class="wf-desc">review your changes</span></div>
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">gacp "your message"</span><span class="wf-desc">add, commit, push</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-bottom:1px solid #e2e2ea;">
+      <div style="padding:16px 20px;">
+        <div class="wf-label" style="color:#7c3aed;">🔄 Pull GitHub dot file changes to your machine</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">Edit files on GitHub.com</span><span class="wf-desc">make changes directly in the GitHub web editor</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">dotinstall</span><span class="wf-desc">wipe local copy → re-clone → reinstall all dot files → reload shell</span></div>
+        </div>
+        <div class="wf-note" style="color:#7c3aed; margin-top:10px;">
+          💡 Reinstalls all dot files, not just .zshrc — under the hood: cd ~ → rm -rf my-dot-files → git clone → bash install.sh -y → exec zsh
         </div>
       </div>
     </div>
