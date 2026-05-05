@@ -51,6 +51,8 @@
   //     Ctrl+w q        → close current split
   //     Ctrl+w o        → close all other splits
   //     Ctrl+h/l/k/j    → navigate between splits (k/j only when not in input)
+  //     Ctrl+Right/Left → grow/shrink width
+  //     Ctrl+Up/Down    → grow/shrink height
   //
   //   Quick Open (Space+p):
   //     Ctrl+j / Ctrl+k → next/previous item
@@ -70,7 +72,8 @@
   //     Cmd+Shift+T     → reopen closed tab
   //     Cmd+Shift+W     → close all editors in group
   //     Cmd+K P         → pin/unpin editor tab
-  //     Cmd+K M         → toggle maximize editor
+  //     Cmd+K M         → toggle maximize terminal panel
+  //     Ctrl+Shift+B    → toggle maximize editor group
   //     Cmd++ / Cmd+-   → increase/decrease font size (editor only)
   //     Cmd+0           → reset font size
   //     Ctrl+F18        → alternator switch (toggle between related files)
@@ -367,6 +370,38 @@
   },
 
   // ===========================================================
+  // ↔️ SPLIT RESIZE
+  // ===========================================================
+  {
+    "key": "ctrl+right",
+    "command": "workbench.action.increaseViewWidth",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+left",
+    "command": "workbench.action.decreaseViewWidth",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+up",
+    "command": "workbench.action.increaseViewHeight",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+down",
+    "command": "workbench.action.decreaseViewHeight",
+    "when": "editorTextFocus",
+  },
+
+  // ===========================================================
+  // 🪟 EDITOR MAXIMIZE
+  // ===========================================================
+  {
+    "key": "ctrl+shift+b",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+  },
+
+  // ===========================================================
   // 💡 AUTOCOMPLETE POPUP - VIM NAVIGATION
   // ===========================================================
   {
@@ -603,7 +638,12 @@
   MANAGE SPLITS:
     Ctrl+w q                    → Close current split
     Ctrl+w o                    → Close all other splits
-    ⚠️  Space+= / Space++ / Space+- → NOT MAPPED (add if you want resize shortcuts)
+
+  RESIZE SPLITS:
+    Ctrl+Right                  → Grow width
+    Ctrl+Left                   → Shrink width
+    Ctrl+Up                     → Grow height
+    Ctrl+Down                   → Shrink height
 
 
   ═══════════════════════════════════════════════════════════
@@ -635,7 +675,8 @@
     Cmd+Shift+T                 → Reopen closed tab
     Cmd+Shift+W                 → Close all editors in group
     Cmd+K P                     → Pin/unpin editor tab
-    Cmd+K M                     → Toggle maximize editor
+    Cmd+K M                     → Toggle maximize terminal panel
+    Ctrl+Shift+B                → Toggle maximize editor group
 
 
   ═══════════════════════════════════════════════════════════
