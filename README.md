@@ -48,6 +48,23 @@ Personal config files for macOS dev environment.
 
 ---
 
+## Update (After changes on GitHub)
+
+```bash
+cd ~
+rm -rf my-dot-files
+git clone https://github.com/codebymehran/my-dot-files.git
+cd my-dot-files
+# bash install.sh      # interactive — confirm each file
+# or
+bash install.sh -y   # auto-confirm all files
+exec zsh
+```
+
+> Always push your changes to GitHub before running update — the local repo is deleted first.
+
+---
+
 ## Setup (New Machine)
 
 **Step 1 — Bootstrap** (Homebrew, Oh My Zsh, ZSH plugins, Node, SSH key):
@@ -86,22 +103,7 @@ cat vscode-extensions.txt | xargs -L 1 code --install-extension
 
 ---
 
-## Update (After changes on GitHub)
 
-```bash
-cd ~
-rm -rf my-dot-files
-git clone https://github.com/codebymehran/my-dot-files.git
-cd my-dot-files
-bash install.sh      # interactive — confirm each file
-# or
-bash install.sh -y   # auto-confirm all files
-exec zsh
-```
-
-> Always push your changes to GitHub before running update — the local repo is deleted first.
-
----
 
 ## macOS Settings
 
