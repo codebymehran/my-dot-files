@@ -170,6 +170,16 @@ alias 777='chmod 777'
 alias cex='cd ~/Code/explore'
 alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
 
+# Reinstall dot files from GitHub
+dotinstall() {
+  cd ~ &&
+  rm -rf my-dot-files &&
+  git clone https://github.com/codebymehran/my-dot-files.git &&
+  cd my-dot-files &&
+  bash install.sh -y &&
+  exec zsh
+}
+
 # ============================================================================
 # GIT ALIASES
 # ============================================================================
@@ -515,6 +525,7 @@ shortcuts() {
   echo "║    localip          → Show local IP address                          ║"
   echo "║    cex              → Go to ~/Code/explore                           ║"
   echo "║    cdf              → Go to ~/my-dot-files                           ║"
+  echo "║    dotinstall       → Re-clone + reinstall dot files from GitHub     ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
   echo "║                                                                      ║"
   echo "║  🗄️  TIER 3 — advanced / rarely used                                   ║"
