@@ -1,6 +1,4 @@
 {
-
-
   // ===========================================================
   // 🎨 EDITOR BASICS
   // ===========================================================
@@ -515,8 +513,10 @@
     { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
     { "before": ["g", "D"], "commands": ["editor.action.peekDefinition"] },
     { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
-    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "i"], "after": ["g", "i"] },                           // native Vim: jump to last insert point
+    { "before": ["g", "I"], "commands": ["editor.action.goToImplementation"] },
     { "before": ["g", "h"], "commands": ["editor.action.showHover"] },
+    { "before": ["<leader>", "'"], "commands": [":marks"] },                  // show all marks
 
     { "before": ["g", ";"], "commands": ["workbench.action.navigateBack"] },
     { "before": ["g", ","], "commands": ["workbench.action.navigateForward"] },
@@ -716,6 +716,7 @@
     'a                          → Jump to line of mark 'a'
     ``                          → Toggle between last 2 positions ⭐ MOST USEFUL
     :marks                      → Show all marks
+    Space+'                     → Show all marks (shortcut)
 
   ═══════════════════════════════════════════════════════════
   📚 MAIN SHORTCUTS REFERENCE
@@ -784,7 +785,8 @@
     gd                          → Go to definition
     gD                          → Peek definition
     gr                          → Go to references
-    gi                          → Go to implementation (NOT last insert — VSCodeVim limitation)
+    gi                          → Jump to last insert point (native Vim ✅)
+    gI                          → Go to implementation
     gh                          → Show hover info
     gf                          → Go to file under cursor (great for imports!)
     g;                          → Navigate back in edit history
@@ -1002,11 +1004,12 @@
   - Added missing speed tips: gb multi-cursor, gc comment, gh hover
 
   */
+
   // ===========================================================
-  // 🤖 AI QUIZ PROMPT 
+  // 🤖 AI QUIZ PROMPT — copy everything below and paste to Claude
   // ===========================================================
   /*
-  Above is my VSCode settings.json file. I want you to help me master my setup.
+  Here is my VSCode settings.json file. I want you to help me master my setup.
 
   Please do the following:
   1. Start by quizzing me on my Vim bindings and leader key shortcuts ONE BY ONE
@@ -1015,7 +1018,6 @@
   4. After the quiz, ask if I want to work on a specific Vim stage from my learning path
   5. If you notice any broken bindings, missing shortcuts, or improvements, tell me at the end
   6. Keep it conversational and fun — one question at a time, wait for my answer
-  7. If i say 'idk' just explain that quiz with exmples
 
   My current Vim stage progress:
   - Stage 1 Movement — needs drilling
@@ -1025,5 +1027,6 @@
   - Stage 5 Dot Repeat — needs drilling
   - Stage 6 Registers — needs drilling
   - Stage 7 Macros — not started
+ps: if you see ✅, that means i don't want practice on that topic or stage
   */
 }
