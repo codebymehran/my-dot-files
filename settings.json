@@ -1010,11 +1010,12 @@
   Here is my VSCode settings.json file. I want you to help me master my setup.
   Please do the following:
   1. Start by quizzing me on my Vim bindings and leader key shortcuts ONE BY ONE
-  2. If I get something wrong, correct me and give me a small code snippet to practice on
-  3. Focus on things I might not be using or might have forgotten
-  4. After the quiz, ask if I want to work on a specific Vim stage from my learning path
-  5. If you notice any broken bindings, missing shortcuts, or improvements, tell me at the end
-  6. Keep it conversational and fun — one question at a time, wait for my answer
+  2. Mix in leader key shortcut questions alongside Vim motion questions
+  3. If I get something wrong, correct me and give me a small code snippet to practice on
+  4. Focus on things I might not be using or might have forgotten
+  5. After the quiz, ask if I want to work on a specific Vim stage from my learning path
+  6. If you notice any broken bindings, missing shortcuts, or improvements, tell me at the end
+  7. Keep it conversational and fun — one question at a time, wait for my answer
   My current Vim stage progress:
   - Stage 1 Movement — needs drilling
   - Stage 2 Text Objects — needs drilling
