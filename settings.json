@@ -658,6 +658,7 @@
     - Select text → S)          → Wrap with (no spaces)
     - Select text → S{          → Wrap with { braces }
     - Select text → St          → Wrap with <tag>
+    - Select JSX block → St     → Type tag name → wraps entire block ⭐ REACT
 
     Normal mode (use cs/ds — reliable ✅, avoid ys — flaky ❌):
     - cs"'                      → Change " to '
@@ -816,7 +817,10 @@
     gr + motion                 → Replace motion with yanked text (clipboard untouched)
     griw                        → Replace word under cursor with yanked text
     gri"                        → Replace inside quotes with yanked text
+    gri(                        → Replace inside parens with yanked text
+    grit                        → Replace inside tag with yanked text
     Use case: yank once, replace many targets without losing clipboard
+    Power move: yy on a line → griw on every target → clipboard never touched
 
   ARGUMENT OBJECTS (vim.argumentObject):
     cia                         → Change argument under cursor (respects commas)
@@ -863,6 +867,10 @@
     - vscode-icons             → File icons (enabled)
     - GitLens                  → Advanced Git features
     - TODO Highlight           → Highlight TODO comments
+    - VSCode Harpoon           → Pin 4-5 files, jump instantly with one key
+                                 (tobias-z.vscode-harpoon) — install when you
+                                 find yourself cycling through the same files
+                                 repeatedly on a task. Not urgent.
 
   ═══════════════════════════════════════════════════════════
   🎓 VIM LEARNING PATH
@@ -959,6 +967,12 @@
 
   FASTEST COMMENT TOGGLE:
     gc (visual mode) → toggle comment on selected lines
+
+  FASTEST SCATTERED REPLACE (learn when dot repeat clicks):
+    * → cgn → type replacement → Esc → . → . → .
+    How: * searches word under cursor, cgn changes next match, . repeats
+    Better than multi-cursor for occurrences spread across a file
+    vs gb: use gb for adjacent occurrences, cgn+. for scattered ones
 
   FASTEST HOVER INFO:
     gh → show type info / docs without leaving keyboard
