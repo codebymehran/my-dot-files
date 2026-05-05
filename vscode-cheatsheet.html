@@ -97,7 +97,7 @@ h1 {
 
 .stages {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .stage {
@@ -317,25 +317,35 @@ footer {
       <div class="stage-name">Movement ✅</div>
       <div class="stage-keys">hjkl &nbsp;H/L &nbsp;J/K<br>w/b/e &nbsp;{/}<br>gg/G &nbsp;f &nbsp;sneak</div>
     </div>
-    <div class="stage">
+    <div class="stage active">
       <div class="stage-num">STAGE 02</div>
-      <div class="stage-name">Text Objects</div>
-      <div class="stage-keys">ciw &nbsp;ci" &nbsp;ci(<br>daw &nbsp;diw &nbsp;yi"<br>op first, not where</div>
+      <div class="stage-name">Text Objects ✅</div>
+      <div class="stage-keys">ciw &nbsp;ci" &nbsp;ci(<br>daw &nbsp;diw &nbsp;yi"<br>cia &nbsp;daa</div>
     </div>
-    <div class="stage">
+    <div class="stage active">
       <div class="stage-num">STAGE 03</div>
-      <div class="stage-name">Counts</div>
+      <div class="stage-name">Counts ✅</div>
       <div class="stage-keys">3yy &nbsp;5dd<br>d3w &nbsp;c2w<br>N + verb + motion</div>
     </div>
     <div class="stage">
       <div class="stage-num">STAGE 04</div>
-      <div class="stage-name">Marks</div>
+      <div class="stage-name">Marks & Jumps</div>
       <div class="stage-keys">ma &nbsp;set mark<br>`a &nbsp;jump exact<br>`` &nbsp;toggle last</div>
     </div>
     <div class="stage">
       <div class="stage-num">STAGE 05</div>
+      <div class="stage-name">Dot Repeat</div>
+      <div class="stage-keys">. &nbsp;repeat change<br>change → move → .<br>use if doing it 2x+</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">STAGE 06</div>
+      <div class="stage-name">Registers</div>
+      <div class="stage-keys">"ayy &nbsp;"ap<br>"_d &nbsp;black hole<br>:reg &nbsp;show all</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">STAGE 07</div>
       <div class="stage-name">Macros</div>
-      <div class="stage-keys">qa &nbsp;record<br>q &nbsp;&nbsp;stop<br>@a &nbsp;replay</div>
+      <div class="stage-keys">qa &nbsp;record<br>q &nbsp;&nbsp;stop<br>@a &nbsp;· &nbsp;@@ &nbsp;· &nbsp;5@a</div>
     </div>
   </div>
 </div>
@@ -367,8 +377,10 @@ footer {
         <tr><td class="desc">Copy line / N lines</td><td class="keys"><kbd>yy</kbd> <kbd>3yy</kbd></td></tr>
         <tr><td class="desc">Paste</td><td class="keys"><kbd>p</kbd></td></tr>
         <tr><td class="desc">Delete to end</td><td class="keys"><kbd>D</kbd></td></tr>
-        <tr><td class="desc">Move line down / up</td><td class="keys"><kbd>Spc</kbd><kbd>Mj</kbd> <kbd>Mk</kbd></td></tr>
+        <tr><td class="desc">Move line up / down</td><td class="keys"><kbd>Spc</kbd><kbd>k</kbd> <kbd>Spc</kbd><kbd>j</kbd></td></tr>
         <tr><td class="desc">Toggle comment</td><td class="keys"><kbd>gc</kbd></td></tr>
+        <tr><td class="desc">Comment + exit visual</td><td class="keys"><kbd>gcc</kbd></td></tr>
+        <tr><td class="desc">Replace with register</td><td class="keys"><kbd>gr</kbd><kbd>motion</kbd></td></tr>
       </table>
     </div>
 
@@ -379,7 +391,7 @@ footer {
         <span style="color:var(--faint)"> + </span>
         <span class="ia">i/a</span>
         <span style="color:var(--faint)"> + </span>
-        <span class="target">" ' ( [ { t</span>
+        <span class="target">" ' ( [ { t a</span>
       </div>
       <table>
         <tr><td class="to-key">ciw</td><td>Change inner word</td></tr>
@@ -391,6 +403,8 @@ footer {
         <tr><td class="to-key">ci[</td><td>Change inside [brackets]</td></tr>
         <tr><td class="to-key">cit</td><td>Change inside &lt;tag&gt;</td></tr>
         <tr><td class="to-key">yi"</td><td>Copy inside quotes</td></tr>
+        <tr><td class="to-key">cia</td><td>Change argument (respects commas)</td></tr>
+        <tr><td class="to-key">daa</td><td>Delete argument + comma</td></tr>
       </table>
     </div>
   </div>
@@ -417,7 +431,7 @@ footer {
       <div class="block-title">Splits &amp; Terminal</div>
       <table>
         <tr><td class="desc">Split right / down</td><td class="keys"><kbd>Spc</kbd><kbd>v</kbd> <kbd>\</kbd></td></tr>
-        <tr><td class="desc">Navigate splits</td><td class="keys"><kbd>Spc</kbd><kbd>h/j/k/l</kbd></td></tr>
+        <tr><td class="desc">Navigate splits</td><td class="keys"><kbd>Ctrl</kbd><kbd>h/j/k/l</kbd></td></tr>
         <tr><td class="desc">Split terminal vert</td><td class="keys"><kbd>Spc</kbd><kbd>tv</kbd></td></tr>
         <tr><td class="desc">Split terminal horiz</td><td class="keys"><kbd>Spc</kbd><kbd>ts</kbd></td></tr>
         <tr><td class="desc">New / kill terminal</td><td class="keys"><kbd>Spc</kbd><kbd>tn</kbd> <kbd>tk</kbd></td></tr>
