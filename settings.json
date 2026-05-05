@@ -1,27 +1,5 @@
 {
-  // ===========================================================
-  // 🤖 AI QUIZ PROMPT — copy everything below and paste to Claude
-  // ===========================================================
-  /*
-  Here is my VSCode settings.json file. I want you to help me master my setup.
 
-  Please do the following:
-  1. Start by quizzing me on my Vim bindings and leader key shortcuts ONE BY ONE
-  2. If I get something wrong, correct me and give me a small code snippet to practice on
-  3. Focus on things I might not be using or might have forgotten
-  4. After the quiz, ask if I want to work on a specific Vim stage from my learning path
-  5. If you notice any broken bindings, missing shortcuts, or improvements, tell me at the end
-  6. Keep it conversational and fun — one question at a time, wait for my answer
-
-  My current Vim stage progress:
-  - Stage 1 Movement ✅
-  - Stage 2 Text Objects ✅
-  - Stage 3 Operators + Counts ✅
-  - Stage 4 Marks & Jumps — needs drilling
-  - Stage 5 Dot Repeat — needs drilling
-  - Stage 6 Registers — needs drilling
-  - Stage 7 Macros — not started
-  */
 
   // ===========================================================
   // 🎨 EDITOR BASICS
@@ -1023,5 +1001,29 @@
   - u/U for undo/redo highlighted (replace Cmd+Z habit)
   - Added missing speed tips: gb multi-cursor, gc comment, gh hover
 
+  */
+  // ===========================================================
+  // 🤖 AI QUIZ PROMPT 
+  // ===========================================================
+  /*
+  Above is my VSCode settings.json file. I want you to help me master my setup.
+
+  Please do the following:
+  1. Start by quizzing me on my Vim bindings and leader key shortcuts ONE BY ONE
+  2. If I get something wrong, correct me and give me a small code snippet to practice on
+  3. Focus on things I might not be using or might have forgotten
+  4. After the quiz, ask if I want to work on a specific Vim stage from my learning path
+  5. If you notice any broken bindings, missing shortcuts, or improvements, tell me at the end
+  6. Keep it conversational and fun — one question at a time, wait for my answer
+  7. If i say 'idk' just explain that quiz with exmples
+
+  My current Vim stage progress:
+  - Stage 1 Movement — needs drilling
+  - Stage 2 Text Objects — needs drilling
+  - Stage 3 Operators + Counts — needs drilling
+  - Stage 4 Marks & Jumps — needs drilling
+  - Stage 5 Dot Repeat — needs drilling
+  - Stage 6 Registers — needs drilling
+  - Stage 7 Macros — not started
   */
 }
