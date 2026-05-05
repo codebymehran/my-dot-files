@@ -399,8 +399,13 @@
   "vim.sneakUseIgnorecaseAndSmartcase": true,
   "vim.easymotion": false,
   "vim.surround": true,
+  "vim.replaceWithRegister": true,
   "vim.startInInsertMode": false,
   "vim.timeout": 200,
+
+  "vim.argumentObjectSeparators": [",", ";"],
+  "vim.argumentObjectOpeningDelimiters": ["(", "["],
+  "vim.argumentObjectClosingDelimiters": [")", "]"],
 
   // ===========================================================
   // ⚡ INSERT MODE – ESCAPE
@@ -409,8 +414,8 @@
 
   // ===========================================================
   // 🔧 CTRL KEY HANDLING – ONLY WHAT VIM NEEDS
-  // No Ctrl keys used for navigation or editor actions — all
-  // replaced with <leader> bindings. Only keeping core Vim ops.
+  // Ctrl+h/j/k/l handled in keybindings.json for split navigation.
+  // Only giving Vim the core ops it needs here.
   // ===========================================================
   "vim.handleKeys": {
     "<C-a>": true,  // increment number under cursor
@@ -441,14 +446,6 @@
     // Redo (ergonomic)
     { "before": ["U"], "after": ["<C-r>"] },
     { "before": ["B"], "after": ["<C-v>"] },
-
-    // =======================================================
-    // 🪟 WINDOW NAVIGATION
-    // =======================================================
-    { "before": ["<leader>", "h"], "commands": ["workbench.action.navigateLeft"] },
-    { "before": ["<leader>", "j"], "commands": ["workbench.action.navigateDown"] },
-    { "before": ["<leader>", "k"], "commands": ["workbench.action.navigateUp"] },
-    { "before": ["<leader>", "l"], "commands": ["workbench.action.navigateRight"] },
 
     // =======================================================
     // 💾 SAVE / CLOSE (Mac-native muscle memory)
@@ -535,8 +532,8 @@
     // =======================================================
     // 🧩 MOVE LINES
     // =======================================================
-    { "before": ["<leader>", "M", "j"], "commands": ["editor.action.moveLinesDownAction"] },
-    { "before": ["<leader>", "M", "k"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["<leader>", "j"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["<leader>", "k"], "commands": ["editor.action.moveLinesUpAction"] },
 
     // =======================================================
     // 🧹 FORMAT & IMPORTS
@@ -593,6 +590,7 @@
     { "before": ["<"], "after": ["<", "g", "v"] },
 
     { "before": ["g", "c"], "commands": ["editor.action.commentLine"] },
+    { "before": ["g", "c", "c"], "commands": ["editor.action.commentLine", "extension.vim_escape"] },
 
     { "before": ["p"], "after": ["p", "g", "v", "y"] },
   ],
@@ -776,8 +774,8 @@
     Space+m                     → Find all references
     Space+;                     → Format document
     Space+i                     → Organize imports
-    Space+M+j                   → Move line/selection down
-    Space+M+k                   → Move line/selection up
+    Space+j                     → Move line/selection down
+    Space+k                     → Move line/selection up
 
   GO TO DEFINITION:
     gd                          → Go to definition
@@ -810,9 +808,21 @@
   SPLITS:
     Space+v                     → Split right
     Space+\                     → Split down
-    Space+h/j/k/l               → Navigate between splits
+    Ctrl+h/j/k/l               → Navigate between splits (keybindings.json)
     Space+t+v                   → Split terminal vertically
     Space+t+s                   → Split terminal horizontally
+
+  REPLACE WITH REGISTER (vim.replaceWithRegister):
+    gr + motion                 → Replace motion with yanked text (clipboard untouched)
+    griw                        → Replace word under cursor with yanked text
+    gri"                        → Replace inside quotes with yanked text
+    Use case: yank once, replace many targets without losing clipboard
+
+  ARGUMENT OBJECTS (vim.argumentObject):
+    cia                         → Change argument under cursor (respects commas)
+    daa                         → Delete argument + comma (clean removal)
+    yia                         → Yank argument
+    Use case: editing function args and React props precisely
 
   COLORFUL COMMENTS:
     //! comment                 → Red bold — warnings, critical notes
