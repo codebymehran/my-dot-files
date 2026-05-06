@@ -120,7 +120,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <nav class="nav">
   <div class="tab active" onclick="show('how')">How it works</div>
   <div class="tab" onclick="show('workflows')">Workflows</div>
-  <div class="tab" onclick="show('snippets')">12 Snippets</div>
+  <div class="tab" onclick="show('snippets')">13 Snippets</div>
   <div class="tab" onclick="show('system')">Claude System Prompt</div>
 </nav>
 
@@ -129,7 +129,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <h1>Your AI Mentor<br><span>Snippet System</span></h1>
   <p>Works with ChatGPT, Claude, DeepSeek — any AI. 12 snippets for structured moments, natural language for everything else.</p>
   <div class="hero-stats">
-    <div><div class="stat-num">12</div><div class="stat-label">Snippets</div></div>
+    <div><div class="stat-num">13</div><div class="stat-label">Snippets</div></div>
     <div><div class="stat-num">Any AI</div><div class="stat-label">Compatible</div></div>
     <div><div class="stat-num">0</div><div class="stat-label">Memory load</div></div>
   </div>
@@ -167,6 +167,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <tr><td><code class="tkw">breathe</code></td><td>Overwhelmed, need someone to cut through the noise</td></tr>
         <tr><td><code class="tkw">build</code></td><td>Need a weekend project idea</td></tr>
         <tr><td><code class="tkw">next</code></td><td>Any Next.js question — enforces correct patterns</td></tr>
+        <tr><td><code class="tkw">arch</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
       </tbody>
     </table>
     <div class="notice green" style="margin-top:12px">
@@ -185,7 +186,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <div class="section">
     <div class="section-title">The core loop</div>
     <div class="flow-diagram">
-      <span>;;go</span> <span class="flow-arrow">→</span> build <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> as needed
+      <span>;;go</span> <span class="flow-arrow">→</span> <span>;;arch</span> <span class="flow-arrow">→</span> build <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> as needed
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out <span class="flow-arrow">→</span> <span>;;ready</span> before moving on
     </div>
     <p style="margin-top:12px">One chat per project or topic. When a chat gets long and the AI starts losing context, start fresh with <strong>;;begin</strong> and paste in where you left off.</p>
@@ -197,7 +198,9 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
       <p>Fire <code class="tkw">go</code>, fill in the project name, new concepts, and your previous projects. The AI asks you one question — "what data does this app need to remember?" — and waits. Everything unfolds from your answer. Stay in that same chat for the whole project.</p>
     </div>
     <div class="workflow">
-      <div class="workflow-title"><span class="dot"></span>Daily learning session</div>
+      <div class="workflow-title"><span class="dot"></span>Filling the architecture plan</div>
+      <p>After <code class="tkw">go</code>, fire <code class="tkw">arch</code> before touching any code. Fill sections 1, 2, 3, 11 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">arch</code> again to fill sections 4, 5, 5b, 7, 8 for that feature. Never start coding a feature without filling those sections first.</p>
+    </div>
       <p>Open a new chat, fire <code class="tkw">begin</code>, fill in what you want to learn and how much time you have. At the end, fire <code class="tkw">ready</code> to test yourself before closing. Don't move on without passing that test.</p>
     </div>
     <div class="workflow">
@@ -586,6 +589,61 @@ Rules for your answer:
 - Modern practices only
 
 [your question or paste code]">Copy prompt</button>
+      </div>
+    </div>
+
+    <!-- ;;arch -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">arch</code>
+        <span class="cname">Fill Architecture Plan</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="prompt-box">
+          <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI and TypeScript.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">I am about to fill my architecture plan for: [PROJECT NAME]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">The rules:</div>
+          <div class="tl">- Ask me one question at a time and wait for my answer</div>
+          <div class="tl">- Never fill it in for me — guide me to the answer myself</div>
+          <div class="tl">- If I am wrong, correct me and explain why</div>
+          <div class="tl">- Follow this exact order:</div>
+          <div class="tl">&nbsp;&nbsp;1. Before any code: Section 1, 2, 3, 11</div>
+          <div class="tl">&nbsp;&nbsp;2. Per feature: Section 4, 5, 5b, 7, 8 — fill these before coding each feature</div>
+          <div class="tl">&nbsp;&nbsp;3. Only if needed: Section 6, 9</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Key things to enforce:</div>
+          <div class="tl">- Section 3 is entities only — things with multiple fields the user creates</div>
+          <div class="tl">- Section 4 is all other state — simple values like filter, booleans, strings</div>
+          <div class="tl">- State before components — always fill Section 4 before Section 5</div>
+          <div class="tl">- Derived state is never stored — always computed</div>
+          <div class="tl">- Always ask who owns this state and is this derived</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Start by asking me Section 1.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI and TypeScript.
+
+I am about to fill my architecture plan for: [PROJECT NAME]
+
+The rules:
+- Ask me one question at a time and wait for my answer
+- Never fill it in for me — guide me to the answer myself
+- If I am wrong, correct me and explain why
+- Follow this exact order:
+  1. Before any code: Section 1, 2, 3, 11
+  2. Per feature: Section 4, 5, 5b, 7, 8 — fill these before coding each feature
+  3. Only if needed: Section 6, 9
+
+Key things to enforce:
+- Section 3 is entities only — things with multiple fields the user creates
+- Section 4 is all other state — simple values like filter, booleans, strings
+- State before components — always fill Section 4 before Section 5
+- Derived state is never stored — always computed
+- Always ask who owns this state and is this derived
+
+Start by asking me Section 1.">Copy prompt</button>
       </div>
     </div>
 
