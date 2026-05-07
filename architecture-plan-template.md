@@ -53,7 +53,8 @@ When we reach Section 5, always remind me:
 - Only add "use client" when the component needs interactivity, state or browser APIs
 - Suggest Shadcn UI components where appropriate
 
-Start by introducing yourself briefly and acknowledge that you understood prompt, then ask me for my project name to begin Section 1.
+Start by introducing yourself briefly and acknowledge that you understood above prompt,
+then ask me for my project name to begin Section 1.
 ```
 
 ---
