@@ -145,7 +145,7 @@
         <tr><td><span class="tag">.....</span></td><td><span class="desc">Go up four directories</span></td></tr>
         <tr><td><span class="tag">c</span></td><td><span class="desc">Clear screen</span></td></tr>
         <tr><td><span class="tag">co</span></td><td><span class="desc">Open current folder in VS Code</span></td></tr>
-        <tr><td><span class="tag">cc</span><span class="new-badge">NEW</span></td><td><span class="desc">cd ~/Code — jump to your projects root</span></td></tr>
+        <tr><td><span class="tag">cc</span></td><td><span class="desc">cd ~/Code — jump to your projects root</span></td></tr>
         <tr>
           <td><span class="tag">cd / z &lt;name&gt;</span></td>
           <td>
@@ -166,7 +166,7 @@
           <td><span class="tag">dotinstall</span><span class="fix-badge">FIXED</span></td>
           <td>
             <span class="desc">Re-clone my-dot-files from GitHub + run install.sh -y + reload shell</span>
-            <div class="note">now uses $HOME paths — safe to run from any directory</div>
+            <div class="note">checks repo is reachable with git ls-remote before deleting anything — safe to run from any directory</div>
           </td>
         </tr>
         <tr><td><span class="tag">nna &lt;name&gt;</span></td><td><span class="desc">Scaffold full Next.js project into ~/Code</span></td></tr>
@@ -212,7 +212,7 @@
           <td><span class="tag">cat &lt;file&gt;</span></td>
           <td>
             <span class="desc">View file contents with syntax highlighting</span>
-            <div class="note">⬡ bat · brew install bat · catp for plain output</div>
+            <div class="note">⬡ bat · brew install bat · catp for plain output · theme: tokyonight_night</div>
           </td>
         </tr>
         <tr><td><span class="tag">mkcd &lt;dir&gt;</span></td><td><span class="desc">Create directory and cd into it</span></td></tr>
@@ -237,7 +237,7 @@
         </tr>
         <tr><td><span class="tag">ni</span></td><td><span class="desc">npm install</span></td></tr>
         <tr>
-          <td><span class="tag">nci</span><span class="new-badge">NEW</span></td>
+          <td><span class="tag">nci</span></td>
           <td>
             <span class="desc">npm ci — faster, stricter install from lockfile</span>
             <div class="note">use on existing projects instead of ni — respects package-lock exactly</div>
@@ -254,18 +254,18 @@
 
     <!-- GIT FULL WIDTH -->
     <div class="card full git">
-      <div class="card-header"><h2>🔄 Git Commands</h2><span class="count">21</span></div>
+      <div class="card-header"><h2>🔄 Git Commands</h2><span class="count">23</span></div>
       <table>
         <tr><td><span class="tag">gs</span></td><td><span class="desc">git status</span></td></tr>
         <tr><td><span class="tag">gl</span></td><td><span class="desc">git log — last 10 commits, graph + branch decorators</span></td></tr>
         <tr>
-          <td><span class="tag">gla</span><span class="new-badge">NEW</span></td>
+          <td><span class="tag">gla</span></td>
           <td><span class="desc">git log all commits, paginated — when you need to scroll further back</span></td>
         </tr>
         <tr><td><span class="tag">glh</span></td><td><span class="desc">Last commit with file-by-file stats (what changed)</span></td></tr>
         <tr><td><span class="tag">gd</span></td><td><span class="desc">git diff — unstaged changes</span></td></tr>
         <tr>
-          <td><span class="tag">gds</span><span class="new-badge">NEW</span></td>
+          <td><span class="tag">gds</span></td>
           <td>
             <span class="desc">git diff --staged — review exactly what's queued to commit</span>
             <div class="note">run before gacp to double-check what you're about to push</div>
@@ -276,41 +276,42 @@
         <tr><td><span class="tag">gst</span></td><td><span class="desc">git stash</span></td></tr>
         <tr><td><span class="tag">gstp</span></td><td><span class="desc">git stash pop</span></td></tr>
         <tr>
-          <td><span class="tag">gwip</span><span class="new-badge">NEW</span></td>
+          <td><span class="tag">gwip</span></td>
           <td>
             <span class="desc">Commit all changes as "WIP" with --no-verify — quick save before switching branches</span>
             <div class="note">pair with gunwip to restore · skips pre-commit hooks intentionally</div>
           </td>
         </tr>
         <tr>
-          <td><span class="tag">gunwip</span><span class="new-badge">NEW</span></td>
+          <td><span class="tag">gunwip</span></td>
           <td>
             <span class="desc">Undo the last WIP commit and restore all changes to working tree</span>
             <div class="note">checks that last commit is actually a WIP before resetting</div>
           </td>
         </tr>
-        <tr><td><span class="tag">gacp "msg"</span></td><td><span class="desc">Add all → commit → push in one command</span></td></tr>
-        <tr><td><span class="tag">gacpall</span></td><td><span class="desc">Interactive commit + push across all projects</span></td></tr>
-        <tr><td><span class="tag">gitallpull</span></td><td><span class="desc">Pull latest in all ~/Code projects (auto-discovered)</span></td></tr>
+        <tr><td><span class="tag">gacp "msg"</span></td><td><span class="desc">Add all → commit → push in one command · warns before pushing to main/master</span></td></tr>
+        <tr><td><span class="tag">gacpall</span></td><td><span class="desc">Interactive commit + push across all projects in ~/Code</span></td></tr>
+        <tr><td><span class="tag">gitallpull</span></td><td><span class="desc">Pull latest in all ~/Code projects (auto-discovered, excludes explore and my-dot-files)</span></td></tr>
         <tr><td><span class="tag">gnb &lt;branch&gt;</span></td><td><span class="desc">Create and switch to a new branch · shorthand for git checkout -b</span></td></tr>
         <tr>
-          <td><span class="tag">gbd &lt;branch&gt;</span></td>
+          <td><span class="tag">gbd &lt;branch&gt;</span><span class="fix-badge">FIXED</span></td>
           <td>
             <span class="desc">Delete a branch both locally and from remote in one command</span>
+            <div class="note">fixed: unalias guard prevents conflict with oh-my-zsh git plugin</div>
           </td>
         </tr>
         <tr>
           <td><span class="tag">gmerge &lt;branch&gt;</span></td>
           <td>
             <span class="desc">Merge feature into default branch → delete local + remote branch · stays on default when done</span>
-            <div class="note">auto-detects default branch (main / master / custom) via origin/HEAD</div>
+            <div class="note">auto-detects default branch via origin/HEAD · run: git remote set-head origin --auto if it warns</div>
           </td>
         </tr>
         <tr>
-          <td><span class="tag">gship &lt;from&gt; &lt;to&gt;</span></td>
+          <td><span class="tag">gship &lt;from&gt; &lt;to&gt;</span><span class="fix-badge">FIXED</span></td>
           <td>
-            <span class="desc">Full ship loop: merge → delete old branch → create next branch · commit first with gacp</span>
-            <div class="note">e.g. gship feature/expense-list feature/add-expense</div>
+            <span class="desc">Full ship loop: merge → push default branch → delete old branch → create next branch</span>
+            <div class="note">now pushes default branch to remote after merging · e.g. gship feature/expense-list feature/add-expense</div>
           </td>
         </tr>
         <tr>
@@ -321,9 +322,9 @@
           </td>
         </tr>
         <tr>
-          <td><span class="tag">ghopen</span><span class="fix-badge">FIXED</span></td>
+          <td><span class="tag">ghopen</span></td>
           <td>
-            <span class="desc">Open current git repo in browser — now handles both SSH and HTTPS remotes</span>
+            <span class="desc">Open current git repo in browser — handles both SSH and HTTPS remotes</span>
           </td>
         </tr>
         <tr>
@@ -334,9 +335,10 @@
           </td>
         </tr>
         <tr>
-          <td><span class="tag">gitwipe</span></td>
+          <td><span class="tag">gitwipe</span><span class="fix-badge">FIXED</span></td>
           <td>
             <span class="desc">Delete entire commit history, keep files, force push · requires YES</span>
+            <div class="note">now shows detected default branch + lets you confirm or override before force-pushing</div>
             <div class="warn">⚠ irreversible — only use on throwaway/personal repos</div>
           </td>
         </tr>
@@ -368,7 +370,7 @@
           <td><span class="tag">zoxide</span></td>
           <td>
             <span class="desc">Smart cd — tracks visited dirs, jump anywhere with a partial name · e.g. z task jumps to task-manager-app</span>
-            <div class="note">brew install zoxide · the more you use it, the smarter it gets · cd alias removed to avoid conflicts with scripts</div>
+            <div class="note">brew install zoxide · the more you use it, the smarter it gets</div>
           </td>
         </tr>
         <tr>
@@ -413,9 +415,9 @@
       <div class="card-header"><h2>⚡ Dev Utilities</h2><span class="count">5</span></div>
       <table>
         <tr>
-          <td><span class="tag">killport &lt;port&gt;</span><span class="fix-badge">FIXED</span></td>
+          <td><span class="tag">killport &lt;port&gt;</span></td>
           <td>
-            <span class="desc">Kill process running on a port — now shows PID and handles empty port gracefully</span>
+            <span class="desc">Kill process running on a port — shows PID and handles empty port gracefully</span>
             <div class="note">e.g. killport 3000 · prints "nothing running" instead of silently failing</div>
           </td>
         </tr>
@@ -456,12 +458,12 @@
     <div class="card zsh">
       <div class="card-header"><h2>⚙ zsh Notes</h2></div>
       <table>
-        <tr><td><span class="tag">History</span></td><td><span class="desc">10k entries · deduped · shared across terminals · space-prefix = not saved</span></td></tr>
-        <tr><td><span class="tag">Plugins</span></td><td><span class="desc">git · npm · node · zsh-autosuggestions · zsh-syntax-highlighting · colored-man-pages</span></td></tr>
+        <tr><td><span class="tag">History</span></td><td><span class="desc">10k entries · HIST_IGNORE_ALL_DUPS dedupes across terminals · space-prefix = not saved</span></td></tr>
+        <tr><td><span class="tag">Plugins</span></td><td><span class="desc">git · npm · node · zsh-autosuggestions · zsh-syntax-highlighting · colored-man-pages · zsh-vi-mode</span></td></tr>
         <tr><td><span class="tag">Ctrl+R</span></td><td><span class="desc">Fuzzy history search with preview (fzf)</span></td></tr>
         <tr><td><span class="tag">Ctrl+T</span></td><td><span class="desc">Fuzzy file picker — inserts path into command (fzf)</span></td></tr>
         <tr><td><span class="tag">Tab</span></td><td><span class="desc">Auto-complete commands, paths, git branches</span></td></tr>
-        <tr><td><span class="tag">auto_cd</span></td><td><span class="desc">Type a folder name without cd to jump into it</span></td></tr>
+        <tr><td><span class="tag">Plugin conflicts</span></td><td><span class="desc">unalias guards added before all custom git functions — prevents parse errors from oh-my-zsh git plugin</span></td></tr>
       </table>
     </div>
 
@@ -505,6 +507,10 @@
       <tr style="border-bottom:1px solid #e2e2ea;">
         <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">fnm vs nvm</span></td>
         <td style="padding:9px 16px;"><span class="section-desc">If you used nvm before, remove it from ~/.zshrc first — fnm and nvm conflict with each other</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">origin/HEAD</span></td>
+        <td style="padding:9px 16px;"><span class="section-desc">gmerge / gship / gitwipe use origin/HEAD to detect your default branch — if they warn, run: git remote set-head origin --auto</span></td>
       </tr>
       <tr style="border-bottom:1px solid #e2e2ea;">
         <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">zoxide + cd</span></td>
@@ -561,7 +567,7 @@
           <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">gacp "feat: add expense list"</span><span class="wf-desc">commit your work first</span></div>
           <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">gship feature/expense-list feature/add-expense</span><span class="wf-desc">full loop in one go</span></div>
         </div>
-        <div class="wf-note" style="color:#16a34a;">💡 gship = merge + delete + create next branch · lands you ready to code</div>
+        <div class="wf-note" style="color:#16a34a;">💡 gship = merge + push + delete + create next branch · lands you ready to code</div>
       </div>
     </div>
 
@@ -580,9 +586,9 @@
         <div class="wf-label" style="color:#7c3aed;">🔄 Pull GitHub dot file changes</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">Edit files on GitHub.com</span><span class="wf-desc">make changes in web editor</span></div>
-          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">dotinstall</span><span class="wf-desc">wipe → re-clone → reinstall → reload</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">dotinstall</span><span class="wf-desc">check → wipe → re-clone → reinstall → reload</span></div>
         </div>
-        <div class="wf-note" style="color:#7c3aed;">💡 safe to run from any directory — uses $HOME paths throughout</div>
+        <div class="wf-note" style="color:#7c3aed;">💡 verifies repo is reachable before deleting anything — aborts safely if network fails</div>
       </div>
     </div>
 
@@ -652,7 +658,6 @@
       <div class="li"><div class="ld" style="background:#0e7490"></div>Tools</div>
       <div class="li"><div class="ld" style="background:#0f766e"></div>System</div>
       <div class="li"><div class="ld" style="background:#1d4ed8"></div>Starship</div>
-      <div class="li"><div class="ld" style="background:#15803d"></div>NEW</div>
       <div class="li"><div class="ld" style="background:#92400e"></div>FIXED</div>
     </div>
   </footer>
