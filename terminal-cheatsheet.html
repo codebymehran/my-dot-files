@@ -53,6 +53,8 @@
   .desc { font-size: 0.8rem; color: var(--muted); font-family: 'Inter', sans-serif; line-height: 1.5; font-weight: 400; }
   .note { font-size: 0.68rem; color: #0e7490; font-family: 'JetBrains Mono', monospace; margin-top: 3px; font-weight: 400; }
   .warn { font-size: 0.68rem; color: #c2410c; font-family: 'JetBrains Mono', monospace; margin-top: 2px; font-weight: 400; }
+  .new-badge { display: inline-block; font-size: 0.58rem; font-weight: 600; background: #dcfce7; color: #15803d; padding: 1px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; letter-spacing: 0.04em; font-family: 'Inter', sans-serif; }
+  .fix-badge { display: inline-block; font-size: 0.58rem; font-weight: 600; background: #fef3c7; color: #92400e; padding: 1px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; letter-spacing: 0.04em; font-family: 'Inter', sans-serif; }
 
   .nav   .tag { color: var(--c-nav);   background: var(--cbg-nav); }
   .proj  .tag { color: var(--c-proj);  background: var(--cbg-proj); }
@@ -65,15 +67,8 @@
   .tools .tag { color: var(--c-tools); background: var(--cbg-tools); }
 
   .install-banner {
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    border-radius: 10px;
-    padding: 14px 20px;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
+    background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+    padding: 14px 20px; margin-bottom: 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   }
   .install-banner p { font-family: 'Inter', monospace; font-size: 0.72rem; color: #92400e; white-space: nowrap; font-weight: 500; }
   .install-banner code { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: #fef3c7; color: #78350f; padding: 4px 10px; border-radius: 5px; border: 1px solid #fde68a; user-select: all; font-weight: 400; }
@@ -84,7 +79,6 @@
   .li { display: flex; align-items: center; gap: 4px; font-family: 'Inter', sans-serif; font-size: 0.62rem; color: var(--muted); font-weight: 500; }
   .ld { width: 8px; height: 8px; border-radius: 50%; }
 
-  /* Workflow section shared styles */
   .wf-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; font-family: 'Inter', sans-serif; }
   .wf-step { display: flex; gap: 10px; align-items: baseline; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
   .wf-num { color: var(--muted); min-width: 18px; font-weight: 400; }
@@ -92,35 +86,20 @@
   .wf-desc { color: var(--muted); font-size: 0.65rem; font-weight: 400; }
   .wf-note { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; margin-top: 8px; font-weight: 400; }
 
-  /* Section card (non-.card divs) */
   .section-card { margin-top: 18px; background: #ffffff; border: 1px solid #e2e2ea; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
   .section-header { padding: 11px 16px; background: #f0f0f4; border-bottom: 1px solid #e2e2ea; display: flex; align-items: center; gap: 8px; }
   .section-header h2 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-family: 'Inter', sans-serif; }
   .section-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 500; padding: 2px 7px; border-radius: 4px; }
   .section-desc { font-size: 0.8rem; color: var(--muted); font-family: 'Inter', sans-serif; line-height: 1.5; font-weight: 400; }
 
-  .search-wrap {
-    margin-bottom: 18px;
-  }
+  .search-wrap { margin-bottom: 18px; }
   .search-wrap input {
-    width: 100%;
-    max-width: 380px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    padding: 8px 14px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--surface);
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
+    width: 100%; max-width: 380px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+    padding: 8px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface);
+    color: var(--text); outline: none; transition: border-color 0.15s;
   }
-  .search-wrap input:focus {
-    border-color: #0369a1;
-  }
-  .search-wrap input::placeholder {
-    color: #9b9baf;
-  }
+  .search-wrap input:focus { border-color: #0369a1; }
+  .search-wrap input::placeholder { color: #9b9baf; }
   tr.hidden { display: none; }
 
   @media (max-width: 680px) {
@@ -144,12 +123,10 @@
     </div>
   </header>
 
-  <!-- SEARCH -->
   <div class="search-wrap" style="margin-top:24px;">
     <input type="text" id="search" placeholder="Filter commands…" autocomplete="off" />
   </div>
 
-  <!-- BREW INSTALL BANNER -->
   <div class="install-banner">
     <p>📦 Install all optional tools at once:</p>
     <code>brew install eza bat zoxide fnm fzf thefuck</code>
@@ -160,7 +137,7 @@
 
     <!-- NAVIGATION -->
     <div class="card nav">
-      <div class="card-header"><h2>📁 Navigation</h2><span class="count">7</span></div>
+      <div class="card-header"><h2>📁 Navigation</h2><span class="count">8</span></div>
       <table>
         <tr><td><span class="tag">..</span></td><td><span class="desc">Go up one directory</span></td></tr>
         <tr><td><span class="tag">...</span></td><td><span class="desc">Go up two directories</span></td></tr>
@@ -168,6 +145,7 @@
         <tr><td><span class="tag">.....</span></td><td><span class="desc">Go up four directories</span></td></tr>
         <tr><td><span class="tag">c</span></td><td><span class="desc">Clear screen</span></td></tr>
         <tr><td><span class="tag">co</span></td><td><span class="desc">Open current folder in VS Code</span></td></tr>
+        <tr><td><span class="tag">cc</span><span class="new-badge">NEW</span></td><td><span class="desc">cd ~/Code — jump to your projects root</span></td></tr>
         <tr>
           <td><span class="tag">cd / z &lt;name&gt;</span></td>
           <td>
@@ -180,15 +158,15 @@
 
     <!-- PROJECTS -->
     <div class="card proj">
-      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">8</span></div>
+      <div class="card-header"><h2>📂 Project Shortcuts</h2><span class="count">10</span></div>
       <table>
         <tr><td><span class="tag">cex</span></td><td><span class="desc">cd ~/Code/explore — for throwaway clones</span></td></tr>
         <tr><td><span class="tag">cdf</span></td><td><span class="desc">cd ~/my-dot-files</span></td></tr>
         <tr>
-          <td><span class="tag">dotinstall</span></td>
+          <td><span class="tag">dotinstall</span><span class="fix-badge">FIXED</span></td>
           <td>
             <span class="desc">Re-clone my-dot-files from GitHub + run install.sh -y + reload shell</span>
-            <div class="note">one command to fully reinstall your dot files on any machine</div>
+            <div class="note">now uses $HOME paths — safe to run from any directory</div>
           </td>
         </tr>
         <tr><td><span class="tag">nna &lt;name&gt;</span></td><td><span class="desc">Scaffold full Next.js project into ~/Code</span></td></tr>
@@ -202,7 +180,6 @@
             <div class="note">supports fuzzy match · interactive picker · --dry-run flag available</div>
           </td>
         </tr>
-        <tr><td><span class="tag">codebackup</span></td><td><span class="desc">Save installed VS Code extensions to repo</span></td></tr>
         <tr>
           <td><span class="tag">proj</span></td>
           <td>
@@ -249,7 +226,7 @@
 
     <!-- NPM -->
     <div class="card npm">
-      <div class="card-header"><h2>📦 Node / npm</h2><span class="count">8</span></div>
+      <div class="card-header"><h2>📦 Node / npm</h2><span class="count">9</span></div>
       <table>
         <tr>
           <td><span class="tag">fnm use &lt;ver&gt;</span></td>
@@ -259,6 +236,13 @@
           </td>
         </tr>
         <tr><td><span class="tag">ni</span></td><td><span class="desc">npm install</span></td></tr>
+        <tr>
+          <td><span class="tag">nci</span><span class="new-badge">NEW</span></td>
+          <td>
+            <span class="desc">npm ci — faster, stricter install from lockfile</span>
+            <div class="note">use on existing projects instead of ni — respects package-lock exactly</div>
+          </td>
+        </tr>
         <tr><td><span class="tag">nid</span></td><td><span class="desc">npm install --save-dev</span></td></tr>
         <tr><td><span class="tag">nrd</span></td><td><span class="desc">npm run dev</span></td></tr>
         <tr><td><span class="tag">nrb</span></td><td><span class="desc">npm run build</span></td></tr>
@@ -270,25 +254,76 @@
 
     <!-- GIT FULL WIDTH -->
     <div class="card full git">
-      <div class="card-header"><h2>🔄 Git Commands</h2><span class="count">13</span></div>
+      <div class="card-header"><h2>🔄 Git Commands</h2><span class="count">21</span></div>
       <table>
         <tr><td><span class="tag">gs</span></td><td><span class="desc">git status</span></td></tr>
         <tr><td><span class="tag">gl</span></td><td><span class="desc">git log — last 10 commits, graph + branch decorators</span></td></tr>
+        <tr>
+          <td><span class="tag">gla</span><span class="new-badge">NEW</span></td>
+          <td><span class="desc">git log all commits, paginated — when you need to scroll further back</span></td>
+        </tr>
         <tr><td><span class="tag">glh</span></td><td><span class="desc">Last commit with file-by-file stats (what changed)</span></td></tr>
         <tr><td><span class="tag">gd</span></td><td><span class="desc">git diff — unstaged changes</span></td></tr>
+        <tr>
+          <td><span class="tag">gds</span><span class="new-badge">NEW</span></td>
+          <td>
+            <span class="desc">git diff --staged — review exactly what's queued to commit</span>
+            <div class="note">run before gacp to double-check what you're about to push</div>
+          </td>
+        </tr>
         <tr><td><span class="tag">gco &lt;branch&gt;</span></td><td><span class="desc">git checkout branch</span></td></tr>
         <tr><td><span class="tag">gb</span></td><td><span class="desc">List all branches</span></td></tr>
-        <tr><td><span class="tag">gp</span></td><td><span class="desc">git pull</span></td></tr>
-        <tr><td><span class="tag">gaa</span></td><td><span class="desc">git add --all</span></td></tr>
-        <tr><td><span class="tag">gcm "msg"</span></td><td><span class="desc">git commit -m "message"</span></td></tr>
+        <tr><td><span class="tag">gst</span></td><td><span class="desc">git stash</span></td></tr>
+        <tr><td><span class="tag">gstp</span></td><td><span class="desc">git stash pop</span></td></tr>
+        <tr>
+          <td><span class="tag">gwip</span><span class="new-badge">NEW</span></td>
+          <td>
+            <span class="desc">Commit all changes as "WIP" with --no-verify — quick save before switching branches</span>
+            <div class="note">pair with gunwip to restore · skips pre-commit hooks intentionally</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">gunwip</span><span class="new-badge">NEW</span></td>
+          <td>
+            <span class="desc">Undo the last WIP commit and restore all changes to working tree</span>
+            <div class="note">checks that last commit is actually a WIP before resetting</div>
+          </td>
+        </tr>
         <tr><td><span class="tag">gacp "msg"</span></td><td><span class="desc">Add all → commit → push in one command</span></td></tr>
         <tr><td><span class="tag">gacpall</span></td><td><span class="desc">Interactive commit + push across all projects</span></td></tr>
         <tr><td><span class="tag">gitallpull</span></td><td><span class="desc">Pull latest in all ~/Code projects (auto-discovered)</span></td></tr>
+        <tr><td><span class="tag">gnb &lt;branch&gt;</span></td><td><span class="desc">Create and switch to a new branch · shorthand for git checkout -b</span></td></tr>
+        <tr>
+          <td><span class="tag">gbd &lt;branch&gt;</span></td>
+          <td>
+            <span class="desc">Delete a branch both locally and from remote in one command</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">gmerge &lt;branch&gt;</span></td>
+          <td>
+            <span class="desc">Merge feature into default branch → delete local + remote branch · stays on default when done</span>
+            <div class="note">auto-detects default branch (main / master / custom) via origin/HEAD</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">gship &lt;from&gt; &lt;to&gt;</span></td>
+          <td>
+            <span class="desc">Full ship loop: merge → delete old branch → create next branch · commit first with gacp</span>
+            <div class="note">e.g. gship feature/expense-list feature/add-expense</div>
+          </td>
+        </tr>
         <tr>
           <td><span class="tag">ghcreate</span></td>
           <td>
             <span class="desc">Create public GitHub repo from current local project + push · prints repo URL on success</span>
-            <div class="note">ghcreate --private for private · ghcreate &lt;name&gt; for custom name · requires gh cli · must have at least one commit</div>
+            <div class="note">ghcreate --private for private · ghcreate &lt;name&gt; for custom name · requires gh cli</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">ghopen</span><span class="fix-badge">FIXED</span></td>
+          <td>
+            <span class="desc">Open current git repo in browser — now handles both SSH and HTTPS remotes</span>
           </td>
         </tr>
         <tr>
@@ -333,7 +368,7 @@
           <td><span class="tag">zoxide</span></td>
           <td>
             <span class="desc">Smart cd — tracks visited dirs, jump anywhere with a partial name · e.g. z task jumps to task-manager-app</span>
-            <div class="note">brew install zoxide · replaces cd automatically · the more you use it, the smarter it gets</div>
+            <div class="note">brew install zoxide · the more you use it, the smarter it gets · cd alias removed to avoid conflicts with scripts</div>
           </td>
         </tr>
         <tr>
@@ -378,10 +413,10 @@
       <div class="card-header"><h2>⚡ Dev Utilities</h2><span class="count">5</span></div>
       <table>
         <tr>
-          <td><span class="tag">killport &lt;port&gt;</span></td>
+          <td><span class="tag">killport &lt;port&gt;</span><span class="fix-badge">FIXED</span></td>
           <td>
-            <span class="desc">Kill process running on a port</span>
-            <div class="note">e.g. killport 3000</div>
+            <span class="desc">Kill process running on a port — now shows PID and handles empty port gracefully</span>
+            <div class="note">e.g. killport 3000 · prints "nothing running" instead of silently failing</div>
           </td>
         </tr>
         <tr><td><span class="tag">killnode</span></td><td><span class="desc">Kill all running node processes · prints friendly message if none found</span></td></tr>
@@ -434,10 +469,7 @@
 
   <!-- FILE LOCATIONS -->
   <div class="section-card">
-    <div class="section-header">
-      <span style="font-size:0.95rem;">📍</span>
-      <h2>Config File Locations</h2>
-    </div>
+    <div class="section-header"><span style="font-size:0.95rem;">📍</span><h2>Config File Locations</h2></div>
     <table style="width:100%; border-collapse:collapse;">
       <tr style="border-bottom:1px solid #e2e2ea;">
         <td style="padding:9px 16px; width:40%;"><span class="section-tag" style="color:#0e7490; background:#cffafe;">zshrc_config.sh</span></td>
@@ -456,10 +488,7 @@
 
   <!-- SETUP NOTES -->
   <div class="section-card">
-    <div class="section-header">
-      <span style="font-size:0.95rem;">💡</span>
-      <h2>Setup Notes</h2>
-    </div>
+    <div class="section-header"><span style="font-size:0.95rem;">💡</span><h2>Setup Notes</h2></div>
     <table style="width:100%; border-collapse:collapse;">
       <tr style="border-bottom:1px solid #e2e2ea;">
         <td style="padding:9px 16px; width:40%;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">Install order</span></td>
@@ -477,6 +506,10 @@
         <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">fnm vs nvm</span></td>
         <td style="padding:9px 16px;"><span class="section-desc">If you used nvm before, remove it from ~/.zshrc first — fnm and nvm conflict with each other</span></td>
       </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">zoxide + cd</span></td>
+        <td style="padding:9px 16px;"><span class="section-desc">alias cd='z' removed — some scripts call cd internally and expect native behaviour. Use z directly; it works identically for interactive use</span></td>
+      </tr>
       <tr>
         <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">Plugin errors</span></td>
         <td style="padding:9px 16px;"><span class="section-desc">If shell throws errors on startup, zsh plugins aren't installed yet — install them before copying zshrc</span></td>
@@ -486,14 +519,9 @@
 
   <!-- WORKFLOWS -->
   <div class="section-card">
-    <div class="section-header">
-      <span style="font-size:0.95rem;">🔁</span>
-      <h2>Daily Workflows</h2>
-    </div>
+    <div class="section-header"><span style="font-size:0.95rem;">🔁</span><h2>Daily Workflows</h2></div>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
-
-      <!-- Start a new project -->
       <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
         <div class="wf-label" style="color:#0369a1;">🆕 Start a new project</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
@@ -503,48 +531,71 @@
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">nrd</span><span class="wf-desc">npm run dev</span></div>
           <div class="wf-step"><span class="wf-num">5</span><span class="wf-cmd">ghcreate</span><span class="wf-desc">when ready — push to GitHub</span></div>
         </div>
-        <div class="wf-note" style="color:#0369a1;">💡 ghcreate = public by default · add --private flag for private · needs at least one commit</div>
+        <div class="wf-note" style="color:#0369a1;">💡 ghcreate = public by default · add --private flag for private</div>
       </div>
-
-      <!-- Daily git routine -->
       <div style="padding:16px 20px;">
         <div class="wf-label" style="color:#c2410c;">📅 Daily git routine</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">gitallpull</span><span class="wf-desc">pull latest on all projects</span></div>
           <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">gs</span><span class="wf-desc">check what changed</span></div>
-          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">gd</span><span class="wf-desc">review your changes</span></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">gds</span><span class="wf-desc">review staged changes</span></div>
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">gacp "your message"</span><span class="wf-desc">add, commit, push</span></div>
         </div>
-      </div>
-    </div>
-
-    <div style="border-bottom:1px solid #e2e2ea;">
-      <div style="padding:16px 20px;">
-        <div class="wf-label" style="color:#7c3aed;">🔄 Pull GitHub dot file changes to your machine</div>
-        <div style="display:flex; flex-direction:column; gap:6px;">
-          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">Edit files on GitHub.com</span><span class="wf-desc">make changes directly in the GitHub web editor</span></div>
-          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">dotinstall</span><span class="wf-desc">wipe local copy → re-clone → reinstall all dot files → reload shell</span></div>
-        </div>
-        <div class="wf-note" style="color:#7c3aed; margin-top:10px;">
-          💡 Reinstalls all dot files, not just .zshrc — under the hood: cd ~ → rm -rf my-dot-files → git clone → bash install.sh -y → exec zsh
-        </div>
+        <div class="wf-note" style="color:#c2410c;">💡 gds before gacp — see exactly what you're pushing</div>
       </div>
     </div>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
+      <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
+        <div class="wf-label" style="color:#16a34a;">🚢 Ship a feature (quick)</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">gacp "feat: add expense list"</span><span class="wf-desc">commit your work</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">gmerge feature/expense-list</span><span class="wf-desc">merge into main + delete branch</span></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">gnb feature/add-expense</span><span class="wf-desc">start next feature branch</span></div>
+        </div>
+        <div class="wf-note" style="color:#16a34a;">💡 gmerge handles: checkout main → pull → merge → delete local + remote</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div class="wf-label" style="color:#16a34a;">🚀 Ship a feature (one command)</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">gacp "feat: add expense list"</span><span class="wf-desc">commit your work first</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">gship feature/expense-list feature/add-expense</span><span class="wf-desc">full loop in one go</span></div>
+        </div>
+        <div class="wf-note" style="color:#16a34a;">💡 gship = merge + delete + create next branch · lands you ready to code</div>
+      </div>
+    </div>
 
-      <!-- Dev server issues -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
+      <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
+        <div class="wf-label" style="color:#7c3aed;">💾 Save work to switch branches fast</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">gwip</span><span class="wf-desc">commit everything as WIP</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">gco other-branch</span><span class="wf-desc">switch and do your thing</span></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">gco feature/my-branch</span><span class="wf-desc">come back</span></div>
+          <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">gunwip</span><span class="wf-desc">restore your in-progress work</span></div>
+        </div>
+        <div class="wf-note" style="color:#7c3aed;">💡 faster than stash for quick context switches · skips pre-commit hooks</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div class="wf-label" style="color:#7c3aed;">🔄 Pull GitHub dot file changes</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">Edit files on GitHub.com</span><span class="wf-desc">make changes in web editor</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">dotinstall</span><span class="wf-desc">wipe → re-clone → reinstall → reload</span></div>
+        </div>
+        <div class="wf-note" style="color:#7c3aed;">💡 safe to run from any directory — uses $HOME paths throughout</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
       <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
         <div class="wf-label" style="color:#0f766e;">🔥 Dev server not starting</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">killport 3000</span><span class="wf-desc">free the port</span></div>
           <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">killnode</span><span class="wf-desc">kill zombie node processes</span></div>
-          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">cleannm && ni</span><span class="wf-desc">trash + reinstall node_modules</span></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">cleannm && nci</span><span class="wf-desc">trash + clean reinstall from lockfile</span></div>
           <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">nrd</span><span class="wf-desc">try again</span></div>
         </div>
       </div>
-
-      <!-- Explore unfamiliar project -->
       <div style="padding:16px 20px;">
         <div class="wf-label" style="color:#6d28d9;">🔍 Explore your own project</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
@@ -557,8 +608,6 @@
     </div>
 
     <div style="display:grid; grid-template-columns:1fr 1fr;">
-
-      <!-- Clone & explore someone else's project -->
       <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
         <div class="wf-label" style="color:#0369a1;">👀 Clone &amp; explore someone's project</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
@@ -569,21 +618,16 @@
           <div class="wf-step"><span class="wf-num">5</span><span class="wf-cmd">co</span><span class="wf-desc">open in existing VS Code window</span></div>
           <div class="wf-step"><span class="wf-num">6</span><span class="wf-cmd">trash &lt;name&gt;</span><span class="wf-desc">delete when done — keep it clean</span></div>
         </div>
-        <div class="wf-note" style="color:#0369a1;">💡 co uses code -r — reuses your open VS Code window, no new windows</div>
       </div>
-
-      <!-- Jump between projects + clean up -->
       <div style="display:grid; grid-template-rows: 1fr 1fr;">
-
         <div style="padding:16px 20px; border-bottom:1px solid #e2e2ea;">
           <div class="wf-label" style="color:#b45309;">⚡ Jump between projects fast</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
             <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">proj</span><span class="wf-desc">fuzzy search all ~/Code dirs</span></div>
             <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">z task</span><span class="wf-desc">jump to task-manager-app instantly</span></div>
-            <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">cloneown &lt;url&gt;</span><span class="wf-desc">clone your own repo into ~/Code</span></div>
+            <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">cc</span><span class="wf-desc">go to ~/Code root</span></div>
           </div>
         </div>
-
         <div style="padding:16px 20px;">
           <div class="wf-label" style="color:#0e7490;">🧹 Clean up disk space</div>
           <div style="display:flex; flex-direction:column; gap:6px;">
@@ -593,7 +637,6 @@
             <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">trash &lt;folder&gt;</span><span class="wf-desc">safely move to trash</span></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -609,6 +652,8 @@
       <div class="li"><div class="ld" style="background:#0e7490"></div>Tools</div>
       <div class="li"><div class="ld" style="background:#0f766e"></div>System</div>
       <div class="li"><div class="ld" style="background:#1d4ed8"></div>Starship</div>
+      <div class="li"><div class="ld" style="background:#15803d"></div>NEW</div>
+      <div class="li"><div class="ld" style="background:#92400e"></div>FIXED</div>
     </div>
   </footer>
 
