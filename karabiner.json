@@ -523,243 +523,165 @@ My current layer awareness:
                             }
                         ]
                     },
-                    {
-                        "description": "VSCode - Quote remaps (\" ' `) + hyphen/underscore swap",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Hyper+Space → alternator.switch (VSCode only)",
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "f18",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Cmd+Hyper+y → function (VSCode only)",
-                                "from": {
-                                    "key_code": "y",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    { "key_code": "f" },
-                                    { "key_code": "u" },
-                                    { "key_code": "n" },
-                                    { "key_code": "c" },
-                                    { "key_code": "t" },
-                                    { "key_code": "i" },
-                                    { "key_code": "o" },
-                                    { "key_code": "n" },
-                                    { "key_code": "spacebar" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Hyper+y → const (VSCode only)",
-                                "from": {
-                                    "key_code": "y",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    { "key_code": "c" },
-                                    { "key_code": "o" },
-                                    { "key_code": "n" },
-                                    { "key_code": "s" },
-                                    { "key_code": "t" },
-                                    { "key_code": "spacebar" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "quote → \" (double quote without shift)",
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": { "mandatory": [] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "quote",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Shift+quote → ' (single quote)",
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": { "mandatory": ["left_shift"] }
-                                },
-                                "to": [{ "key_code": "quote" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "hyphen → _",
-                                "from": {
-                                    "key_code": "hyphen",
-                                    "modifiers": { "mandatory": [] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "hyphen",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Hyper+hyphen → -",
-                                "from": {
-                                    "key_code": "hyphen",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "key_code": "hyphen" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Opt+Hyper+h → () => {│} (VSCode only)",
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "9",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    {
-                                        "key_code": "0",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    { "key_code": "spacebar" },
-                                    { "key_code": "equal_sign" },
-                                    {
-                                        "key_code": "period",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    { "key_code": "spacebar" },
-                                    {
-                                        "key_code": "open_bracket",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    {
-                                        "key_code": "close_bracket",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    { "key_code": "left_arrow" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.VSCode$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Opt+Hyper+l → async () => (VSCode only)",
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    { "key_code": "a" },
-                                    { "key_code": "s" },
-                                    { "key_code": "y" },
-                                    { "key_code": "n" },
-                                    { "key_code": "c" },
-                                    { "key_code": "spacebar" },
-                                    {
-                                        "key_code": "9",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    {
-                                        "key_code": "0",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    { "key_code": "spacebar" },
-                                    { "key_code": "equal_sign" },
-                                    {
-                                        "key_code": "period",
-                                        "modifiers": ["left_shift"]
-                                    },
-                                    { "key_code": "spacebar" }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
+                   {
+    "description": "VSCode - Snippet expansions",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.microsoft\\.VSCode$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "description": "Hyper+Space → alternator.switch (VSCode only)",
+            "from": {
+                "key_code": "spacebar",
+                "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [
+                {
+                    "key_code": "f18",
+                    "modifiers": ["left_control"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.microsoft\\.VSCode$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "description": "Cmd+Hyper+y → function (VSCode only)",
+            "from": {
+                "key_code": "y",
+                "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [
+                { "key_code": "f" },
+                { "key_code": "u" },
+                { "key_code": "n" },
+                { "key_code": "c" },
+                { "key_code": "t" },
+                { "key_code": "i" },
+                { "key_code": "o" },
+                { "key_code": "n" },
+                { "key_code": "spacebar" }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.microsoft\\.VSCode$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "description": "Hyper+y → const (VSCode only)",
+            "from": {
+                "key_code": "y",
+                "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [
+                { "key_code": "c" },
+                { "key_code": "o" },
+                { "key_code": "n" },
+                { "key_code": "s" },
+                { "key_code": "t" },
+                { "key_code": "spacebar" }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.microsoft\\.VSCode$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "description": "Opt+Hyper+h → () => {│} (VSCode only)",
+            "from": {
+                "key_code": "h",
+                "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [
+                {
+                    "key_code": "9",
+                    "modifiers": ["left_shift"]
+                },
+                {
+                    "key_code": "0",
+                    "modifiers": ["left_shift"]
+                },
+                { "key_code": "spacebar" },
+                { "key_code": "equal_sign" },
+                {
+                    "key_code": "period",
+                    "modifiers": ["left_shift"]
+                },
+                { "key_code": "spacebar" },
+                {
+                    "key_code": "open_bracket",
+                    "modifiers": ["left_shift"]
+                },
+                {
+                    "key_code": "close_bracket",
+                    "modifiers": ["left_shift"]
+                },
+                { "key_code": "left_arrow" }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.microsoft\\.VSCode$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "description": "Opt+Hyper+l → async () => (VSCode only)",
+            "from": {
+                "key_code": "l",
+                "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
+            },
+            "to": [
+                { "key_code": "a" },
+                { "key_code": "s" },
+                { "key_code": "y" },
+                { "key_code": "n" },
+                { "key_code": "c" },
+                { "key_code": "spacebar" },
+                {
+                    "key_code": "9",
+                    "modifiers": ["left_shift"]
+                },
+                {
+                    "key_code": "0",
+                    "modifiers": ["left_shift"]
+                },
+                { "key_code": "spacebar" },
+                { "key_code": "equal_sign" },
+                {
+                    "key_code": "period",
+                    "modifiers": ["left_shift"]
+                },
+                { "key_code": "spacebar" }
+            ],
+            "type": "basic"
+        }
+    ]
+},
                     {
                         "description": "Equal Sign Remaps",
                         "manipulators": [
