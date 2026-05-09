@@ -98,10 +98,19 @@ alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
 
 # Reinstall dot files from GitHub
 dotinstall() {
-  git clone https://github.com/codebymehran/my-dot-files.git /tmp/my-dot-files-new || return 1
-  rm -rf "$HOME/my-dot-files"
-  mv /tmp/my-dot-files-new "$HOME/my-dot-files"
-  cd "$HOME/my-dot-files" && bash install.sh -y && exec zsh
+  local repo="https://github.com/codebymehran/my-dot-files.git"
+  local dest="$HOME/my-dot-files"
+
+  echo "🔍 Checking repo is reachable..."
+  git ls-remote "$repo" &>/dev/null || { echo "❌ Cannot reach repo — check your connection or URL"; return 1; }
+
+  echo "🗑️  Removing existing dot files..."
+  rm -rf "$dest"
+
+  echo "📥 Cloning..."
+  git clone "$repo" "$dest" || { echo "❌ Clone failed"; return 1; }
+
+  cd "$dest" && bash install.sh -y && exec zsh
 }
 
 # ============================================================================
