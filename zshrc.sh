@@ -33,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-setopt HIST_IGNORE_DUPS      # Don't save duplicate commands
+setopt HIST_IGNORE_ALL_DUPS  # Stronger than HIST_IGNORE_DUPS — works across terminals
 setopt HIST_IGNORE_SPACE     # Don't save commands starting with space
 setopt SHARE_HISTORY         # Share history between terminals (implies incremental append)
 
@@ -98,12 +98,10 @@ alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
 
 # Reinstall dot files from GitHub
 dotinstall() {
-  cd "$HOME" &&
-  rm -rf "$HOME/my-dot-files" &&
-  git clone https://github.com/codebymehran/my-dot-files.git &&
-  cd "$HOME/my-dot-files" &&
-  bash install.sh -y &&
-  exec zsh
+  git clone https://github.com/codebymehran/my-dot-files.git /tmp/my-dot-files-new || return 1
+  rm -rf "$HOME/my-dot-files"
+  mv /tmp/my-dot-files-new "$HOME/my-dot-files"
+  cd "$HOME/my-dot-files" && bash install.sh -y && exec zsh
 }
 
 # ============================================================================
@@ -126,6 +124,7 @@ alias gwip='git add -A && git commit -m "WIP: work in progress" --no-verify'
 alias gunwip='git log -1 --pretty=%B | grep -q "WIP:" && git reset HEAD~1 || echo "ℹ️  Last commit is not a WIP"'
 
 # Delete a branch locally and remotely
+unalias gbd 2>/dev/null
 gbd() {
   if [[ -z "$1" ]]; then
     echo "❌ Usage: gbd <branch-name>"
@@ -138,10 +137,18 @@ gbd() {
 
 # Helper: get default branch (main, master, or whatever origin uses)
 _git_default_branch() {
-  git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|.*/||' || echo "main"
+  local branch
+  branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|.*/||')
+  if [[ -z "$branch" ]]; then
+    echo "⚠️  Could not detect default branch from origin/HEAD — run: git remote set-head origin --auto" >&2
+    echo "main"
+  else
+    echo "$branch"
+  fi
 }
 
 # Merge a feature branch into default branch, delete it locally and remotely
+unalias gmerge 2>/dev/null
 gmerge() {
   if [[ -z "$1" ]]; then
     echo "❌ Usage: gmerge <branch-name>"
@@ -173,6 +180,7 @@ gmerge() {
 
 # Full ship loop: merge feature into default branch → delete old branch → create next branch
 # Usage: gship feature/expense-list feature/add-expense
+unalias gship 2>/dev/null
 gship() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo "❌ Usage: gship <current-branch> <next-branch>"
@@ -195,6 +203,9 @@ gship() {
   echo "🔀 Merging $from into $default..."
   git merge "$from" || { echo "❌ Merge conflict — fix it, then continue manually"; return 1; }
 
+  echo "🚀 Pushing $default to remote..."
+  git push origin "$default" || { echo "❌ Push failed"; return 1; }
+
   echo "🗑️  Deleting $from..."
   git branch -d "$from"
   git push origin --delete "$from" 2>/dev/null
@@ -203,6 +214,7 @@ gship() {
   git checkout -b "$to" && echo "✅ Ready on $to"
 }
 
+unalias grc 2>/dev/null
 grc() {
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "❌ Not in a git repository"
@@ -222,6 +234,7 @@ grc() {
 # ============================================================================
 
 # Git add + commit + push (with safety checks)
+unalias gacp 2>/dev/null
 gacp() {
   if [[ -z "$1" ]]; then
     echo "❌ Usage: gacp \"commit message\""
@@ -303,6 +316,7 @@ gacpall() {
 }
 
 # Wipe all commit history, keep files (⚠️ dangerous!)
+unalias gitwipe 2>/dev/null
 gitwipe() {
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "❌ Not in a git repository"
@@ -317,6 +331,12 @@ gitwipe() {
     return 1
   fi
 
+  local default
+  default=$(_git_default_branch)
+  echo "ℹ️  Detected default branch: $default"
+  read "branchconfirm?Press Enter to confirm, or type a different branch name: "
+  [[ -n "$branchconfirm" ]] && default="$branchconfirm"
+
   echo "🗑️  Wiping history..."
   git checkout --orphan temp
   git add .
@@ -324,8 +344,6 @@ gitwipe() {
   read "msg?Commit message (or press Enter for 'Initial commit'): "
   git commit -m "${msg:-Initial commit}"
 
-  local default
-  default=$(_git_default_branch)
   git branch -D "$default" 2>/dev/null
   git branch -m "$default"
 
@@ -341,6 +359,7 @@ gitwipe() {
 #   ghcreate my-name           → public repo, custom name
 #   ghcreate --private         → private repo, uses folder name
 #   ghcreate my-name --private → private repo, custom name
+unalias ghcreate 2>/dev/null
 ghcreate() {
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "❌ Not a git repo — run: git init && git add . && git commit -m 'initial commit'"
