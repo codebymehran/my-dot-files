@@ -1,79 +1,4 @@
 # ============================================================================
-# 🤖 AI QUIZ PROMPT — copy this entire file and paste to Claude
-# ============================================================================
-#
-# Here is my .zshrc file. I want you to help me master my terminal shortcuts.
-#
-# Please do the following:
-# 1. Start with TIER 1 aliases only — quiz me one by one
-# 2. Ask what a command does, wait for my answer, then correct or confirm
-# 3. If I get something wrong, give me a real example of when I'd use it
-# 4. After Tier 1 is solid, move to Tier 2, then Tier 3
-# 5. If you notice anything broken, missing, or improvable, tell me at the end
-# 6. Keep it conversational — one question at a time
-#
-# My current progress:
-# - Tier 1 daily basics — needs drilling
-# - Tier 2 git + npm + dev — needs drilling
-# - Tier 3 advanced/rarely used — not started
-#
-# TIER 1 — learn these first (daily use):
-#   z <name>       → jump to project with zoxide
-#   co             → open current folder in VS Code
-#   .. ... ....    → go up directories
-#   c              → clear screen
-#   mkcd <dir>     → create dir and cd into it
-#   lt             → tree view of files
-#   gs             → git status
-#   gl             → git log (last 10, graph)
-#   gacp "msg"     → add + commit + push in one command
-#   ni             → npm install
-#   nrd            → npm run dev
-#   nrb            → npm run build
-#   killport <n>   → kill process on port
-#   ports          → show all listening ports
-#   zc             → edit zshrc in VS Code
-#   zr             → reload zshrc
-#   shortcuts      → show help
-#
-# TIER 2 — once Tier 1 is solid:
-#   nna <name>     → scaffold new Next.js app into ~/Code
-#   nnab <name>    → scaffold basic Next.js app
-#   clone <url>    → clone repo + set up dev environment
-#   cloneown <url> → clone your own repo into ~/Code
-#   ghcreate       → create GitHub repo + push current project
-#   ghopen         → open current repo in browser
-#   repodelete     → delete local folder + GitHub repo
-#   gd             → git diff
-#   gco <branch>   → git checkout branch
-#   gb             → list git branches
-#   glh            → last commit with file stats
-#   gst            → git stash
-#   gstp           → git stash pop
-#   grc            → git reset hard + clean (dangerous!)
-#   nid            → npm install --save-dev
-#   nrs            → npm run start
-#   nrt            → npm run test
-#   nup            → npm update
-#   killnode       → kill all node processes
-#   cleannm        → remove all node_modules recursively
-#   myip           → show public IP
-#   localip        → show local IP
-#   cex            → cd to ~/Code/explore
-#   cdf            → cd to ~/my-dot-files
-#   starshipconfig → edit Starship prompt config
-#
-# TIER 3 — advanced/rarely used:
-#   gitallpull     → pull all projects at once
-#   gacpall        → interactive commit + push all projects
-#   gitwipe        → wipe ALL git history (dangerous!)
-#   proj()         → fzf fuzzy project switcher
-#   cpv            → copy with progress bar (rsync)
-#   ducks          → show largest files/dirs in current dir
-#   cx <file>      → make file executable
-#   000/644/755/777 → chmod shortcuts
-#
-# ============================================================================
 # PATH
 # ============================================================================
 export PATH="$HOME/my-dot-files:$PATH"
@@ -141,7 +66,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias c='clear'
-alias co='code -r .'  # Open current directory in VS Code
+alias co='code -r .'        # Open current directory in VS Code
+alias cc='cd ~/Code'        # Jump to Code folder
 
 # ============================================================================
 # SMART FILE OPERATIONS
@@ -172,10 +98,10 @@ alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
 
 # Reinstall dot files from GitHub
 dotinstall() {
-  cd ~ &&
-  rm -rf my-dot-files &&
+  cd "$HOME" &&
+  rm -rf "$HOME/my-dot-files" &&
   git clone https://github.com/codebymehran/my-dot-files.git &&
-  cd my-dot-files &&
+  cd "$HOME/my-dot-files" &&
   bash install.sh -y &&
   exec zsh
 }
@@ -185,10 +111,98 @@ dotinstall() {
 # ============================================================================
 alias gs='git status'
 alias gl='git log --oneline --graph --decorate -10'
+alias gla='git log --oneline --graph --decorate'   # all commits, paginated
 alias gd='git diff'
+alias gds='git diff --staged'                      # review staged changes before committing
 alias gco='git checkout'
 alias gb='git branch'
-alias glh='git log -1 --stat'  # Show last commit with file stats
+alias glh='git log -1 --stat'                      # Show last commit with file stats
+
+# Create and switch to a new branch
+alias gnb='git checkout -b'
+
+# WIP — quickly save/restore work in progress when switching branches
+alias gwip='git add -A && git commit -m "WIP: work in progress" --no-verify'
+alias gunwip='git log -1 --pretty=%B | grep -q "WIP:" && git reset HEAD~1 || echo "ℹ️  Last commit is not a WIP"'
+
+# Delete a branch locally and remotely
+gbd() {
+  if [[ -z "$1" ]]; then
+    echo "❌ Usage: gbd <branch-name>"
+    return 1
+  fi
+  git branch -d "$1" && git push origin --delete "$1" \
+    && echo "✅ Deleted $1 locally and remotely" \
+    || echo "❌ Failed — is the branch name correct? Use 'git branch -D' to force-delete unmerged branches."
+}
+
+# Helper: get default branch (main, master, or whatever origin uses)
+_git_default_branch() {
+  git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|.*/||' || echo "main"
+}
+
+# Merge a feature branch into default branch, delete it locally and remotely
+gmerge() {
+  if [[ -z "$1" ]]; then
+    echo "❌ Usage: gmerge <branch-name>"
+    return 1
+  fi
+
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not in a git repository"
+    return 1
+  fi
+
+  local branch="$1"
+  local default
+  default=$(_git_default_branch)
+
+  echo "🔀 Switching to $default and pulling latest..."
+  git checkout "$default" && git pull origin "$default" || return 1
+
+  echo "🔀 Merging $branch..."
+  git merge "$branch" || { echo "❌ Merge failed — resolve conflicts then run: git merge --continue"; return 1; }
+
+  echo "🗑️  Deleting local branch..."
+  git branch -d "$branch"
+
+  echo "🗑️  Deleting remote branch..."
+  git push origin --delete "$branch" 2>/dev/null && echo "✅ Done — on $default, $branch deleted" \
+    || echo "⚠️  Local deleted. Remote branch not found (already gone?)"
+}
+
+# Full ship loop: merge feature into default branch → delete old branch → create next branch
+# Usage: gship feature/expense-list feature/add-expense
+gship() {
+  if [[ -z "$1" || -z "$2" ]]; then
+    echo "❌ Usage: gship <current-branch> <next-branch>"
+    echo "   e.g.   gship feature/expense-list feature/add-expense"
+    return 1
+  fi
+
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not in a git repository"
+    return 1
+  fi
+
+  local from="$1" to="$2"
+  local default
+  default=$(_git_default_branch)
+
+  echo "📦 Switching to $default and pulling..."
+  git checkout "$default" && git pull origin "$default" || return 1
+
+  echo "🔀 Merging $from into $default..."
+  git merge "$from" || { echo "❌ Merge conflict — fix it, then continue manually"; return 1; }
+
+  echo "🗑️  Deleting $from..."
+  git branch -d "$from"
+  git push origin --delete "$from" 2>/dev/null
+
+  echo "🌿 Creating $to..."
+  git checkout -b "$to" && echo "✅ Ready on $to"
+}
+
 grc() {
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "❌ Not in a git repository"
@@ -233,7 +247,6 @@ gacp() {
   if [[ "$branch" == "main" || "$branch" == "master" ]]; then
     echo "⚠️  You are on '$branch'. Are you sure you want to push directly?"
     read "confirm?Type 'y' or Enter to continue: "
-    # Convert input to lowercase (zsh syntax)
     confirm="${confirm:l}"
     if [[ "$confirm" != "y" && "$confirm" != "" ]]; then
       echo "❌ Aborted"
@@ -311,13 +324,13 @@ gitwipe() {
   read "msg?Commit message (or press Enter for 'Initial commit'): "
   git commit -m "${msg:-Initial commit}"
 
-  git branch -D main 2>/dev/null || git branch -D master 2>/dev/null
-  git branch -m main
+  local default
+  default=$(_git_default_branch)
+  git branch -D "$default" 2>/dev/null
+  git branch -m "$default"
 
-  local current_branch
-  current_branch=$(git symbolic-ref --short HEAD)
   echo "🚀 Force pushing..."
-  git push -f origin "$current_branch"
+  git push -f origin "$default"
 
   echo "✅ Done! Clean slate."
 }
@@ -383,6 +396,7 @@ alias gstp='git stash pop'
 # NODE/NPM ALIASES
 # ============================================================================
 alias ni='npm install'
+alias nci='npm ci'           # fast strict install from lockfile — use on existing projects
 alias nid='npm install --save-dev'
 alias nrd='npm run dev'
 alias nrb='npm run build'
@@ -396,7 +410,17 @@ alias nup='npm update'
 
 # Kill process on a specific port
 killport() {
-  lsof -ti tcp:"$1" | xargs kill -9 && echo "✅ Killed port $1"
+  if [[ -z "$1" ]]; then
+    echo "❌ Usage: killport <port>"
+    return 1
+  fi
+  local pid
+  pid=$(lsof -ti tcp:"$1")
+  if [[ -z "$pid" ]]; then
+    echo "ℹ️  Nothing running on port $1"
+    return 0
+  fi
+  echo "$pid" | xargs kill -9 && echo "✅ Killed port $1 (PID $pid)"
 }
 
 # Kill all node processes
@@ -422,8 +446,18 @@ cleannm() {
 # Check what's eating your disk
 alias ducks='du -cksh * | sort -rh | head -15'
 
-# Open current git repo in browser
-alias ghopen='open $(git remote get-url origin | sed "s/git@github.com:/https:\/\/github.com\//;s/\.git$//")'
+# Open current git repo in browser (handles both SSH and HTTPS remotes)
+ghopen() {
+  local url
+  url=$(git remote get-url origin 2>/dev/null)
+  if [[ -z "$url" ]]; then
+    echo "❌ No remote origin found"
+    return 1
+  fi
+  # Normalise SSH → HTTPS and strip .git suffix
+  url=$(echo "$url" | sed 's|git@github.com:|https://github.com/|; s|\.git$||')
+  open "$url"
+}
 
 # ============================================================================
 # SCRIPTS
@@ -435,7 +469,7 @@ _nna_completion() {
 }
 compdef _nna_completion nna
 alias nnab='bash ~/my-dot-files/new-next-app-basic.sh'
-compdef _nna_completion nnab  
+compdef _nna_completion nnab
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
@@ -483,6 +517,7 @@ shortcuts() {
   echo "║  ⭐ TIER 1 — learn these first (daily use)                           ║"
   echo "║    z <name>         → Jump to any project (zoxide)                   ║"
   echo "║    co               → Open current folder in VS Code                 ║"
+  echo "║    cc               → cd ~/Code                                      ║"
   echo "║    ..  ...  ....    → Go up 1 / 2 / 3 directories                   ║"
   echo "║    c                → Clear screen                                   ║"
   echo "║    mkcd <dir>       → Create directory and cd into it                ║"
@@ -508,13 +543,22 @@ shortcuts() {
   echo "║    ghcreate --private → Same but private                             ║"
   echo "║    ghopen           → Open current repo on GitHub in browser         ║"
   echo "║    repodelete       → Delete local folder + GitHub repo              ║"
-  echo "║    gd               → Git diff                                       ║"
+  echo "║    gd               → Git diff (unstaged)                            ║"
+  echo "║    gds              → Git diff staged — review before committing     ║"
+  echo "║    gla              → Git log all commits (paginated)                ║"
   echo "║    gco <branch>     → Git checkout branch                            ║"
   echo "║    gb               → List git branches                              ║"
   echo "║    glh              → Last commit with file stats                    ║"
   echo "║    gst              → Git stash                                      ║"
   echo "║    gstp             → Git stash pop                                  ║"
+  echo "║    gwip             → Commit everything as WIP (no verify)           ║"
+  echo "║    gunwip           → Undo last WIP commit, restore changes          ║"
+  echo "║    gnb <branch>     → Create and switch to new branch                ║"
+  echo "║    gbd <branch>     → Delete branch locally and remotely             ║"
+  echo "║    gmerge <branch>  → Merge into default + delete branch             ║"
+  echo "║    gship <from> <to>→ Full loop: merge → delete → new branch         ║"
   echo "║    grc              → Git reset hard & clean (⚠️  dangerous!)         ║"
+  echo "║    nci              → npm ci — fast strict install from lockfile     ║"
   echo "║    nid              → npm install --save-dev                         ║"
   echo "║    nrs              → npm run start                                  ║"
   echo "║    nrt              → npm run test                                   ║"
@@ -547,6 +591,11 @@ shortcuts() {
   echo "║    • Commands starting with space won't be saved in history           ║"
   echo "║    • nna <tab> shows existing ~/Code projects to avoid duplicates     ║"
   echo "║    • rm / cp / mv all ask for confirmation (safety aliases)           ║"
+  echo "║    • gacp → gmerge → gnb  is your feature shipping loop              ║"
+  echo "║    • gship <from> <to> does the full merge+delete+branch in one go   ║"
+  echo "║    • gwip to save work in progress, gunwip to restore it             ║"
+  echo "║    • gds before gacp to review exactly what you're committing        ║"
+  echo "║    • use nci instead of ni on existing projects (uses lockfile)      ║"
   echo "║                                                                       ║"
   echo "╚══════════════════════════════════════════════════════════════════════╝"
   echo ""
@@ -588,7 +637,6 @@ fi
 # ============================================================================
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
-  alias cd='z'
 fi
 
 # ============================================================================
