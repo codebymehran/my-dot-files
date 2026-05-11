@@ -119,7 +119,9 @@ interface EmptyStateProps {
 
 const EmptyState = ({ message = 'Nothing here yet.' }: EmptyStateProps) => {
   return (
-    <p className="text-sm text-muted-foreground">{message}</p>
+    <div className="flex items-center justify-center py-12">
+      <p className="text-sm text-muted-foreground">{message}</p>
+    </div>
   );
 };
 
@@ -148,6 +150,25 @@ export default PageHeader;
 HEADER
 echo "  ✅ src/components/PageHeader.tsx"
 
+cat > src/components/Dashboard.tsx << 'DASHBOARD'
+// Dashboard layout wrapper — centres and constrains content width
+
+interface DashboardProps {
+  children?: React.ReactNode;
+}
+
+const Dashboard = ({ children }: DashboardProps) => {
+  return (
+    <div className="max-w-2xl mx-auto p-6 space-y-6">
+      {children}
+    </div>
+  );
+};
+
+export default Dashboard;
+DASHBOARD
+echo "  ✅ src/components/Dashboard.tsx"
+
 # -----------------------------
 # Clean up boilerplate
 # -----------------------------
@@ -163,12 +184,16 @@ rm -f src/app/favicon.ico
 echo "  ✅ favicon.ico removed"
 
 cat > src/app/layout.tsx << 'LAYOUT'
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist } from 'next/font/google';
+import { cn } from '@/lib/utils';
+import './globals.css';
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
 export const metadata: Metadata = {
-  title: "App",
-  description: "",
+  title: 'App',
+  description: '',
 };
 
 export default function RootLayout({
@@ -178,19 +203,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body className={cn('min-h-screen bg-background font-sans antialiased', geist.variable)}>
+        {children}
+      </body>
     </html>
   );
 }
 LAYOUT
-echo "  ✅ layout.tsx stripped"
+echo "  ✅ layout.tsx updated (Geist + cn body classes)"
 
 cat > src/app/page.tsx << 'PAGE'
+import Dashboard from '@/components/Dashboard';
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <main className="min-h-screen bg-background">
+      <Dashboard />
+    </main>
+  );
 }
 PAGE
-echo "  ✅ page.tsx stripped"
+echo "  ✅ page.tsx updated (renders Dashboard)"
 
 echo ""
 echo "🖱️  Patching globals.css for cursor: pointer..."
@@ -215,8 +248,16 @@ npx shadcn@latest init --yes
 
 echo ""
 echo "🧩 Installing shadcn components..."
-npx shadcn@latest add button input card dialog form select sonner dropdown-menu --yes --overwrite
+npx shadcn@latest add \
+  button input card dialog form select sonner dropdown-menu \
+  separator badge avatar tooltip sheet \
+  tabs table skeleton alert popover \
+  checkbox switch breadcrumb \
+  --yes --overwrite
 echo "  ✅ button, input, card, dialog, form, select, sonner, dropdown-menu"
+echo "  ✅ separator, badge, avatar, tooltip, sheet"
+echo "  ✅ tabs, table, skeleton, alert, popover"
+echo "  ✅ checkbox, switch, breadcrumb"
 
 # -----------------------------
 # Prettier config
@@ -360,6 +401,7 @@ echo "│  │   ├── layout.tsx             │"
 echo "│  │   ├── page.tsx               │"
 echo "│  │   └── globals.css            │"
 echo "│  ├── components/                │"
+echo "│  │   ├── Dashboard.tsx          │"
 echo "│  │   ├── EmptyState.tsx         │"
 echo "│  │   ├── LoadingSpinner.tsx     │"
 echo "│  │   └── PageHeader.tsx         │"
@@ -373,7 +415,7 @@ echo ""
 echo "💡 When ready to push to GitHub:"
 echo "   ghcreate"
 echo ""
-echo "💡 When your project grows, consider adding:"
+echo "💡 When your project grows, look at nna for reference:"
 echo "   src/hooks/        → custom React hooks"
 echo "   src/types/        → shared TypeScript types"
 echo "   src/lib/api/      → fetch wrapper"
