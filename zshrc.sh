@@ -501,7 +501,8 @@ compdef _nna_completion nnab
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
-
+alias nea='bash ~/my-dot-files/new-express-app.sh'
+compdef _nna_completion nea
 # ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
