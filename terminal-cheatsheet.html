@@ -23,6 +23,7 @@
     --c-star:  #1d4ed8; --cbg-star:  #dbeafe;
     --c-zsh:   #7c3aed; --cbg-zsh:   #ede9fe;
     --c-tools: #0e7490; --cbg-tools: #cffafe;
+    --c-pg:    #336791; --cbg-pg:    #dbeafe;
   }
   body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 48px 28px; }
   .page { max-width: 1080px; margin: 0 auto; }
@@ -65,6 +66,7 @@
   .star  .tag { color: var(--c-star);  background: var(--cbg-star); }
   .zsh   .tag { color: var(--c-zsh);   background: var(--cbg-zsh); }
   .tools .tag { color: var(--c-tools); background: var(--cbg-tools); }
+  .pg    .tag { color: var(--c-pg);    background: var(--cbg-pg); }
 
   .install-banner {
     background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
@@ -345,6 +347,40 @@
       </table>
     </div>
 
+    <!-- POSTGRESQL — NEW CARD -->
+    <div class="card full pg">
+      <div class="card-header"><h2>🐘 PostgreSQL (Docker)</h2><span class="count">4</span></div>
+      <table>
+        <tr>
+          <td><span class="tag">pgstart</span></td>
+          <td>
+            <span class="desc">Start the pg-practice Docker container — turns the database server on</span>
+            <div class="note">data is preserved · just waking the container from sleep</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">pgstop</span></td>
+          <td>
+            <span class="desc">Stop the container — turns the server off · data is safe</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">pgconnect</span></td>
+          <td>
+            <span class="desc">Open psql shell inside the container · connects as user dev to database learning</span>
+            <div class="note">run pgstart first · type \q to exit · \dt to list tables · \d &lt;table&gt; to describe</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">pgstatus</span></td>
+          <td>
+            <span class="desc">Check if the container is running — shows nothing if stopped</span>
+            <div class="note">docker ps filtered to pg-practice · run before pgconnect if unsure</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
     <!-- TOOLS FULL WIDTH -->
     <div class="card full tools">
       <div class="card-header">
@@ -410,9 +446,9 @@
       </table>
     </div>
 
-    <!-- DEV UTILITIES -->
+    <!-- DEV UTILITIES — count updated 5→9, pg rows added -->
     <div class="card file">
-      <div class="card-header"><h2>⚡ Dev Utilities</h2><span class="count">5</span></div>
+      <div class="card-header"><h2>⚡ Dev Utilities</h2><span class="count">9</span></div>
       <table>
         <tr>
           <td><span class="tag">killport &lt;port&gt;</span></td>
@@ -435,6 +471,26 @@
           <td>
             <span class="desc">Open current git repo in browser</span>
             <div class="note">must be inside a git repo with a GitHub remote</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">pgstart / pgstop</span></td>
+          <td>
+            <span class="desc">Start or stop the PostgreSQL Docker container</span>
+            <div class="note">container: pg-practice · data persists between stops</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">pgconnect</span></td>
+          <td>
+            <span class="desc">Connect to PostgreSQL via psql · user: dev · db: learning</span>
+            <div class="note">\q to exit · \dt list tables · \d &lt;table&gt; describe · \timing toggle query time</div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag">pgstatus</span></td>
+          <td>
+            <span class="desc">Check if PostgreSQL container is currently running</span>
           </td>
         </tr>
       </table>
@@ -515,6 +571,10 @@
       <tr style="border-bottom:1px solid #e2e2ea;">
         <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">zoxide + cd</span></td>
         <td style="padding:9px 16px;"><span class="section-desc">alias cd='z' removed — some scripts call cd internally and expect native behaviour. Use z directly; it works identically for interactive use</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e2e2ea;">
+        <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">PostgreSQL setup</span></td>
+        <td style="padding:9px 16px;"><span class="section-desc">Requires Docker running — start Docker.app first, then pgstart. Container name: pg-practice · user: dev · db: learning · port: 5432</span></td>
       </tr>
       <tr>
         <td style="padding:9px 16px;"><span class="section-tag" style="color:#6d28d9; background:#ede9fe;">Plugin errors</span></td>
@@ -613,7 +673,7 @@
       </div>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e2e2ea;">
       <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
         <div class="wf-label" style="color:#0369a1;">👀 Clone &amp; explore someone's project</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
@@ -645,6 +705,35 @@
         </div>
       </div>
     </div>
+
+    <!-- NEW: PostgreSQL workflow row -->
+    <div style="display:grid; grid-template-columns:1fr 1fr;">
+      <div style="padding:16px 20px; border-right:1px solid #e2e2ea;">
+        <div class="wf-label" style="color:#336791;">🐘 Start a PostgreSQL practice session</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-cmd">pgstatus</span><span class="wf-desc">check if container is running</span></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-cmd">pgstart</span><span class="wf-desc">start it if needed</span></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-cmd">pgconnect</span><span class="wf-desc">open psql shell</span></div>
+          <div class="wf-step"><span class="wf-num">4</span><span class="wf-cmd">\dt</span><span class="wf-desc">list your tables</span></div>
+          <div class="wf-step"><span class="wf-num">5</span><span class="wf-cmd">\q</span><span class="wf-desc">exit when done</span></div>
+          <div class="wf-step"><span class="wf-num">6</span><span class="wf-cmd">pgstop</span><span class="wf-desc">stop container to free resources</span></div>
+        </div>
+        <div class="wf-note" style="color:#336791;">💡 Docker must be running first · data persists between sessions</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div class="wf-label" style="color:#336791;">📋 Useful psql commands inside the shell</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">\dt</span><span class="wf-desc">list all tables</span></div>
+          <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">\d &lt;table&gt;</span><span class="wf-desc">describe table columns + types</span></div>
+          <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">\l</span><span class="wf-desc">list all databases</span></div>
+          <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">\timing</span><span class="wf-desc">toggle query execution time</span></div>
+          <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">\e</span><span class="wf-desc">open $EDITOR for long queries</span></div>
+          <div class="wf-step"><span class="wf-num">→</span><span class="wf-cmd">\i file.sql</span><span class="wf-desc">run a SQL file</span></div>
+        </div>
+        <div class="wf-note" style="color:#336791;">💡 all \ commands are psql meta-commands — not SQL</div>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -658,6 +747,7 @@
       <div class="li"><div class="ld" style="background:#0e7490"></div>Tools</div>
       <div class="li"><div class="ld" style="background:#0f766e"></div>System</div>
       <div class="li"><div class="ld" style="background:#1d4ed8"></div>Starship</div>
+      <div class="li"><div class="ld" style="background:#336791"></div>PostgreSQL</div>
       <div class="li"><div class="ld" style="background:#92400e"></div>FIXED</div>
     </div>
   </footer>
