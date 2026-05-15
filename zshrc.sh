@@ -486,7 +486,13 @@ ghopen() {
   url=$(echo "$url" | sed 's|git@github.com:|https://github.com/|; s|\.git$||')
   open "$url"
 }
-
+# ============================================================================
+# POSTGRESQL (Docker)
+# ============================================================================
+alias pgstart="docker start pg-practice"
+alias pgstop="docker stop pg-practice"
+alias pgconnect="docker exec -it pg-practice psql -U dev -d learning"
+alias pgstatus="docker ps --filter name=pg-practice"
 # ============================================================================
 # SCRIPTS
 # ============================================================================
@@ -558,6 +564,8 @@ shortcuts() {
   echo "║    nrd              → npm run dev                                    ║"
   echo "║    nrb              → npm run build                                  ║"
   echo "║    killport <port>  → Kill process on port                           ║"
+  echo "║    pgstart/stop     → Start or stop PostgreSQL container              ║"
+echo "║    pgconnect        → Connect to PostgreSQL via psql                  ║"
   echo "║    ports            → Show all listening ports                       ║"
   echo "║    zc               → Edit this zshrc in VS Code                    ║"
   echo "║    zr               → Reload zshrc after editing                    ║"
