@@ -1,185 +1,259 @@
 {
   // ===========================================================
-  // 🤖 AI QUIZ PROMPT — copy this entire file and paste to Claude
+  // AI QUIZ PROMPT -- paste this entire file to Claude to drill prefixes
   // ===========================================================
   //
-  // Here is my VS Code snippets file for React/Next.js.
-  // I want you to help me memorise all my snippet prefixes.
+  // Here is my VS Code snippets file for React / Next.js.
+  // Quiz me on my snippet prefixes using this format:
   //
-  // Please do the following:
-  // 1. Quiz me on Tier 1 snippets first — describe what it generates, I guess the prefix
-  //    OR give me the prefix, I describe what it generates. Mix it up.
-  // 2. If I get it wrong, show me a short example of the output
-  // 3. After Tier 1 is solid, move to Tier 2, then Tier 3
-  // 4. If you spot any missing snippets or improvements, tell me at the end
-  // 5. One question at a time — keep it conversational
-  //
-  // My current progress:
-  // - Tier 1 daily snippets — needs drilling
-  // - Tier 2 Next.js + hooks — needs drilling
-  // - Tier 3 scaffolds + advanced — not started
-  //
-  // TIER 1 — use these every day:
-  //   cl        → console.log with label and value
-  //   clj       → console.log with JSON.stringify (for objects)
-  //   us        → useState (auto-capitalises setter name)
-  //   ue        → useEffect with dep array
-  //   rafce     → arrow function component (named after file)
-  //   rafcep    → arrow function component with Props interface
-  //   imp       → import X from 'Y'
-  //   imd       → import { X } from 'Y'
-  //   try       → try/catch block
-  //   afn       → async arrow function
-  //   ncc       → 'use client' directive
-  //   todo      → // TODO: note
-  //   maplist   → .map() to render list of components with key
-  //   er-load   → early return loading state
-  //   er-error  → early return error state
-  //   er-empty  → early return empty list
-  //
-  // TIER 2 — once Tier 1 is solid:
-  //   uem       → useEffect on mount only (empty deps [])
-  //   ued       → useEffect with specific dependency
-  //   uec       → useEffect with cleanup function
-  //   ur        → useRef
-  //   ucb       → useCallback
-  //   umm       → useMemo
-  //   uc        → useContext
-  //   npage     → Next.js page component
-  //   nlayout   → Next.js layout component
-  //   nroute    → Next.js API route (GET + POST)
-  //   nlink     → Next.js <Link> component
-  //   nimg      → Next.js <Image> component
-  //   nrouter   → useRouter + usePathname hooks
-  //   nmeta     → static metadata export for SEO
-  //   inn       → import from next/navigation
-  //   inl       → import Link from next/link
-  //   ini       → import Image from next/image
-  //   inr       → import NextResponse from next/server
-  //   icn       → import cn from @/lib/utils
-  //   iui       → import from @/components/ui
-  //   irus      → import useState from react
-  //   irue      → import useEffect from react
-  //   irhooks   → import useState + useEffect from react
-  //   hsubmit   → form submit handler with trim + guard
-  //   cw        → console.warn
-  //   ce        → console.error
-  //   ct        → console.table
-  //   cgroup    → console.group block
-  //
-  // TIER 3 — advanced / occasionally used:
-  //   rcomp       → full client component scaffold (state, effects, handlers, early returns)
-  //   rcomp-pure  → pure presentational component scaffold
-  //   ucxt        → React Context + Provider boilerplate
-  //   urd         → useReducer with reducer stub
-  //   rxslice     → Redux Toolkit slice boilerplate
-  //   arafce      → async server component (Next.js)
-  //   arafcep     → async server component with Props (Next.js)
-  //   nloading    → Next.js loading.tsx
-  //   nerror      → Next.js error.tsx boundary (must be client component)
-  //   nparams     → useParams hook
-  //   nsearch     → useSearchParams hook
-  //   sec         → custom section header comment
-  //   sec-imp / sec-comp / sec-state / sec-hand / sec-early / sec-render / sec-derived / sec-effect / sec-refs
-  //   cwarn / cquest / chigh / ctodo → colourful comment shortcuts
-  //   irr         → import React from 'react'
+  // 1. Describe what a snippet generates -- I guess the prefix
+  //    OR give me the prefix -- I describe what it generates. Mix it up.
+  // 2. If I get it wrong, show me a short example of the output.
+  // 3. Work through Tier 1 first, then Tier 2, then Tier 3.
+  // 4. One question at a time -- keep it conversational.
+  // 5. At the end, flag any missing snippets or improvements you spot.
   //
   // ===========================================================
-  // 🖨️ CONSOLE
+  // TIER 1 -- use these every single day
+  // ===========================================================
+  //   cl        console.log with label and value
+  //   clj       console.log with JSON.stringify (for objects)
+  //   us        useState -- type name once, setter auto-capitalises
+  //   ue        useEffect with dep array
+  //   rafce     arrow function component named after file
+  //   rafcep    arrow function component with Props interface
+  //   rfc       default function component named after file
+  //   rfcp      default function component with Props interface
+  //   imp       import X from 'Y'
+  //   imd       import { X } from 'Y'
+  //   tryc      try/catch -- renamed from 'try' (VS Code keyword conflict)
+  //   afn       async arrow function
+  //   ncc       'use client' directive
+  //   todo      // TODO: note
+  //   maplist   .map() to render a list of components with key
+  //   nform     basic controlled form (input + submit) -- pairs with hsubmit
+  //   hsubmit   form submit handler with trim + guard
+  //   er-load   early return -- loading state
+  //   er-error  early return -- error state
+  //   er-empty  early return -- empty list
+  //
+  // ===========================================================
+  // TIER 2 -- once Tier 1 is solid
+  // ===========================================================
+  //   uem       useEffect on mount only (empty deps [])
+  //   ued       useEffect with a specific dependency
+  //   uec       useEffect with cleanup function
+  //   ur        useRef
+  //   ucb       useCallback -- const assigned
+  //   umm       useMemo -- const assigned
+  //   uc        useContext
+  //   inn       import from next/navigation
+  //   inl       import Link from next/link
+  //   ini       import Image from next/image
+  //   inr       import { NextResponse } from next/server
+  //   icn       import { cn } from @/lib/utils
+  //   iui       import { } from @/components/ui
+  //   irus      import { useState } from react
+  //   irue      import { useEffect } from react
+  //   irhooks   import { useState, useEffect } from react
+  //   irr       import React from react
+  //   npage     Next.js page component
+  //   nlayout   Next.js layout component
+  //   nloading  Next.js loading.tsx
+  //   nerror    Next.js error.tsx boundary
+  //   nroute    Next.js API route handler (GET + POST)
+  //   nlink     Next.js <Link> component
+  //   nimg      Next.js <Image> component
+  //   nrouter   useRouter + usePathname hooks
+  //   nparams   useParams hook
+  //   nsearch   useSearchParams hook
+  //   nmeta     static metadata export for SEO
+  //   cw        console.warn
+  //   ce        console.error
+  //   ct        console.table
+  //   cgroup    console.group block
+  //   envget    process.env.NEXT_PUBLIC_ access with fallback
+  //   apiurl    base URL constant (/api/resource)
+  //   apiget    fetch GET with ok-check
+  //   apipost   fetch POST with JSON body + headers
+  //   apiput    fetch PUT -- update by id
+  //   apidel    fetch DELETE -- delete by id
+  //   nsa       Next.js Server Action scaffold
+  //   nsaget    Server Action -- read all records
+  //   nsapost   Server Action -- create a record from FormData
+  //   nsaput    Server Action -- update a record by id
+  //   nsadel    Server Action -- delete a record by id
+  //   fetchfn   standalone async fetch function with try/catch
+  //
+  // ===========================================================
+  // TIER 3 -- advanced / occasionally used
+  // ===========================================================
+  //   rcomp       full client component scaffold
+  //   rcomp-pure  pure presentational component scaffold
+  //   useh        custom hook scaffold -- use${1:Resource}()
+  //   arafce      async arrow server component (Next.js)
+  //   arafcep     async arrow server component with Props (Next.js)
+  //   arfc        async default function server component (Next.js)
+  //   arfcp       async default function server component with Props (Next.js)
+  //   ucxt        React Context + Provider boilerplate
+  //   urd         useReducer with reducer stub
+  //   rxslice     Redux Toolkit slice boilerplate
+  //   sec         custom section header comment
+  //   sec-imp     Imports section header
+  //   sec-comp    Component section header
+  //   sec-state   State section header
+  //   sec-hand    Handlers section header
+  //   sec-early   Early Returns section header
+  //   sec-render  Render section header
+  //   sec-derived Derived State section header
+  //   sec-effect  Effects section header
+  //   sec-refs    Refs section header
+  //   cwarn       //! warning comment
+  //   cquest      //? question comment
+  //   chigh       //* highlight comment
+  //   ctodo       // TODO: comment
+
+  // ===========================================================
+  // CONSOLE
   // ===========================================================
 
-  // cl → console.log('label:', value)
   "Console Log": {
     "prefix": "cl",
-    "body": "console.log('${1:label}:', ${2:value});"
+    "body": "console.log('${1:label}:', ${2:value});",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // clj → console.log(JSON.stringify()) — for logging objects
   "Console Log JSON": {
     "prefix": "clj",
-    "body": ["console.log(JSON.stringify($1, null, 2));"],
-    "description": "console.log with JSON.stringify for readable object logging"
+    "body": "console.log(JSON.stringify(${1:value}, null, 2));",
+    "description": "Readable object logging -- use when cl shows [Object object]",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // cgroup → console.group block
+  "Console Warn": {
+    "prefix": "cw",
+    "body": "console.warn('${1:label}:', ${2:value});",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Console Error": {
+    "prefix": "ce",
+    "body": "console.error('${1:label}:', ${2:value});",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Console Table": {
+    "prefix": "ct",
+    "body": "console.table(${1:array});",
+    "description": "Best for arrays of objects -- shows a readable table in DevTools",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
   "Console Group": {
     "prefix": "cgroup",
     "body": [
       "console.group('${1:label}');",
-      "console.log('${2:key}:', ${3:value});",
+      "console.log('${2:key1}:', ${3:value1});",
+      "console.log('${4:key2}:', ${5:value2});",
+      "console.log('${6:key3}:', ${7:value3});",
       "console.groupEnd();"
-    ]
-  },
-
-  // cw → console.warn
-  "Console Warn": {
-    "prefix": "cw",
-    "body": "console.warn('${1:label}:', ${2:value});"
-  },
-
-  // ce → console.error
-  "Console Error": {
-    "prefix": "ce",
-    "body": "console.error('${1:label}:', ${2:value});"
-  },
-
-  // ct → console.table
-  "Console Table": {
-    "prefix": "ct",
-    "body": "console.table(${1:array});"
+    ],
+    "description": "Group multiple related logs together in DevTools",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
   // ===========================================================
-  // ⚛️ REACT HOOKS
+  // REACT HOOKS
   // ===========================================================
 
-  // us → const [count, setCount] = useState()
-  // Type the state name ONCE — setter is auto-capitalized
-  // e.g. type "count" → get [count, setCount]
   "React useState": {
     "prefix": "us",
-    "body": [
-      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState($2);"
-    ]
+    "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState($2);",
+    "description": "Type the state name once -- setter is auto-capitalised. e.g. 'count' gives [count, setCount]",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // ue → useEffect with dependency array
-  // $1 = body, $2 = deps. Leave $2 empty for [] (run once)
   "React useEffect": {
     "prefix": "ue",
-    "body": ["useEffect(() => {", "  $1", "}, [$2]);"]
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "}, [$2]);"
+    ],
+    "description": "Leave $2 empty for [] to run once on mount only",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // ucb → useCallback
-  // $1 = body, $2 = deps
+  "useEffect Mount Only": {
+    "prefix": "uem",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "}, []);"
+    ],
+    "description": "Runs once on mount -- equivalent to componentDidMount",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "useEffect With Dependency": {
+    "prefix": "ued",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "}, [${2:dependency}]);"
+    ],
+    "description": "Re-runs every time the dependency value changes",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "useEffect With Cleanup": {
+    "prefix": "uec",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "  return () => {",
+      "    $2",
+      "  };",
+      "}, [${3:dependency}]);"
+    ],
+    "description": "Cleanup runs before next effect or on unmount -- use for subscriptions, timers, listeners",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
   "React useCallback": {
     "prefix": "ucb",
-    "body": ["useCallback(() => {", "  $1", "}, [$2]);"]
+    "body": [
+      "const ${1:fn} = useCallback(() => {",
+      "  $2",
+      "}, [$3]);"
+    ],
+    "description": "Memoises a function -- prevents child re-renders when passed as prop",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // umm → useMemo
-  // $1 = body, $2 = deps
   "React useMemo": {
     "prefix": "umm",
-    "body": ["useMemo(() => {", "  $1", "}, [$2]);"]
+    "body": [
+      "const ${1:value} = useMemo(() => {",
+      "  $2",
+      "}, [$3]);"
+    ],
+    "description": "Memoises a computed value -- use for expensive calculations",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // ur → useRef
-  // $1 = initial value (default null)
   "React useRef": {
     "prefix": "ur",
-    "body": ["const ${1:ref} = useRef($2);"]
+    "body": "const ${1:ref} = useRef($2);",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // uc → useContext
   "React useContext": {
     "prefix": "uc",
-    "body": ["const ${1:value} = useContext($2);"]
+    "body": "const ${1:value} = useContext($2);",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // ucxt → create a Context + Provider in one go
-  // Replace MyContext with your context name (e.g. AuthContext, ThemeContext)
-  // $1 = context name, $2 = state name
   "React Context + Provider": {
     "prefix": "ucxt",
     "body": [
@@ -189,7 +263,7 @@
       "",
       "export const use${1:My}Context = () => useContext(${1:My}Context)",
       "",
-      "export const ${1:My}Provider = ({ children }) => {",
+      "export const ${1:My}Provider = ({ children }: { children: React.ReactNode }) => {",
       "  const [${2:state}, set${2/(.*)/${2:/capitalize}/}] = useState($3)",
       "",
       "  return (",
@@ -199,37 +273,36 @@
       "  )",
       "}"
     ],
-    "description": "React Context + Provider boilerplate",
+    "description": "Full Context + custom hook + typed Provider in one go. $1 = context name, $2 = state name",
     "scope": "typescript,typescriptreact"
   },
 
-  // urd → useReducer with reducer function stub
-  // $1 = state name, $2 = initialState body
   "React useReducer": {
     "prefix": "urd",
     "body": [
-      "const reducer = (state, action) => {",
+      "const reducer = (state: typeof initialState, action: { type: string; payload?: $1 }) => {",
       "  switch (action.type) {",
-      "    case '${1:ACTION}': {",
-      "      return { ...state, $2 }",
+      "    case '${2:ACTION}': {",
+      "      return { ...state, $3 }",
       "    }",
       "    default:",
       "      return state",
       "  }",
       "}",
       "",
-      "const [state, dispatch] = useReducer(reducer, { $3 })"
+      "const initialState = { $4 }",
+      "",
+      "const [state, dispatch] = useReducer(reducer, initialState)"
     ],
-    "description": "React useReducer with reducer stub",
+    "description": "useReducer with typed reducer stub and initialState",
     "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
-  // ⚛️ REACT COMPONENTS
+  // COMPONENTS -- ARROW FUNCTIONS
   // ===========================================================
 
-  // rafce → basic arrow function component, named after filename
-  "React Function Component": {
+  "Arrow Component": {
     "prefix": "rafce",
     "body": [
       "const ${1:${TM_FILENAME_BASE}} = () => {",
@@ -242,13 +315,10 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
-    "description": "React arrow function component",
     "scope": "typescript,typescriptreact"
   },
 
-  // rafcep → component with typed Props interface
-  // Type component name once — used in interface, component, and export
-  "React Function Component with Props": {
+  "Arrow Component With Props": {
     "prefix": "rafcep",
     "body": [
       "interface ${1:${TM_FILENAME_BASE}}Props {",
@@ -265,12 +335,11 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
-    "description": "React arrow function component with Props interface",
+    "description": "Type component name once -- synced across interface, component, and export",
     "scope": "typescript,typescriptreact"
   },
 
-  // arafce → async server component (Next.js)
-  "Async React Function Component": {
+  "Async Arrow Component": {
     "prefix": "arafce",
     "body": [
       "const ${1:${TM_FILENAME_BASE}} = async () => {",
@@ -283,11 +352,11 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
+    "description": "Async arrow server component for Next.js",
     "scope": "typescript,typescriptreact"
   },
 
-  // arafcep → async server component with Props (Next.js)
-  "Async React Function Component with Props": {
+  "Async Arrow Component With Props": {
     "prefix": "arafcep",
     "body": [
       "interface ${1:${TM_FILENAME_BASE}}Props {",
@@ -304,173 +373,287 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
+    "description": "Async arrow server component with Props for Next.js",
     "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
-  // 📦 IMPORTS
+  // COMPONENTS -- DEFAULT FUNCTIONS
+  // Use these for Next.js pages, layouts, error.tsx, loading.tsx.
+  // Mirrors rafce / rafcep / arafce / arafcep exactly.
   // ===========================================================
 
-  // imp → import X from 'Y'
-  // Tab order: name first ($1), then path ($2)
-  "import": {
-    "prefix": "imp",
-    "body": ["import ${1:module} from '${2:path}'"],
-    "scope": "typescript,typescriptreact"
-  },
-
-  // imd → import { X } from 'Y'
-  "importDestructing": {
-    "prefix": "imd",
-    "body": ["import { ${1:module} } from '${2:path}'"],
-    "scope": "typescript,typescriptreact"
-  },
-
-  // inn → import from 'next/navigation' — useRouter, usePathname, useParams, useSearchParams
-  // Pick whichever hooks you need, delete the rest
-  "Next.js Navigation Import": {
-    "prefix": "inn",
-    "body": ["import { ${1:useRouter, usePathname, useParams, useSearchParams} } from 'next/navigation'"],
-    "description": "Import Next.js navigation hooks",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // inl → import Link from 'next/link'
-  "Next.js Link Import": {
-    "prefix": "inl",
-    "body": ["import Link from 'next/link'"],
-    "description": "Import Next.js Link component",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // ini → import Image from 'next/image'
-  "Next.js Image Import": {
-    "prefix": "ini",
-    "body": ["import Image from 'next/image'"],
-    "description": "Import Next.js Image component",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // inr → import { NextResponse } from 'next/server'
-  "Next.js NextResponse Import": {
-    "prefix": "inr",
-    "body": ["import { NextResponse } from 'next/server'"],
-    "description": "Import NextResponse for API routes",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // icn → import { cn } from '@/lib/utils'
-  "Import cn utility": {
-    "prefix": "icn",
-    "body": ["import { cn } from '@/lib/utils'"],
-    "description": "Import shadcn cn() classname utility",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // iui → import { } from '@/components/ui' — cursor lands inside {}
-  "Import shadcn UI components": {
-    "prefix": "iui",
-    "body": ["import { $1 } from '@/components/ui'"],
-    "description": "Import from shadcn barrel file — type component names manually",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // irus → import { useState } from 'react'
-  "Import useState": {
-    "prefix": "irus",
-    "body": ["import { useState } from 'react'"],
-    "description": "Import useState from react",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // irue → import { useEffect } from 'react'
-  "Import useEffect": {
-    "prefix": "irue",
-    "body": ["import { useEffect } from 'react'"],
-    "description": "Import useEffect from react",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // irhooks → import { useState, useEffect } from 'react'
-  "Import useState + useEffect": {
-    "prefix": "irhooks",
-    "body": ["import { useState, useEffect } from 'react'"],
-    "description": "Import useState and useEffect from react",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // irr → import React from 'react'
-  "Import React": {
-    "prefix": "irr",
-    "body": ["import React from 'react'"],
-    "description": "Import React default export",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // ===========================================================
-  // 🔁 REDUX TOOLKIT
-  // ===========================================================
-
-  // rxslice → full Redux slice boilerplate
-  // Tab order: slice name ($1) → store key name ($2) → initialState body ($3)
-  "reduxSlice": {
-    "prefix": "rxslice",
+  "Default Function Component": {
+    "prefix": "rfc",
     "body": [
-      "import { createSlice } from '@reduxjs/toolkit'",
-      "",
-      "const initialState = {",
-      "  ${3}",
+      "export default function ${1:${TM_FILENAME_BASE}}() {",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "    </div>",
+      "  )",
+      "}"
+    ],
+    "description": "Default function component -- preferred for Next.js pages and layouts",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Default Function Component With Props": {
+    "prefix": "rfcp",
+    "body": [
+      "interface ${1:${TM_FILENAME_BASE}}Props {",
+      "  $2",
       "}",
       "",
-      "const ${1:${TM_FILENAME_BASE}} = createSlice({",
-      "  name: '${2:name}',",
-      "  initialState,",
-      "  reducers: {}",
-      "});",
-      "",
-      "export const {} = ${1:${TM_FILENAME_BASE}}.actions",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}.reducer"
+      "export default function ${1:${TM_FILENAME_BASE}}({ $3 }: ${1:${TM_FILENAME_BASE}}Props) {",
+      "  return (",
+      "    <div>",
+      "      $4",
+      "    </div>",
+      "  )",
+      "}"
     ],
+    "description": "Default function component with Props interface",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Async Default Function Component": {
+    "prefix": "arfc",
+    "body": [
+      "export default async function ${1:${TM_FILENAME_BASE}}() {",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "    </div>",
+      "  )",
+      "}"
+    ],
+    "description": "Async default function server component -- preferred style for page.tsx",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Async Default Function Component With Props": {
+    "prefix": "arfcp",
+    "body": [
+      "interface ${1:${TM_FILENAME_BASE}}Props {",
+      "  $2",
+      "}",
+      "",
+      "export default async function ${1:${TM_FILENAME_BASE}}({ $3 }: ${1:${TM_FILENAME_BASE}}Props) {",
+      "  return (",
+      "    <div>",
+      "      $4",
+      "    </div>",
+      "  )",
+      "}"
+    ],
+    "description": "Async default function with Props -- use for dynamic routes that receive params",
     "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
-  // 🛠️ UTILITY
+  // IMPORTS
   // ===========================================================
 
-  // todo → // TODO: note
-  "TODO Comment": {
-    "prefix": "todo",
-    "body": ["// TODO: $1"]
+  "Import Default": {
+    "prefix": "imp",
+    "body": "import ${1:module} from '${2:path}'",
+    "scope": "typescript,typescriptreact"
   },
 
-  // try → try/catch block with error logged
+  "Import Named": {
+    "prefix": "imd",
+    "body": "import { ${1:module} } from '${2:path}'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import React": {
+    "prefix": "irr",
+    "body": "import React from 'react'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import useState": {
+    "prefix": "irus",
+    "body": "import { useState } from 'react'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import useEffect": {
+    "prefix": "irue",
+    "body": "import { useEffect } from 'react'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import useState + useEffect": {
+    "prefix": "irhooks",
+    "body": "import { useState, useEffect } from 'react'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import Next Navigation": {
+    "prefix": "inn",
+    "body": "import { ${1:useRouter, usePathname, useParams, useSearchParams} } from 'next/navigation'",
+    "description": "Delete the hooks you do not need",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import Next Link": {
+    "prefix": "inl",
+    "body": "import Link from 'next/link'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import Next Image": {
+    "prefix": "ini",
+    "body": "import Image from 'next/image'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import NextResponse": {
+    "prefix": "inr",
+    "body": "import { NextResponse } from 'next/server'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import cn": {
+    "prefix": "icn",
+    "body": "import { cn } from '@/lib/utils'",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Import shadcn UI": {
+    "prefix": "iui",
+    "body": "import { $1 } from '@/components/ui/$2'",
+    "description": "Cursor lands inside {} -- type the component name",
+    "scope": "typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // UTILITY
+  // ===========================================================
+
   "Try Catch": {
-    "prefix": "try",
+    "prefix": "tryc",
     "body": [
       "try {",
       "  $1",
       "} catch (error) {",
-      "  console.error(error);",
+      "  console.error(error)",
       "  $2",
       "}"
-    ]
+    ],
+    "description": "Renamed from 'try' -- VS Code's built-in keyword snippet would always win otherwise",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
   },
 
-  // afn → async arrow function (standalone, not a component)
-  // Useful for event handlers, API calls, utils
   "Async Arrow Function": {
     "prefix": "afn",
-    "body": ["const ${1:fn} = async ($2) => {", "  $3", "};"]
+    "body": [
+      "const ${1:fn} = async (${2}) => {",
+      "  $3",
+      "}"
+    ],
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "TODO Comment": {
+    "prefix": "todo",
+    "body": "// TODO: $1",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Map List": {
+    "prefix": "maplist",
+    "body": [
+      "{${1:items}.map((${2:item}) => (",
+      "  <${3:Component}",
+      "    key={${2:item}.id}",
+      "    $0",
+      "  />",
+      "))}"
+    ],
+    "description": "Always use item.id as key -- never the array index",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Submit Handler": {
+    "prefix": "hsubmit",
+    "body": [
+      "const handleSubmit = (e: React.FormEvent) => {",
+      "  e.preventDefault()",
+      "  const trimmed = ${1:value}.trim()",
+      "  if (!trimmed) return",
+      "  ${2:onAction}(trimmed)",
+      "  ${3:setValue('')}",
+      "}"
+    ],
+    "description": "Pairs with nform -- handles trim, guard, and reset in one go",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Env Variable": {
+    "prefix": "envget",
+    "body": "const ${1:VALUE} = process.env.NEXT_PUBLIC_${2:VARIABLE_NAME} ?? '${3:fallback}'",
+    "description": "NEXT_PUBLIC_ prefix is required for client component env vars. Fallback prevents crashes if var is missing.",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Controlled Form": {
+    "prefix": "nform",
+    "body": [
+      "<form onSubmit={handleSubmit}>",
+      "  <input",
+      "    type=\"text\"",
+      "    value={${1:value}}",
+      "    onChange={(e) => ${2:setValue}(e.target.value)}",
+      "    placeholder=\"${3:Enter value}\"",
+      "    className=\"${4:}\"",
+      "  />",
+      "  <button type=\"submit\">${5:Submit}</button>",
+      "</form>"
+    ],
+    "description": "Pairs with hsubmit -- us for state, hsubmit for handler, nform for the JSX",
+    "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
-  // 🔺 NEXT.JS — APP ROUTER
+  // EARLY RETURNS
+  // Must come BEFORE the main return. Order: loading > error > empty > render.
   // ===========================================================
 
-  // npage → basic App Router page (Server Component by default)
-  // Drop this in any app/*/page.tsx file
+  "Early Return Loading": {
+    "prefix": "er-load",
+    "body": "if (isLoading) return <p className=\"text-sm text-muted-foreground\">Loading...</p>",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Early Return Error": {
+    "prefix": "er-error",
+    "body": "if (error) return <p className=\"text-sm text-red-500\">{error}</p>",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Early Return Empty": {
+    "prefix": "er-empty",
+    "body": "if (!${1:items}?.length) return <p className=\"text-sm text-muted-foreground\">${2:Nothing here yet.}</p>",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // NEXT.JS -- APP ROUTER
+  // ===========================================================
+
+  "use client": {
+    "prefix": "ncc",
+    "body": [
+      "'use client'",
+      ""
+    ],
+    "description": "Required for hooks, event handlers, and browser APIs. Not needed in Server Components.",
+    "scope": "typescript,typescriptreact"
+  },
+
   "Next.js Page": {
     "prefix": "npage",
     "body": [
@@ -482,12 +665,10 @@
       "  )",
       "}"
     ],
-    "description": "Next.js App Router page component",
+    "description": "App Router page.tsx -- Server Component by default",
     "scope": "typescript,typescriptreact"
   },
 
-  // nlayout → App Router layout wrapper
-  // Drop this in any app/*/layout.tsx file
   "Next.js Layout": {
     "prefix": "nlayout",
     "body": [
@@ -500,11 +681,10 @@
       "  )",
       "}"
     ],
-    "description": "Next.js App Router layout component",
+    "description": "App Router layout.tsx",
     "scope": "typescript,typescriptreact"
   },
 
-  // nloading → loading.tsx skeleton shown during Suspense
   "Next.js Loading": {
     "prefix": "nloading",
     "body": [
@@ -516,17 +696,22 @@
       "  )",
       "}"
     ],
-    "description": "Next.js loading.tsx for Suspense fallback",
+    "description": "loading.tsx -- shown automatically during Suspense and navigation",
     "scope": "typescript,typescriptreact"
   },
 
-  // nerror → error.tsx boundary — MUST be a Client Component
   "Next.js Error Boundary": {
     "prefix": "nerror",
     "body": [
       "'use client'",
       "",
-      "export default function Error({ error, reset }: { error: Error; reset: () => void }) {",
+      "export default function Error({",
+      "  error,",
+      "  reset,",
+      "}: {",
+      "  error: Error",
+      "  reset: () => void",
+      "}) {",
       "  return (",
       "    <div>",
       "      <h2>Something went wrong</h2>",
@@ -536,12 +721,10 @@
       "  )",
       "}"
     ],
-    "description": "Next.js error.tsx boundary (must be Client Component)",
+    "description": "error.tsx -- MUST be a Client Component, hence 'use client' is included",
     "scope": "typescript,typescriptreact"
   },
 
-  // nroute → App Router API route handler (route.ts)
-  // GET + POST stubs — delete whichever you don't need
   "Next.js API Route": {
     "prefix": "nroute",
     "body": [
@@ -566,12 +749,10 @@
       "  }",
       "}"
     ],
-    "description": "Next.js App Router API route handler",
+    "description": "route.ts -- GET and POST stubs. Delete whichever you do not need.",
     "scope": "typescript,typescriptreact"
   },
 
-  // nmeta → static metadata export for SEO
-  // Add to any page.tsx to set the <title> and <meta description>
   "Next.js Metadata": {
     "prefix": "nmeta",
     "body": [
@@ -580,28 +761,16 @@
       "  description: '${2:Page description}',",
       "}"
     ],
-    "description": "Next.js static metadata export",
+    "description": "Static SEO metadata -- add to any page.tsx",
     "scope": "typescript,typescriptreact"
   },
 
-  // ncc → 'use client' directive
-  // Needed whenever you use hooks, event handlers, or browser APIs
-  "Next.js use client": {
-    "prefix": "ncc",
-    "body": ["'use client'", ""],
-    "description": "Next.js use client directive",
-    "scope": "typescript,typescriptreact"
-  },
-
-  // nlink → Next.js <Link> component
   "Next.js Link": {
     "prefix": "nlink",
-    "body": ["<Link href=\"${1:/}\">${2:label}</Link>"],
-    "description": "Next.js Link component",
+    "body": "<Link href=\"${1:/}\">${2:label}</Link>",
     "scope": "typescript,typescriptreact"
   },
 
-  // nimg → Next.js <Image> component with required props
   "Next.js Image": {
     "prefix": "nimg",
     "body": [
@@ -612,322 +781,519 @@
       "  height={${4:300}}",
       "/>"
     ],
-    "description": "Next.js Image component",
+    "description": "All four props are required by Next.js -- do not remove any",
     "scope": "typescript,typescriptreact"
   },
 
-  // nrouter → useRouter + usePathname hooks (Client Component only)
   "Next.js Router Hooks": {
     "prefix": "nrouter",
     "body": [
       "const router = useRouter()",
       "const pathname = usePathname()"
     ],
-    "description": "Next.js useRouter and usePathname hooks",
+    "description": "Client Component only -- add 'use client' if not already present",
     "scope": "typescript,typescriptreact"
   },
 
-  // nparams → useParams hook (read dynamic route segments)
   "Next.js useParams": {
     "prefix": "nparams",
-    "body": [
-      "const params = useParams()"
-    ],
-    "description": "Next.js useParams hook for dynamic route segments",
+    "body": "const params = useParams()",
+    "description": "Reads dynamic route segments e.g. /posts/[id] -- Client Component only",
     "scope": "typescript,typescriptreact"
   },
 
-  // nsearch → useSearchParams hook (read query string)
   "Next.js useSearchParams": {
     "prefix": "nsearch",
     "body": [
       "const searchParams = useSearchParams()",
       "const ${1:value} = searchParams.get('${2:key}')"
     ],
-    "description": "Next.js useSearchParams hook for reading query params",
+    "description": "Reads query string params e.g. ?tab=overview -- Client Component only",
     "scope": "typescript,typescriptreact"
   },
 
   // ===========================================================
-  // 📐 SECTION HEADERS
+  // CRUD -- CLIENT-SIDE FETCH
+  // Use inside useEffect (for reads on mount) or inside handlers (for mutations).
+  // Wrap in try/catch when used -- these snippets are body-only, not full functions.
   // ===========================================================
 
-  // sec → custom section header with editable label
-  "Section Header": {
-    "prefix": "sec",
-    "body": "// ─── ${1:Section} ────────────────────────────────────────────────────────────"
+  "API Base URL": {
+    "prefix": "apiurl",
+    "body": "const ${1:RESOURCE}_URL = '/api/${2:resource}'",
+    "description": "Define the base URL once at the top -- reference it in apiget/apipost/apiput/apidel below",
+    "scope": "typescript,typescriptreact"
   },
 
-  "Imports Section": {
-    "prefix": "sec-imp",
-    "body": "// ─── Imports ────────────────────────────────────────────────────────────────"
-  },
-
-  "Component Section": {
-    "prefix": "sec-comp",
-    "body": "// ─── Component ──────────────────────────────────────────────────────────────"
-  },
-
-  "State Section": {
-    "prefix": "sec-state",
-    "body": "// ─── State ────────────────────────────────────────────────────────────────"
-  },
-
-  "Handlers Section": {
-    "prefix": "sec-hand",
-    "body": "// ─── Handlers ─────────────────────────────────────────────────────────────"
-  },
-
-  "Early Returns Section": {
-    "prefix": "sec-early",
-    "body": "// ─── Early Returns ───────────────────────────────────────────────────────────"
-  },
-
-  "Render Section": {
-    "prefix": "sec-render",
-    "body": "// ─── Render ──────────────────────────────────────────────────────────────────"
-  },
-
-  "Derived State Section": {
-    "prefix": "sec-derived",
-    "body": "// ─── Derived State ───────────────────────────────────────────────────────────"
-  },
-
-  "Effects Section": {
-    "prefix": "sec-effect",
-    "body": "// ─── Effects ─────────────────────────────────────────────────────────────────"
-  },
-
-  "Refs Section": {
-    "prefix": "sec-refs",
-    "body": "// ─── Refs ────────────────────────────────────────────────────────────────────"
-  },
-
-  // ===========================================================
-  // 💬 COMMENT STYLES
-  // ===========================================================
-
-  // cwarn → warning comment
-  "Warning Comment": {
-    "prefix": "cwarn",
-    "body": "//! ${1:Warning}"
-  },
-
-  // cquest → question comment
-  "Question Comment": {
-    "prefix": "cquest",
-    "body": "//? ${1:Question}"
-  },
-
-  // chigh → highlight comment
-  "Highlight Comment": {
-    "prefix": "chigh",
-    "body": "//* ${1:Note}"
-  },
-
-  // ctodo → todo comment
-  "Todo Comment": {
-    "prefix": "ctodo",
-    "body": "// TODO: ${1:Task}"
-  },
-
-  // ===========================================================
-  // ⚛️ COMPONENT SCAFFOLDS
-  // ===========================================================
-
-  // rcomp → full client component with state, handlers, render sections
-  "React Component Scaffold": {
-    "prefix": "rcomp",
+  "API GET": {
+    "prefix": "apiget",
     "body": [
-      "'use client';",
+      "const res = await fetch('/api/${1:resource}')",
+      "if (!res.ok) throw new Error('Failed to fetch ${1:resource}')",
+      "const data = await res.json()"
+    ],
+    "description": "Reads all records. Use inside async function or useEffect loadData()",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "API POST": {
+    "prefix": "apipost",
+    "body": [
+      "const res = await fetch('/api/${1:resource}', {",
+      "  method: 'POST',",
+      "  headers: { 'Content-Type': 'application/json' },",
+      "  body: JSON.stringify(${2:data}),",
+      "})",
+      "if (!res.ok) throw new Error('Failed to create ${1:resource}')",
+      "const created = await res.json()"
+    ],
+    "description": "Creates a record. $2 = the object you are sending",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "API PUT": {
+    "prefix": "apiput",
+    "body": [
+      "const res = await fetch(`/api/${1:resource}/${${2:id}}`, {",
+      "  method: 'PUT',",
+      "  headers: { 'Content-Type': 'application/json' },",
+      "  body: JSON.stringify(${3:data}),",
+      "})",
+      "if (!res.ok) throw new Error('Failed to update ${1:resource}')",
+      "const updated = await res.json()"
+    ],
+    "description": "Updates a record by id. $2 = id variable, $3 = updated object",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "API DELETE": {
+    "prefix": "apidel",
+    "body": [
+      "const res = await fetch(`/api/${1:resource}/${${2:id}}`, {",
+      "  method: 'DELETE',",
+      "})",
+      "if (!res.ok) throw new Error('Failed to delete ${1:resource}')"
+    ],
+    "description": "Deletes a record by id. $2 = id variable",
+    "scope": "typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // CRUD -- SERVER ACTIONS
+  // Put these in a dedicated actions.ts file with 'use server' at the top,
+  // OR add 'use server' inside each function if mixing with client code.
+  // ===========================================================
+
+  "Server Action Scaffold": {
+    "prefix": "nsa",
+    "body": [
+      "'use server'",
       "",
-      "// ─── Imports ────────────────────────────────────────────────────────────────",
-      "import { useState, useEffect } from 'react';",
+      "export async function ${1:actionName}(${2}) {",
+      "  try {",
+      "    $3",
+      "  } catch (error) {",
+      "    console.error(error)",
+      "    throw new Error('${1:actionName} failed')",
+      "  }",
+      "}"
+    ],
+    "description": "Blank Server Action -- fill in params and body",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Server Action GET": {
+    "prefix": "nsaget",
+    "body": [
+      "export async function get${1:Items}() {",
+      "  try {",
+      "    const ${2:items} = await ${3:db.item.findMany()}",
+      "    return ${2:items}",
+      "  } catch (error) {",
+      "    console.error(error)",
+      "    throw new Error('Failed to fetch ${2:items}')",
+      "  }",
+      "}"
+    ],
+    "description": "Reads all records. Call from an async Server Component.",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Server Action POST": {
+    "prefix": "nsapost",
+    "body": [
+      "export async function create${1:Item}(formData: FormData) {",
+      "  const ${2:field} = formData.get('${2:field}') as string",
+      "  if (!${2:field}) throw new Error('${2:field} is required')",
       "",
-      "// ─── Types ──────────────────────────────────────────────────────────────────",
-      "interface ${1:ComponentName}Props {",
-      "  ${2:propName}: ${3:type};",
-      "  ${4:onAction}: (${5:arg}: ${6:type}) => void;",
+      "  try {",
+      "    const ${3:item} = await ${4:db.item.create({ data: { ${2:field} } })}",
+      "    return ${3:item}",
+      "  } catch (error) {",
+      "    console.error(error)",
+      "    throw new Error('Failed to create ${1:Item}')",
+      "  }",
+      "}"
+    ],
+    "description": "Creates a record from FormData. $2 = the field name you are reading.",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Server Action PUT": {
+    "prefix": "nsaput",
+    "body": [
+      "export async function update${1:Item}(id: string, data: Partial<${1:Item}>) {",
+      "  try {",
+      "    const updated = await ${2:db.item.update({ where: { id }, data })}",
+      "    return updated",
+      "  } catch (error) {",
+      "    console.error(error)",
+      "    throw new Error('Failed to update ${1:Item}')",
+      "  }",
+      "}"
+    ],
+    "description": "Updates a record by id",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Server Action DELETE": {
+    "prefix": "nsadel",
+    "body": [
+      "export async function delete${1:Item}(id: string) {",
+      "  try {",
+      "    await ${2:db.item.delete({ where: { id } })}",
+      "  } catch (error) {",
+      "    console.error(error)",
+      "    throw new Error('Failed to delete ${1:Item}')",
+      "  }",
+      "}"
+    ],
+    "description": "Deletes a record by id",
+    "scope": "typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // CUSTOM HOOKS AND FETCH UTILITIES
+  // ===========================================================
+
+  "Custom Hook": {
+    "prefix": "useh",
+    "body": [
+      "import { useState, useEffect } from 'react'",
+      "",
+      "export function use${1:Resource}() {",
+      "  const [data, setData] = useState<${2:YourType}[] | null>(null)",
+      "  const [isLoading, setIsLoading] = useState(true)",
+      "  const [error, setError] = useState<string | null>(null)",
+      "",
+      "  useEffect(() => {",
+      "    async function fetchData() {",
+      "      try {",
+      "        setIsLoading(true)",
+      "        const result = await ${3:yourApiCall()}",
+      "        setData(result)",
+      "        setError(null)",
+      "      } catch (err) {",
+      "        setError((err as Error).message)",
+      "        setData(null)",
+      "      } finally {",
+      "        setIsLoading(false)",
+      "      }",
+      "    }",
+      "    fetchData()",
+      "  }, [])",
+      "",
+      "  return { data, isLoading, error }",
+      "}"
+    ],
+    "description": "Reusable fetch hook. Use when the same fetch logic appears in more than one component. Returns { data, isLoading, error }.",
+    "scope": "typescript,typescriptreact"
+  },
+
+  "Fetch Function": {
+    "prefix": "fetchfn",
+    "body": [
+      "const ${1:fetchData} = async (): Promise<${2:YourType} | null> => {",
+      "  try {",
+      "    const res = await fetch('${3:/api/resource}')",
+      "    if (!res.ok) throw new Error('Request failed')",
+      "    const data = await res.json()",
+      "    return data",
+      "  } catch (err) {",
+      "    console.error(err)",
+      "    return null",
+      "  }",
+      "}"
+    ],
+    "description": "Standalone fetch triggered by a user action (not on mount). Use useh for mount-time fetching.",
+    "scope": "typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // REDUX TOOLKIT
+  // ===========================================================
+
+  "Redux Slice": {
+    "prefix": "rxslice",
+    "body": [
+      "import { createSlice, PayloadAction } from '@reduxjs/toolkit'",
+      "",
+      "interface ${1:${TM_FILENAME_BASE}}State {",
+      "  $2",
       "}",
       "",
-      "// ─── Component ──────────────────────────────────────────────────────────────",
-      "// What this component does: ${7:...}",
-      "// What it does NOT do: ${8:...}",
-      "// Parent responsibilities: ${9:...}",
+      "const initialState: ${1:${TM_FILENAME_BASE}}State = {",
+      "  $3",
+      "}",
       "",
-      "const ${1:ComponentName} = ({ ${2:propName}, ${4:onAction} }: ${1:ComponentName}Props) => {",
+      "const ${1:${TM_FILENAME_BASE}}Slice = createSlice({",
+      "  name: '${4:${TM_FILENAME_BASE}}',",
+      "  initialState,",
+      "  reducers: {",
+      "    $5",
+      "  }",
+      "})",
       "",
-      "  // ─── State ────────────────────────────────────────────────────────────────",
-      "  const [data, setData] = useState(null);",
-      "  const [isLoading, setIsLoading] = useState(true);",
-      "  const [error, setError] = useState<string | null>(null);",
+      "export const { $6 } = ${1:${TM_FILENAME_BASE}}Slice.actions",
+      "export default ${1:${TM_FILENAME_BASE}}Slice.reducer"
+    ],
+    "description": "Full typed Redux slice with PayloadAction and typed initialState",
+    "scope": "typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // SECTION HEADERS
+  // ===========================================================
+
+  "Section Header": {
+    "prefix": "sec",
+    "body": "/* -- ${1:Section} ${CURSOR}",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Imports": {
+    "prefix": "sec-imp",
+    "body": "/* -- Imports ---------------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Component": {
+    "prefix": "sec-comp",
+    "body": "/* -- Component -------------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section State": {
+    "prefix": "sec-state",
+    "body": "/* -- State ------------------------------------------------------------------ */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Handlers": {
+    "prefix": "sec-hand",
+    "body": "/* -- Handlers --------------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Early Returns": {
+    "prefix": "sec-early",
+    "body": "/* -- Early Returns ---------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Render": {
+    "prefix": "sec-render",
+    "body": "/* -- Render ----------------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Derived": {
+    "prefix": "sec-derived",
+    "body": "/* -- Derived State ---------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Effects": {
+    "prefix": "sec-effect",
+    "body": "/* -- Effects ---------------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Section Refs": {
+    "prefix": "sec-refs",
+    "body": "/* -- Refs ------------------------------------------------------------------- */",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // COMMENT STYLES
+  // ===========================================================
+
+  "Warning Comment": {
+    "prefix": "cwarn",
+    "body": "//! $1",
+    "description": "Red in Better Comments -- use for things future-you must not miss",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Question Comment": {
+    "prefix": "cquest",
+    "body": "//? $1",
+    "description": "Blue in Better Comments -- use for decisions you are not sure about yet",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Highlight Comment": {
+    "prefix": "chigh",
+    "body": "//* $1",
+    "description": "Green in Better Comments -- use for patterns worth remembering",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  "Todo Comment": {
+    "prefix": "ctodo",
+    "body": "// TODO: $1",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact"
+  },
+
+  // ===========================================================
+  // COMPONENT SCAFFOLDS
+  // These are full component templates. Delete any section you do not need.
+  // The sections and comments are the lesson -- not a requirement to use all of them.
+  // ===========================================================
+
+  "Full Client Component": {
+    "prefix": "rcomp",
+    "body": [
+      "/* 'use client' --------------------------------------------------------------",
+      "   Required because this component uses useState and useEffect.",
+      "   Remove only if you move all state and fetch logic to a Server Component.  */",
+      "'use client'",
       "",
-      "  // ─── Derived Values ───────────────────────────────────────────────────────",
-      "  const derivedValue = data?.filter(item => item.active);",
+      "/* -- Imports --------------------------------------------------------------",
+      "   Add any other imports you need: router, Link, Image, cn, actions, etc.  */",
+      "import { useState, useEffect } from 'react'",
       "",
-      "  // ─── Fetch Data ───────────────────────────────────────────────────────────",
+      "/* -- Types ----------------------------------------------------------------",
+      "   Props this component receives from its parent.",
+      "   Delete the interface if this component has no props yet.                */",
+      "interface ${1:ComponentName}Props {",
+      "  // Add props here as you need them. Examples:",
+      "  // userId: string",
+      "  // onSuccess?: () => void  -- the ? makes it optional",
+      "}",
+      "",
+      "/* -- Component ------------------------------------------------------------",
+      "   Fill these in before writing any code -- keeps the component focused.",
+      "   What this component does:              ${2:...}",
+      "   What it does NOT do:                   ${3:...}",
+      "   What the parent is responsible for:    ${4:...}          */",
+      "",
+      "const ${1:ComponentName} = ({}: ${1:ComponentName}Props) => {",
+      "",
+      "  /* -- State --------------------------------------------------------------",
+      "     data      -- what was fetched. Starts null, filled after fetch succeeds.",
+      "     isLoading -- true while request is in-flight. Drives the loading UI.",
+      "     error     -- holds the error message string if the fetch fails.       */",
+      "  const [data, setData] = useState<${5:YourType}[] | null>(null)",
+      "  const [isLoading, setIsLoading] = useState(true)",
+      "  const [error, setError] = useState<string | null>(null)",
+      "",
+      "  /* -- Fetch Data ---------------------------------------------------------",
+      "     loadData is defined as an inner async function then called immediately.",
+      "     This is the correct pattern -- useEffect itself cannot be async.",
+      "     Empty [] dep array means this runs once on mount only.               */",
       "  useEffect(() => {",
       "    async function loadData() {",
       "      try {",
-      "        setIsLoading(true);",
-      "        const response = await ${10:someApiCall()};",
-      "        setData(response.data);",
-      "        setError(null);",
+      "        setIsLoading(true)",
+      "        const result = await ${6:yourApiCall()}",
+      "        setData(result)",
+      "        setError(null)",
       "      } catch (err) {",
-      "        setError((err as Error).message);",
-      "        setData(null);",
+      "        setError((err as Error).message)",
+      "        setData(null)",
       "      } finally {",
-      "        setIsLoading(false);",
+      "        setIsLoading(false)",
       "      }",
       "    }",
-      "    loadData();",
-      "  }, []);",
+      "    loadData()",
+      "  }, [])",
       "",
-      "  // ─── Handlers ─────────────────────────────────────────────────────────────",
-      "  const handle${11:Action} = () => {",
-      "    ${4:onAction}(data);",
-      "  };",
+      "  /* -- Handlers -----------------------------------------------------------",
+      "     After a mutation (create / update / delete):                          ",
+      "     - Server Actions  --> call router.refresh() to re-sync Server Components",
+      "     - Client fetch    --> re-call loadData() to re-fetch                 */",
+      "  const handle${7:Action} = async () => {",
+      "    try {",
+      "      await ${8:yourMutationCall()}",
+      "      // TODO: re-fetch or optimistically update state here",
+      "    } catch (err) {",
+      "      setError((err as Error).message)",
+      "    }",
+      "  }",
       "",
-      "  // ─── Early Returns ────────────────────────────────────────────────────────",
-      "  if (isLoading) return <p className=\"text-sm text-muted-foreground\">Loading...</p>;",
-      "  if (error) return <p className=\"text-sm text-red-500\">Error: {error}</p>;",
-      "  if (!data) return <p className=\"text-sm text-muted-foreground\">Nothing here yet.</p>;",
+      "  /* -- Early Returns ------------------------------------------------------",
+      "     Must come BEFORE the main return -- they short-circuit rendering.",
+      "     Order matters: loading --> error --> empty --> render.               */",
+      "  if (isLoading) return <p className=\"text-sm text-muted-foreground\">Loading...</p>",
+      "  if (error) return <p className=\"text-sm text-red-500\">Error: {error}</p>",
+      "  if (!data?.length) return <p className=\"text-sm text-muted-foreground\">Nothing here yet.</p>",
       "",
-      "  // ─── Render ───────────────────────────────────────────────────────────────",
+      "  /* -- Render -------------------------------------------------------------*/",
       "  return (",
       "    <div>",
-      "      {/* JSX here */}",
       "      $0",
       "    </div>",
-      "  );",
-      "};",
-      "",
-      "export default ${1:ComponentName};"
-    ],
-    "scope": "typescript,typescriptreact"
-  },
-
-  // rcomp-pure → pure presentational component, no state, with early return
-  "React Component Scaffold No State": {
-    "prefix": "rcomp-pure",
-    "body": [
-      "// ─── Imports ────────────────────────────────────────────────────────────────",
-      "import $0 from '@/components/${1:Component}';",
-      "",
-      "// ─── Types ──────────────────────────────────────────────────────────────────",
-      "interface ${6:ComponentName}Props {",
-      "  ${4:propName}: ${3:type};",
+      "  )",
       "}",
       "",
-      "// ─── Component ──────────────────────────────────────────────────────────────",
-      "// ${2:What this component does — pure presentational, no state}",
-      "",
-      "const ${6:ComponentName} = ({ ${4:propName} }: ${6:ComponentName}Props) => {",
-      "",
-      "  // ─── Early Returns ──────────────────────────────────────────────────────",
-      "  if (!${4:propName}?.length) return <p className=\"text-sm text-muted-foreground\">${7:Nothing here yet.}</p>;",
-      "",
-      "  // ─── Render ─────────────────────────────────────────────────────────────",
-      "  return (",
-      "    <div>",
-      "      ",
-      "    </div>",
-      "  );",
-      "};",
-      "",
-      "export default ${6:ComponentName};"
+      "export default ${1:ComponentName}"
     ],
     "scope": "typescript,typescriptreact"
   },
 
-  // ===========================================================
-  // ⚛️ REACT HOOKS (ADDITIONAL)
-  // ===========================================================
-
-  // uem → useEffect on mount only (empty deps)
-  "useEffect Mount": {
-    "prefix": "uem",
+  "Pure Presentational Component": {
+    "prefix": "rcomp-pure",
     "body": [
-      "useEffect(() => {",
-      "  $0",
-      "}, []);"
-    ]
-  },
-
-  // ued → useEffect with dependency
-  "useEffect Dependency": {
-    "prefix": "ued",
-    "body": [
-      "useEffect(() => {",
-      "  $0",
-      "}, [${1:dependency}]);"
-    ]
-  },
-
-  // uec → useEffect with cleanup function
-  // $0 = effect body (cursor lands here first), $1 = cleanup body, $2 = deps
-  "useEffect Cleanup": {
-    "prefix": "uec",
-    "body": [
-      "useEffect(() => {",
-      "  $0",
-      "  return () => {",
-      "    ${1:// cleanup}",
-      "  };",
-      "}, [${2:dependency}]);"
-    ]
-  },
-
-  // ===========================================================
-  // 🔀 EARLY RETURNS
-  // ===========================================================
-
-  // er-load → early return while loading
-  "Early Return Loading": {
-    "prefix": "er-load",
-    "body": "if (isLoading) return <p className=\"text-sm text-muted-foreground\">Loading...</p>;"
-  },
-
-  // er-error → early return on error
-  "Early Return Error": {
-    "prefix": "er-error",
-    "body": "if (error) return <p className=\"text-sm text-red-500\">{error}</p>;"
-  },
-
-  // er-empty → early return on empty list
-  "Early Return Empty": {
-    "prefix": "er-empty",
-    "body": "if (!${1:items}?.length) return <p className=\"text-sm text-muted-foreground\">${2:Nothing here yet.}</p>;"
-  },
-
-  // ===========================================================
-  // 🛠️ UTILITY (ADDITIONAL)
-  // ===========================================================
-
-  // hsubmit → form submit handler with trim + guard
-  "Handler Submit": {
-    "prefix": "hsubmit",
-    "body": [
-      "function handleSubmit(e: React.FormEvent) {",
-      "  e.preventDefault();",
-      "  const trimmed = ${1:value}.trim();",
-      "  if (!trimmed) return;",
-      "  ${2:onAction}(trimmed);",
-      "  ${3:setValue('');}",
-      "}"
-    ]
-  },
-
-  // maplist → map over array to render components
-  "Map List": {
-    "prefix": "maplist",
-    "body": [
-      "{${1:items}.map((${2:item}) => (",
-      "  <${3:Component}",
-      "    key={${2:item}.id}",
-      "    $0",
-      "  />",
-      "))}"
-    ]
+      "/* -- Imports --------------------------------------------------------------",
+      "   Add child component imports here as you build out the render below.",
+      "   import ${7:ItemCard} from '@/components/${7:ItemCard}'                 */",
+      "",
+      "/* -- Types ----------------------------------------------------------------",
+      "   No internal state. The parent fetches and passes data down as props.",
+      "   This component only decides how to display what it receives.           */",
+      "interface ${1:ComponentName}Props {",
+      "  ${2:items}: ${3:YourType}[]",
+      "}",
+      "",
+      "/* -- Component ------------------------------------------------------------",
+      "   ${4:What this component renders -- e.g. 'A list of PostCard components'} */",
+      "",
+      "const ${1:ComponentName} = ({ ${2:items} }: ${1:ComponentName}Props) => {",
+      "",
+      "  /* -- Early Returns ------------------------------------------------------",
+      "     Guard against empty array before rendering the list.",
+      "     Prevents a blank UI with no explanation for the user.               */",
+      "  if (!${2:items}?.length) return <p className=\"text-sm text-muted-foreground\">${5:Nothing here yet.}</p>",
+      "",
+      "  /* -- Render -------------------------------------------------------------",
+      "     key must be the item id -- never the array index.                    */",
+      "  return (",
+      "    <div>",
+      "      {${2:items}.map((${6:item}) => (",
+      "        <${7:ItemCard}",
+      "          key={${6:item}.id}",
+      "          $0",
+      "        />",
+      "      ))}",
+      "    </div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:ComponentName}"
+    ],
+    "scope": "typescript,typescriptreact"
   }
+
 }
