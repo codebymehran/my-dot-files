@@ -226,7 +226,7 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; color: 
 <header>
   <div>
     <h1>Snippets <span class="accent">Cheatsheet</span></h1>
-    <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 88 snippets &nbsp;·&nbsp; React / Next.js App Router / CRUD</p>
+    <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 92 snippets &nbsp;·&nbsp; React / Next.js App Router / CRUD</p>
   </div>
   <div class="header-right">
     <span class="hint">prefix &rarr; Tab to expand</span>
@@ -479,15 +479,19 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; color: 
 
   <!-- Component Scaffolds -->
   <div class="card react wide">
-    <div class="card-header"><span>🏗️</span><h2>Component Scaffolds</h2><span class="count">2</span></div>
-    <div class="row"><div><span class="prefix">rcomp</span></div><div class="info"><div class="name">Full Client Component</div><div class="desc">'use client' + imports + state + inner-async fetch + mutation handler with router.refresh hint + early returns + render. Block comments explain each section.</div></div></div>
-    <div class="row"><div><span class="prefix">rcomp-pure</span></div><div class="info"><div class="name">Pure Presentational Component</div><div class="desc">No state, no fetch. Imports + types + early return for empty + .map() list stub pre-built in render.</div></div></div>
+    <div class="card-header"><span>🏗️</span><h2>Component Scaffolds</h2><span class="count">6</span></div>
+    <div class="row"><div><span class="prefix">rcomp</span></div><div class="info"><div class="name">Full Client Component</div><div class="desc">'use client' + state + inner-async fetch + mutation handler + early returns. Block comments explain each section.</div></div></div>
+    <div class="row"><div><span class="prefix">rcomp-pure</span></div><div class="info"><div class="name">Pure Presentational</div><div class="desc">No state, no fetch. Types + early return + .map() stub. Parent is responsible for fetching and passing data down.</div></div></div>
+    <div class="row"><div><span class="prefix">rcomp-form</span></div><div class="info"><div class="name">Form Component <span class="badge badge-new">NEW</span></div><div class="desc">Controlled input + submit handler + isSubmitting state + error state + reset on success. Calls onSuccess?() so parent can react.</div></div></div>
+    <div class="row"><div><span class="prefix">rcomp-list</span></div><div class="info"><div class="name">List + Delete Component <span class="badge badge-new">NEW</span></div><div class="desc">Fetches all records, renders each item with a delete button. Optimistic update on delete -- removes from state immediately, reverts on error.</div></div></div>
+    <div class="row"><div><span class="prefix">rcomp-detail</span></div><div class="info"><div class="name">Detail Component <span class="badge badge-new">NEW</span></div><div class="desc">Reads id from URL via useParams, fetches that single record, displays it. Use for /resource/[id] pages.</div></div></div>
+    <div class="row"><div><span class="prefix">rcomp-search</span></div><div class="info"><div class="name">Search Filter Component <span class="badge badge-new">NEW</span></div><div class="desc">Receives full list as prop, filters client-side with useMemo. No extra fetch -- instant filtering without hitting the server.</div></div></div>
   </div>
 
 </div>
 
 <footer>
-  <p>React_Snippets.code-snippets &nbsp;·&nbsp; 88 snippets &nbsp;·&nbsp; React / Next.js / CRUD / Redux</p>
+  <p>React_Snippets.code-snippets &nbsp;·&nbsp; 92 snippets &nbsp;·&nbsp; React / Next.js / CRUD / Redux</p>
   <div class="legend">
     <div class="legend-item"><div class="dot" style="background:var(--react)"></div>React</div>
     <div class="legend-item"><div class="dot" style="background:var(--next)"></div>Next.js</div>
