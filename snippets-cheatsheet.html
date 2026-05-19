@@ -3,774 +3,485 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VS Code Snippets Cheatsheet</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>React Snippets Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #f5f5f7;
-    --surface: #ffffff;
-    --surface-hover: #f0f0f5;
-    --border: #e2e2ea;
-    --text: #111118;
-    --muted: #9090a0;
-    --subtle: #666678;
+:root {
+  --bg: #f4f4f8;
+  --surface: #ffffff;
+  --surface2: #f0f0f6;
+  --border: #e2e2ea;
+  --text: #111118;
+  --muted: #9090a0;
+  --subtle: #666678;
+  --react:   #0284c7;
+  --next:    #111118;
+  --redux:   #7c3aed;
+  --util:    #c2410c;
+  --import:  #16a34a;
+  --console: #dc2626;
+  --crud:    #0f766e;
+  --react-bg:   #e0f2fe;
+  --next-bg:    #f1f1f5;
+  --redux-bg:   #ede9fe;
+  --util-bg:    #ffedd5;
+  --import-bg:  #dcfce7;
+  --console-bg: #fee2e2;
+  --crud-bg:    #ccfbf1;
+  --new-badge:  #ccfbf1;
+  --new-text:   #0f766e;
+}
 
-    --react:   #0284c7;
-    --next:    #111118;
-    --redux:   #7c3aed;
-    --util:    #c2410c;
-    --import:  #16a34a;
-    --console: #dc2626;
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 48px 36px;
+  line-height: 1.5;
+}
 
-    --react-bg:   #e0f2fe;
-    --next-bg:    #f1f1f5;
-    --redux-bg:   #ede9fe;
-    --util-bg:    #ffedd5;
-    --import-bg:  #dcfce7;
-    --console-bg: #fee2e2;
-  }
+.page { max-width: 1140px; margin: 0 auto; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 56px 40px;
-    line-height: 1.5;
-  }
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
-  .page { max-width: 1160px; margin: 0 auto; }
+h1 { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+h1 .accent { color: var(--react); }
+.header-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-top: 8px; }
+.header-right { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-align: right; line-height: 2; }
+.hint { display: inline-block; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; color: var(--subtle); }
 
-  header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding-bottom: 36px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--border);
-  }
+/* ── Workflow ── */
+.workflow {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
 
-  h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
-  h1 .accent { color: var(--react); }
+.workflow-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+}
 
-  .header-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-top: 10px;
-    letter-spacing: 0.02em;
-  }
+.workflow-header h2 { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--subtle); }
 
-  .header-right {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-align: right;
-    line-height: 2;
-  }
+.workflow-body { display: flex; }
 
-  .hint {
-    display: inline-block;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 14px;
-    color: var(--subtle);
-    letter-spacing: 0.04em;
-  }
+.workflow-col { flex: 1; padding: 10px 20px; border-right: 1px solid var(--border); }
+.workflow-col:last-child { border-right: none; }
 
-  .sections { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.wstep { padding: 7px 0; border-bottom: 1px solid var(--border); }
+.wstep:last-child { border-bottom: none; }
+.wlabel { font-size: 0.7rem; font-weight: 600; color: var(--subtle); margin-bottom: 4px; }
+.wline { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; color: var(--muted); line-height: 2; }
 
-  .section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .section.wide { grid-column: 1 / -1; }
+.wp { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; color: var(--react); background: var(--react-bg); padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+.wp.crud { color: var(--crud); background: var(--crud-bg); }
+.wp.util { color: var(--util); background: var(--util-bg); }
+.wp.next { color: var(--next); background: var(--next-bg); }
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-  }
+/* ── Grid ── */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-  .section-header .icon { font-size: 1rem; line-height: 1; }
+/* ── Section card ── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.card.wide { grid-column: 1 / -1; }
 
-  .section-header h2 {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--subtle);
-  }
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+}
 
-  .section-header .count {
-    margin-left: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2px 9px;
-  }
+.card-header h2 { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--subtle); }
 
-  .snippet-list { padding: 6px 0; }
+.count {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2px 8px;
+}
 
-  .snippet {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    align-items: center;
-    padding: 11px 20px;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.12s;
-    gap: 4px;
-  }
+/* ── Snippet row ── */
+.row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  gap: 4px;
+  transition: background 0.1s;
+}
+.row:last-child { border-bottom: none; }
+.row:hover { background: var(--surface2); }
 
-  .snippet:last-child { border-bottom: none; }
-  .snippet:hover { background: var(--surface-hover); }
+.prefix {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+  display: inline-block;
+}
 
-  .prefix-wrap { display: flex; align-items: center; }
+.console .prefix { color: var(--console); background: var(--console-bg); }
+.react   .prefix { color: var(--react);   background: var(--react-bg); }
+.next    .prefix { color: var(--next);    background: var(--next-bg); }
+.redux   .prefix { color: var(--redux);   background: var(--redux-bg); }
+.util    .prefix { color: var(--util);    background: var(--util-bg); }
+.imp     .prefix { color: var(--import);  background: var(--import-bg); }
+.crud    .prefix { color: var(--crud);    background: var(--crud-bg); }
 
-  .snippet-prefix {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 3px 9px;
-    border-radius: 5px;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-  }
+.info { padding-left: 4px; }
+.name { font-size: 0.86rem; font-weight: 500; color: var(--text); line-height: 1.3; }
+.desc { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
-  .console .snippet-prefix { color: var(--console); background: var(--console-bg); }
-  .react   .snippet-prefix { color: var(--react);   background: var(--react-bg); }
-  .next    .snippet-prefix { color: var(--next);    background: var(--next-bg); }
-  .redux   .snippet-prefix { color: var(--redux);   background: var(--redux-bg); }
-  .util    .snippet-prefix { color: var(--util);    background: var(--util-bg); }
-  .imp     .snippet-prefix { color: var(--import);  background: var(--import-bg); }
+.badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 5px;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+.badge-new  { background: var(--new-badge); color: var(--new-text); }
+.badge-ts   { background: #dbeafe; color: #1d4ed8; }
+.badge-next { background: var(--next-bg); color: var(--subtle); }
 
-  .snippet-info { padding-left: 4px; }
+/* ── Code preview ── */
+.preview {
+  background: #f8f8fc;
+  border-top: 1px solid var(--border);
+  padding: 16px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.9;
+  white-space: pre;
+  overflow-x: auto;
+  color: #555;
+}
+.preview .kw  { color: #7c3aed; }
+.preview .fn  { color: #0284c7; }
+.preview .str { color: #16a34a; }
+.preview .cm  { color: #9090a0; }
+.preview .kw2 { color: #0f766e; }
 
-  .snippet-name { font-size: 0.88rem; font-weight: 500; color: var(--text); line-height: 1.3; }
+/* ── Footer ── */
+footer {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; color: var(--muted); }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; color: var(--muted); }
+.dot { width: 7px; height: 7px; border-radius: 50%; }
 
-  .snippet-desc {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    margin-top: 3px;
-    line-height: 1.5;
-  }
-
-  .badge {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin-left: 6px;
-    vertical-align: middle;
-    letter-spacing: 0.04em;
-  }
-
-  .badge-ts   { background: rgba(59,130,246,0.15); color: #60a5fa; }
-  .badge-js   { background: rgba(234,179,8,0.15);  color: #facc15; }
-  .badge-next { background: var(--next-bg);         color: var(--subtle); }
-
-  .preview {
-    background: #f8f8fc;
-    border-top: 1px solid var(--border);
-    padding: 18px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    line-height: 2;
-    white-space: pre;
-    overflow-x: auto;
-    color: #555;
-  }
-
-  .preview .kw  { color: #7c3aed; }
-  .preview .fn  { color: #0284c7; }
-  .preview .str { color: #16a34a; }
-  .preview .ph  { color: #9090a0; }
-
-  footer {
-    margin-top: 32px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); }
-
-  .legend { display: flex; gap: 18px; }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-  }
-
-  .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
-
-  @media (max-width: 760px) {
-    body { padding: 32px 20px; }
-    .sections { grid-template-columns: 1fr; }
-    .section.wide { grid-column: 1; }
-    header { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .snippet { grid-template-columns: 110px 1fr; }
-    .workflow-body { flex-direction: column; }
-  }
-
-  /* ── Workflow ── */
-  .workflow {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 24px;
-  }
-
-  .workflow-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .workflow-header .icon { font-size: 1rem; line-height: 1; }
-
-  .workflow-header h2 {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--subtle);
-  }
-
-  .workflow-body {
-    display: flex;
-    gap: 0;
-    padding: 6px 0;
-  }
-
-  .workflow-col {
-    flex: 1;
-    padding: 10px 20px;
-    border-right: 1px solid var(--border);
-  }
-
-  .workflow-col:last-child { border-right: none; }
-
-  .workflow-step {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .workflow-step:last-child { border-bottom: none; }
-
-  .workflow-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--subtle);
-    margin-bottom: 5px;
-    letter-spacing: 0.02em;
-  }
-
-  .workflow-line {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    line-height: 1.9;
-  }
-
-  .wprefix {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--react);
-    background: var(--react-bg);
-    padding: 1px 6px;
-    border-radius: 4px;
-  }
+@media (max-width: 760px) {
+  body { padding: 28px 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .card.wide { grid-column: 1; }
+  header { flex-direction: column; align-items: flex-start; }
+  .workflow-body { flex-direction: column; }
+  .workflow-col { border-right: none; border-bottom: 1px solid var(--border); }
+  .row { grid-template-columns: 110px 1fr; }
+}
 </style>
 </head>
 <body>
 <div class="page">
 
-  <header>
-    <div>
-      <h1>Snippets <span class="accent">Cheatsheet</span></h1>
-      <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 71 snippets</p>
-    </div>
-    <div class="header-right">
-      React · Next.js App Router · Redux Toolkit<br>
-      <span class="hint">prefix → Tab to expand</span>
-    </div>
-  </header>
+<header>
+  <div>
+    <h1>Snippets <span class="accent">Cheatsheet</span></h1>
+    <p class="header-meta">React_Snippets.code-snippets &nbsp;·&nbsp; 88 snippets &nbsp;·&nbsp; React / Next.js App Router / CRUD</p>
+  </div>
+  <div class="header-right">
+    <span class="hint">prefix &rarr; Tab to expand</span>
+  </div>
+</header>
 
-  <!-- Workflow -->
-  <div class="workflow">
-    <div class="workflow-header">
-      <span class="icon">⚡</span>
-      <h2>Component Workflow</h2>
-    </div>
-    <div class="workflow-body">
-      <div class="workflow-col">
-        <div class="workflow-step">
-          <div class="workflow-label">Start every file</div>
-          <div class="workflow-line"><span class="wprefix">rcomp</span> or <span class="wprefix">rcomp-pure</span> → Tab through placeholders</div>
-        </div>
-        <div class="workflow-step">
-          <div class="workflow-label">As you build each section</div>
-          <div class="workflow-line"><span class="wprefix">sec-state</span> <span class="wprefix">sec-hand</span> <span class="wprefix">sec-render</span> to mark sections</div>
-          <div class="workflow-line"><span class="wprefix">us</span> for each new useState &nbsp;·&nbsp; <span class="wprefix">maplist</span> when rendering a list</div>
-          <div class="workflow-line"><span class="wprefix">er-empty</span> immediately in list components — you know you'll need it</div>
-          <div class="workflow-line"><span class="wprefix">er-load</span> and <span class="wprefix">er-error</span> — slots ready for when APIs arrive</div>
-        </div>
-        <div class="workflow-step">
-          <div class="workflow-label">After it works</div>
-          <div class="workflow-line">Props are typed via the interface in <span class="wprefix">rafcep</span> — no extra doc step needed</div>
-        </div>
+<!-- Workflow -->
+<div class="workflow">
+  <div class="workflow-header"><span>⚡</span><h2>Workflow</h2></div>
+  <div class="workflow-body">
+    <div class="workflow-col">
+      <div class="wstep">
+        <div class="wlabel">Start every file</div>
+        <div class="wline"><span class="wp">rfc</span> or <span class="wp">rafce</span> &rarr; Tab through placeholders</div>
+        <div class="wline"><span class="wp">rfc</span> = default fn &nbsp;·&nbsp; <span class="wp">rafce</span> = arrow fn</div>
       </div>
-      <div class="workflow-col">
-        <div class="workflow-step">
-          <div class="workflow-label">While debugging</div>
-          <div class="workflow-line"><span class="wprefix">cl</span> for quick logs &nbsp;·&nbsp; <span class="wprefix">ct</span> when debugging an array</div>
-        </div>
-        <div class="workflow-step">
-          <div class="workflow-label">Leaving notes</div>
-          <div class="workflow-line"><span class="wprefix">cwarn</span> above anything tricky — e.g. the onMouseDown fix</div>
-          <div class="workflow-line"><span class="wprefix">cquest</span> when unsure about a decision — revisit later</div>
-          <div class="workflow-line"><span class="wprefix">ctodo</span> for anything to come back to</div>
-          <div class="workflow-line"><span class="wprefix">chigh</span> above a bug fix — stands out when reading back</div>
-        </div>
+      <div class="wstep">
+        <div class="wlabel">Building out the component</div>
+        <div class="wline"><span class="wp">us</span> for state &nbsp;·&nbsp; <span class="wp">uem</span> to fetch on mount</div>
+        <div class="wline"><span class="wp">nform</span> + <span class="wp util">hsubmit</span> for a controlled form</div>
+        <div class="wline"><span class="wp">maplist</span> to render a list &nbsp;·&nbsp; <span class="wp">er-empty</span> right after</div>
+        <div class="wline"><span class="wp">er-load</span> and <span class="wp">er-error</span> before the main return</div>
+      </div>
+      <div class="wstep">
+        <div class="wlabel">Adding types</div>
+        <div class="wline">Switch to <span class="wp">rafcep</span> or <span class="wp">rfcp</span> to add a Props interface</div>
+      </div>
+    </div>
+    <div class="workflow-col">
+      <div class="wstep">
+        <div class="wlabel">CRUD -- client fetch</div>
+        <div class="wline"><span class="wp crud">apiget</span> inside <span class="wp">uem</span> to load data on mount</div>
+        <div class="wline"><span class="wp crud">apipost</span> inside <span class="wp util">hsubmit</span> to create a record</div>
+        <div class="wline"><span class="wp crud">apiput</span> on edit &nbsp;·&nbsp; <span class="wp crud">apidel</span> on delete</div>
+        <div class="wline"><span class="wp crud">apiurl</span> at top of file to define base URL once</div>
+      </div>
+      <div class="wstep">
+        <div class="wlabel">CRUD -- Server Actions</div>
+        <div class="wline"><span class="wp crud">nsaget</span> in async Server Components to read data</div>
+        <div class="wline"><span class="wp crud">nsapost</span> <span class="wp crud">nsaput</span> <span class="wp crud">nsadel</span> for mutations</div>
+      </div>
+      <div class="wstep">
+        <div class="wlabel">Debugging</div>
+        <div class="wline"><span class="wp next">cl</span> quick log &nbsp;·&nbsp; <span class="wp next">ct</span> for arrays &nbsp;·&nbsp; <span class="wp next">clj</span> for objects</div>
+        <div class="wline"><span class="wp next">cwarn</span> above anything tricky &nbsp;·&nbsp; <span class="wp next">cquest</span> when unsure</div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="sections">
+<div class="grid">
 
-    <!-- Console -->
-    <div class="section console">
-      <div class="section-header">
-        <span class="icon">🖨️</span><h2>Console</h2><span class="count">6</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">cl</span></div>
-          <div class="snippet-info"><div class="snippet-name">Console Log</div><div class="snippet-desc">console.log('label:', value)</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">clj</span></div>
-          <div class="snippet-info"><div class="snippet-name">Console Log JSON</div><div class="snippet-desc">JSON.stringify(val, null, 2) — readable objects</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">cgroup</span></div>
-          <div class="snippet-info"><div class="snippet-name">Console Group</div><div class="snippet-desc">console.group / log / groupEnd block</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">cw</span></div>
-          <div class="snippet-info"><div class="snippet-name">Console Warn</div><div class="snippet-desc">console.warn('label:', value)</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ce</span></div>
-          <div class="snippet-info"><div class="snippet-name">Console Error</div><div class="snippet-desc">console.error('label:', value)</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ct</span></div>
-          <div class="snippet-info"><div class="snippet-name">Console Table</div><div class="snippet-desc">console.table(array)</div></div>
-        </div>
-      </div>
-    </div>
+  <!-- Console -->
+  <div class="card console">
+    <div class="card-header"><span>🖨️</span><h2>Console</h2><span class="count">6</span></div>
+    <div class="row"><div><span class="prefix">cl</span></div><div class="info"><div class="name">Console Log</div><div class="desc">console.log('label:', value)</div></div></div>
+    <div class="row"><div><span class="prefix">clj</span></div><div class="info"><div class="name">Console Log JSON</div><div class="desc">JSON.stringify(value, null, 2) -- use when cl shows [Object]</div></div></div>
+    <div class="row"><div><span class="prefix">cw</span></div><div class="info"><div class="name">Console Warn</div><div class="desc">console.warn('label:', value)</div></div></div>
+    <div class="row"><div><span class="prefix">ce</span></div><div class="info"><div class="name">Console Error</div><div class="desc">console.error('label:', value)</div></div></div>
+    <div class="row"><div><span class="prefix">ct</span></div><div class="info"><div class="name">Console Table</div><div class="desc">console.table(array) -- shows readable table in DevTools</div></div></div>
+    <div class="row"><div><span class="prefix">cgroup</span></div><div class="info"><div class="name">Console Group</div><div class="desc">group / 3 logs / groupEnd -- for related values at once</div></div></div>
+  </div>
 
-    <!-- Imports -->
-    <div class="section imp">
-      <div class="section-header">
-        <span class="icon">📦</span><h2>Imports</h2><span class="count">12</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">imp</span></div>
-          <div class="snippet-info"><div class="snippet-name">Default Import</div><div class="snippet-desc">import name from 'path'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">imd</span></div>
-          <div class="snippet-info"><div class="snippet-name">Destructured Import</div><div class="snippet-desc">import { name } from 'path'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">inn</span></div>
-          <div class="snippet-info"><div class="snippet-name">Next.js Navigation</div><div class="snippet-desc">useRouter, usePathname… from 'next/navigation'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">inl</span></div>
-          <div class="snippet-info"><div class="snippet-name">Next.js Link</div><div class="snippet-desc">import Link from 'next/link'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ini</span></div>
-          <div class="snippet-info"><div class="snippet-name">Next.js Image</div><div class="snippet-desc">import Image from 'next/image'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">inr</span></div>
-          <div class="snippet-info"><div class="snippet-name">NextResponse</div><div class="snippet-desc">import { NextResponse } from 'next/server'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">icn</span></div>
-          <div class="snippet-info"><div class="snippet-name">cn() Utility</div><div class="snippet-desc">import { cn } from '@/lib/utils'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">iui</span></div>
-          <div class="snippet-info"><div class="snippet-name">shadcn UI Components</div><div class="snippet-desc">import { } from '@/components/ui' — cursor inside {}</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">irus</span></div>
-          <div class="snippet-info"><div class="snippet-name">Import useState</div><div class="snippet-desc">import { useState } from 'react'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">irue</span></div>
-          <div class="snippet-info"><div class="snippet-name">Import useEffect</div><div class="snippet-desc">import { useEffect } from 'react'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">irhooks</span></div>
-          <div class="snippet-info"><div class="snippet-name">Import useState + useEffect</div><div class="snippet-desc">import { useState, useEffect } from 'react'</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">irr</span></div>
-          <div class="snippet-info"><div class="snippet-name">Import React</div><div class="snippet-desc">import React from 'react'</div></div>
-        </div>
-      </div>
-    </div>
+  <!-- Imports -->
+  <div class="card imp">
+    <div class="card-header"><span>📦</span><h2>Imports</h2><span class="count">12</span></div>
+    <div class="row"><div><span class="prefix">imp</span></div><div class="info"><div class="name">Default Import</div><div class="desc">import X from 'Y'</div></div></div>
+    <div class="row"><div><span class="prefix">imd</span></div><div class="info"><div class="name">Named Import</div><div class="desc">import { X } from 'Y'</div></div></div>
+    <div class="row"><div><span class="prefix">irus</span></div><div class="info"><div class="name">Import useState</div><div class="desc">import { useState } from 'react'</div></div></div>
+    <div class="row"><div><span class="prefix">irue</span></div><div class="info"><div class="name">Import useEffect</div><div class="desc">import { useEffect } from 'react'</div></div></div>
+    <div class="row"><div><span class="prefix">irhooks</span></div><div class="info"><div class="name">Import useState + useEffect</div><div class="desc">import { useState, useEffect } from 'react'</div></div></div>
+    <div class="row"><div><span class="prefix">irr</span></div><div class="info"><div class="name">Import React</div><div class="desc">import React from 'react'</div></div></div>
+    <div class="row"><div><span class="prefix">inn</span></div><div class="info"><div class="name">Next Navigation</div><div class="desc">useRouter, usePathname, useParams, useSearchParams -- delete what you don't need</div></div></div>
+    <div class="row"><div><span class="prefix">inl</span></div><div class="info"><div class="name">Next Link</div><div class="desc">import Link from 'next/link'</div></div></div>
+    <div class="row"><div><span class="prefix">ini</span></div><div class="info"><div class="name">Next Image</div><div class="desc">import Image from 'next/image'</div></div></div>
+    <div class="row"><div><span class="prefix">inr</span></div><div class="info"><div class="name">NextResponse</div><div class="desc">import { NextResponse } from 'next/server'</div></div></div>
+    <div class="row"><div><span class="prefix">icn</span></div><div class="info"><div class="name">Import cn</div><div class="desc">import { cn } from '@/lib/utils'</div></div></div>
+    <div class="row"><div><span class="prefix">iui</span></div><div class="info"><div class="name">Import shadcn UI</div><div class="desc">import { } from '@/components/ui/$name' -- cursor inside {}</div></div></div>
+  </div>
 
-    <!-- React Hooks -->
-    <div class="section react wide">
-      <div class="section-header">
-        <span class="icon">⚛️</span><h2>React Hooks</h2><span class="count">8</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">us</span></div>
-          <div class="snippet-info"><div class="snippet-name">useState</div><div class="snippet-desc">const [count, setCount] = useState() — type name once, setter auto-capitalizes</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ue</span></div>
-          <div class="snippet-info"><div class="snippet-name">useEffect</div><div class="snippet-desc">useEffect with dep array — leave deps empty for run-once []</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ur</span></div>
-          <div class="snippet-info"><div class="snippet-name">useRef</div><div class="snippet-desc">const ref = useRef(initialValue)</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">uc</span></div>
-          <div class="snippet-info"><div class="snippet-name">useContext</div><div class="snippet-desc">const value = useContext(MyContext)</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ucxt</span></div>
-          <div class="snippet-info"><div class="snippet-name">Context + Provider</div><div class="snippet-desc">Full createContext + custom hook + Provider — $1 = context name, $2 = state name</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">urd</span></div>
-          <div class="snippet-info"><div class="snippet-name">useReducer</div><div class="snippet-desc">reducer with switch stub + useReducer call wired in</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ucb</span></div>
-          <div class="snippet-info"><div class="snippet-name">useCallback</div><div class="snippet-desc">useCallback(() => {}, [deps]) — memoize a function</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">umm</span></div>
-          <div class="snippet-info"><div class="snippet-name">useMemo</div><div class="snippet-desc">useMemo(() => {}, [deps]) — memoize a computed value</div></div>
-        </div>
-      </div>
-    </div>
+  <!-- React Hooks -->
+  <div class="card react wide">
+    <div class="card-header"><span>⚛️</span><h2>React Hooks</h2><span class="count">10</span></div>
+    <div class="row"><div><span class="prefix">us</span></div><div class="info"><div class="name">useState</div><div class="desc">const [count, setCount] = useState() -- type name once, setter auto-capitalises</div></div></div>
+    <div class="row"><div><span class="prefix">ue</span></div><div class="info"><div class="name">useEffect</div><div class="desc">useEffect with dep array -- leave $2 empty for [] (run once on mount)</div></div></div>
+    <div class="row"><div><span class="prefix">uem</span></div><div class="info"><div class="name">useEffect Mount Only</div><div class="desc">useEffect with [] -- equivalent to componentDidMount</div></div></div>
+    <div class="row"><div><span class="prefix">ued</span></div><div class="info"><div class="name">useEffect With Dependency</div><div class="desc">re-runs every time the dependency value changes</div></div></div>
+    <div class="row"><div><span class="prefix">uec</span></div><div class="info"><div class="name">useEffect With Cleanup</div><div class="desc">cleanup runs on unmount -- use for subscriptions, timers, listeners</div></div></div>
+    <div class="row"><div><span class="prefix">ur</span></div><div class="info"><div class="name">useRef</div><div class="desc">const ref = useRef(initialValue)</div></div></div>
+    <div class="row"><div><span class="prefix">uc</span></div><div class="info"><div class="name">useContext</div><div class="desc">const value = useContext(MyContext)</div></div></div>
+    <div class="row"><div><span class="prefix">ucb</span></div><div class="info"><div class="name">useCallback</div><div class="desc">const fn = useCallback(() => {}, [deps]) -- memoises a function</div></div></div>
+    <div class="row"><div><span class="prefix">umm</span></div><div class="info"><div class="name">useMemo</div><div class="desc">const value = useMemo(() => {}, [deps]) -- memoises a computed value</div></div></div>
+    <div class="row"><div><span class="prefix">ucxt</span></div><div class="info"><div class="name">Context + Provider</div><div class="desc">createContext + custom hook + typed Provider -- $1 = name, $2 = state</div></div></div>
+    <div class="row"><div><span class="prefix">urd</span></div><div class="info"><div class="name">useReducer</div><div class="desc">typed reducer with switch stub + useReducer call wired in</div></div></div>
+  </div>
 
-    <!-- React Components -->
-    <div class="section react">
-      <div class="section-header">
-        <span class="icon">⚛️</span><h2>React Components</h2><span class="count">4</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">rafce</span></div>
-          <div class="snippet-info"><div class="snippet-name">Arrow Function Component</div><div class="snippet-desc">Named from filename, default export</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">rafcep</span></div>
-          <div class="snippet-info"><div class="snippet-name">Component + Props <span class="badge badge-ts">TS</span></div><div class="snippet-desc">TypeScript interface + typed props</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">arafce</span></div>
-          <div class="snippet-info"><div class="snippet-name">Async Component <span class="badge badge-next">Next</span></div><div class="snippet-desc">Async server component, named from filename</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">arafcep</span></div>
-          <div class="snippet-info"><div class="snippet-name">Async Component + Props <span class="badge badge-next">Next</span></div><div class="snippet-desc">Async server component with TS Props interface</div></div>
-        </div>
-      </div>
-    </div>
+  <!-- Components Arrow -->
+  <div class="card react">
+    <div class="card-header"><span>⚛️</span><h2>Components -- Arrow</h2><span class="count">4</span></div>
+    <div class="row"><div><span class="prefix">rafce</span></div><div class="info"><div class="name">Arrow Component</div><div class="desc">const X = () =&gt; {} -- named from filename, default export</div></div></div>
+    <div class="row"><div><span class="prefix">rafcep</span></div><div class="info"><div class="name">Arrow + Props <span class="badge badge-ts">TS</span></div><div class="desc">Props interface + typed destructured props</div></div></div>
+    <div class="row"><div><span class="prefix">arafce</span></div><div class="info"><div class="name">Async Arrow <span class="badge badge-next">Next</span></div><div class="desc">async server component -- arrow style</div></div></div>
+    <div class="row"><div><span class="prefix">arafcep</span></div><div class="info"><div class="name">Async Arrow + Props <span class="badge badge-next">Next</span></div><div class="desc">async server component with Props -- arrow style</div></div></div>
+  </div>
 
-    <!-- Redux -->
-    <div class="section redux">
-      <div class="section-header">
-        <span class="icon">🔁</span><h2>Redux Toolkit</h2><span class="count">1</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">rxslice</span></div>
-          <div class="snippet-info"><div class="snippet-name">Redux Slice</div><div class="snippet-desc">createSlice · initialState · reducers · actions + reducer export</div></div>
-        </div>
-      </div>
-      <div class="preview"><span class="kw">import</span> { createSlice } <span class="kw">from</span> <span class="str">'@reduxjs/toolkit'</span>
+  <!-- Components Default Function -->
+  <div class="card react">
+    <div class="card-header"><span>⚛️</span><h2>Components -- Default Fn <span class="badge badge-new">NEW</span></h2><span class="count">4</span></div>
+    <div class="row"><div><span class="prefix">rfc</span></div><div class="info"><div class="name">Default Function Component</div><div class="desc">export default function X() {} -- preferred for pages and layouts</div></div></div>
+    <div class="row"><div><span class="prefix">rfcp</span></div><div class="info"><div class="name">Default Fn + Props <span class="badge badge-ts">TS</span></div><div class="desc">Props interface -- default function style</div></div></div>
+    <div class="row"><div><span class="prefix">arfc</span></div><div class="info"><div class="name">Async Default Fn <span class="badge badge-next">Next</span></div><div class="desc">export default async function -- preferred for page.tsx</div></div></div>
+    <div class="row"><div><span class="prefix">arfcp</span></div><div class="info"><div class="name">Async Default Fn + Props <span class="badge badge-next">Next</span></div><div class="desc">async page with Props -- use for dynamic routes that receive params</div></div></div>
+  </div>
 
-<span class="kw">const</span> initialState = { <span class="ph">...</span> }
+  <!-- CRUD Client -->
+  <div class="card crud wide">
+    <div class="card-header"><span>🌐</span><h2>CRUD -- Client Fetch <span class="badge badge-new">NEW</span></h2><span class="count">5</span></div>
+    <div class="row"><div><span class="prefix">apiurl</span></div><div class="info"><div class="name">Base URL Constant</div><div class="desc">const RESOURCE_URL = '/api/resource' -- define once at the top, reference below</div></div></div>
+    <div class="row"><div><span class="prefix">apiget</span></div><div class="info"><div class="name">GET -- Read</div><div class="desc">fetch GET with ok-check -- use inside uem or an async handler</div></div></div>
+    <div class="row"><div><span class="prefix">apipost</span></div><div class="info"><div class="name">POST -- Create</div><div class="desc">fetch POST with Content-Type header + JSON.stringify body</div></div></div>
+    <div class="row"><div><span class="prefix">apiput</span></div><div class="info"><div class="name">PUT -- Update</div><div class="desc">fetch PUT to /api/resource/${id} with JSON body</div></div></div>
+    <div class="row"><div><span class="prefix">apidel</span></div><div class="info"><div class="name">DELETE -- Remove</div><div class="desc">fetch DELETE to /api/resource/${id} with ok-check</div></div></div>
+    <div class="preview"><span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'/api/posts'</span>)
+<span class="kw">if</span> (!res.ok) <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">'Failed to fetch posts'</span>)
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>()</div>
+  </div>
 
-<span class="kw">const</span> <span class="fn">mySlice</span> = <span class="fn">createSlice</span>({
+  <!-- CRUD Server Actions -->
+  <div class="card crud wide">
+    <div class="card-header"><span>🔧</span><h2>CRUD -- Server Actions <span class="badge badge-new">NEW</span></h2><span class="count">5</span></div>
+    <div class="row"><div><span class="prefix">nsa</span></div><div class="info"><div class="name">Server Action Scaffold</div><div class="desc">'use server' + async function + try/catch -- blank starting point</div></div></div>
+    <div class="row"><div><span class="prefix">nsaget</span></div><div class="info"><div class="name">Server Action GET</div><div class="desc">getItems() -- reads all records. Call from an async Server Component.</div></div></div>
+    <div class="row"><div><span class="prefix">nsapost</span></div><div class="info"><div class="name">Server Action POST</div><div class="desc">createItem(formData) -- reads FormData field, validates, creates record</div></div></div>
+    <div class="row"><div><span class="prefix">nsaput</span></div><div class="info"><div class="name">Server Action PUT</div><div class="desc">updateItem(id, data) -- updates record by id</div></div></div>
+    <div class="row"><div><span class="prefix">nsadel</span></div><div class="info"><div class="name">Server Action DELETE</div><div class="desc">deleteItem(id) -- deletes record by id</div></div></div>
+    <div class="preview"><span class="kw2">'use server'</span>
+
+<span class="kw">export async function</span> <span class="fn">createItem</span>(formData: FormData) {
+  <span class="kw">const</span> field = formData.<span class="fn">get</span>(<span class="str">'field'</span>) <span class="kw">as</span> string
+  <span class="kw">if</span> (!field) <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">'field is required'</span>)
+  <span class="kw">try</span> {
+    <span class="kw">return await</span> db.item.<span class="fn">create</span>({ data: { field } })
+  } <span class="kw">catch</span> (error) {
+    <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">'Failed to create Item'</span>)
+  }
+}</div>
+  </div>
+
+  <!-- Custom Hooks & Fetch -->
+  <div class="card react wide">
+    <div class="card-header"><span>🪝</span><h2>Custom Hooks &amp; Fetch Utilities <span class="badge badge-new">NEW</span></h2><span class="count">2</span></div>
+    <div class="row"><div><span class="prefix">useh</span></div><div class="info"><div class="name">Custom Hook Scaffold</div><div class="desc">use${1:Resource}() -- reusable fetch pattern. Returns { data, isLoading, error }. Use when same fetch appears in multiple components.</div></div></div>
+    <div class="row"><div><span class="prefix">fetchfn</span></div><div class="info"><div class="name">Standalone Fetch Function</div><div class="desc">async fn triggered by user action (not on mount). Returns typed data or null. Use useh for mount-time fetching.</div></div></div>
+  </div>
+
+  <!-- Utility -->
+  <div class="card util">
+    <div class="card-header"><span>🛠️</span><h2>Utility</h2><span class="count">7</span></div>
+    <div class="row"><div><span class="prefix">tryc</span></div><div class="info"><div class="name">Try / Catch</div><div class="desc">try/catch with console.error -- renamed from 'try' (VS Code keyword conflict)</div></div></div>
+    <div class="row"><div><span class="prefix">afn</span></div><div class="info"><div class="name">Async Arrow Function</div><div class="desc">const fn = async () => {} -- for handlers and API calls</div></div></div>
+    <div class="row"><div><span class="prefix">todo</span></div><div class="info"><div class="name">TODO Comment</div><div class="desc">// TODO: ...</div></div></div>
+    <div class="row"><div><span class="prefix">maplist</span></div><div class="info"><div class="name">Map List</div><div class="desc">{items.map(item =&gt; &lt;Component key={item.id} /&gt;)} -- never use index as key</div></div></div>
+    <div class="row"><div><span class="prefix">hsubmit</span></div><div class="info"><div class="name">Submit Handler</div><div class="desc">handleSubmit with e.preventDefault + trim + guard + reset -- pairs with nform</div></div></div>
+    <div class="row"><div><span class="prefix">envget</span></div><div class="info"><div class="name">Env Variable <span class="badge badge-new">NEW</span></div><div class="desc">process.env.NEXT_PUBLIC_VAR ?? 'fallback' -- NEXT_PUBLIC_ required for client components</div></div></div>
+    <div class="row"><div><span class="prefix">nform</span></div><div class="info"><div class="name">Controlled Form <span class="badge badge-new">NEW</span></div><div class="desc">&lt;form&gt; with controlled input + submit button -- pairs with hsubmit</div></div></div>
+  </div>
+
+  <!-- Early Returns -->
+  <div class="card next">
+    <div class="card-header"><span>↩️</span><h2>Early Returns</h2><span class="count">3</span></div>
+    <div class="row"><div><span class="prefix">er-load</span></div><div class="info"><div class="name">Loading</div><div class="desc">if (isLoading) return &lt;p&gt;Loading...&lt;/p&gt;</div></div></div>
+    <div class="row"><div><span class="prefix">er-error</span></div><div class="info"><div class="name">Error</div><div class="desc">if (error) return &lt;p&gt;{error}&lt;/p&gt;</div></div></div>
+    <div class="row"><div><span class="prefix">er-empty</span></div><div class="info"><div class="name">Empty List</div><div class="desc">if (!items?.length) return &lt;p&gt;Nothing here yet.&lt;/p&gt;</div></div></div>
+  </div>
+
+  <!-- Next.js -->
+  <div class="card next wide">
+    <div class="card-header"><span>🔺</span><h2>Next.js -- App Router</h2><span class="count">12</span></div>
+    <div class="row"><div><span class="prefix">ncc</span></div><div class="info"><div class="name">'use client'</div><div class="desc">Required for hooks, event handlers, and browser APIs</div></div></div>
+    <div class="row"><div><span class="prefix">npage</span></div><div class="info"><div class="name">Page Component</div><div class="desc">app/*/page.tsx -- Server Component by default</div></div></div>
+    <div class="row"><div><span class="prefix">nlayout</span></div><div class="info"><div class="name">Layout Component</div><div class="desc">app/*/layout.tsx -- wraps {children}: React.ReactNode</div></div></div>
+    <div class="row"><div><span class="prefix">nloading</span></div><div class="info"><div class="name">Loading Skeleton</div><div class="desc">loading.tsx -- shown automatically during Suspense and navigation</div></div></div>
+    <div class="row"><div><span class="prefix">nerror</span></div><div class="info"><div class="name">Error Boundary</div><div class="desc">error.tsx -- MUST be 'use client', typed error + reset()</div></div></div>
+    <div class="row"><div><span class="prefix">nroute</span></div><div class="info"><div class="name">API Route Handler</div><div class="desc">route.ts -- GET + POST stubs with NextRequest / NextResponse</div></div></div>
+    <div class="row"><div><span class="prefix">nmeta</span></div><div class="info"><div class="name">Metadata Export</div><div class="desc">Static SEO -- title + description. Add to any page.tsx.</div></div></div>
+    <div class="row"><div><span class="prefix">nlink</span></div><div class="info"><div class="name">Link Component</div><div class="desc">&lt;Link href="/path"&gt;label&lt;/Link&gt;</div></div></div>
+    <div class="row"><div><span class="prefix">nimg</span></div><div class="info"><div class="name">Image Component</div><div class="desc">&lt;Image&gt; with src, alt, width, height -- all four required</div></div></div>
+    <div class="row"><div><span class="prefix">nrouter</span></div><div class="info"><div class="name">Router Hooks</div><div class="desc">useRouter + usePathname -- Client Component only</div></div></div>
+    <div class="row"><div><span class="prefix">nparams</span></div><div class="info"><div class="name">useParams <span class="badge badge-new">NEW</span></div><div class="desc">reads dynamic route segments e.g. /posts/[id] -- Client Component only</div></div></div>
+    <div class="row"><div><span class="prefix">nsearch</span></div><div class="info"><div class="name">useSearchParams <span class="badge badge-new">NEW</span></div><div class="desc">reads query string e.g. ?tab=overview -- Client Component only</div></div></div>
+  </div>
+
+  <!-- Redux -->
+  <div class="card redux">
+    <div class="card-header"><span>🔁</span><h2>Redux Toolkit</h2><span class="count">1</span></div>
+    <div class="row"><div><span class="prefix">rxslice</span></div><div class="info"><div class="name">Redux Slice</div><div class="desc">typed slice with PayloadAction, typed initialState, actions + reducer export</div></div></div>
+    <div class="preview"><span class="kw">import</span> { createSlice, PayloadAction } <span class="kw">from</span> <span class="str">'@reduxjs/toolkit'</span>
+
+<span class="kw">const</span> initialState: MySliceState = { <span class="cm">/* ... */</span> }
+
+<span class="kw">const</span> mySliceSlice = <span class="fn">createSlice</span>({
   name: <span class="str">'mySlice'</span>,
   initialState,
   reducers: {}
 })
 
-<span class="kw">export const</span> {} = mySlice.actions
-<span class="kw">export default</span> mySlice.reducer</div>
-    </div>
-
-    <!-- Utility -->
-    <div class="section util">
-      <div class="section-header">
-        <span class="icon">🛠️</span><h2>Utility</h2><span class="count">3</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">try</span></div>
-          <div class="snippet-info"><div class="snippet-name">Try / Catch</div><div class="snippet-desc">try/catch with console.error wired in</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">afn</span></div>
-          <div class="snippet-info"><div class="snippet-name">Async Arrow Function</div><div class="snippet-desc">const fn = async () => {} — for handlers, API calls</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">todo</span></div>
-          <div class="snippet-info"><div class="snippet-name">TODO Comment</div><div class="snippet-desc">// TODO: ...</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Next.js -->
-    <div class="section next wide">
-      <div class="section-header">
-        <span class="icon">🔺</span><h2>Next.js — App Router</h2><span class="count">10</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ncc</span></div>
-          <div class="snippet-info"><div class="snippet-name">'use client'</div><div class="snippet-desc">Client directive — required for hooks, event handlers, browser APIs</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">npage</span></div>
-          <div class="snippet-info"><div class="snippet-name">Page Component</div><div class="snippet-desc">app/*/page.tsx — Server Component by default</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nlayout</span></div>
-          <div class="snippet-info"><div class="snippet-name">Layout Component</div><div class="snippet-desc">app/*/layout.tsx — wraps {children}: React.ReactNode</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nloading</span></div>
-          <div class="snippet-info"><div class="snippet-name">Loading Skeleton</div><div class="snippet-desc">loading.tsx — shown during Suspense / navigation</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nerror</span></div>
-          <div class="snippet-info"><div class="snippet-name">Error Boundary</div><div class="snippet-desc">error.tsx — 'use client' included, typed error + reset()</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nroute</span></div>
-          <div class="snippet-info"><div class="snippet-name">API Route Handler</div><div class="snippet-desc">route.ts — GET + POST stubs with NextRequest types + NextResponse</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nmeta</span></div>
-          <div class="snippet-info"><div class="snippet-name">Metadata Export</div><div class="snippet-desc">Static SEO — title + description for any page</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nlink</span></div>
-          <div class="snippet-info"><div class="snippet-name">Link Component</div><div class="snippet-desc">&lt;Link href="/path"&gt;label&lt;/Link&gt;</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nimg</span></div>
-          <div class="snippet-info"><div class="snippet-name">Image Component</div><div class="snippet-desc">&lt;Image&gt; with src, alt, width, height — all required</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">nrouter</span></div>
-          <div class="snippet-info"><div class="snippet-name">Router Hooks</div><div class="snippet-desc">useRouter + usePathname — Client Component only</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section Headers -->
-    <div class="section util wide">
-      <div class="section-header">
-        <span class="icon">📐</span><h2>Section Headers</h2><span class="count">10</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec</span></div>
-          <div class="snippet-info"><div class="snippet-name">Custom Section</div><div class="snippet-desc">// ─── Label ─── editable label, cursor inside</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-imp</span></div>
-          <div class="snippet-info"><div class="snippet-name">Imports</div><div class="snippet-desc">// ─── Imports ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-comp</span></div>
-          <div class="snippet-info"><div class="snippet-name">Component</div><div class="snippet-desc">// ─── Component ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-state</span></div>
-          <div class="snippet-info"><div class="snippet-name">State</div><div class="snippet-desc">// ─── State ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-hand</span></div>
-          <div class="snippet-info"><div class="snippet-name">Handlers</div><div class="snippet-desc">// ─── Handlers ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-early</span></div>
-          <div class="snippet-info"><div class="snippet-name">Early Returns</div><div class="snippet-desc">// ─── Early Returns ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-render</span></div>
-          <div class="snippet-info"><div class="snippet-name">Render</div><div class="snippet-desc">// ─── Render ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-derived</span></div>
-          <div class="snippet-info"><div class="snippet-name">Derived State</div><div class="snippet-desc">// ─── Derived State ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-effect</span></div>
-          <div class="snippet-info"><div class="snippet-name">Effects</div><div class="snippet-desc">// ─── Effects ───</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">sec-refs</span></div>
-          <div class="snippet-info"><div class="snippet-name">Refs</div><div class="snippet-desc">// ─── Refs ───</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Comment Styles -->
-    <div class="section console">
-      <div class="section-header">
-        <span class="icon">💬</span><h2>Comment Styles</h2><span class="count">4</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">cwarn</span></div>
-          <div class="snippet-info"><div class="snippet-name">Warning</div><div class="snippet-desc">//! future-you needs to notice this immediately</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">cquest</span></div>
-          <div class="snippet-info"><div class="snippet-name">Question</div><div class="snippet-desc">//? decision you're not sure about yet</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">chigh</span></div>
-          <div class="snippet-info"><div class="snippet-name">Highlight</div><div class="snippet-desc">//* pattern worth remembering across the codebase</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ctodo</span></div>
-          <div class="snippet-info"><div class="snippet-name">TODO</div><div class="snippet-desc">// TODO: task to come back to</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Component Scaffolds -->
-    <div class="section react wide">
-      <div class="section-header">
-        <span class="icon">🏗️</span><h2>Component Scaffolds</h2><span class="count">2</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">rcomp</span></div>
-          <div class="snippet-info"><div class="snippet-name">Full Client Component</div><div class="snippet-desc">'use client' + imports + state + handlers + render — all sections wired in</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">rcomp-pure</span></div>
-          <div class="snippet-info"><div class="snippet-name">Pure Presentational Component</div><div class="snippet-desc">No state, early return for empty list, render only</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- useEffect variants -->
-    <div class="section react">
-      <div class="section-header">
-        <span class="icon">⚛️</span><h2>useEffect Variants</h2><span class="count">3</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">uem</span></div>
-          <div class="snippet-info"><div class="snippet-name">Mount Only</div><div class="snippet-desc">useEffect with [] — runs once on mount</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">ued</span></div>
-          <div class="snippet-info"><div class="snippet-name">With Dependency</div><div class="snippet-desc">useEffect with [dependency]</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">uec</span></div>
-          <div class="snippet-info"><div class="snippet-name">With Cleanup</div><div class="snippet-desc">useEffect with return () => {} cleanup</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Early Returns -->
-    <div class="section next">
-      <div class="section-header">
-        <span class="icon">↩️</span><h2>Early Returns</h2><span class="count">3</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">er-load</span></div>
-          <div class="snippet-info"><div class="snippet-name">Loading</div><div class="snippet-desc">if (isLoading) return &lt;p&gt;Loading...&lt;/p&gt;</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">er-error</span></div>
-          <div class="snippet-info"><div class="snippet-name">Error</div><div class="snippet-desc">if (error) return &lt;p&gt;{error}&lt;/p&gt;</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">er-empty</span></div>
-          <div class="snippet-info"><div class="snippet-name">Empty List</div><div class="snippet-desc">if (!items?.length) return &lt;p&gt;Nothing here yet.&lt;/p&gt;</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Utility extras -->
-    <div class="section util">
-      <div class="section-header">
-        <span class="icon">🛠️</span><h2>Handlers & Lists</h2><span class="count">2</span>
-      </div>
-      <div class="snippet-list">
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">hsubmit</span></div>
-          <div class="snippet-info"><div class="snippet-name">Submit Handler</div><div class="snippet-desc">handleSubmit with e.preventDefault + trim + guard</div></div>
-        </div>
-        <div class="snippet">
-          <div class="prefix-wrap"><span class="snippet-prefix">maplist</span></div>
-          <div class="snippet-info"><div class="snippet-name">Map List</div><div class="snippet-desc">{items.map(item => &lt;Component key={item.id} /&gt;)}</div></div>
-        </div>
-      </div>
-    </div>
-
+<span class="kw">export const</span> {} = mySliceSlice.actions
+<span class="kw">export default</span> mySliceSlice.reducer</div>
   </div>
 
-  <footer>
-    <p>React_Snippets.code-snippets &nbsp;·&nbsp; MERN + Next.js App Router &nbsp;·&nbsp; 71 snippets</p>
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--react)"></div>React</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--next)"></div>Next.js</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--redux)"></div>Redux</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--util)"></div>Utility</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--import)"></div>Imports</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--console)"></div>Console</div>
-    </div>
-  </footer>
+  <!-- Section Headers -->
+  <div class="card util wide">
+    <div class="card-header"><span>📐</span><h2>Section Headers</h2><span class="count">10</span></div>
+    <div class="row"><div><span class="prefix">sec</span></div><div class="info"><div class="name">Custom Section</div><div class="desc">/* -- Label -- */ editable label, cursor inside</div></div></div>
+    <div class="row"><div><span class="prefix">sec-imp</span></div><div class="info"><div class="name">Imports</div><div class="desc">/* -- Imports -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-comp</span></div><div class="info"><div class="name">Component</div><div class="desc">/* -- Component -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-state</span></div><div class="info"><div class="name">State</div><div class="desc">/* -- State -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-hand</span></div><div class="info"><div class="name">Handlers</div><div class="desc">/* -- Handlers -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-early</span></div><div class="info"><div class="name">Early Returns</div><div class="desc">/* -- Early Returns -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-render</span></div><div class="info"><div class="name">Render</div><div class="desc">/* -- Render -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-derived</span></div><div class="info"><div class="name">Derived State</div><div class="desc">/* -- Derived State -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-effect</span></div><div class="info"><div class="name">Effects</div><div class="desc">/* -- Effects -- */</div></div></div>
+    <div class="row"><div><span class="prefix">sec-refs</span></div><div class="info"><div class="name">Refs</div><div class="desc">/* -- Refs -- */</div></div></div>
+  </div>
+
+  <!-- Comment Styles -->
+  <div class="card console">
+    <div class="card-header"><span>💬</span><h2>Comment Styles</h2><span class="count">4</span></div>
+    <div class="row"><div><span class="prefix">cwarn</span></div><div class="info"><div class="name">Warning</div><div class="desc">//! red in Better Comments -- things future-you must not miss</div></div></div>
+    <div class="row"><div><span class="prefix">cquest</span></div><div class="info"><div class="name">Question</div><div class="desc">//? blue in Better Comments -- decisions you are unsure about</div></div></div>
+    <div class="row"><div><span class="prefix">chigh</span></div><div class="info"><div class="name">Highlight</div><div class="desc">//* green in Better Comments -- patterns worth remembering</div></div></div>
+    <div class="row"><div><span class="prefix">ctodo</span></div><div class="info"><div class="name">TODO</div><div class="desc">// TODO: task to come back to</div></div></div>
+  </div>
+
+  <!-- Component Scaffolds -->
+  <div class="card react wide">
+    <div class="card-header"><span>🏗️</span><h2>Component Scaffolds</h2><span class="count">2</span></div>
+    <div class="row"><div><span class="prefix">rcomp</span></div><div class="info"><div class="name">Full Client Component</div><div class="desc">'use client' + imports + state + inner-async fetch + mutation handler with router.refresh hint + early returns + render. Block comments explain each section.</div></div></div>
+    <div class="row"><div><span class="prefix">rcomp-pure</span></div><div class="info"><div class="name">Pure Presentational Component</div><div class="desc">No state, no fetch. Imports + types + early return for empty + .map() list stub pre-built in render.</div></div></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>React_Snippets.code-snippets &nbsp;·&nbsp; 88 snippets &nbsp;·&nbsp; React / Next.js / CRUD / Redux</p>
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:var(--react)"></div>React</div>
+    <div class="legend-item"><div class="dot" style="background:var(--next)"></div>Next.js</div>
+    <div class="legend-item"><div class="dot" style="background:var(--crud)"></div>CRUD</div>
+    <div class="legend-item"><div class="dot" style="background:var(--redux)"></div>Redux</div>
+    <div class="legend-item"><div class="dot" style="background:var(--util)"></div>Utility</div>
+    <div class="legend-item"><div class="dot" style="background:var(--import)"></div>Imports</div>
+    <div class="legend-item"><div class="dot" style="background:var(--console)"></div>Console</div>
+  </div>
+</footer>
 
 </div>
 </body>
