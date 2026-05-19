@@ -235,45 +235,61 @@ footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; color: 
 
 <!-- Workflow -->
 <div class="workflow">
-  <div class="workflow-header"><span>⚡</span><h2>Workflow</h2></div>
+  <div class="workflow-header"><span>⚡</span><h2>Workflow -- the order that matters</h2></div>
   <div class="workflow-body">
+
     <div class="workflow-col">
       <div class="wstep">
-        <div class="wlabel">Start every file</div>
-        <div class="wline"><span class="wp">rfc</span> or <span class="wp">rafce</span> &rarr; Tab through placeholders</div>
-        <div class="wline"><span class="wp">rfc</span> = default fn &nbsp;·&nbsp; <span class="wp">rafce</span> = arrow fn</div>
+        <div class="wlabel">Step 0 &nbsp;·&nbsp; Decide before you type</div>
+        <div class="wline">Page that fetches + displays data &rarr; <span class="wp next">arfc</span> or <span class="wp next">npage</span></div>
+        <div class="wline">Component the user interacts with &rarr; <span class="wp">rcomp</span> or <span class="wp next">ncc</span> + <span class="wp">rafce</span></div>
+        <div class="wline">Receives props, just renders them &rarr; <span class="wp">rcomp-pure</span></div>
+        <div class="wline" style="color:#c2410c;margin-top:4px">This decision determines every snippet below.</div>
       </div>
       <div class="wstep">
-        <div class="wlabel">Building out the component</div>
-        <div class="wline"><span class="wp">us</span> for state &nbsp;·&nbsp; <span class="wp">uem</span> to fetch on mount</div>
-        <div class="wline"><span class="wp">nform</span> + <span class="wp util">hsubmit</span> for a controlled form</div>
-        <div class="wline"><span class="wp">maplist</span> to render a list &nbsp;·&nbsp; <span class="wp">er-empty</span> right after</div>
-        <div class="wline"><span class="wp">er-load</span> and <span class="wp">er-error</span> before the main return</div>
+        <div class="wlabel">Step 1 &nbsp;·&nbsp; JSX first</div>
+        <div class="wline">Get something visible before adding any state.</div>
+        <div class="wline"><span class="wp">rafce</span> or <span class="wp">rfc</span> &rarr; write the markup &rarr; confirm it renders.</div>
       </div>
       <div class="wstep">
-        <div class="wlabel">Adding types</div>
-        <div class="wline">Switch to <span class="wp">rafcep</span> or <span class="wp">rfcp</span> to add a Props interface</div>
+        <div class="wlabel">Step 2 &nbsp;·&nbsp; State</div>
+        <div class="wline"><span class="wp">us</span> for each piece of state, one at a time.</div>
+        <div class="wline">Only add state you actually need right now.</div>
+      </div>
+      <div class="wstep">
+        <div class="wlabel">Step 3 &nbsp;·&nbsp; Data</div>
+        <div class="wline"><span class="wp">uem</span> + <span class="wp crud">apiget</span> to fetch on mount (client fetch)</div>
+        <div class="wline"><span class="wp crud">nsaget</span> called directly in an async Server Component</div>
+        <div class="wline"><span class="wp crud">apiurl</span> at the top of the file to define the base URL once</div>
       </div>
     </div>
+
     <div class="workflow-col">
       <div class="wstep">
-        <div class="wlabel">CRUD -- client fetch</div>
-        <div class="wline"><span class="wp crud">apiget</span> inside <span class="wp">uem</span> to load data on mount</div>
-        <div class="wline"><span class="wp crud">apipost</span> inside <span class="wp util">hsubmit</span> to create a record</div>
-        <div class="wline"><span class="wp crud">apiput</span> on edit &nbsp;·&nbsp; <span class="wp crud">apidel</span> on delete</div>
-        <div class="wline"><span class="wp crud">apiurl</span> at top of file to define base URL once</div>
+        <div class="wlabel">Step 4 &nbsp;·&nbsp; User input</div>
+        <div class="wline"><span class="wp util">nform</span> for the JSX &nbsp;·&nbsp; <span class="wp util">hsubmit</span> for the handler</div>
+        <div class="wline">Always add these together -- one is useless without the other.</div>
       </div>
       <div class="wstep">
-        <div class="wlabel">CRUD -- Server Actions</div>
-        <div class="wline"><span class="wp crud">nsaget</span> in async Server Components to read data</div>
-        <div class="wline"><span class="wp crud">nsapost</span> <span class="wp crud">nsaput</span> <span class="wp crud">nsadel</span> for mutations</div>
+        <div class="wlabel">Step 5 &nbsp;·&nbsp; Early returns (in this order)</div>
+        <div class="wline"><span class="wp">er-empty</span> first -- forces you to think about the empty case</div>
+        <div class="wline"><span class="wp">er-load</span> &nbsp;·&nbsp; <span class="wp">er-error</span> &nbsp;·&nbsp; then the main return</div>
+        <div class="wline"><span class="wp">maplist</span> inside the render once data is confirmed</div>
       </div>
       <div class="wstep">
-        <div class="wlabel">Debugging</div>
-        <div class="wline"><span class="wp next">cl</span> quick log &nbsp;·&nbsp; <span class="wp next">ct</span> for arrays &nbsp;·&nbsp; <span class="wp next">clj</span> for objects</div>
-        <div class="wline"><span class="wp next">cwarn</span> above anything tricky &nbsp;·&nbsp; <span class="wp next">cquest</span> when unsure</div>
+        <div class="wlabel">Step 6 &nbsp;·&nbsp; Mutations (after reads work)</div>
+        <div class="wline"><span class="wp crud">apipost</span> <span class="wp crud">apiput</span> <span class="wp crud">apidel</span> inside <span class="wp util">tryc</span> blocks</div>
+        <div class="wline"><span class="wp crud">nsapost</span> <span class="wp crud">nsaput</span> <span class="wp crud">nsadel</span> for Server Actions</div>
+      </div>
+      <div class="wstep">
+        <div class="wlabel">Step 7 &nbsp;·&nbsp; Props last</div>
+        <div class="wline">Switch to <span class="wp">rafcep</span> or <span class="wp">rfcp</span> only once you know</div>
+        <div class="wline">what the parent actually needs to pass down.</div>
+        <div class="wline" style="margin-top:6px"><span class="wp next">cl</span> <span class="wp next">ct</span> <span class="wp next">clj</span> while debugging &nbsp;·&nbsp; remove before committing</div>
+        <div class="wline"><span class="wp next">cwarn</span> on anything risky &nbsp;·&nbsp; <span class="wp next">cquest</span> when unsure</div>
       </div>
     </div>
+
   </div>
 </div>
 
