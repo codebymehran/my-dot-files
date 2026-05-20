@@ -46,6 +46,8 @@ echo ""
 read -r -p "🔁 Create a -rebuild twin for logic practice? [y/N] " CREATE_REBUILD
 CREATE_REBUILD="${CREATE_REBUILD:-n}"
 
+FEATURE_FOLDERS="y"
+
 if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]] && [ -d "$REBUILD_TARGET" ]; then
   echo "❌ '$REBUILD_TARGET' already exists — choose a different name"
   exit 1
@@ -87,6 +89,19 @@ mkdir -p src/lib
 
 echo "  ✅ src/components"
 echo "  ✅ src/lib"
+
+if [[ "$FEATURE_FOLDERS" =~ ^[Yy]$ ]]; then
+  mkdir -p src/features
+  mkdir -p src/hooks
+  mkdir -p src/types
+  mkdir -p src/lib/api
+  mkdir -p src/services
+  echo "  ✅ src/features"
+  echo "  ✅ src/hooks"
+  echo "  ✅ src/types"
+  echo "  ✅ src/lib/api"
+  echo "  ✅ src/services"
+fi
 
 # -----------------------------
 # cn utility
@@ -204,6 +219,7 @@ cat > src/app/layout.tsx << 'LAYOUT'
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import './globals.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
@@ -221,13 +237,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn('min-h-screen bg-background font-sans antialiased', geist.variable)}>
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );
 }
 LAYOUT
-echo "  ✅ layout.tsx updated (Geist + cn body classes)"
+echo "  ✅ layout.tsx updated (Geist + cn body classes + TooltipProvider)"
 
 cat > src/app/page.tsx << 'PAGE'
 import Dashboard from '@/components/Dashboard';
@@ -384,11 +400,82 @@ node --version > .nvmrc
 echo "  ✅ .nvmrc created ($(node --version))"
 
 # -----------------------------
-# Clean git history — single commit
+# README
 # -----------------------------
 
 echo ""
-echo "🔧 Resetting git history to single clean commit..."
+echo "📄 Generating README.md..."
+
+FOLDER_STRUCTURE="src/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── components/
+│   ├── Dashboard.tsx
+│   ├── EmptyState.tsx
+│   ├── LoadingSpinner.tsx
+│   └── PageHeader.tsx
+└── lib/
+    └── utils.ts"
+
+if [[ "$FEATURE_FOLDERS" =~ ^[Yy]$ ]]; then
+FOLDER_STRUCTURE="src/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── components/
+│   ├── Dashboard.tsx
+│   ├── EmptyState.tsx
+│   ├── LoadingSpinner.tsx
+│   └── PageHeader.tsx
+├── features/
+├── hooks/
+├── types/
+├── services/
+└── lib/
+    ├── api/
+    └── utils.ts"
+fi
+
+cat > README.md << README
+# $PROJECT_NAME
+
+## Stack
+
+- [Next.js](https://nextjs.org/) (App Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
+
+## Getting Started
+
+\`\`\`bash
+npm run dev       # start dev server → http://localhost:3000
+npm run build     # production build
+npm run lint      # lint
+\`\`\`
+
+## Structure
+
+\`\`\`
+$FOLDER_STRUCTURE
+\`\`\`
+
+## Conventions
+
+- Components in \`src/components/\` are shared across the app
+- Use \`cn()\` from \`@/lib/utils\` for conditional Tailwind classes
+- shadcn/ui components live in \`src/components/ui/\`
+README
+
+echo "  ✅ README.md generated"
+
+# -----------------------------
+# Clean git history — single commit
+# -----------------------------
 rm -rf .git
 git init
 git add .
@@ -499,13 +586,21 @@ echo "  ✅ next@latest installed"
 
 node --version > .nvmrc
 
-rm -rf .git
-git init
-git add .
-git commit -m "chore: initial setup (rebuild twin)"
 echo "  ✅ Rebuild twin ready"
 
 cd "$TARGET"
+
+echo ""
+echo "🖥️  Opening rebuild twin in new VS Code window..."
+if command -v code &> /dev/null; then
+  code "$REBUILD_TARGET"
+elif [ -f "/opt/homebrew/bin/code" ]; then
+  /opt/homebrew/bin/code "$REBUILD_TARGET"
+elif [ -f "/usr/local/bin/code" ]; then
+  /usr/local/bin/code "$REBUILD_TARGET"
+else
+  open -a "Visual Studio Code" "$REBUILD_TARGET" || echo "⚠️  Could not open VS Code — open manually"
+fi
 
 fi # end rebuild
 
@@ -521,39 +616,42 @@ if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
   echo "🔁 Rebuild: $REBUILD_TARGET"
 fi
 echo ""
+if [[ "$FEATURE_FOLDERS" =~ ^[Yy]$ ]]; then
 echo "┌─────────────────────────────────┐"
 echo "│  src/                           │"
 echo "│  ├── app/                       │"
-echo "│  │   ├── layout.tsx             │"
-echo "│  │   ├── page.tsx               │"
-echo "│  │   └── globals.css            │"
 echo "│  ├── components/                │"
-echo "│  │   ├── Dashboard.tsx          │"
-echo "│  │   ├── EmptyState.tsx         │"
-echo "│  │   ├── LoadingSpinner.tsx     │"
-echo "│  │   └── PageHeader.tsx         │"
+echo "│  ├── features/                  │"
+echo "│  ├── hooks/                     │"
+echo "│  ├── types/                     │"
+echo "│  ├── services/                  │"
+echo "│  └── lib/                       │"
+echo "│      ├── api/                   │"
+echo "│      └── utils.ts               │"
+echo "└─────────────────────────────────┘"
+else
+echo "┌─────────────────────────────────┐"
+echo "│  src/                           │"
+echo "│  ├── app/                       │"
+echo "│  ├── components/                │"
 echo "│  └── lib/                       │"
 echo "│      └── utils.ts               │"
 echo "└─────────────────────────────────┘"
+fi
 echo ""
-echo "💡 To start the dev server:"
-echo "   cd $TARGET && npm run dev"
+echo "💡 Dev servers:"
+echo "   Main:    cd $TARGET && npm run dev          → :3000"
+if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
+  echo "   Rebuild: cd $REBUILD_TARGET && npm run dev -- -p 3001  → :3001"
+fi
 echo ""
 if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
   echo "💡 Rebuild workflow:"
-  echo "   Finish JSX for a component → paste stripped version into $REBUILD_TARGET"
-  echo "   When ready to drill → open rebuild and fill in the logic"
+  echo "   cd ~/Code/$PROJECT_NAME"
+  echo "   rebuild src/features/tasks/components/TaskForm.tsx"
+  echo "   rebuild src/features/tasks/components/"
+  echo "   Then switch to rebuild window and fill in the logic."
   echo ""
 fi
-echo "💡 On remaining postcss vulnerability warnings:"
-echo "   They live inside Next.js itself — npm audit fix --force would downgrade Next."
-echo "   Keep running npm install next@latest as updates ship; Vercel will fix it there."
-echo ""
 echo "💡 When ready to push to GitHub:"
 echo "   ghcreate"
-echo ""
-echo "💡 When your project grows, look at nna for reference:"
-echo "   src/hooks/        → custom React hooks"
-echo "   src/types/        → shared TypeScript types"
-echo "   src/lib/api/      → fetch wrapper"
-echo "   src/services/     → API call functions"
