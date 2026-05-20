@@ -47,15 +47,31 @@
   "editor.stickyScroll.scrollWithEditor": true,
   "editor.lineNumbers": "relative",
   "editor.renderLineHighlight": "all",
+// Snippet suggestions appear in dropdown while typing inside placeholders
+"editor.suggest.snippetsPreventQuickSuggestions": false,
 
-  // ===========================================================
-  // 🚀 JAVASCRIPT/TYPESCRIPT
-  // ===========================================================
-  "javascript.suggest.autoImports": true,
-  "typescript.suggest.autoImports": true,
+// Jumps directly when multiple definitions exist (useful with TS interfaces)
+// References stay inline as peek so they don't open a new tab
+"editor.gotoLocation.multipleDefinitions": "goto",
+"editor.gotoLocation.multipleReferences": "peek",
+// ===========================================================
+// 🚀 JAVASCRIPT / TYPESCRIPT
+// ===========================================================
+// non-relative uses @/ aliases instead of ../../ — correct for Next.js tsconfig paths
+"js/ts.preferences.importModuleSpecifier": "non-relative",
+"js/ts.preferences.includePackageJsonAutoImports": "auto",
+"js/ts.preferences.quoteStyle": "single",
 
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "typescript.updateImportsOnFileMove.enabled": "always",
+"js/ts.updateImportsOnFileMove.enabled": "always",
+
+// Inlay hints — literals only keeps it readable without cluttering every line
+// e.g. setTimeout(fn, /* ms */ 1000) instead of annotating every variable
+"js/ts.inlayHints.parameterNames.enabled": "literals",
+"js/ts.inlayHints.variableTypes.enabled": false,
+
+// Shows "2 references" above functions — see what's using them without Find References
+"js/ts.referencesCodeLens.enabled": true,
+"js/ts.implementationsCodeLens.enabled": true,
 
   // ===========================================================
   // 🐍 PYTHON CONFIGURATION
@@ -98,7 +114,17 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-
+// Per-language formatter overrides — prevents TS language server
+// from fighting with Prettier on .ts and .tsx files
+"[typescript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[typescriptreact]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[json]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit",
@@ -153,12 +179,7 @@
   },
   "emmet.triggerExpansionOnTab": true,
 
-  "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
-    ["className=[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
-  ],
+
 
   "css.lint.unknownAtRules": "ignore",
 
@@ -207,7 +228,7 @@
   "explorer.confirmDragAndDrop": false,
 
   "window.commandCenter": false,
-  "workbench.editor.tabCloseButton": "right",
+ 
   "workbench.editor.showTabs": "multiple",
 
   // ===========================================================
@@ -229,7 +250,13 @@
   "errorLens.fontSize": "0.9em",
   "errorLens.fontWeight": "400",
   "errorLens.messageEnabled": true,
-
+// ===========================================================
+// 🔍 ESLINT
+// ===========================================================
+// format.enable false keeps Prettier as the only formatter
+// prevents ESLint and Prettier fighting over the same file
+"eslint.format.enable": false,
+"eslint.lintTask.enable": true,
   // ===========================================================
   // 💬 COLORFUL COMMENTS - OPTIMIZED FOR WHITE THEME
   // ===========================================================
