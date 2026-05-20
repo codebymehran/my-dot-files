@@ -103,8 +103,6 @@ cat vscode-extensions.txt | xargs -L 1 code --install-extension
 
 ---
 
-
-
 ## macOS Settings
 
 ```bash
@@ -163,6 +161,7 @@ You should see something like:
 - ✓ Token scopes include: repo, delete_repo
 
 ✅ If you see delete_repo in scopes, repodelete.sh will be able to remove repos safely.
+
 ---
 
 ### Creating a repo for a new project
@@ -237,6 +236,7 @@ Or browse the full list at: https://www.nerdfonts.com/
 - Apps are installed separately via `brew bundle`
 - VS Code extensions are installed separately
 - `git.sh` and `macos.sh` are one-time setup scripts
+- `-rebuild` projects (e.g. `task-manager-rebuild`) are excluded from `gitallpull` and `gacpall` automatically
 
 ---
 
@@ -244,15 +244,30 @@ Or browse the full list at: https://www.nerdfonts.com/
 
 Reusable shell scripts in the repo root. All work from terminal directly or via Raycast.
 
-| Script                                 | Alias        | Usage                                                                                                                                    |
-| -------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| new-next-app.sh                        | `nna`        | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui                                                                         |
-| git-clone-and-setup-dev-environment.sh | `clone`      | `clone <url>` — clones into ~/Code/explore and opens in VS Code                                                                          |
-| clone-own.sh                           | `cloneown`   | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code                                                                 |
-| repodelete.sh                          | `repodelete` | `repodelete <project-name>` — safely deletes a project locally (via Trash) **and** removes it from GitHub (requires `delete_repo` scope) |
+| Script | Alias | Usage |
+|--------|-------|-------|
+| new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
+| new-next-app-basic.sh | `nnab` | `nnab my-project` — scaffolds a basic Next.js project + optional -rebuild twin for logic practice |
+| rebuild-add.sh | `rebuild` | `rebuild src/features/tasks/components/` — strips logic from a component or folder into the -rebuild twin (run from project root) |
+| git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
+| clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
+| repodelete.sh | `repodelete` | `repodelete <project-name>` — safely deletes a project locally (via Trash) **and** removes it from GitHub (requires `delete_repo` scope) |
 
+### Rebuild workflow
 
+```bash
+nnab my-project        # scaffold — answer y to create -rebuild twin
 
+# as you build...
+cd ~/Code/my-project
+rebuild src/features/tasks/components/TaskForm.tsx   # single file
+rebuild src/features/tasks/components/               # entire folder
+
+# when ready to drill...
+cd ~/Code/my-project-rebuild && npm run dev -- -p 3001
+```
+
+---
 
 ### GitHub CLI aliases (defined in zshrc)
 
@@ -261,5 +276,6 @@ Reusable shell scripts in the repo root. All work from terminal directly or via 
 | `ghcreate` | `ghcreate` — create private GitHub repo from current folder and push |
 | `ghcreate <name>` | `ghcreate my-name` — same but with a custom repo name |
 | `ghopen` | Opens current repo on GitHub in browser |
+| `rebuild <path>` | Run from project root — strips component logic into the -rebuild twin (file or folder) |
 
 Aliases are defined in `zshrc.sh` and available after `exec zsh`.
