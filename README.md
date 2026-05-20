@@ -3,68 +3,6 @@ Personal config files for macOS dev environment.
 
 ---
 
-## What's included
-
-| File | Location | Purpose |
-|------|----------|---------|
-| zshrc.sh | ~/.zshrc | Shell config — aliases, functions, tools |
-| starship.toml | ~/.config/starship.toml | Prompt appearance |
-| wezterm.lua | ~/.wezterm.lua | WezTerm terminal config |
-| karabiner.json | ~/.config/karabiner/karabiner.json | Keyboard remapping |
-| settings.json | ~/Library/Application Support/Code/User/settings.json | VS Code settings |
-| keybindings.json | ~/Library/Application Support/Code/User/keybindings.json | VS Code keybindings |
-| React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
-| raycast_snippets.json | ~/.config/raycast/snippets/raycast_snippets.json | Raycast text snippets |
-| vscode-extensions.txt | local file in repo | VS Code extensions list |
-| cheatsheets | ~/Desktop/cheatsheets | HTML reference files |
-
----
-
-## Apps
-
-### Development
-- Visual Studio Code
-- WezTerm
-- iTerm2
-- Karabiner-Elements
-
-### Productivity
-- Raycast
-- Contexts
-- CleanShot
-- PopClip
-- Itsycal
-
-### Utilities
-- AppCleaner
-- The Unarchiver
-- HiddenBar
-- KeyboardCleanTool
-- Mic Drop
-
-### Media / Browser
-- Google Chrome
-- IINA
-
----
-
-## Update (After changes on GitHub)
-
-```bash
-cd ~
-rm -rf my-dot-files
-git clone https://github.com/codebymehran/my-dot-files.git
-cd my-dot-files
-# bash install.sh      # interactive — confirm each file
-# or
-bash install.sh -y   # auto-confirm all files
-exec zsh
-```
-
-> Always push your changes to GitHub before running update — the local repo is deleted first.
-
----
-
 ## Setup (New Machine)
 
 **Step 1 — Bootstrap** (Homebrew, Oh My Zsh, ZSH plugins, Node, SSH key):
@@ -103,20 +41,50 @@ cat vscode-extensions.txt | xargs -L 1 code --install-extension
 
 ---
 
-## macOS Settings
+## Update (After changes on GitHub)
 
 ```bash
-bash macos.sh
+cd ~
+rm -rf my-dot-files
+git clone https://github.com/codebymehran/my-dot-files.git
+cd my-dot-files
+# bash install.sh      # interactive — confirm each file
+# or
+bash install.sh -y   # auto-confirm all files
+exec zsh
 ```
 
-Includes: Finder, Dock, Keyboard, Trackpad, Screenshots, Spotlight, Battery/Power settings.
+> Always push your changes to GitHub before running update — the local repo is deleted first.
 
 ---
 
-## Git Setup
+## Scripts
+
+Reusable shell scripts in the repo root. All work from terminal directly or via Raycast.
+
+| Script | Alias | Usage |
+|--------|-------|-------|
+| new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
+| new-next-app-basic.sh | `nnab` | `nnab my-project` — scaffolds a basic Next.js project + optional -rebuild twin for logic practice |
+| rebuild-add.sh | `rebuild` | `rebuild src/features/tasks/components/` — strips everything except imports + JSX into the -rebuild twin (run from project root). Use `rebuild --init my-project` to create the twin if you skipped it at scaffold time. |
+| git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
+| clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
+| repodelete.sh | `repodelete` | `repodelete <project-name>` — safely deletes a project locally (via Trash) **and** removes it from GitHub (requires `delete_repo` scope) |
+
+### Rebuild workflow
 
 ```bash
-bash git.sh
+nnab my-project             # scaffold — answer y to create -rebuild twin
+# or later:
+rebuild --init my-project   # create twin for an existing project
+
+# as you build, from your project root...
+rebuild src/features/tasks/components/TaskForm.tsx   # single file
+rebuild src/features/tasks/components/               # entire folder
+# strips everything except imports + JSX — no state, no props, no handlers
+
+# when ready to drill...
+cd ~/Code/my-project-rebuild && npm run dev -- -p 3001
 ```
 
 ---
@@ -137,7 +105,6 @@ brew install gh
 gh auth login
 ```
 Choose: GitHub.com → SSH → Yes (upload your existing SSH key) → Login with a web browser → follow the prompt.
-
 
 **Step 3 — Give delete permissions (optional, required for repodelete.sh):**
 
@@ -181,6 +148,17 @@ ghcreate my-custom-name
 
 ---
 
+### GitHub CLI aliases (defined in zshrc)
+
+| Alias | Usage |
+|-------|-------|
+| `ghcreate` | `ghcreate` — create private GitHub repo from current folder and push |
+| `ghcreate <name>` | `ghcreate my-name` — same but with a custom repo name |
+| `ghopen` | Opens current repo on GitHub in browser |
+| `rebuild <path>` | Run from project root — strips component logic into the -rebuild twin (file or folder) |
+
+Aliases are defined in `zshrc.sh` and available after `exec zsh`.
+
 ### Other useful gh commands
 
 ```bash
@@ -194,11 +172,51 @@ gh repo list              # List all your repos
 
 ---
 
-## Manual Apps (App Store)
+## What's included
 
-Install these manually:
-- BetterSnapTool
-- ScreenBrush
+| File | Location | Purpose |
+|------|----------|---------|
+| zshrc.sh | ~/.zshrc | Shell config — aliases, functions, tools |
+| starship.toml | ~/.config/starship.toml | Prompt appearance |
+| wezterm.lua | ~/.wezterm.lua | WezTerm terminal config |
+| karabiner.json | ~/.config/karabiner/karabiner.json | Keyboard remapping |
+| settings.json | ~/Library/Application Support/Code/User/settings.json | VS Code settings |
+| keybindings.json | ~/Library/Application Support/Code/User/keybindings.json | VS Code keybindings |
+| React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
+| raycast_snippets.json | ~/.config/raycast/snippets/raycast_snippets.json | Raycast text snippets |
+| vscode-extensions.txt | local file in repo | VS Code extensions list |
+| cheatsheets | ~/Desktop/cheatsheets | HTML reference files |
+
+---
+
+## macOS Settings
+
+```bash
+bash macos.sh
+```
+
+Includes: Finder, Dock, Keyboard, Trackpad, Screenshots, Spotlight, Battery/Power settings.
+
+---
+
+## Git Setup
+
+```bash
+bash git.sh
+```
+
+---
+
+## Notes
+
+- Always push your changes to GitHub before running update
+- Update process deletes the local repo and installs a fresh copy
+- `bootstrap.sh` is for fresh machines only — skip on updates
+- `install.sh` only handles dotfiles
+- Apps are installed separately via `brew bundle`
+- VS Code extensions are installed separately
+- `git.sh` and `macos.sh` are one-time setup scripts
+- `-rebuild` projects (e.g. `task-manager-rebuild`) are excluded from `gitallpull` and `gacpall` automatically
 
 ---
 
@@ -227,55 +245,36 @@ Or browse the full list at: https://www.nerdfonts.com/
 
 ---
 
-## Notes
+## Apps
 
-- Always push your changes to GitHub before running update
-- Update process deletes the local repo and installs a fresh copy
-- `bootstrap.sh` is for fresh machines only — skip on updates
-- `install.sh` only handles dotfiles
-- Apps are installed separately via `brew bundle`
-- VS Code extensions are installed separately
-- `git.sh` and `macos.sh` are one-time setup scripts
-- `-rebuild` projects (e.g. `task-manager-rebuild`) are excluded from `gitallpull` and `gacpall` automatically
+### Development
+- Visual Studio Code
+- WezTerm
+- iTerm2
+- Karabiner-Elements
 
----
+### Productivity
+- Raycast
+- Contexts
+- CleanShot
+- PopClip
+- Itsycal
 
-## Scripts
+### Utilities
+- AppCleaner
+- The Unarchiver
+- HiddenBar
+- KeyboardCleanTool
+- Mic Drop
 
-Reusable shell scripts in the repo root. All work from terminal directly or via Raycast.
-
-| Script | Alias | Usage |
-|--------|-------|-------|
-| new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
-| new-next-app-basic.sh | `nnab` | `nnab my-project` — scaffolds a basic Next.js project + optional -rebuild twin for logic practice |
-| rebuild-add.sh | `rebuild` | `rebuild src/features/tasks/components/` — strips logic from a component or folder into the -rebuild twin (run from project root) |
-| git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
-| clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
-| repodelete.sh | `repodelete` | `repodelete <project-name>` — safely deletes a project locally (via Trash) **and** removes it from GitHub (requires `delete_repo` scope) |
-
-### Rebuild workflow
-
-```bash
-nnab my-project        # scaffold — answer y to create -rebuild twin
-
-# as you build...
-cd ~/Code/my-project
-rebuild src/features/tasks/components/TaskForm.tsx   # single file
-rebuild src/features/tasks/components/               # entire folder
-
-# when ready to drill...
-cd ~/Code/my-project-rebuild && npm run dev -- -p 3001
-```
+### Media / Browser
+- Google Chrome
+- IINA
 
 ---
 
-### GitHub CLI aliases (defined in zshrc)
+## Manual Apps (App Store)
 
-| Alias | Usage |
-|-------|-------|
-| `ghcreate` | `ghcreate` — create private GitHub repo from current folder and push |
-| `ghcreate <name>` | `ghcreate my-name` — same but with a custom repo name |
-| `ghopen` | Opens current repo on GitHub in browser |
-| `rebuild <path>` | Run from project root — strips component logic into the -rebuild twin (file or folder) |
-
-Aliases are defined in `zshrc.sh` and available after `exec zsh`.
+Install these manually:
+- BetterSnapTool
+- ScreenBrush
