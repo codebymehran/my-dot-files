@@ -88,8 +88,6 @@ copy karabiner.json "$HOME/.config/karabiner/karabiner.json" "karabiner.json"
 copy settings.json "$HOME/Library/Application Support/Code/User/settings.json" "VS Code settings"
 copy keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json" "VS Code keybindings"
 copy React_Snippets.code-snippets "$HOME/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets" "React snippets"
-copy new-next-app-basic.sh "$HOME/my-dot-files/new-next-app-basic.sh" "new-next-app-basic (Next.js scaffold)"
-copy rebuild-add.sh "$HOME/my-dot-files/rebuild-add.sh" "rebuild-add (strip logic → rebuild twin)"
 
 echo ""
 echo "📄 Cheatsheets:"
