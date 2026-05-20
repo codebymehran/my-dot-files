@@ -504,6 +504,7 @@ _nna_completion() {
 compdef _nna_completion nna
 alias nnab='bash ~/my-dot-files/new-next-app-basic.sh'
 compdef _nna_completion nnab
+alias rebuild='bash ~/my-dot-files/rebuild-add.sh'
 alias clone='bash ~/my-dot-files/git-clone-and-setup-dev-environment.sh'
 alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
