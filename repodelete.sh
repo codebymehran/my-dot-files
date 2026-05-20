@@ -176,6 +176,22 @@ else
 fi
 
 # -----------------------------
+# Offer to clean up rebuild twin
+# -----------------------------
+
+REBUILD_TARGET="$CODE_DIR/$PROJECT_NAME-rebuild"
+if [ -d "$REBUILD_TARGET" ]; then
+  echo ""
+  read -p "🔁 Rebuild twin found — delete it too? (y/N): " del_rebuild
+  if [[ "$del_rebuild" =~ ^[Yy]$ ]]; then
+    move_to_trash "$REBUILD_TARGET"
+    echo "  ✅ Rebuild twin moved to Trash"
+  else
+    echo "  ⏭️  Rebuild twin kept"
+  fi
+fi
+
+# -----------------------------
 # Done
 # -----------------------------
 
