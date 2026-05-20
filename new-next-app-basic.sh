@@ -10,7 +10,7 @@
 # @raycast.argument1 { "type": "text", "placeholder": "project-name" }
 
 # Documentation:
-# @raycast.description Scaffolds a simple Next.js project with TypeScript, Tailwind, ESLint + shadcn/ui
+# @raycast.description Scaffolds a Next.js project + a -rebuild twin for logic practice
 
 set -e
 
@@ -31,15 +31,32 @@ fi
 
 PROJECT_NAME="$1"
 TARGET="$HOME/Code/$PROJECT_NAME"
+REBUILD_TARGET="$HOME/Code/$PROJECT_NAME-rebuild"
 
 if [ -d "$TARGET" ]; then
   echo "❌ '$TARGET' already exists — choose a different name"
   exit 1
 fi
 
+# -----------------------------
+# Ask about rebuild twin
+# -----------------------------
+
+echo ""
+read -r -p "🔁 Create a -rebuild twin for logic practice? [y/N] " CREATE_REBUILD
+CREATE_REBUILD="${CREATE_REBUILD:-n}"
+
+if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]] && [ -d "$REBUILD_TARGET" ]; then
+  echo "❌ '$REBUILD_TARGET' already exists — choose a different name"
+  exit 1
+fi
+
 echo ""
 echo "🚀 Creating Next.js project: $PROJECT_NAME"
 echo "📍 Location: $TARGET"
+if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
+  echo "🔁 Rebuild twin: $REBUILD_TARGET"
+fi
 echo ""
 
 # -----------------------------
@@ -260,6 +277,15 @@ echo "  ✅ tabs, table, skeleton, alert, popover"
 echo "  ✅ checkbox, switch, breadcrumb"
 
 # -----------------------------
+# Keep Next.js current (fixes postcss vulnerability bundled inside Next)
+# -----------------------------
+
+echo ""
+echo "⬆️  Updating Next.js to latest..."
+npm install next@latest
+echo "  ✅ next@latest installed"
+
+# -----------------------------
 # Prettier config
 # -----------------------------
 
@@ -385,14 +411,115 @@ else
   open -a "Visual Studio Code" . || echo "⚠️  Could not open VS Code — open manually"
 fi
 
+# ============================================================================
+# REBUILD TWIN (optional)
+# ============================================================================
+
+if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔁 Scaffolding rebuild twin: $PROJECT_NAME-rebuild"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
+echo "⚙️  Running create-next-app for rebuild twin..."
+npx create-next-app@latest "$REBUILD_TARGET" \
+  --typescript \
+  --tailwind \
+  --eslint \
+  --app \
+  --src-dir \
+  --import-alias "@/*" \
+  --yes
+
+cd "$REBUILD_TARGET"
+
+mkdir -p src/components
+mkdir -p src/lib
+
+cat > src/lib/utils.ts << 'UTILS'
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+UTILS
+
+cp "$TARGET/src/components/LoadingSpinner.tsx" src/components/LoadingSpinner.tsx
+cp "$TARGET/src/components/EmptyState.tsx"     src/components/EmptyState.tsx
+cp "$TARGET/src/components/PageHeader.tsx"     src/components/PageHeader.tsx
+cp "$TARGET/src/components/Dashboard.tsx"      src/components/Dashboard.tsx
+cp "$TARGET/src/app/layout.tsx"                src/app/layout.tsx
+cp "$TARGET/src/app/page.tsx"                  src/app/page.tsx
+cp "$TARGET/src/app/globals.css"               src/app/globals.css
+cp "$TARGET/prettier.config.mjs"               prettier.config.mjs
+cp "$TARGET/.env.example"                      .env.example
+mkdir -p .vscode
+cp "$TARGET/.vscode/settings.json"             .vscode/settings.json 2>/dev/null || true
+touch .env.local
+
+cat >> .gitignore << 'GITIGNORE'
+
+# Environment
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/settings.json
+GITIGNORE
+
+echo ""
+echo "🎨 Initialising shadcn/ui in rebuild twin..."
+npx shadcn@latest init --yes
+
+echo ""
+echo "🧩 Installing shadcn components in rebuild twin..."
+npx shadcn@latest add \
+  button input card dialog form select sonner dropdown-menu \
+  separator badge avatar tooltip sheet \
+  tabs table skeleton alert popover \
+  checkbox switch breadcrumb \
+  --yes --overwrite
+
+echo ""
+echo "⬆️  Updating Next.js to latest in rebuild twin..."
+npm install next@latest
+echo "  ✅ next@latest installed"
+
+node --version > .nvmrc
+
+rm -rf .git
+git init
+git add .
+git commit -m "chore: initial setup (rebuild twin)"
+echo "  ✅ Rebuild twin ready"
+
+cd "$TARGET"
+
+fi # end rebuild
+
 # -----------------------------
 # Done
 # -----------------------------
 
 echo ""
-echo "✅ Project ready!"
+echo "✅ Done!"
 echo ""
-echo "📍 $TARGET"
+echo "📍 Main: $TARGET"
+if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
+  echo "🔁 Rebuild: $REBUILD_TARGET"
+fi
 echo ""
 echo "┌─────────────────────────────────┐"
 echo "│  src/                           │"
@@ -411,6 +538,16 @@ echo "└───────────────────────�
 echo ""
 echo "💡 To start the dev server:"
 echo "   cd $TARGET && npm run dev"
+echo ""
+if [[ "$CREATE_REBUILD" =~ ^[Yy]$ ]]; then
+  echo "💡 Rebuild workflow:"
+  echo "   Finish JSX for a component → paste stripped version into $REBUILD_TARGET"
+  echo "   When ready to drill → open rebuild and fill in the logic"
+  echo ""
+fi
+echo "💡 On remaining postcss vulnerability warnings:"
+echo "   They live inside Next.js itself — npm audit fix --force would downgrade Next."
+echo "   Keep running npm install next@latest as updates ship; Vercel will fix it there."
 echo ""
 echo "💡 When ready to push to GitHub:"
 echo "   ghcreate"
