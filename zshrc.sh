@@ -45,7 +45,7 @@ PROJECTS=()
 if [[ -d "$HOME/Code" ]]; then
   for dir in "$HOME/Code"/*/; do
     dirname=$(basename "$dir")
-    if [[ "$dirname" != "explore" && "$dirname" != "my-dot-files" && -d "$dir/.git" ]]; then
+    if [[ "$dirname" != "explore" && "$dirname" != "my-dot-files" && "$dirname" != *-rebuild && -d "$dir/.git" ]]; then
       PROJECTS+=("${dir%/}")
     fi
   done
