@@ -511,6 +511,7 @@ alias repodelete='bash ~/my-dot-files/repodelete.sh'
 alias nea='bash ~/my-dot-files/new-express-app.sh'
 compdef _nna_completion nea
 alias new='bash ~/my-dot-files/new.sh'
+alias projectrename='bash ~/my-dot-files/projectrename.sh'
 # ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
@@ -625,6 +626,7 @@ echo "║    vsexport         → Export current VS Code extensions to list     
   echo "║    gitallpull       → Pull latest from all projects at once           ║"
   echo "║    gacpall          → Interactive commit + push all projects          ║"
   echo "║    gitwipe          → Wipe ALL git history (⚠️  very dangerous!)       ║"
+  echo "║    projectrename <old> <new> → Rename project locally + on GitHub      ║"
   echo "║    proj             → Fuzzy project switcher (fzf)                    ║"
   echo "║    cpv <src> <dst>  → Copy with progress bar (rsync)                  ║"
   echo "║    ducks            → Show largest files/dirs in current directory    ║"
