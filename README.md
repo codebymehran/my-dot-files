@@ -66,6 +66,7 @@ Reusable shell scripts in the repo root. All work from terminal directly or via 
 |--------|-------|-------|
 | new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
 | new-next-app-basic.sh | `nnab` | `nnab my-project` — scaffolds a basic Next.js project + optional -rebuild twin for logic practice |
+| newfeature.sh | `newfeature` | `newfeature tasks` — scaffolds `src/features/tasks/` with components, hooks, types, services, schema, utils, index (run from project root) |
 | rebuild-add.sh | `rebuild` | `rebuild src/features/tasks/components/` — strips everything except imports + JSX into the -rebuild twin (run from project root). Use `rebuild --init my-project` to create the twin if you skipped it at scaffold time. |
 | git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
 | clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
