@@ -12,7 +12,7 @@ config.color_scheme = DARK
 -- ============================================
 -- FONT
 -- ============================================
-config.font = wezterm.font("MesloLGL Nerd Font Mono")
+config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 19
 config.line_height = 1.2
 
@@ -115,6 +115,7 @@ wezterm.on("toggle-theme", function(window)
   local overrides = window:get_config_overrides() or {}
   is_dark = not is_dark
   overrides.color_scheme = is_dark and DARK or LIGHT
+  overrides.window_background_opacity = is_dark and 0.92 or 1.0
   window:set_config_overrides(overrides)
 end)
 
