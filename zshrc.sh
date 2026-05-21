@@ -618,6 +618,8 @@ echo "║    rebuild --init   → Create rebuild twin for existing project      
   echo "║    cdf              → Go to ~/my-dot-files                           ║"
   echo "║    dotinstall       → Re-clone + reinstall dot files from GitHub     ║"
   echo "║    starshipconfig   → Edit Starship prompt config                    ║"
+  echo "║    vsinstall        → Install all VS Code extensions from list           ║"
+echo "║    vsexport         → Export current VS Code extensions to list          ║"
   echo "║                                                                      ║"
   echo "║  🗄️  TIER 3 — advanced / rarely used                                   ║"
   echo "║    gitallpull       → Pull latest from all projects at once           ║"
