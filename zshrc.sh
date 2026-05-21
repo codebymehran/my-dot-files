@@ -510,7 +510,7 @@ alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
 alias nea='bash ~/my-dot-files/new-express-app.sh'
 compdef _nna_completion nea
-alias newfeature='bash ~/my-dot-files/newfeature.sh'
+alias new='bash ~/my-dot-files/new.sh'
 # ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
@@ -577,6 +577,11 @@ echo "║    pgconnect        → Connect to PostgreSQL via psql                
   echo "║  🔥 TIER 2 — once Tier 1 is solid                                    ║"
   echo "║    nna <name>       → Scaffold new Next.js app into ~/Code           ║"
 echo "║    nnab <name>      → Scaffold basic Next.js app (+ optional rebuild twin)  ║"
+echo "║    new feature <name> → Scaffold src/features/<name>/                      ║"
+echo "║    new page <name>    → Scaffold src/app/<name>/ with page+loading+error   ║"
+echo "║    new api <name>     → Scaffold src/app/api/<name>/route.ts               ║"
+echo "║    new component <N>  → Scaffold src/components/<N>.tsx                    ║"
+echo "║    new feature --delete/--rename/--list                                    ║"
 echo "║    rebuild <path>   → Strip JSX-only into rebuild twin (file or folder)      ║"
 echo "║    rebuild --init   → Create rebuild twin for existing project               ║"
   echo "║    clone <url>      → Clone repo and set up dev environment          ║"
