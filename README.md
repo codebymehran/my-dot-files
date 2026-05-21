@@ -64,6 +64,7 @@ Reusable shell scripts. All available as aliases after `exec zsh`.
 | git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clone into ~/Code/explore and open in VS Code |
 | clone-own.sh | `cloneown` | `cloneown <url>` — clone your own repo into ~/Code |
 | repodelete.sh | `repodelete` | `repodelete <name>` — delete project locally (Trash) + remove from GitHub |
+| projectrename.sh | `projectrename` | `projectrename old-name new-name` — rename project folder + GitHub repo + updates remote URL |
 
 ### Rebuild workflow
 
@@ -140,6 +141,8 @@ gh repo list
 | git-clone-and-setup-dev-environment.sh | `clone` | Clone + open any repo |
 | clone-own.sh | `cloneown` | Clone your own repo into ~/Code |
 | repodelete.sh | `repodelete` | Delete local + GitHub repo |
+| projectrename.sh | `projectrename` | Rename project locally + on GitHub |
+| CHANGELOG.md | — | Record of all changes to dot-files |
 | install.sh | `dotinstall` | Install/update all dotfiles |
 | bootstrap.sh | — | Fresh machine setup only |
 | git.sh | — | One-time git config |
