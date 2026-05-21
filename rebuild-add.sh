@@ -185,9 +185,9 @@ for line in lines:
     if re.match(r"^\s*(import\s|'use client'|\"use client\")", line):
         imports.append(line)
 
-# Find the return (...) block
-return_match = re.search(r'\breturn\s*\(', content)
-if not return_match:
+# Find the last return (...) block — handles early returns like `if (!x) return null`
+return_matches = list(re.finditer(r'\breturn\s*\(', content))
+if not return_matches:
     func_match = re.search(r'export default function (\w+)\s*\(', content)
     func_name = func_match.group(1) if func_match else 'Component'
     with open(dest_path, 'w') as f:
@@ -196,9 +196,9 @@ if not return_match:
     sys.exit(0)
 
 # Extract the full return block via brace/paren depth tracking
-start = return_match.start()
+start = return_matches[-1].start()
 depth = 0
-i = return_match.end() - 1
+i = return_matches[-1].end() - 1
 while i < len(content):
     if content[i] == '(':
         depth += 1
