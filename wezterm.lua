@@ -1,10 +1,10 @@
 local wezterm = require("wezterm")
-local config = wezterm.config_builder()
+local config  = wezterm.config_builder()
 
 -- ============================================
 -- THEME
 -- ============================================
-local DARK = "Tokyo Night"
+local DARK  = "Tokyo Night"
 local LIGHT = "Tokyo Night Day"
 
 config.color_scheme = DARK
@@ -12,19 +12,20 @@ config.color_scheme = DARK
 -- ============================================
 -- FONT
 -- ============================================
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
+config.font      = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 19
 config.line_height = 1.2
 
 -- ============================================
 -- WINDOW
 -- ============================================
-config.enable_tab_bar = false
-config.window_decorations = "RESIZE"
-config.window_padding = { left = 24, right = 24, top = 24, bottom = 16 }
+config.enable_tab_bar       = false
+config.window_decorations   = "RESIZE"
+config.window_padding       = { left = 28, right = 28, top = 24, bottom = 18 }
 
-config.window_background_opacity = 0.92
-config.macos_window_background_blur = 20
+-- Sharp & focused — no blur, full opacity, high contrast
+config.window_background_opacity  = 1.0
+config.macos_window_background_blur = 0
 
 config.initial_cols = 220
 config.initial_rows = 50
@@ -32,19 +33,19 @@ config.initial_rows = 50
 -- ============================================
 -- CURSOR
 -- ============================================
-config.default_cursor_style = "BlinkingBar"
-config.cursor_thickness = "2px"
-config.cursor_blink_rate = 500
-config.cursor_blink_ease_in = "Constant"
-config.cursor_blink_ease_out = "Constant"
-config.animation_fps = 60
+config.default_cursor_style    = "BlinkingBar"
+config.cursor_thickness        = "2px"
+config.cursor_blink_rate       = 500
+config.cursor_blink_ease_in    = "Constant"
+config.cursor_blink_ease_out   = "Constant"
+config.animation_fps           = 60
 
 -- ============================================
 -- INACTIVE PANE DIMMING
 -- ============================================
 config.inactive_pane_hsb = {
-  saturation = 0.7,
-  brightness = 0.6,
+  saturation = 0.6,
+  brightness = 0.5,    -- stronger dim so active pane really pops
 }
 
 -- ============================================
@@ -55,22 +56,20 @@ config.scrollback_lines = 10000
 -- ============================================
 -- QUALITY OF LIFE
 -- ============================================
-
--- ❌ Removed quit confirmation
 config.window_close_confirmation = "NeverPrompt"
 
 config.foreground_text_hsb = {
-  brightness = 1.0,
+  brightness = 1.05,   -- slight boost for sharper text on solid background
   saturation = 1.0,
 }
 
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 config.audible_bell = "Disabled"
-config.visual_bell = {
-  fade_in_duration_ms = 75,
+config.visual_bell  = {
+  fade_in_duration_ms  = 75,
   fade_out_duration_ms = 75,
-  target = "CursorColor",
+  target               = "CursorColor",
 }
 
 -- ============================================
@@ -98,12 +97,12 @@ config.keys = {
   { key = "J", mods = "CMD|OPT",   action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
 
   -- Close pane
-  { key = "w", mods = "CMD", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
+  { key = "w", mods = "CMD",       action = wezterm.action.CloseCurrentPane({ confirm = false }) },
 
   -- Font size
-  { key = "=", mods = "CMD", action = wezterm.action.IncreaseFontSize },
-  { key = "-", mods = "CMD", action = wezterm.action.DecreaseFontSize },
-  { key = "0", mods = "CMD", action = wezterm.action.ResetFontSize },
+  { key = "=", mods = "CMD",       action = wezterm.action.IncreaseFontSize },
+  { key = "-", mods = "CMD",       action = wezterm.action.DecreaseFontSize },
+  { key = "0", mods = "CMD",       action = wezterm.action.ResetFontSize },
 }
 
 -- ============================================
@@ -115,7 +114,8 @@ wezterm.on("toggle-theme", function(window)
   local overrides = window:get_config_overrides() or {}
   is_dark = not is_dark
   overrides.color_scheme = is_dark and DARK or LIGHT
-  overrides.window_background_opacity = is_dark and 0.92 or 1.0
+  -- Keep full opacity in both modes for sharp focus
+  overrides.window_background_opacity = 1.0
   window:set_config_overrides(overrides)
 end)
 
