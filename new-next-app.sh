@@ -89,6 +89,8 @@ mkdir -p src/context
 mkdir -p src/config
 mkdir -p src/utils
 mkdir -p src/mocks
+mkdir -p src/constants
+mkdir -p src/stores
 mkdir -p docs
 
 echo "  ✅ All folders created"
@@ -205,6 +207,48 @@ export default function NotFound() {
 }
 NOTFOUND
 echo "  ✅ src/app/not-found.tsx"
+
+cat > src/app/error.tsx << 'ROOTERROR'
+// ─── Root Error Boundary ──────────────────────────────────────────────────────
+// Next.js renders this if ANY page in the app throws an unhandled error.
+// Completes the trio: loading.tsx + not-found.tsx + error.tsx
+//
+// Must be 'use client' — that's a Next.js requirement for error boundaries.
+// `reset` retries rendering the page. Always log the error somewhere (Sentry, etc.)
+//
+// Note: this only catches RUNTIME errors. 404s go to not-found.tsx.
+
+'use client';
+
+import { useEffect } from 'react';
+
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // Real app: Sentry.captureException(error);
+    console.error(error);
+  }, [error]);
+
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center gap-4">
+      <h1 className="text-2xl font-semibold tracking-tight">Something went wrong</h1>
+      <p className="text-sm text-muted-foreground">An unexpected error occurred.</p>
+      <button
+        onClick={reset}
+        className="text-sm underline underline-offset-4 hover:text-foreground"
+      >
+        Try again
+      </button>
+    </main>
+  );
+}
+ROOTERROR
+echo "  ✅ src/app/error.tsx"
 
 cat >> src/app/globals.css << 'CSS'
 
@@ -452,8 +496,196 @@ APIROUTE
 echo "  ✅ src/app/api/tasks/route.ts"
 
 # ============================================================================
-# LAYOUT COMPONENTS
+# MIDDLEWARE
 # ============================================================================
+
+echo ""
+echo "🔒 Scaffolding middleware..."
+
+cat > src/middleware.ts << 'MIDDLEWARE'
+// ─── Middleware ───────────────────────────────────────────────────────────────
+// Runs on the EDGE (between the request and the page) before every matched route.
+// This is where route protection lives in real Next.js apps.
+//
+// How it works:
+//   1. User requests /dashboard
+//   2. Next.js runs this middleware FIRST
+//   3. If not logged in → redirect to /login
+//   4. If logged in → continue to the page
+//
+// This keeps auth logic in ONE place instead of checking it inside every page.
+//
+// ── Matcher ───────────────────────────────────────────────────────────────────
+// The matcher below limits which routes trigger this middleware.
+// Without it, middleware would run on EVERY request including images, fonts, etc.
+// Best practice: always be explicit about what you want to protect.
+//
+// ── Auth providers ────────────────────────────────────────────────────────────
+// In a real app, replace the TODO comment with your auth provider's check:
+//
+//   Clerk:
+//     import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+//     const isProtected = createRouteMatcher(['/dashboard(.*)']);
+//     export default clerkMiddleware(async (auth, req) => {
+//       if (isProtected(req)) await auth.protect();
+//     });
+//
+//   NextAuth:
+//     export { default } from 'next-auth/middleware';
+//
+// ── What this reference version does ─────────────────────────────────────────
+// It only logs the request — no real auth check — so the project runs without
+// needing an auth provider. The structure shows you exactly where to add one.
+
+import { NextRequest, NextResponse } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // TODO: Replace this with your auth provider's session check
+  // Example with Clerk: const { userId } = auth();
+  // Example with NextAuth: const session = await getToken({ req: request });
+  const isAuthenticated = true; // always true in this reference project
+
+  // Protect all dashboard routes
+  if (pathname.startsWith('/dashboard') && !isAuthenticated) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Redirect logged-in users away from login page
+  if (pathname === '/login' && isAuthenticated) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  // Only run middleware on these routes — never on static files or Next.js internals
+  matcher: [
+    '/dashboard/:path*',
+    '/login',
+    // Add more protected routes here: '/settings/:path*', '/profile/:path*'
+  ],
+};
+MIDDLEWARE
+echo "  ✅ src/middleware.ts"
+
+# ============================================================================
+# SERVER ACTIONS
+# ============================================================================
+
+echo ""
+echo "⚡ Scaffolding server actions..."
+
+mkdir -p src/actions
+
+cat > src/actions/tasks.actions.ts << 'ACTIONS'
+// ─── Task Server Actions ──────────────────────────────────────────────────────
+// Server Actions are functions that run ON THE SERVER but can be called
+// directly from Client Components — no API route needed.
+//
+// ── API Route vs Server Action ────────────────────────────────────────────────
+//
+//   API Route (app/api/tasks/route.ts):
+//     - A URL endpoint: POST /api/tasks
+//     - Called via fetch() from a service/hook
+//     - Works for any client: browser, mobile app, external service
+//     - More boilerplate: route + service + hook
+//
+//   Server Action (this file):
+//     - A function called directly: await createTask(input)
+//     - No URL, no fetch() — Next.js handles the communication
+//     - Only works from within your Next.js app
+//     - Less boilerplate: one function, call it from a form or component
+//
+// ── When to use which ─────────────────────────────────────────────────────────
+//   Server Action → form submissions, simple mutations inside your own app
+//   API Route     → public API, used by mobile apps, or needs a URL
+//
+// ── How to call a Server Action ───────────────────────────────────────────────
+//
+//   From a Server Component or async function:
+//     import { createTask } from '@/actions/tasks.actions';
+//     await createTask({ title: 'New task' });
+//
+//   From a Client Component:
+//     'use client';
+//     import { useTransition } from 'react';
+//     import { createTask } from '@/actions/tasks.actions';
+//     const [isPending, startTransition] = useTransition();
+//     startTransition(() => createTask({ title: 'New task' }));
+//
+//   From a form (the cleanest pattern — no onClick, no useState):
+//     <form action={createTask}>
+//       <input name="title" />
+//       <button type="submit">Add</button>
+//     </form>
+
+'use server';
+
+import { revalidatePath } from 'next/cache';
+import { type CreateTaskInput } from '@/types';
+
+export async function createTask(input: CreateTaskInput) {
+  // Real app: await db.task.create({ data: { ...input, userId: session.user.id } });
+
+  // After mutating data, tell Next.js to refresh the page's cached data.
+  // Server Actions equivalent of React Query's invalidateQueries.
+  revalidatePath('/dashboard');
+
+  return { success: true };
+}
+
+export async function deleteTask(id: string) {
+  // Real app: await db.task.delete({ where: { id } });
+  revalidatePath('/dashboard');
+  return { success: true };
+}
+
+export async function toggleTask(id: string) {
+  // Real app:
+  //   const task = await db.task.findUnique({ where: { id } });
+  //   await db.task.update({ where: { id }, data: { completed: !task.completed } });
+  revalidatePath('/dashboard');
+  return { success: true };
+}
+ACTIONS
+echo "  ✅ src/actions/tasks.actions.ts"
+
+cat > src/actions/_README.md << 'ACTIONSREADME'
+# actions/
+
+Server Actions — functions that run on the server, called directly from components.
+Introduced in Next.js 13.4, widely used in Next.js 14+.
+
+## What goes here
+- Mutations: create, update, delete
+- Form handlers
+- Any server-side write operation
+
+## What does NOT go here
+- Read operations → use services/ or fetch directly in Server Components
+- Business logic → keep in services/, call from here
+
+## API Route vs Server Action — quick guide
+
+| | API Route | Server Action |
+|---|---|---|
+| Has a URL | ✅ `/api/tasks` | ❌ no URL |
+| Called via | `fetch()` | direct function call |
+| Works from | anywhere | your Next.js app only |
+| Best for | public API, mobile apps | forms, internal mutations |
+| Boilerplate | more | less |
+
+## Key rule
+Always call `revalidatePath()` or `revalidateTag()` after mutating data —
+this tells Next.js to refresh the cached page so users see the update.
+
+## Naming
+`<feature>.actions.ts`
+ACTIONSREADME
+echo "  ✅ src/actions/_README.md"
 
 echo ""
 echo "🧱 Scaffolding layout components..."
@@ -1853,6 +2085,68 @@ SITECONFIG
 echo "  ✅ src/config/site.ts"
 
 # ============================================================================
+# CONSTANTS
+# ============================================================================
+
+echo ""
+echo "📌 Scaffolding constants..."
+
+cat > src/constants/routes.ts << 'ROUTES'
+// ─── Routes ───────────────────────────────────────────────────────────────────
+// All URL strings in one place. Never hardcode paths in components.
+//
+// Why this matters:
+//   If /dashboard moves to /app/dashboard, you change it here once.
+//   Without this, you'd search and replace strings across dozens of files.
+//
+// Usage:
+//   import { ROUTES } from '@/constants/routes';
+//   <Link href={ROUTES.DASHBOARD}>Dashboard</Link>
+//   router.push(ROUTES.LOGIN);
+//   redirect(ROUTES.DASHBOARD);
+
+export const ROUTES = {
+  HOME:      '/',
+  LOGIN:     '/login',
+  DASHBOARD: '/dashboard',
+  // Add new routes here as your app grows:
+  // SETTINGS: '/settings',
+  // PROFILE:  '/profile',
+} as const;
+
+// TypeScript: derive the type from the values
+// Useful for functions that accept a route as a parameter:
+//   function navigate(route: Route) { ... }
+export type Route = (typeof ROUTES)[keyof typeof ROUTES];
+ROUTES
+echo "  ✅ src/constants/routes.ts"
+
+cat > src/constants/index.ts << 'CONSTBARREL'
+export { ROUTES } from './routes';
+export type { Route } from './routes';
+CONSTBARREL
+echo "  ✅ src/constants/index.ts"
+
+cat > src/constants/_README.md << 'CONSTREADME'
+# constants/
+
+App-wide constant values. Pure data — no logic, no imports from other src/ folders.
+
+## What goes here
+- `routes.ts`  — all URL strings
+- Add more files as needed: `queryKeys.ts`, `config.ts`, `messages.ts`
+
+## What does NOT go here
+- Functions or logic → utils/ or lib/
+- Environment variables → use process.env directly
+- Feature-specific constants → define them in the feature file
+
+## Key rule
+Import from here, never hardcode the same string in multiple places.
+CONSTREADME
+echo "  ✅ src/constants/_README.md"
+
+# ============================================================================
 # UTILS
 # ============================================================================
 
@@ -1906,6 +2200,111 @@ UTILSFNS
 echo "  ✅ src/utils/index.ts"
 
 # ============================================================================
+# STORES (Zustand)
+# ============================================================================
+
+echo ""
+echo "🗃️  Scaffolding stores..."
+
+cat > src/stores/uiStore.ts << 'UISTORE'
+// ─── UI Store (Zustand) ───────────────────────────────────────────────────────
+// Global client-side UI state managed with Zustand.
+//
+// ── What is Zustand? ──────────────────────────────────────────────────────────
+// A minimal state management library. Think of it as useState but global —
+// any component can read or update it without prop drilling or Context.
+//
+// ── Context vs Zustand ────────────────────────────────────────────────────────
+//   Context      → good for static/slow-changing values (theme, current user)
+//                  re-renders ALL consumers when ANY value changes
+//   Zustand      → good for frequently-changing UI state (sidebar open, modals)
+//                  components only re-render when their specific slice changes
+//
+// ── What goes in a store vs a hook ────────────────────────────────────────────
+//   Zustand store → UI state shared across many unrelated components
+//                   e.g. isSidebarOpen, activeModal, selectedItemId
+//   useTasks hook → data state tied to a specific feature
+//                   e.g. tasks[], loading, error
+//
+// ── To use Zustand in your project ────────────────────────────────────────────
+//   npm install zustand
+//   Then import and use like this:
+//
+//   const isSidebarOpen = useUIStore(state => state.isSidebarOpen);
+//   const toggleSidebar = useUIStore(state => state.toggleSidebar);
+//
+// ── This file ─────────────────────────────────────────────────────────────────
+// This is a COMMENTED-OUT example — it won't run without installing Zustand.
+// It's here so you can see the pattern when you encounter it in real codebases.
+// Uncomment and run `npm install zustand` when you're ready to use it.
+
+/*
+import { create } from 'zustand';
+
+interface UIState {
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+  setSidebarOpen: (open: boolean) => void;
+
+  activeModal: string | null;
+  openModal: (name: string) => void;
+  closeModal: () => void;
+}
+
+export const useUIStore = create<UIState>(set => ({
+  // State
+  isSidebarOpen: true,
+  activeModal: null,
+
+  // Actions
+  toggleSidebar: () => set(state => ({ isSidebarOpen: !state.isSidebarOpen })),
+  setSidebarOpen: (open) => set({ isSidebarOpen: open }),
+
+  openModal:  (name) => set({ activeModal: name }),
+  closeModal: ()     => set({ activeModal: null }),
+}));
+*/
+
+// Placeholder export so this file can be imported without errors
+export {};
+UISTORE
+echo "  ✅ src/stores/uiStore.ts"
+
+cat > src/stores/_README.md << 'STORESREADME'
+# stores/
+
+Global client-side state managed with Zustand.
+Only use this for UI state that's needed by many unrelated components.
+
+## What goes here
+- `uiStore.ts` — sidebar open/closed, active modal, selected item
+
+## What does NOT go here
+- Server data (tasks, users) → use hooks (useTasks) or React Query
+- Auth state → use your auth provider's hook (useUser, useSession)
+- Theme → next-themes handles it via context
+
+## Context vs Zustand
+
+| | Context | Zustand |
+|---|---|---|
+| Good for | Static values (theme, user) | Frequently-changing UI state |
+| Re-renders | All consumers on any change | Only components using changed slice |
+| Boilerplate | More | Less |
+| DevTools | No | Yes (zustand/middleware) |
+
+## To enable Zustand
+```bash
+npm install zustand
+```
+Then uncomment the code in uiStore.ts.
+
+## Naming
+`<domain>Store.ts` — uiStore, filterStore, cartStore
+STORESREADME
+echo "  ✅ src/stores/_README.md"
+
+# ============================================================================
 # DOCS
 # ============================================================================
 
@@ -1930,9 +2329,10 @@ here reflects real-world professional Next.js conventions.
 
 ## Folder map
 
-```
+\`\`\`
 src/
 ├── app/                  → Next.js router (pages, layouts, API routes)
+├── actions/              → Server Actions (server-side mutations, no API route needed)
 ├── components/
 │   ├── layout/           → shell UI: Navbar, Sidebar
 │   ├── shared/           → reusable UI: LoadingSpinner, ConfirmDialog, etc.
@@ -1941,15 +2341,17 @@ src/
 │       └── tasks/        → TaskCard, TaskList, TaskForm
 ├── hooks/                → custom React hooks
 ├── services/             → API call functions (one file per feature)
+├── stores/               → global UI state (Zustand) — sidebar, modals, selections
 ├── lib/
 │   ├── utils.ts          → cn() helper
 │   └── api/              → base fetch client + endpoint map
 ├── types/                → shared TypeScript types
+├── constants/            → app-wide constant values (routes, keys)
 ├── context/              → React providers (theme, auth)
-├── config/               → app-wide constants
+├── config/               → app-wide config objects (site name, nav)
 ├── utils/                → pure helper functions (formatDate, truncate)
 └── mocks/                → sample data for development
-```
+\`\`\`
 
 ---
 
@@ -1957,11 +2359,57 @@ src/
 
 Each layer only talks to the layer directly below it:
 
-```
+\`\`\`
 pages/components  →  hooks  →  services  →  lib/api  →  API routes  →  database
-```
+\`\`\`
 
 Break this and components become impossible to reuse, test, or understand.
+
+---
+
+## Route groups — (auth) and (dashboard)
+
+The parentheses in folder names like \`(auth)\` and \`(dashboard)\` are Next.js **route groups**.
+
+**What they do:** group routes together so they can share a layout, WITHOUT affecting the URL.
+
+\`\`\`
+src/app/
+├── (auth)/
+│   └── login/page.tsx        →  URL: /login      (not /auth/login)
+├── (dashboard)/
+│   ├── layout.tsx             →  shared layout: Navbar + Sidebar
+│   └── dashboard/page.tsx    →  URL: /dashboard   (not /dashboard/dashboard)
+\`\`\`
+
+**Why this matters:**
+- The \`(dashboard)\` layout wraps ALL pages inside it with Navbar + Sidebar automatically
+- The \`(auth)\` group can have its own layout (centered card, no sidebar)
+- Without route groups you'd have to import Navbar/Sidebar manually in every page
+- Adding a new page like \`/settings\` inside \`(dashboard)\` gets the layout for free
+
+**Key rule:** parentheses = invisible to the URL. The folder is for YOU, not the router.
+
+---
+
+## API Routes vs Server Actions
+
+Two ways to run code on the server in Next.js:
+
+\`\`\`
+API Route (app/api/tasks/route.ts)        Server Action (actions/tasks.actions.ts)
+────────────────────────────────────       ────────────────────────────────────────
+Has a URL: POST /api/tasks                 No URL — direct function call
+Called via fetch() in a service            Called directly: await createTask(input)
+Works from anywhere (mobile, etc.)         Works from your Next.js app only
+More boilerplate                           Less boilerplate
+\`\`\`
+
+**When to use which:**
+- Server Action → form submissions, simple mutations inside your own app
+- API Route → public API, mobile app backend, needs to be called from outside
+
+Both are shown in this project. Study both — you'll encounter both in real codebases.
 
 ---
 
@@ -2046,12 +2494,47 @@ To add dark mode to your own project:
 
 | Thing | Convention | Example |
 |---|---|---|
-| Components | PascalCase | `TaskCard.tsx` |
-| Hooks | camelCase, starts with `use` | `useTasks.ts` |
-| Services | camelCase + `.service.ts` | `tasks.service.ts` |
-| Types | camelCase + `.types.ts` | `task.types.ts` |
-| Mocks | camelCase + `.mock.ts` | `tasks.mock.ts` |
-| Folders | lowercase | `features/tasks/` |
+| Components | PascalCase | \`TaskCard.tsx\` |
+| Hooks | camelCase, starts with \`use\` | \`useTasks.ts\` |
+| Services | camelCase + \`.service.ts\` | \`tasks.service.ts\` |
+| Actions | camelCase + \`.actions.ts\` | \`tasks.actions.ts\` |
+| Types | camelCase (no suffix needed) | \`task.ts\` |
+| Mocks | camelCase + \`.mock.ts\` | \`tasks.mock.ts\` |
+| Folders | lowercase | \`features/tasks/\` |
+
+---
+
+## src/components/features/ vs src/features/
+
+You'll see two different folder patterns in Next.js projects. This project uses
+\`src/components/features/\` — here's how they compare:
+
+**This project: \`src/components/features/tasks/\`**
+\`\`\`
+components/features/tasks/   → UI components only (TaskCard, TaskList, TaskForm)
+hooks/useTasks.ts            → state management
+services/tasks.service.ts    → API calls
+types/task.ts                → types
+\`\`\`
+Each concern lives in its own top-level folder. Simple and easy to find things.
+
+**Alternative: \`src/features/tasks/\` (your \`new feature\` scaffold)**
+\`\`\`
+features/tasks/
+├── components/   → TaskCard, TaskList, TaskForm
+├── hooks/        → useTasks.ts
+├── services/     → tasks.service.ts
+├── types/        → task.ts
+└── index.ts      → public API
+\`\`\`
+Everything for one feature lives together. Better for large apps with many features.
+
+**Which to use?**
+- Small/medium app (< 5 features) → top-level folders (this project's approach)
+- Large app (5+ features, team) → feature folders (\`src/features/\`)
+
+Both are valid. Most real codebases use one or the other consistently.
+The patterns you learn here apply to both.
 
 ---
 
@@ -2060,26 +2543,28 @@ To add dark mode to your own project:
 In Next.js App Router, every component is a **Server Component by default**.
 This means it runs on the server and has no access to browser APIs.
 
-Add `'use client'` at the top of a file when it needs:
-- `useState`, `useEffect`, or any React hook
+Add \`'use client'\` at the top of a file when it needs:
+- \`useState\`, \`useEffect\`, or any React hook
 - Browser APIs (localStorage, window, etc.)
 - Event listeners (onClick, onChange, etc.)
 
-**Rule:** keep pages as Server Components. Push `'use client'` as far down the
+**Rule:** keep pages as Server Components. Push \`'use client'\` as far down the
 component tree as possible — ideally to small leaf components only.
 
 ---
 
 ## Adding a new feature (checklist)
 
-- [ ] `src/types/<feature>.ts` — define types
-- [ ] `src/mocks/<feature>.mock.ts` — sample data
-- [ ] `src/mocks/index.ts` — export it
-- [ ] `src/services/<feature>.service.ts` — API calls
-- [ ] `src/services/index.ts` — export it
-- [ ] `src/lib/api/endpoints.ts` — add URL strings
-- [ ] `src/hooks/use<Feature>.ts` — state management
-- [ ] `src/components/features/<feature>/` — UI components
+- [ ] \`src/types/<feature>.ts\` — define types
+- [ ] \`src/mocks/<feature>.mock.ts\` — sample data
+- [ ] \`src/mocks/index.ts\` — export it
+- [ ] \`src/services/<feature>.service.ts\` — API calls
+- [ ] \`src/services/index.ts\` — export it
+- [ ] \`src/lib/api/endpoints.ts\` — add URL strings
+- [ ] \`src/constants/routes.ts\` — add route string
+- [ ] \`src/hooks/use<Feature>.ts\` — state management
+- [ ] \`src/components/features/<feature>/\` — UI components
+- [ ] \`src/actions/<feature>.actions.ts\` — Server Actions (if needed)
 - [ ] `src/app/(dashboard)/<feature>/page.tsx` — route
 - [ ] `src/app/(dashboard)/<feature>/loading.tsx` — loading state
 - [ ] `src/app/(dashboard)/<feature>/error.tsx` — error boundary
@@ -2320,10 +2805,13 @@ echo "│  │   │   └── tasks/ (TaskCard, TaskList, TaskForm)   │"
 echo "│  │   ├── layout/ (Navbar, Sidebar)                   │"
 echo "│  │   └── shared/ (PageHeader, ConfirmDialog,         │"
 echo "│  │              ThemeToggle, EmptyState, LoadingSpinner│"
-echo "│  ├── hooks/ (useTasks, useDebounce, useLocalStorage)  │"
+echo "│  ├── actions/ (tasks.actions.ts)                     │"
+echo "│  ├── hooks/ (useTasks, useDebounce, useLocalStorage) │"
 echo "│  ├── services/ (tasks, auth)                         │"
+echo "│  ├── stores/ (uiStore — Zustand example)             │"
 echo "│  ├── lib/ (utils · api/client · api/endpoints)       │"
 echo "│  ├── types/ (task, auth, api)                        │"
+echo "│  ├── constants/ (routes.ts)                          │"
 echo "│  ├── context/ (ThemeProvider, AuthContext)           │"
 echo "│  ├── config/ (site.ts)                               │"
 echo "│  ├── utils/ (formatDate, truncate, formatCurrency)   │"
