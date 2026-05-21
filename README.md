@@ -36,7 +36,7 @@ bash macos.sh
 
 **Step 5 — VS Code extensions:**
 ```bash
-cat vscode-extensions.txt | xargs -L 1 code --install-extension
+vsinstall   # installs all extensions from vscode-extensions.txt
 ```
 
 ---
@@ -144,6 +144,39 @@ gh repo list
 | bootstrap.sh | — | Fresh machine setup only |
 | git.sh | — | One-time git config |
 | macos.sh | — | One-time macOS system settings |
+
+---
+
+## VS Code Extensions
+
+```bash
+vsinstall   # install all extensions from vscode-extensions.txt
+vsexport    # snapshot current extensions back into the file (run before pushing)
+```
+
+Current extensions in `vscode-extensions.txt`:
+
+| Extension | Purpose |
+|-----------|---------|
+| `bubersson.theme-hop-light` | Theme |
+| `gitkendra.hop-light-with-italics` | Theme variant |
+| `wingmen.alternator` | Theme switcher |
+| `vscode-icons-team.vscode-icons` | File icons |
+| `dbaeumer.vscode-eslint` | ESLint integration |
+| `esbenp.prettier-vscode` | Prettier formatter |
+| `bradlc.vscode-tailwindcss` | Tailwind IntelliSense |
+| `christian-kohler.path-intellisense` | File path autocomplete |
+| `formulahendry.auto-rename-tag` | Auto rename matching HTML/JSX tag |
+| `imgildev.vscode-auto-barrel` | Auto-generate index.ts barrel exports |
+| `yoavbls.pretty-ts-errors` | Readable TypeScript errors |
+| `usernamehw.errorlens` | Inline error highlighting |
+| `aaron-bond.better-comments` | Colour-coded comments |
+| `wayou.vscode-todo-highlight` | Highlight TODO/FIXME |
+| `vscodevim.vim` | Vim keybindings |
+| `OnlyLys.leaper` | Jump out of brackets/quotes with Tab |
+| `marnix.peacock` | Colour-code VS Code windows per project |
+| `lennardv.set-window-color-name` | Window title colour |
+| `ritwickdey.liveserver` | Local dev server for static files |
 
 ---
 
