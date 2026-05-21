@@ -510,6 +510,7 @@ alias cloneown='bash ~/my-dot-files/clone-own.sh'
 alias repodelete='bash ~/my-dot-files/repodelete.sh'
 alias nea='bash ~/my-dot-files/new-express-app.sh'
 compdef _nna_completion nea
+alias newfeature='bash ~/my-dot-files/newfeature.sh'
 # ============================================================================
 # QUICK EDIT & RELOAD
 # ============================================================================
