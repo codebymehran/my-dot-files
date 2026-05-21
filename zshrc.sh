@@ -524,7 +524,8 @@ alias starshipconfig="${EDITOR:-nano} ~/.config/starship.toml"
 alias ports='lsof -i -P -n | grep LISTEN'  # Show listening ports
 alias myip='curl -s ifconfig.me'            # Show public IP
 alias localip='ipconfig getifaddr en0'      # Show local IP
-
+alias vsinstall='cat ~/my-dot-files/vscode-extensions.txt | xargs -L 1 code --install-extension'
+alias vsexport='code --list-extensions > ~/my-dot-files/vscode-extensions.txt && echo "✅ Extensions exported"'
 # ============================================================================
 # LS / EZA (brew install eza)
 # ============================================================================
