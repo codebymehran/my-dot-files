@@ -1698,9 +1698,9 @@
                         "description": "Hyper Deletion (Vim Minimal, Command-based)",
                         "manipulators": [
                             {
-                                "description": "m = delete word before (backward)",
+                                "description": "Hyper+Backspace = delete word left",
                                 "from": {
-                                    "key_code": "m",
+                                    "key_code": "delete_or_backspace",
                                     "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
                                 },
                                 "to": [
@@ -1712,10 +1712,10 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "n = delete word after (forward)",
+                                "description": "Cmd+Hyper+Backspace = delete word right",
                                 "from": {
-                                    "key_code": "n",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
                                 },
                                 "to": [
                                     {
@@ -1726,49 +1726,12 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "command + m = delete char before",
+                                "description": "Opt+Hyper+Backspace = delete char right",
                                 "from": {
-                                    "key_code": "m",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [{ "key_code": "delete_or_backspace" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "command + n = delete char after",
-                                "from": {
-                                    "key_code": "n",
-                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
                                 },
                                 "to": [{ "key_code": "delete_forward" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "option + m = delete to start of line",
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "option + n = delete to end of line",
-                                "from": {
-                                    "key_code": "n",
-                                    "modifiers": { "mandatory": ["left_option", "right_command", "right_control", "right_shift", "right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "k",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
                                 "type": "basic"
                             }
                         ]
