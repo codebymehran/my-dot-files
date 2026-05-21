@@ -1712,6 +1712,15 @@
                                 "type": "basic"
                             },
                             {
+                                "description": "command + m = delete char before",
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "key_code": "delete_or_backspace" }],
+                                "type": "basic"
+                            },
+                            {
                                 "description": "Cmd+Hyper+Backspace = delete word right",
                                 "from": {
                                     "key_code": "delete_or_backspace",
