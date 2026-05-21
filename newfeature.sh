@@ -2,8 +2,9 @@
 
 # ============================================================================
 # newfeature.sh
-# Scaffolds a feature folder inside an existing Next.js project
+# Scaffolds or deletes a feature folder inside an existing Next.js project
 # Run from project root: newfeature <feature-name>
+#                        newfeature --delete <feature-name>
 #
 # Creates:
 #   src/features/<name>/
@@ -24,8 +25,51 @@ set -e
 
 if [ -z "$1" ]; then
   echo "❌ Usage: newfeature <feature-name>"
+  echo "          newfeature --delete <feature-name>"
   echo "   Run from your project root"
   exit 1
+fi
+
+# -----------------------------
+# Delete mode
+# -----------------------------
+
+if [[ "$1" == "--delete" ]]; then
+  if [ -z "$2" ]; then
+    echo "❌ Usage: newfeature --delete <feature-name>"
+    exit 1
+  fi
+
+  FEATURE_NAME="$2"
+  FEATURE_DIR="src/features/$FEATURE_NAME"
+
+  if [ ! -f "package.json" ]; then
+    echo "❌ No package.json found — run from your project root"
+    exit 1
+  fi
+
+  if [ ! -d "$FEATURE_DIR" ]; then
+    echo "❌ Feature '$FEATURE_NAME' not found at $FEATURE_DIR"
+    exit 1
+  fi
+
+  echo ""
+  echo "⚠️  This will permanently delete: $FEATURE_DIR"
+  read -r -p "   Are you sure? [y/N] " confirm
+  confirm="${confirm:-n}"
+
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    rm -rf "$FEATURE_DIR"
+    echo ""
+    echo "🗑️  Deleted $FEATURE_DIR"
+    echo ""
+  else
+    echo ""
+    echo "⏭️  Cancelled — nothing was deleted"
+    echo ""
+  fi
+
+  exit 0
 fi
 
 FEATURE_NAME="$1"
