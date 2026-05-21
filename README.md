@@ -44,45 +44,37 @@ cat vscode-extensions.txt | xargs -L 1 code --install-extension
 ## Update (After changes on GitHub)
 
 ```bash
-cd ~
-rm -rf my-dot-files
-git clone https://github.com/codebymehran/my-dot-files.git
-cd my-dot-files
-# bash install.sh      # interactive — confirm each file
-# or
-bash install.sh -y   # auto-confirm all files
-exec zsh
+dotinstall   # pulls latest from GitHub + reinstalls everything + reloads shell
 ```
 
-> Always push your changes to GitHub before running update — the local repo is deleted first.
+> Always push your changes to GitHub before running `dotinstall` — the local repo is deleted first.
 
 ---
 
 ## Scripts
 
-Reusable shell scripts in the repo root. All work from terminal directly or via Raycast.
+Reusable shell scripts. All available as aliases after `exec zsh`.
 
 | Script | Alias | Usage |
 |--------|-------|-------|
-| new-next-app.sh | `nna` | `nna my-project` — scaffolds Next.js + TS + Tailwind + shadcn/ui |
-| new-next-app-basic.sh | `nnab` | `nnab my-project` — scaffolds a basic Next.js project + optional -rebuild twin for logic practice |
-| newfeature.sh | `newfeature` | `newfeature tasks` — scaffolds `src/features/tasks/` with components, hooks, types, services, schema, utils, index (run from project root). Use `newfeature --delete tasks` to delete a feature folder (asks for confirmation) |
-| rebuild-add.sh | `rebuild` | `rebuild src/features/tasks/components/` — strips everything except imports + JSX into the -rebuild twin (run from project root). Use `rebuild --init my-project` to create the twin if you skipped it at scaffold time. |
-| git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clones into ~/Code/explore and opens in VS Code |
-| clone-own.sh | `cloneown` | `cloneown <url>` — clones your own repo into ~/Code and opens in VS Code |
-| repodelete.sh | `repodelete` | `repodelete <project-name>` — safely deletes a project locally (via Trash) **and** removes it from GitHub (requires `delete_repo` scope) |
+| new-next-app.sh | `nna` | `nna my-project` — scaffold Next.js + TS + Tailwind + shadcn/ui |
+| new-next-app-basic.sh | `nnab` | `nnab my-project` — scaffold basic Next.js app + optional rebuild twin |
+| new.sh | `new` | `new feature tasks` / `new page dashboard` / `new api users` / `new component Button`. Also: `new feature --delete tasks`, `new feature --rename old new`, `new feature --list` |
+| rebuild-add.sh | `rebuild` | `rebuild src/features/tasks/components/` — strip imports+JSX into rebuild twin. `rebuild --init my-project` to create the twin. |
+| git-clone-and-setup-dev-environment.sh | `clone` | `clone <url>` — clone into ~/Code/explore and open in VS Code |
+| clone-own.sh | `cloneown` | `cloneown <url>` — clone your own repo into ~/Code |
+| repodelete.sh | `repodelete` | `repodelete <name>` — delete project locally (Trash) + remove from GitHub |
 
 ### Rebuild workflow
 
 ```bash
-nnab my-project             # scaffold — answer y to create -rebuild twin
+nnab my-project             # scaffold — answer y to create rebuild twin
 # or later:
 rebuild --init my-project   # create twin for an existing project
 
 # as you build, from your project root...
 rebuild src/features/tasks/components/TaskForm.tsx   # single file
 rebuild src/features/tasks/components/               # entire folder
-# strips everything except imports + JSX — no state, no props, no handlers
 
 # when ready to drill...
 cd ~/Code/my-project-rebuild && npm run dev -- -p 3001
@@ -92,190 +84,104 @@ cd ~/Code/my-project-rebuild && npm run dev -- -p 3001
 
 ## GitHub CLI (gh)
 
-`gh` lets you create repos, open PRs, and manage GitHub without leaving the terminal.
-
 ### First-time setup (run once)
 
-**Step 1 — Install:**
 ```bash
 brew install gh
-```
-
-**Step 2 — Login:**
-```bash
 gh auth login
+gh auth refresh -h github.com -s delete_repo   # needed for repodelete
+gh auth status                                  # verify
 ```
-Choose: GitHub.com → SSH → Yes (upload your existing SSH key) → Login with a web browser → follow the prompt.
-
-**Step 3 — Give delete permissions (optional, required for repodelete.sh):**
-
-Some scripts (like repodelete.sh) need permission to delete repos. Make sure your token includes delete_repo:
-
-```bash
-gh auth refresh -h github.com -s delete_repo
-```
-This opens a browser and updates your authentication token.
-You only need to do this once per machine.
-
-**Step 4 — Verify authentication and scopes:**
-
-```bash
-gh auth status
-```
-You should see something like:
-
-- ✓ Logged in to github.com as codebymehran
-- ✓ Git operations for github.com configured to use ssh
-- ✓ Token scopes include: repo, delete_repo
-
-✅ If you see delete_repo in scopes, repodelete.sh will be able to remove repos safely.
-
----
-
-### Creating a repo for a new project
-
-After running `nna my-project`, your project has a local git repo but no GitHub remote yet. To create one:
-
-```bash
-ghcreate
-```
-
-That's it. It creates a private repo named after your current folder, sets it as origin, and pushes everything.
-
-Or with a custom name:
-```bash
-ghcreate my-custom-name
-```
-
----
 
 ### GitHub CLI aliases (defined in zshrc)
 
 | Alias | Usage |
 |-------|-------|
-| `ghcreate` | `ghcreate` — create private GitHub repo from current folder and push |
-| `ghcreate <name>` | `ghcreate my-name` — same but with a custom repo name |
-| `ghopen` | Opens current repo on GitHub in browser |
-| `rebuild <path>` | Run from project root — strips component logic into the -rebuild twin (file or folder) |
-
-Aliases are defined in `zshrc.sh` and available after `exec zsh`.
+| `ghcreate` | Create public GitHub repo from current folder and push |
+| `ghcreate <name>` | Same but with a custom repo name |
+| `ghcreate --private` | Create private repo |
+| `ghopen` | Open current repo on GitHub in browser |
 
 ### Other useful gh commands
 
 ```bash
-gh repo view --web        # Open current repo on GitHub in browser
-gh pr create              # Create a pull request
-gh pr list                # List open PRs
-gh issue create           # Create an issue
-gh issue list             # List open issues
-gh repo list              # List all your repos
+gh pr create / gh pr list
+gh issue create / gh issue list
+gh repo list
 ```
 
 ---
 
 ## What's included
 
-| File | Location | Purpose |
-|------|----------|---------|
-| zshrc.sh | ~/.zshrc | Shell config — aliases, functions, tools |
+### Config files
+
+| File | Installed to | Purpose |
+|------|-------------|---------|
+| zshrc.sh | ~/.zshrc | Shell config — aliases, functions, PATH, tools |
 | starship.toml | ~/.config/starship.toml | Prompt appearance |
 | wezterm.lua | ~/.wezterm.lua | WezTerm terminal config |
 | karabiner.json | ~/.config/karabiner/karabiner.json | Keyboard remapping |
-| settings.json | ~/Library/Application Support/Code/User/settings.json | VS Code settings |
-| keybindings.json | ~/Library/Application Support/Code/User/keybindings.json | VS Code keybindings |
-| React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets | VS Code React snippets |
-| raycast_snippets.json | ~/.config/raycast/snippets/raycast_snippets.json | Raycast text snippets |
-| vscode-extensions.txt | local file in repo | VS Code extensions list |
-| cheatsheets | ~/Desktop/cheatsheets | HTML reference files |
+| settings.json | ~/Library/Application Support/Code/User/ | VS Code settings |
+| keybindings.json | ~/Library/Application Support/Code/User/ | VS Code keybindings |
+| React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/ | VS Code React snippets |
+| raycast_snippets.json | ~/.config/raycast/snippets/ | Raycast text snippets |
+| vscode-extensions.txt | repo only | VS Code extensions list |
+| cheatsheets/ | ~/Desktop/cheatsheets/ | HTML reference files (karabiner, snippets, terminal, vscode, ai) |
 
----
+### Scripts
 
-## macOS Settings
-
-```bash
-bash macos.sh
-```
-
-Includes: Finder, Dock, Keyboard, Trackpad, Screenshots, Spotlight, Battery/Power settings.
-
----
-
-## Git Setup
-
-```bash
-bash git.sh
-```
+| File | Alias | Purpose |
+|------|-------|---------|
+| new.sh | `new` | Scaffold features, pages, API routes, components |
+| new-next-app.sh | `nna` | Full Next.js app scaffold |
+| new-next-app-basic.sh | `nnab` | Basic Next.js app + optional rebuild twin |
+| rebuild-add.sh | `rebuild` | Strip JSX-only into rebuild twin |
+| git-clone-and-setup-dev-environment.sh | `clone` | Clone + open any repo |
+| clone-own.sh | `cloneown` | Clone your own repo into ~/Code |
+| repodelete.sh | `repodelete` | Delete local + GitHub repo |
+| install.sh | `dotinstall` | Install/update all dotfiles |
+| bootstrap.sh | — | Fresh machine setup only |
+| git.sh | — | One-time git config |
+| macos.sh | — | One-time macOS system settings |
 
 ---
 
 ## Notes
 
-- Always push your changes to GitHub before running update
-- Update process deletes the local repo and installs a fresh copy
+- Always push changes to GitHub before running `dotinstall`
 - `bootstrap.sh` is for fresh machines only — skip on updates
-- `install.sh` only handles dotfiles
-- Apps are installed separately via `brew bundle`
-- VS Code extensions are installed separately
-- `git.sh` and `macos.sh` are one-time setup scripts
-- `-rebuild` projects (e.g. `task-manager-rebuild`) are excluded from `gitallpull` and `gacpall` automatically
+- `git.sh` and `macos.sh` are one-time setup scripts — skip on updates
+- `-rebuild` projects are excluded from `gitallpull` and `gacpall` automatically
+- Apps installed separately via `brew bundle`
+- VS Code extensions installed separately
 
 ---
 
 ## Fonts
 
-Already included in Brewfile and installed automatically with `brew bundle`:
+Included in Brewfile, installed with `brew bundle`:
 
 ```bash
-brew install --cask font-meslo-lg-nerd-font       # MesloLGS — used in WezTerm
-brew install --cask font-jetbrains-mono-nerd-font  # JetBrains Mono — used in VS Code
-brew install --cask font-fira-code                 # Fira Code — ligatures
+font-meslo-lg-nerd-font        # WezTerm
+font-jetbrains-mono-nerd-font  # VS Code
+font-fira-code                 # ligatures
 ```
 
-Other great coding fonts worth trying:
+Other good options: `font-monaspace`, `font-geist-mono`, `font-cascadia-code`, `font-sf-mono`, `font-victor-mono`
 
-```bash
-brew install --cask font-monaspace               # Monaspace — GitHub's font family (5 styles)
-brew install --cask font-commit-mono             # Commit Mono — clean, neutral
-brew install --cask font-geist-mono              # Geist Mono — by Vercel
-brew install --cask font-cascadia-code           # Cascadia Code — Microsoft, great ligatures
-brew install --cask font-sf-mono                 # SF Mono — Apple's own monospace
-brew install --cask font-victor-mono             # Victor Mono — cursive italics
-```
-
-Or browse the full list at: https://www.nerdfonts.com/
+Browse all: https://www.nerdfonts.com/
 
 ---
 
 ## Apps
 
-### Development
-- Visual Studio Code
-- WezTerm
-- iTerm2
-- Karabiner-Elements
+**Development:** VS Code, WezTerm, iTerm2, Karabiner-Elements
 
-### Productivity
-- Raycast
-- Contexts
-- CleanShot
-- PopClip
-- Itsycal
+**Productivity:** Raycast, Contexts, CleanShot, PopClip, Itsycal
 
-### Utilities
-- AppCleaner
-- The Unarchiver
-- HiddenBar
-- KeyboardCleanTool
-- Mic Drop
+**Utilities:** AppCleaner, The Unarchiver, HiddenBar, KeyboardCleanTool, Mic Drop
 
-### Media / Browser
-- Google Chrome
-- IINA
+**Media/Browser:** Google Chrome, IINA
 
----
-
-## Manual Apps (App Store)
-
-Install these manually:
-- BetterSnapTool
-- ScreenBrush
+**App Store (manual):** BetterSnapTool, ScreenBrush
