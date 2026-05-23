@@ -118,10 +118,12 @@
   // Per-language formatter overrides — prevents TS language server
   // from fighting with Prettier on .ts and .tsx files
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -210,7 +212,7 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.shellIntegration.enabled": false,
+ 
 
   // ===========================================================
   // 🎯 WORKBENCH - MINIMAL UI
@@ -218,7 +220,7 @@
   "workbench.activityBar.location": "top",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
-  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreview": true,
   "workbench.iconTheme": "vscode-icons",
 
   "workbench.tree.indent": 15,
@@ -460,8 +462,8 @@
       "before": ["<leader>", "<Tab>"],
       "commands": ["alternator.switch", "extension.vim_escape"]
     },
-
-    { "before": ["<leader>", "/"], "commands": [":noh"] },
+{ "before": ["<Esc>"], "after": ["<Esc>"], "commands": [":noh"] },
+    
 
     {
       "before": ["{"],
