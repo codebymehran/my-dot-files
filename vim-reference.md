@@ -1,5 +1,5 @@
 # 📚 Vim Reference Guide
-> `Cmd+Shift+V` to preview · `Space+p` → `vim-ref` to open
+> `Cmd+Shift+,` to open · `Cmd+Shift+V` to toggle preview
 
 ---
 
@@ -14,6 +14,139 @@
 | 5 | Dot Repeat — `.` `cgn+.` | needs drilling |
 | 6 | Registers — `"ayy` `"_d` `griw` | needs drilling |
 | 7 | Macros — `qa` `@a` `@@` | not started |
+
+---
+
+## ⚠️ How MY Vim Differs From Standard
+> Online tutorials use vanilla Vim — your setup is customised. Don't get confused.
+
+| Key | Standard Vim | YOUR setup |
+|-----|-------------|------------|
+| `J` | join lines | **5j** (jump 5 down) |
+| `K` | show man page | **5k** (jump 5 up) |
+| `H` | jump to top of screen | **`^`** (line start) |
+| `L` | jump to bottom of screen | **`$`** (line end) |
+| `B` | word back | **Ctrl+v** (visual block) |
+| `U` | undo line | **Ctrl+r** (redo) ⭐ |
+| `p` in visual | paste (ruins clipboard) | **paste + re-yank** (clipboard safe!) ⭐ |
+| `n/N` | next search result | next result **+ centers screen** |
+| `* / #` | search word | search word **+ centers screen** |
+| `{ / }` | jump paragraph | jump paragraph **+ centers screen** |
+| `> / <` | indent (drops selection) | indent **+ keeps selection** ⭐ |
+| `gc` | (plugin) comment | comment line (visual mode) |
+| `Space` | move right | **leader key** (all your shortcuts) |
+
+---
+
+## 🎯 I Want To...
+> Instant lookup — find your situation, use the shortcut
+
+### ✏️ General Editing
+
+| I want to... | Do this |
+|---|---|
+| Change a word (cursor anywhere on it) | `ciw` |
+| Delete a word without ruining clipboard | `"_diw` |
+| Change everything inside quotes | `ci"` or `ci'` |
+| Change everything inside brackets | `ci(` or `ci{` or `ci[` |
+| Change everything inside a JSX/HTML tag | `cit` |
+| Replace a word with what I copied | `griw` ⭐ |
+| Paste without losing clipboard | `p` in visual mode (auto re-yanks) ⭐ |
+| Paste my last YANK (not last delete) | `"0p` ⭐ |
+| Delete without ruining clipboard | `"_dd` or `"_diw` |
+| Duplicate a line | `Space+d` |
+| Move a line up / down | `Space+k` / `Space+j` |
+| Undo / redo | `u` / `U` ⭐ |
+| Comment / uncomment | `gc` (visual) · `gcc` (visual, stay normal) |
+| Select a word | `viw` |
+| Select inside quotes | `vi"` |
+| Select inside brackets | `vi(` |
+| Yank a whole line | `yy` |
+| Delete a whole line | `dd` |
+| Change from cursor to end of line | `C` |
+| Delete from cursor to end of line | `D` |
+| Join line below onto current line | `gJ` (standard J is remapped) |
+| Indent / un-indent (keep selection) | `>` / `<` ⭐ |
+| Repeat last change | `.` ⭐ |
+| Multi-edit same word (adjacent) | `gb` → keep pressing → edit |
+| Replace scattered occurrences | `*` → `cgn` → type → `Esc` → `.` `.` |
+| Jump to matching bracket | `%` |
+| Jump to start / end of file | `gg` / `G` |
+| Jump 5 lines down / up | `J` / `K` ⭐ |
+| Jump to line start / end | `H` / `L` ⭐ |
+| Jump to a character on current line | `f<char>` |
+| Jump anywhere visible (2 chars) | `s<xx>` |
+| Go to line number | `:<number>` |
+| Search in file | `/searchterm` then `n` / `N` |
+| Clear search highlight | `Space+/` |
+| Open any file fast | `Space+p` |
+| Find text across all files | `Space+f` |
+| Save file | `Space+w` or `Cmd+s` |
+| Close file | `Space+q` or `Cmd+w` |
+
+---
+
+### ⚛️ React / Next.js Components
+
+| I want to... | Do this |
+|---|---|
+| Jump to a component's definition | `gd` on component name |
+| Come back after jumping | ` `` ` (backtick backtick) ⭐ |
+| See where a component is used | `gr` on component name |
+| Peek definition without leaving file | `gD` on component name |
+| Rename a component everywhere | `Space+n` on component name |
+| Check usages before renaming | `Space+m` first, then `Space+n` |
+| Fix a missing import | `Space+a` → select fix |
+| Organise / clean up imports | `Space+i` |
+| Format the whole file | `Space+;` |
+| Change a prop name | `ciw` on the prop |
+| Change a JSX attribute value | `ci"` on the value |
+| Change what's inside a JSX tag | `cit` |
+| Delete a JSX attribute cleanly | `daw` |
+| Wrap selection in JSX tag | visual select → `St` → type tag |
+| Change a JSX tag name | `cit` then type new tag |
+| Remove surrounding JSX tag | `dst` |
+| Hover to see prop types | `gh` |
+| Jump to a hook's definition | `gd` on hook name |
+| See all places a hook is used | `gr` on hook name |
+| Change a function argument | `cia` |
+| Delete a function argument (+ comma) | `daa` |
+| See how many places use a function | CodeLens shows "X references" above it |
+
+---
+
+### 🟦 TypeScript Types & Interfaces
+
+| I want to... | Do this |
+|---|---|
+| Jump to a type's definition | `gd` on the type name |
+| See where a type is used | `gr` on the type name |
+| Rename a type everywhere | `Space+n` on the type name |
+| Change a type in a union | `ciw` on the type |
+| Change a generic type parameter | `ci<` |
+| Change a string literal type | `ci"` |
+| Hover to see inferred type | `gh` |
+| Jump to next / prev type error | `]d` / `[d` |
+| Quick fix a type error | `Space+a` |
+| Change an interface property name | `ciw` on the property |
+| Change an interface property type | `ciw` on the type after `:` |
+| Delete an interface property line | `dd` |
+| Replace a type with yanked one | `griw` |
+
+---
+
+### 🪟 Splits & Navigation
+
+| I want to... | Do this |
+|---|---|
+| Split editor side by side | `Cmd+\` or `Space+v` |
+| Split editor below | `Cmd+Shift+\` or `Space+\` |
+| Move between splits | `Ctrl+h/j/k/l` |
+| Close current split | `Ctrl+w q` |
+| Maximise current editor | `Ctrl+Shift+B` |
+| Toggle file explorer | `Space+e` |
+| Next / prev tab | `Tab` / `Shift+Tab` |
+| Open vim reference (this file) | `Cmd+Shift+,` |
 
 ---
 
@@ -49,7 +182,7 @@ import { A, B, C } from ...  // daw  → remove B cleanly
 ```
 ma    set mark a          `a   jump to mark a (exact)     'a   jump to line of mark a
 ``    toggle last 2 pos ⭐  gi   last insert point          :marks  show all marks
-g;    back in history      g,   forward in history
+g;    back in change list  g,   forward in change list
 ```
 
 ---
@@ -92,6 +225,46 @@ gri(   replace parens   grit   replace inside tag
 
 ---
 
+## ⚠️ Clipboard Gotchas
+> Standard Vim problem — but your setup already solves most of it
+
+**The standard Vim trap:**
+```
+yiw    yank "foo"          ✅ clipboard = "foo"
+daw    delete "bar"        ❌ clipboard = "bar" (ruined!)
+p      pastes "bar"        😱 wrong!
+```
+
+**Your setup already fixes visual paste:**
+```js
+// YOUR p in visual mode = paste + re-yank automatically ⭐
+// So: viw p  →  pastes AND keeps clipboard intact
+```
+
+**Still useful to know:**
+```
+"_daw   delete without touching clipboard  ⭐
+"_dd    delete line without touching clipboard
+"0p     paste last YANK (not last delete)  ⭐
+```
+
+**Replace word with yanked text (safest options):**
+```
+griw        cleanest — replace word, clipboard safe    ✅ use this
+viw p       paste over selection — YOUR p re-yanks     ✅ also safe
+viw "0p     explicit yank register — always works      ✅ belt and braces
+```
+
+**Mental model:**
+```
+p     = paste last DELETE or YANK   (risky in standard Vim, safe in yours visually)
+"0p   = paste last YANK only        (always safe) ⭐
+"_d   = delete to blackhole         (always safe) ⭐
+griw  = replace without any risk    (always safe) ⭐
+```
+
+---
+
 ## 🎬 Macros
 ```
 qa  start recording    q   stop    @a  replay    @@  replay last    5@a  replay ×5
@@ -118,10 +291,18 @@ cia  change arg (respects commas)    daa  delete arg + comma    yia  yank arg
 **Copy entire file to another:**
 `Space+c` → `Tab` to target → `Space+x`
 
-**Multi-cursor:** `gb` add next occurrence · keep pressing · edit all
+**Multi-cursor (adjacent):** `gb` → keep pressing → edit all
 > `Space+m` first to confirm refs, then `gb`
 
 **Scattered replace:** `*` → `cgn` → type → `Esc` → `.` `.` `.`
+
+**Safe rename across project:** `Space+n` (uses LSP — renames imports too)
+
+**Fix a broken import:** `Space+a` → select fix
+
+**Jump back after `gd`:** ` `` ` — toggles last 2 positions ⭐
+
+**Visual block edit (multiple lines):** `B` → select → `I` → type → `Esc`
 
 ---
 
@@ -129,35 +310,49 @@ cia  change arg (respects commas)    daa  delete arg + comma    yia  yank arg
 ```
 ciw          edit any word (no need to move to start)
 ci" / ci'    edit any string (cursor anywhere inside)
+H / L        line start / end (your remaps) ⭐
+J / K        5 lines down / up (your remaps) ⭐
+"_d          delete without ruining clipboard ⭐
+"0p          paste your last YANK not last delete ⭐
+griw         replace word safely (no clipboard loss)
+viw p        paste over word — your p re-yanks ⭐
 Space+p      open any file in < 2s
-Space+n      rename symbol everywhere
+Space+n      rename symbol everywhere (safe refactor)
 gb           multi-edit adjacent occurrences
 cgn + .      multi-edit scattered occurrences
 gc           toggle comment (visual mode)
-gh           hover info without leaving keyboard
+gh           hover info / type without leaving keyboard
+``           jump back after gd ⭐
+U            redo (your remap) ⭐
+B            visual block mode (your remap) ⭐
 ```
 
 ---
 
 ## 📚 Shortcuts Reference
 
-**Movement**
+**Movement (YOUR remaps)**
 ```
-h j k l      left/down/up/right        H / L      line start / end
-J / K        5 lines down / up         w / b / e  word segments
-{ / }        jump blank lines          gg / G     top / bottom
-f<c>         jump to char              s<xx>      sneak anywhere
+h j k l      left/down/up/right
+J / K        5 lines down / up  ⭐ (remapped)
+H / L        line start / end   ⭐ (remapped)
+w / b / e    word segments (CamelCase aware)
+{ / }        jump blank lines + center
+gg / G       top / bottom of file
+f<c>         jump to char on line
+s<xx>        sneak to any 2-char sequence
 %            matching bracket
 ```
 
-**Undo/Redo:** `u` undo ⭐ · `U` redo · (not Cmd+Z)
+**Undo/Redo:** `u` undo · `U` redo ⭐ (remapped)
+**Visual block:** `B` ⭐ (remapped from Ctrl+v)
 **Escape insert:** `jj`
 
 **Workspace**
 ```
 Space+e  explorer      Space+p  quick open     Space+f  find in files
 Space+r  recent        Space+b  sidebar        Space+z  zen mode
-Tab      next tab      S-Tab    prev tab
+Space+/  clear search  Tab      next tab        S-Tab    prev tab
 ```
 
 **Terminal**
@@ -168,30 +363,48 @@ Space+tn  new       Space+tk  kill
 
 **File**
 ```
-Space+w  save    Space+q  close    Space+qa  close saved    Space+o  close others
-Space+c  copy file    Space+x  replace file    Space+d  duplicate line
+Space+w  save      Space+q   close       Space+qa  close saved
+Space+o  close others        Space+d     duplicate line
+Space+c  copy file contents  Space+x     replace file with clipboard
 ```
 
 **Code**
 ```
 Space+a  quick fix    Space+n  rename       Space+s  symbols
-Space+m  references   Space+;  format       Space+i  organize imports
-Space+j  move down    Space+k  move up
+Space+m  references   Space+;  format       Space+i  organise imports
+Space+j  move line ↓  Space+k  move line ↑
 ```
 
 **Go To**
 ```
 gd  definition    gD  peek def      gr  references    gI  implementation
-gh  hover         gf  file          gi  last insert ✅
-g;  back          g,  forward
+gh  hover/types   gi  last insert   g;  nav back       g,  nav forward
+``  toggle last 2 positions ⭐
 ```
 
-**Splits / Folds / Errors / Git**
+**Errors**
 ```
-Space+v  split →    Space+\  split ↓    Ctrl+h/j/k/l  navigate splits
-zo/zc    fold open/close    zO/zC  all open/close
-]d / [d  next/prev error
-Space+gs  status    Space+gc  commit    Space+gp  push    Space+gP  pull
+]d  next error / warning      [d  prev error / warning
+Space+a  quick fix on error
+```
+
+**Splits**
+```
+Space+v      split right    Space+\      split down
+Cmd+\        split right    Cmd+Shift+\  split down
+Ctrl+h/j/k/l navigate splits
+Ctrl+w q     close split    Ctrl+Shift+B maximise editor
+```
+
+**Folds**
+```
+zo / zc    open / close fold
+zO / zC    open / close ALL folds
+```
+
+**Git**
+```
+Space+gs  SCM panel    Space+gc  commit    Space+gp  push    Space+gP  pull
 ```
 
 ---
@@ -221,6 +434,7 @@ Formatters      Prettier / Black  Sticky scroll   3 lines
 Minimap         off               Cursor context  8 lines
 Word wrap       on                Vim thread      isolated (affinity)
 Format on paste off               Letter spacing  0.5 · Padding 16px
+Quote style     single            Print width     100
 ```
 **Python mode:** set `python.languageServer` → `"Pylance"` · `diagnosticMode` → `"workspace"`
 
@@ -228,6 +442,8 @@ Format on paste off               Letter spacing  0.5 · Padding 16px
 
 ## 📝 Today I Learned
 <!-- newest first -->
+
+---
 
 ## 🔧 Broken / To Investigate
 <!-- things that didn't work as expected -->
