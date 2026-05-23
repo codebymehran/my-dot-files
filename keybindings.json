@@ -119,6 +119,14 @@
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
   },
   {
+    "key": "cmd+shift+,",
+    "command": "vscode.open",
+    "args": {
+      "scheme": "file",
+      "path": "/Users/mac/Library/Application Support/Code/User/vim-reference.md",
+    },
+  },
+  {
     "key": "k",
     "command": "list.focusUp",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
