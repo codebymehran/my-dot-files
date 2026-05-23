@@ -118,12 +118,21 @@
     "command": "list.focusDown",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
   },
+
   {
     "key": "cmd+shift+,",
-    "command": "vscode.open",
+    "command": "runCommands",
     "args": {
-      "scheme": "file",
-      "path": "/Users/mac/Library/Application Support/Code/User/vim-reference.md",
+      "commands": [
+        {
+          "command": "vscode.open",
+          "args": {
+            "scheme": "file",
+            "path": "/Users/mac/Library/Application Support/Code/User/vim-reference.md",
+          },
+        },
+        "markdown.showPreviewToSide",
+      ],
     },
   },
   {
