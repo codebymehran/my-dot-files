@@ -87,6 +87,7 @@ copy starship.toml "$HOME/.config/starship.toml" "starship.toml"
 copy karabiner.json "$HOME/.config/karabiner/karabiner.json" "karabiner.json"
 copy settings.json "$HOME/Library/Application Support/Code/User/settings.json" "VS Code settings"
 copy keybindings.json "$HOME/Library/Application Support/Code/User/keybindings.json" "VS Code keybindings"
+copy vim-reference.md "$HOME/Library/Application Support/Code/User/vim-reference.md" "Vim reference guide"
 copy React_Snippets.code-snippets "$HOME/Library/Application Support/Code/User/snippets/React_Snippets.code-snippets" "React snippets"
 
 echo ""
