@@ -9,7 +9,7 @@
 | 1 | Movement — `hjkl` `H/L` `J/K` `w/b/e` `{/}` `gg/G` `f` sneak | needs drilling |
 | 2 | Text Objects — `ciw` `ci"` `ci(` `daw` `diw` `yi"` | needs drilling |
 | 3 | Operators + Counts — `3yy` `5dd` `d3w` `c2w` | needs drilling |
-| 4 | Marks & Jumps — `ma` `` `a `` ` `` ` `gi` | needs drilling |
+| 4 | Marks & Jumps — `ma` `a ` `` ` `gi` | needs drilling |
 | 4.5 | Sneak · CamelCase Motion · Visual Star | needs drilling |
 | 5 | Dot Repeat — `.` `cgn+.` | needs drilling |
 | 6 | Registers — `"ayy` `"_d` `griw` | needs drilling |
@@ -24,16 +24,17 @@
 |-----|-------------|------------|
 | `J` | join lines | **5j** (jump 5 down) |
 | `K` | show man page | **5k** (jump 5 up) |
-| `H` | jump to top of screen | **`^`** (line start) |
-| `L` | jump to bottom of screen | **`$`** (line end) |
-| `B` | word back | **Ctrl+v** (visual block) |
-| `U` | undo line | **Ctrl+r** (redo) ⭐ |
-| `p` in visual | paste (ruins clipboard) | **paste + re-yank** (clipboard safe!) ⭐ |
-| `n/N` | next search result | next result **+ centers screen** |
-| `* / #` | search word | search word **+ centers screen** |
-| `{ / }` | jump paragraph | jump paragraph **+ centers screen** |
-| `> / <` | indent (drops selection) | indent **+ keeps selection** ⭐ |
-| `gc` | (plugin) comment | comment line (visual mode) |
+| `H` | jump to top of screen | **`^`** line start |
+| `L` | jump to bottom of screen | **`$`** line end |
+| `B` | word back | **Ctrl+v** visual block mode |
+| `U` | undo line | **redo** ⭐ |
+| `p` in visual | paste (ruins clipboard) | **paste + re-yank** (safe!) ⭐ |
+| `n / N` | next/prev search result | next/prev + **centers screen** |
+| `* / #` | search word under cursor | search + **centers screen** |
+| `{ / }` | jump paragraph | jump + **centers screen** |
+| `> / <` | indent (drops selection) | indent + **keeps selection** ⭐ |
+| `gc` | (plugin) comment toggle | comment line in visual mode |
+| `Esc` in normal | already normal | **clears search highlight** ⭐ |
 | `Space` | move right | **leader key** (all your shortcuts) |
 
 ---
@@ -51,13 +52,14 @@
 | Change everything inside brackets | `ci(` or `ci{` or `ci[` |
 | Change everything inside a JSX/HTML tag | `cit` |
 | Replace a word with what I copied | `griw` ⭐ |
-| Paste without losing clipboard | `p` in visual mode (auto re-yanks) ⭐ |
-| Paste my last YANK (not last delete) | `"0p` ⭐ |
-| Delete without ruining clipboard | `"_dd` or `"_diw` |
+| Paste without losing clipboard (visual) | `viw p` — your `p` re-yanks automatically ⭐ |
+| Paste my last YANK not last delete | `"0p` ⭐ |
+| Delete a line without ruining clipboard | `"_dd` |
+| Delete a word without ruining clipboard | `"_diw` |
 | Duplicate a line | `Space+d` |
 | Move a line up / down | `Space+k` / `Space+j` |
 | Undo / redo | `u` / `U` ⭐ |
-| Comment / uncomment | `gc` (visual) · `gcc` (visual, stay normal) |
+| Comment / uncomment | `gc` (visual) · `gcc` (visual, exits to normal) |
 | Select a word | `viw` |
 | Select inside quotes | `vi"` |
 | Select inside brackets | `vi(` |
@@ -65,8 +67,8 @@
 | Delete a whole line | `dd` |
 | Change from cursor to end of line | `C` |
 | Delete from cursor to end of line | `D` |
-| Join line below onto current line | `gJ` (standard J is remapped) |
-| Indent / un-indent (keep selection) | `>` / `<` ⭐ |
+| Join line below onto current | `gJ` (note: `J` is remapped to 5j) |
+| Indent / un-indent and keep selection | `>` / `<` ⭐ |
 | Repeat last change | `.` ⭐ |
 | Multi-edit same word (adjacent) | `gb` → keep pressing → edit |
 | Replace scattered occurrences | `*` → `cgn` → type → `Esc` → `.` `.` |
@@ -76,9 +78,10 @@
 | Jump to line start / end | `H` / `L` ⭐ |
 | Jump to a character on current line | `f<char>` |
 | Jump anywhere visible (2 chars) | `s<xx>` |
-| Go to line number | `:<number>` |
+| Go to specific line number | `:<number>` then `Enter` |
 | Search in file | `/searchterm` then `n` / `N` |
-| Clear search highlight | `Space+/` |
+| Clear search highlight | `Esc` in normal mode ⭐ |
+| Visual block edit (multiple lines) | `B` → select → `I` → type → `Esc` |
 | Open any file fast | `Space+p` |
 | Find text across all files | `Space+f` |
 | Save file | `Space+w` or `Cmd+s` |
@@ -103,14 +106,14 @@
 | Change a JSX attribute value | `ci"` on the value |
 | Change what's inside a JSX tag | `cit` |
 | Delete a JSX attribute cleanly | `daw` |
-| Wrap selection in JSX tag | visual select → `St` → type tag |
+| Wrap selection in JSX tag | visual select → `St` → type tag name |
 | Change a JSX tag name | `cit` then type new tag |
 | Remove surrounding JSX tag | `dst` |
 | Hover to see prop types | `gh` |
 | Jump to a hook's definition | `gd` on hook name |
 | See all places a hook is used | `gr` on hook name |
 | Change a function argument | `cia` |
-| Delete a function argument (+ comma) | `daa` |
+| Delete a function argument + comma | `daa` |
 | See how many places use a function | CodeLens shows "X references" above it |
 
 ---
@@ -146,7 +149,7 @@
 | Maximise current editor | `Ctrl+Shift+B` |
 | Toggle file explorer | `Space+e` |
 | Next / prev tab | `Tab` / `Shift+Tab` |
-| Open vim reference (this file) | `Cmd+Shift+,` |
+| Open this file | `Cmd+Shift+,` |
 
 ---
 
@@ -226,7 +229,7 @@ gri(   replace parens   grit   replace inside tag
 ---
 
 ## ⚠️ Clipboard Gotchas
-> Standard Vim problem — but your setup already solves most of it
+> Standard Vim problem — your setup already solves most of it
 
 **The standard Vim trap:**
 ```
@@ -238,26 +241,26 @@ p      pastes "bar"        😱 wrong!
 **Your setup already fixes visual paste:**
 ```js
 // YOUR p in visual mode = paste + re-yank automatically ⭐
-// So: viw p  →  pastes AND keeps clipboard intact
+// viw p  →  pastes AND keeps clipboard intact
 ```
 
-**Still useful to know:**
+**Still useful:**
 ```
 "_daw   delete without touching clipboard  ⭐
 "_dd    delete line without touching clipboard
 "0p     paste last YANK (not last delete)  ⭐
 ```
 
-**Replace word with yanked text (safest options):**
+**Replace word with yanked text — safest options:**
 ```
-griw        cleanest — replace word, clipboard safe    ✅ use this
-viw p       paste over selection — YOUR p re-yanks     ✅ also safe
-viw "0p     explicit yank register — always works      ✅ belt and braces
+griw        cleanest, clipboard safe             ✅ use this first
+viw p       paste over — your p re-yanks         ✅ also safe
+viw "0p     explicit yank register               ✅ belt and braces
 ```
 
 **Mental model:**
 ```
-p     = paste last DELETE or YANK   (risky in standard Vim, safe in yours visually)
+p     = paste last DELETE or YANK   (risky standard, safe yours visually)
 "0p   = paste last YANK only        (always safe) ⭐
 "_d   = delete to blackhole         (always safe) ⭐
 griw  = replace without any risk    (always safe) ⭐
@@ -302,7 +305,7 @@ cia  change arg (respects commas)    daa  delete arg + comma    yia  yank arg
 
 **Jump back after `gd`:** ` `` ` — toggles last 2 positions ⭐
 
-**Visual block edit (multiple lines):** `B` → select → `I` → type → `Esc`
+**Visual block edit (multiple lines):** `B` → select rows → `I` → type → `Esc`
 
 ---
 
@@ -310,21 +313,21 @@ cia  change arg (respects commas)    daa  delete arg + comma    yia  yank arg
 ```
 ciw          edit any word (no need to move to start)
 ci" / ci'    edit any string (cursor anywhere inside)
-H / L        line start / end (your remaps) ⭐
-J / K        5 lines down / up (your remaps) ⭐
+H / L        line start / end ⭐ (your remaps)
+J / K        5 lines down / up ⭐ (your remaps)
 "_d          delete without ruining clipboard ⭐
 "0p          paste your last YANK not last delete ⭐
 griw         replace word safely (no clipboard loss)
 viw p        paste over word — your p re-yanks ⭐
-Space+p      open any file in < 2s
+Esc          clear search highlight ⭐ (your remap)
 Space+n      rename symbol everywhere (safe refactor)
 gb           multi-edit adjacent occurrences
 cgn + .      multi-edit scattered occurrences
 gc           toggle comment (visual mode)
 gh           hover info / type without leaving keyboard
 ``           jump back after gd ⭐
-U            redo (your remap) ⭐
-B            visual block mode (your remap) ⭐
+U            redo ⭐ (your remap)
+B            visual block mode ⭐ (your remap)
 ```
 
 ---
@@ -333,26 +336,27 @@ B            visual block mode (your remap) ⭐
 
 **Movement (YOUR remaps)**
 ```
-h j k l      left/down/up/right
-J / K        5 lines down / up  ⭐ (remapped)
-H / L        line start / end   ⭐ (remapped)
+h j k l      left / down / up / right
+J / K        5 lines down / up  ⭐ remapped
+H / L        line start / end   ⭐ remapped
 w / b / e    word segments (CamelCase aware)
-{ / }        jump blank lines + center
+{ / }        jump blank lines + center screen
 gg / G       top / bottom of file
 f<c>         jump to char on line
 s<xx>        sneak to any 2-char sequence
 %            matching bracket
 ```
 
-**Undo/Redo:** `u` undo · `U` redo ⭐ (remapped)
-**Visual block:** `B` ⭐ (remapped from Ctrl+v)
+**Undo/Redo:** `u` undo · `U` redo ⭐ remapped
+**Visual block:** `B` ⭐ remapped from Ctrl+v
 **Escape insert:** `jj`
+**Clear highlight:** `Esc` in normal mode ⭐ remapped
 
 **Workspace**
 ```
 Space+e  explorer      Space+p  quick open     Space+f  find in files
 Space+r  recent        Space+b  sidebar        Space+z  zen mode
-Space+/  clear search  Tab      next tab        S-Tab    prev tab
+Tab      next tab      S-Tab    prev tab
 ```
 
 **Terminal**
@@ -363,15 +367,15 @@ Space+tn  new       Space+tk  kill
 
 **File**
 ```
-Space+w  save      Space+q   close       Space+qa  close saved
-Space+o  close others        Space+d     duplicate line
-Space+c  copy file contents  Space+x     replace file with clipboard
+Space+w  save      Space+q   close        Space+qa  close saved
+Space+o  close others         Space+d     duplicate line
+Space+c  copy file contents   Space+x     replace file with clipboard
 ```
 
 **Code**
 ```
-Space+a  quick fix    Space+n  rename       Space+s  symbols
-Space+m  references   Space+;  format       Space+i  organise imports
+Space+a  quick fix    Space+n  rename        Space+s  symbols
+Space+m  references   Space+;  format        Space+i  organise imports
 Space+j  move line ↓  Space+k  move line ↑
 ```
 
@@ -384,22 +388,21 @@ gh  hover/types   gi  last insert   g;  nav back       g,  nav forward
 
 **Errors**
 ```
-]d  next error / warning      [d  prev error / warning
-Space+a  quick fix on error
+]d  next error / warning    [d  prev error / warning    Space+a  quick fix
 ```
 
 **Splits**
 ```
-Space+v      split right    Space+\      split down
-Cmd+\        split right    Cmd+Shift+\  split down
-Ctrl+h/j/k/l navigate splits
-Ctrl+w q     close split    Ctrl+Shift+B maximise editor
+Space+v / Cmd+\        split right
+Space+\ / Cmd+Shift+\  split down
+Ctrl+h/j/k/l           navigate splits
+Ctrl+w q               close split
+Ctrl+Shift+B           maximise editor
 ```
 
 **Folds**
 ```
-zo / zc    open / close fold
-zO / zC    open / close ALL folds
+zo / zc    open / close fold      zO / zC    open / close ALL folds
 ```
 
 **Git**
@@ -437,6 +440,16 @@ Format on paste off               Letter spacing  0.5 · Padding 16px
 Quote style     single            Print width     100
 ```
 **Python mode:** set `python.languageServer` → `"Pylance"` · `diagnosticMode` → `"workspace"`
+
+---
+
+## 🔧 settings.json Fixes Applied
+```
+✅ Esc in normal mode  → clears search highlight (replaced Space+/)
+✅ Shell integration   → removed false override (re-enables command decorations)
+✅ formatOnSave        → added explicitly to [typescript] and [typescriptreact]
+✅ vim.timeout         → bump to 300 if multi-key sequences ever misfire
+```
 
 ---
 
