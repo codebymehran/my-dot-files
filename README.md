@@ -125,6 +125,7 @@ gh repo list
 | karabiner.json | ~/.config/karabiner/karabiner.json | Keyboard remapping |
 | settings.json | ~/Library/Application Support/Code/User/ | VS Code settings |
 | keybindings.json | ~/Library/Application Support/Code/User/ | VS Code keybindings |
+| vim-reference.md | ~/Library/Application Support/Code/User/ | Vim motions reference, learning path & Claude quiz prompt |
 | React_Snippets.code-snippets | ~/Library/Application Support/Code/User/snippets/ | VS Code React snippets |
 | raycast_snippets.json | ~/.config/raycast/snippets/ | Raycast text snippets |
 | vscode-extensions.txt | repo only | VS Code extensions list |
