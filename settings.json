@@ -47,31 +47,32 @@
   "editor.stickyScroll.scrollWithEditor": true,
   "editor.lineNumbers": "relative",
   "editor.renderLineHighlight": "all",
-// Snippet suggestions appear in dropdown while typing inside placeholders
-"editor.suggest.snippetsPreventQuickSuggestions": false,
+  // Snippet suggestions appear in dropdown while typing inside placeholders
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
 
-// Jumps directly when multiple definitions exist (useful with TS interfaces)
-// References stay inline as peek so they don't open a new tab
-"editor.gotoLocation.multipleDefinitions": "goto",
-"editor.gotoLocation.multipleReferences": "peek",
-// ===========================================================
-// 🚀 JAVASCRIPT / TYPESCRIPT
-// ===========================================================
-// non-relative uses @/ aliases instead of ../../ — correct for Next.js tsconfig paths
-"js/ts.preferences.importModuleSpecifier": "non-relative",
-"js/ts.preferences.includePackageJsonAutoImports": "auto",
-"js/ts.preferences.quoteStyle": "single",
+  // Jumps directly when multiple definitions exist (useful with TS interfaces)
+  // References stay inline as peek so they don't open a new tab
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleReferences": "peek",
 
-"js/ts.updateImportsOnFileMove.enabled": "always",
+  // ===========================================================
+  // 🚀 JAVASCRIPT / TYPESCRIPT
+  // ===========================================================
+  // non-relative uses @/ aliases instead of ../../ — correct for Next.js tsconfig paths
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "js/ts.preferences.includePackageJsonAutoImports": "auto",
+  "js/ts.preferences.quoteStyle": "single",
 
-// Inlay hints — literals only keeps it readable without cluttering every line
-// e.g. setTimeout(fn, /* ms */ 1000) instead of annotating every variable
-"js/ts.inlayHints.parameterNames.enabled": "literals",
-"js/ts.inlayHints.variableTypes.enabled": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
 
-// Shows "2 references" above functions — see what's using them without Find References
-"js/ts.referencesCodeLens.enabled": true,
-"js/ts.implementationsCodeLens.enabled": true,
+  // Inlay hints — literals only keeps it readable without cluttering every line
+  // e.g. setTimeout(fn, /* ms */ 1000) instead of annotating every variable
+  "js/ts.inlayHints.parameterNames.enabled": "literals",
+  "js/ts.inlayHints.variableTypes.enabled": false,
+
+  // Shows "2 references" above functions — see what's using them without Find References
+  "js/ts.referencesCodeLens.enabled": true,
+  "js/ts.implementationsCodeLens.enabled": true,
 
   // ===========================================================
   // 🐍 PYTHON CONFIGURATION
@@ -81,9 +82,9 @@
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnType": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit",
+      "source.organizeImports": "explicit"
     },
-    "editor.rulers": [88],
+    "editor.rulers": [88]
   },
 
   // Pylance off — not actively coding in Python, switch to "Pylance" when needed
@@ -114,20 +115,20 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-// Per-language formatter overrides — prevents TS language server
-// from fighting with Prettier on .ts and .tsx files
-"[typescript]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[typescriptreact]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[json]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
+  // Per-language formatter overrides — prevents TS language server
+  // from fighting with Prettier on .ts and .tsx files
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit",
+    "source.organizeImports": "explicit"
   },
 
   // ===========================================================
@@ -139,7 +140,7 @@
     "*.py": "python",
     "requirements.txt": "pip-requirements",
     "Pipfile": "toml",
-    ".env": "dotenv",
+    ".env": "dotenv"
   },
 
   "files.exclude": {
@@ -153,7 +154,7 @@
     "**/.pytest_cache": true,
     "**/*.pyc": true,
     "**/.venv": false,
-    "**/venv": false,
+    "**/venv": false
   },
 
   "files.watcherExclude": {
@@ -166,7 +167,7 @@
     "**/__pycache__/**": true,
     "**/.pytest_cache/**": true,
     "**/.venv/**": true,
-    "**/venv/**": true,
+    "**/venv/**": true
   },
 
   // ===========================================================
@@ -175,11 +176,9 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact",
-    "python": "python",
+    "python": "python"
   },
   "emmet.triggerExpansionOnTab": true,
-
-
 
   "css.lint.unknownAtRules": "ignore",
 
@@ -197,7 +196,7 @@
     "**/.pytest_cache": true,
     "**/*.pyc": true,
     "**/.venv": true,
-    "**/venv": true,
+    "**/venv": true
   },
 
   "search.smartCase": true,
@@ -228,7 +227,7 @@
   "explorer.confirmDragAndDrop": false,
 
   "window.commandCenter": false,
- 
+
   "workbench.editor.showTabs": "multiple",
 
   // ===========================================================
@@ -250,13 +249,15 @@
   "errorLens.fontSize": "0.9em",
   "errorLens.fontWeight": "400",
   "errorLens.messageEnabled": true,
-// ===========================================================
-// 🔍 ESLINT
-// ===========================================================
-// format.enable false keeps Prettier as the only formatter
-// prevents ESLint and Prettier fighting over the same file
-"eslint.format.enable": false,
-"eslint.lintTask.enable": true,
+
+  // ===========================================================
+  // 🔍 ESLINT
+  // ===========================================================
+  // format.enable false keeps Prettier as the only formatter
+  // prevents ESLint and Prettier fighting over the same file
+  "eslint.format.enable": false,
+  "eslint.lintTask.enable": true,
+
   // ===========================================================
   // 💬 COLORFUL COMMENTS - OPTIMIZED FOR WHITE THEME
   // ===========================================================
@@ -267,7 +268,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": true,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "---",
@@ -275,7 +276,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": true,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "...",
@@ -283,7 +284,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "*",
@@ -291,7 +292,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "!",
@@ -299,7 +300,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": true,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "?",
@@ -307,7 +308,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": true,
+      "italic": true
     },
     {
       "tag": "@",
@@ -315,7 +316,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "^",
@@ -323,7 +324,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": true,
+      "italic": true
     },
     {
       "tag": "todo",
@@ -331,7 +332,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "+",
@@ -339,7 +340,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "-",
@@ -347,7 +348,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "//",
@@ -355,7 +356,7 @@
       "strikethrough": true,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "$",
@@ -363,7 +364,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "%",
@@ -371,7 +372,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "&",
@@ -379,7 +380,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "~",
@@ -387,7 +388,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": "=",
@@ -395,7 +396,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
+      "italic": false
     },
     {
       "tag": ">",
@@ -403,8 +404,8 @@
       "strikethrough": false,
       "backgroundColor": "transparent",
       "bold": false,
-      "italic": false,
-    },
+      "italic": false
+    }
   ],
 
   // ===========================================================
@@ -445,9 +446,9 @@
   // Only giving Vim the core ops it needs here.
   // ===========================================================
   "vim.handleKeys": {
-    "<C-a>": true,  // increment number under cursor
-    "<C-x>": true,  // decrement number under cursor
-    "<C-v>": true,  // visual block mode
+    "<C-a>": true,
+    "<C-x>": true,
+    "<C-v>": true
   },
 
   // ===========================================================
@@ -456,18 +457,18 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<leader>", "<Tab>"],
-      "commands": ["alternator.switch", "extension.vim_escape"],
+      "commands": ["alternator.switch", "extension.vim_escape"]
     },
 
     { "before": ["<leader>", "/"], "commands": [":noh"] },
 
     {
       "before": ["{"],
-      "after": ["{", "z", "z"],
+      "after": ["{", "z", "z"]
     },
     {
       "before": ["}"],
-      "after": ["}", "z", "z"],
+      "after": ["}", "z", "z"]
     },
 
     // Redo (ergonomic)
@@ -601,7 +602,7 @@
     { "before": ["J"], "after": ["5", "j"] },
     { "before": ["K"], "after": ["5", "k"] },
     { "before": ["H"], "after": ["^"] },
-    { "before": ["L"], "after": ["$"] },
+    { "before": ["L"], "after": ["$"] }
   ],
 
   // ===========================================================
@@ -619,7 +620,7 @@
     { "before": ["g", "c"], "commands": ["editor.action.commentLine"] },
     { "before": ["g", "c", "c"], "commands": ["editor.action.commentLine", "extension.vim_escape"] },
 
-    { "before": ["p"], "after": ["p", "g", "v", "y"] },
+    { "before": ["p"], "after": ["p", "g", "v", "y"] }
   ],
 
   // ===========================================================
@@ -1052,27 +1053,5 @@
   - u/U for undo/redo highlighted (replace Cmd+Z habit)
   - Added missing speed tips: gb multi-cursor, gc comment, gh hover
 
-Here is my VSCode settings.json file. I want you to help me master my Vim motions.
-
-Please do the following:
-1. Quiz me on Vim motions and bindings ONE BY ONE — wait for my answer before continuing
-2. For every question, provide a code snippet with a comment above describing exactly what to do
-   e.g. // Move cursor anywhere inside "hello" and delete it + the quotes, ready to type replacement
-3. If I get it wrong, correct me, explain why, then give me a NEW snippet to practice the correct motion
-4. Focus on things I might not be using or might have forgotten
-5. After the quiz, ask if I want to focus on a specific stage from my learning path
-6. If you notice any broken bindings or improvements, tell me at the end
-7. Keep it conversational and fun — one question at a time
-
-My current Vim stage progress:
-- Stage 1 Movement — needs drilling
-- Stage 2 Text Objects — needs drilling
-- Stage 3 Operators + Counts — needs drilling
-- Stage 4 Marks & Jumps — needs drilling
-- Stage 5 Dot Repeat — needs drilling
-- Stage 6 Registers — needs drilling
-- Stage 7 Macros — not started
-
-ps: if you see ✅ on a stage, skip it
-
+  */
 }
