@@ -195,7 +195,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
     <p>Every project moves through the same five-stage cycle. Snippets and dedicated AIs each have their place:</p>
     <div class="flow-diagram">
       <span class="purple">Predictor AI</span> <span class="flow-arrow">→</span> stress-test your idea before committing
-      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;go</span> + <span>;;arch</span> <span class="flow-arrow">→</span> plan everything before touching code
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;go</span> + <span>;;plan</span> <span class="flow-arrow">→</span> plan everything before touching code
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span class="amber">Architect AI</span> <span class="flow-arrow">→</span> get your task-by-task build order
       <br><span class="flow-arrow" style="margin-left:0">→</span> build <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic AI</span> when stuck
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> + <span class="coral">Reflector AI</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out
@@ -216,7 +216,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
       <tbody>
         <tr><td style="color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Predictor AI</td><td>Before you plan — stress-test a decision or approach</td></tr>
         <tr><td><code class="tkw">go</code></td><td>Starting a brand new project — sets context, asks first planning question</td></tr>
-        <tr><td><code class="tkw">arch</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
+        <tr><td><code class="tkw">plan</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
         <tr><td style="color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Architect AI</td><td>Hand it the completed doc — get smallest possible build tasks in order</td></tr>
         <tr><td><code class="tkw">begin</code></td><td>Starting a new chat session with a specific focus</td></tr>
         <tr><td><code class="tkw">learn</code></td><td>Want a full structured lesson on one topic</td></tr>
@@ -249,7 +249,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <div class="section">
     <div class="section-title">The full build loop</div>
     <div class="flow-diagram">
-      <span class="purple">Predictor</span> <span class="flow-arrow">→</span> <span>;;go</span> + <span>;;arch</span> <span class="flow-arrow">→</span> <span class="amber">Architect</span> <span class="flow-arrow">→</span> build
+      <span class="purple">Predictor</span> <span class="flow-arrow">→</span> <span>;;go</span> + <span>;;plan</span> <span class="flow-arrow">→</span> <span class="amber">Architect</span> <span class="flow-arrow">→</span> build
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic</span> as needed
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> + <span class="coral">Reflector</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out <span class="flow-arrow">→</span> <span>;;ready</span> before moving on
     </div>
@@ -270,7 +270,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Filling the architecture plan</div>
-      <p>After <code class="tkw">go</code>, fire <code class="tkw">arch</code> before touching any code. Fill sections 1, 2, 3 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">arch</code> again to fill sections 4, 5, 6, 7, 8 for that feature. Never start coding a feature without filling those first.</p>
+      <p>After <code class="tkw">go</code>, fire <code class="tkw">plan</code> before touching any code. Fill sections 1, 2, 3 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">arch</code> again to fill sections 4, 5, 6, 7, 8 for that feature. Never start coding a feature without filling those first.</p>
     </div>
 
     <div class="workflow">
@@ -361,7 +361,7 @@ Nothing else. Wait for my answer.">Copy prompt</button>
 
     <div class="card" onclick="toggleCard(this)">
       <div class="card-head">
-        <code class="kw">arch</code>
+        <code class="kw">plan</code>
         <span class="cname">Fill Architecture Plan</span>
         <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
