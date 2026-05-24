@@ -24,6 +24,15 @@
   --amber: #d97706;
   --amber-bg: #fffbeb;
   --amber-border: #fde68a;
+  --purple: #7c3aed;
+  --purple-bg: #f5f3ff;
+  --purple-border: #ddd6fe;
+  --teal: #0f766e;
+  --teal-bg: #f0fdfa;
+  --teal-border: #99f6e4;
+  --coral: #c2410c;
+  --coral-bg: #fff7ed;
+  --coral-border: #fed7aa;
   --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
 }
@@ -73,6 +82,9 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .workflow { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; margin-bottom: 10px; box-shadow: var(--shadow); }
 .workflow-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 .workflow-title .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+.workflow-title .dot.purple { background: var(--purple); }
+.workflow-title .dot.teal { background: var(--teal); }
+.workflow-title .dot.coral { background: var(--coral); }
 .workflow p { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 6px; }
 .workflow p:last-child { margin-bottom: 0; }
 .workflow .sub { display: flex; flex-direction: column; gap: 4px; margin: 8px 0; padding-left: 14px; border-left: 2px solid var(--border); }
@@ -80,6 +92,9 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .workflow .sub-item code { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--blue); background: var(--blue-bg); border: 1px solid var(--blue-border); padding: 1px 5px; border-radius: 3px; }
 .flow-diagram { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-2); line-height: 2; }
 .flow-diagram span { color: var(--blue); font-weight: 500; }
+.flow-diagram span.purple { color: var(--purple); }
+.flow-diagram span.teal { color: var(--teal); }
+.flow-diagram span.coral { color: var(--coral); }
 .flow-arrow { color: var(--text-3); margin: 0 4px; }
 
 .cards { display: flex; flex-direction: column; gap: 6px; }
@@ -88,11 +103,23 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .card.open { border-color: var(--blue-border); }
 .card-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px; }
 .kw { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--blue); background: var(--blue-bg); border: 1px solid var(--blue-border); padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+.kw.purple { color: var(--purple); background: var(--purple-bg); border-color: var(--purple-border); }
+.kw.teal { color: var(--teal); background: var(--teal-bg); border-color: var(--teal-border); }
+.kw.amber { color: var(--amber); background: var(--amber-bg); border-color: var(--amber-border); }
+.kw.coral { color: var(--coral); background: var(--coral-bg); border-color: var(--coral-border); }
 .cname { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); }
+.crole { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; padding: 2px 8px; border-radius: 10px; flex-shrink: 0; }
+.crole.purple { background: var(--purple-bg); color: var(--purple); }
+.crole.teal { background: var(--teal-bg); color: var(--teal); }
+.crole.amber { background: var(--amber-bg); color: var(--amber); }
+.crole.coral { background: var(--coral-bg); color: var(--coral); }
 .chevron { width: 16px; height: 16px; color: var(--text-3); transition: transform .2s; flex-shrink: 0; }
 .card.open .chevron { transform: rotate(180deg); }
 .card-body { display: none; padding: 0 16px 16px; }
 .card.open .card-body { display: block; }
+.card-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 12px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
+.card-when { font-size: 12px; color: var(--text-3); margin-bottom: 10px; }
+.card-when strong { color: var(--text-2); }
 .prompt-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
 .tl { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-2); line-height: 1.7; }
 .tl-gap { height: 6px; }
@@ -100,12 +127,32 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .copy-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
 .copy-btn.copied { border-color: var(--green); color: var(--green); background: var(--green-bg); }
 
+.ai-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 16px; box-shadow: var(--shadow); }
+.ai-card-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
+.ai-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.ai-badge { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 3px 10px; border-radius: 20px; }
+.ai-badge.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+.ai-badge.teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+.ai-badge.amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.ai-badge.coral { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
+.ai-name { font-size: 16px; font-weight: 600; color: var(--text); }
+.ai-when { font-size: 13px; color: var(--text-3); }
+.ai-when strong { color: var(--text-2); font-weight: 500; }
+.ai-card-body { padding: 16px 20px; }
+.ai-prompt { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-2); line-height: 1.8; white-space: pre-wrap; }
+.ai-copy { background: none; border: 1px solid var(--border-2); border-radius: 5px; padding: 6px 14px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--text-2); cursor: pointer; transition: all .15s; }
+.ai-copy:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
+.ai-copy.copied { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+.ai-note { font-size: 12px; color: var(--text-3); line-height: 1.6; margin-top: 8px; }
+
 .sp-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); margin-bottom: 10px; }
 .sp-wrap { position: relative; }
 .sp-box { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; white-space: pre-wrap; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.8; color: var(--text-2); box-shadow: var(--shadow); }
 .sp-copy { position: absolute; top: 12px; right: 12px; background: var(--blue); color: #fff; border: none; padding: 6px 14px; border-radius: 5px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; transition: opacity .15s; }
 .sp-copy:hover { opacity: 0.85; }
 .sp-copy.copied { background: var(--green); }
+
+.section-divider { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 
 @media (max-width: 680px) {
   .nav { padding: 0 16px; overflow-x: auto; }
@@ -121,17 +168,18 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <div class="tab active" onclick="show('how')">How it works</div>
   <div class="tab" onclick="show('workflows')">Workflows</div>
   <div class="tab" onclick="show('snippets')">13 Snippets</div>
-  <div class="tab" onclick="show('system')">Claude System Prompt</div>
+  <div class="tab" onclick="show('aisystem')">4 AI System</div>
+  <div class="tab" onclick="show('system')">Claude Project Prompt</div>
 </nav>
 
 <div class="hero">
   <div class="hero-badge">;; system</div>
   <h1>Your AI Mentor<br><span>Snippet System</span></h1>
-  <p>Works with ChatGPT, Claude, DeepSeek — any AI. 12 snippets for structured moments, natural language for everything else.</p>
+  <p>13 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
   <div class="hero-stats">
     <div><div class="stat-num">13</div><div class="stat-label">Snippets</div></div>
-    <div><div class="stat-num">Any AI</div><div class="stat-label">Compatible</div></div>
-    <div><div class="stat-num">0</div><div class="stat-label">Memory load</div></div>
+    <div><div class="stat-num">4</div><div class="stat-label">Dedicated AIs</div></div>
+    <div><div class="stat-num">1</div><div class="stat-label">Loop</div></div>
   </div>
 </div>
 
@@ -140,7 +188,18 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <div class="section">
     <div class="section-title">How it works</div>
     <p>Every AI chat starts cold — it doesn't know who you are, your stack, or how you learn. Most people compensate by re-explaining this every single time.</p>
-    <p>This system flips it. The <strong>context-setting snippets</strong> (;;go, ;;begin, ;;learn) carry everything the AI needs right inside the prompt itself. No setup, no memory features — just paste and go, on any AI.</p>
+    <p>This system has two layers. The <strong>13 snippets</strong> are self-contained prompts for structured moments — carry everything the AI needs right inside. The <strong>4 dedicated AIs</strong> are persistent chats with a single job each, used at specific points in the build cycle.</p>
+  </div>
+  <div class="section">
+    <div class="section-title">The full loop</div>
+    <p>Every project moves through the same five-stage cycle. Snippets and dedicated AIs each have their place:</p>
+    <div class="flow-diagram">
+      <span class="purple">Predictor AI</span> <span class="flow-arrow">→</span> stress-test your idea before committing
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;go</span> + <span>;;arch</span> <span class="flow-arrow">→</span> plan everything before touching code
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span class="amber">Architect AI</span> <span class="flow-arrow">→</span> get your task-by-task build order
+      <br><span class="flow-arrow" style="margin-left:0">→</span> build <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic AI</span> when stuck
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> + <span class="coral">Reflector AI</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out
+    </div>
   </div>
   <div class="section">
     <div class="section-title">Modes — the AI reads your signal</div>
@@ -151,23 +210,27 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
     </div>
   </div>
   <div class="section">
-    <div class="section-title">When to use a snippet vs just typing</div>
+    <div class="section-title">When to use a snippet vs a dedicated AI</div>
     <table class="ref-table">
-      <thead><tr><th>Shortcut</th><th>Use when</th></tr></thead>
+      <thead><tr><th>Tool</th><th>Use when</th></tr></thead>
       <tbody>
-        <tr><td><code class="tkw">go</code></td><td>Starting a brand new project — sets context + asks you the first planning question</td></tr>
+        <tr><td style="color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Predictor AI</td><td>Before you plan — stress-test a decision or approach</td></tr>
+        <tr><td><code class="tkw">go</code></td><td>Starting a brand new project — sets context, asks first planning question</td></tr>
+        <tr><td><code class="tkw">arch</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
+        <tr><td style="color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Architect AI</td><td>Hand it the completed doc — get smallest possible build tasks in order</td></tr>
         <tr><td><code class="tkw">begin</code></td><td>Starting a new chat session with a specific focus</td></tr>
         <tr><td><code class="tkw">learn</code></td><td>Want a full structured lesson on one topic</td></tr>
         <tr><td><code class="tkw">stuck</code></td><td>Have code, need a nudge — not a solution</td></tr>
         <tr><td><code class="tkw">duck</code></td><td>Need to think out loud, want questions not answers</td></tr>
         <tr><td><code class="tkw">fix</code></td><td>Just need to unblock fast, no teaching</td></tr>
+        <tr><td style="color:var(--teal);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Socratic AI</td><td>Genuinely wrestling with a concept — most patient version of ;;stuck</td></tr>
         <tr><td><code class="tkw">review</code></td><td>Want a real senior dev code review</td></tr>
         <tr><td><code class="tkw">ready</code></td><td>Think you've learned something, want a proper test</td></tr>
-        <tr><td><code class="tkw">reflect</code></td><td>Just finished a project, want to extract lessons</td></tr>
+        <tr><td style="color:var(--coral);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Reflector AI</td><td>After finishing — did you actually understand it? Not just does it work?</td></tr>
+        <tr><td><code class="tkw">reflect</code></td><td>Finished a project, want to extract lessons and close out</td></tr>
         <tr><td><code class="tkw">breathe</code></td><td>Overwhelmed, need someone to cut through the noise</td></tr>
         <tr><td><code class="tkw">build</code></td><td>Need a weekend project idea</td></tr>
         <tr><td><code class="tkw">next</code></td><td>Any Next.js question — enforces correct patterns</td></tr>
-        <tr><td><code class="tkw">arch</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
       </tbody>
     </table>
     <div class="notice green" style="margin-top:12px">
@@ -177,53 +240,66 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <div class="section">
     <div class="section-title">Works on any AI</div>
     <p>Every snippet is self-contained — it tells the AI your stack, your level, and how you want to be taught. Open ChatGPT, DeepSeek, Claude, or anything else and it just works.</p>
-    <p>The only difference: Claude tends to follow nuanced instructions better. But all three handle these prompts well.</p>
+    <p>The 4 dedicated AIs work best as persistent Claude chats — keep each one open and return to it throughout a project so it builds up context over time.</p>
   </div>
 </div>
 
 <!-- WORKFLOWS -->
 <div class="page" id="page-workflows">
   <div class="section">
-    <div class="section-title">The core loop</div>
+    <div class="section-title">The full build loop</div>
     <div class="flow-diagram">
-      <span>;;go</span> <span class="flow-arrow">→</span> <span>;;arch</span> <span class="flow-arrow">→</span> build <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> as needed
-      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out <span class="flow-arrow">→</span> <span>;;ready</span> before moving on
+      <span class="purple">Predictor</span> <span class="flow-arrow">→</span> <span>;;go</span> + <span>;;arch</span> <span class="flow-arrow">→</span> <span class="amber">Architect</span> <span class="flow-arrow">→</span> build
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic</span> as needed
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> + <span class="coral">Reflector</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out <span class="flow-arrow">→</span> <span>;;ready</span> before moving on
     </div>
     <p style="margin-top:12px">One chat per project or topic. When a chat gets long and the AI starts losing context, start fresh with <strong>;;begin</strong> and paste in where you left off.</p>
   </div>
   <div class="section">
     <div class="section-title">Day-to-day workflows</div>
+
+    <div class="workflow">
+      <div class="workflow-title"><span class="dot purple"></span>Before you plan anything</div>
+      <p>Open your <strong>Predictor AI</strong> chat and give it the single biggest decision you're about to make — not the whole project, just one choice. "I'm thinking of structuring the data this way…" Let it ask you "what if" questions until your thinking holds up. Only then move to planning.</p>
+    </div>
+
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Starting a new project</div>
-      <p>Fire <code class="tkw">go</code>, fill in the project name, new concepts, and your previous projects. The AI asks you one question — "what data does this app need to remember?" — and waits. Everything unfolds from your answer. Stay in that same chat for the whole project.</p>
+      <p>Fire <code class="tkw">go</code>, fill in the project name, new concepts, and your previous projects. The AI asks you one question — "what data does this app need to remember?" — and waits. Everything unfolds from your answer.</p>
     </div>
+
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Filling the architecture plan</div>
-      <p>After <code class="tkw">go</code>, fire <code class="tkw">arch</code> before touching any code. Fill sections 1, 2, 3, 11 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">arch</code> again to fill sections 4, 5, 5b, 7, 8 for that feature. Never start coding a feature without filling those sections first.</p>
+      <p>After <code class="tkw">go</code>, fire <code class="tkw">arch</code> before touching any code. Fill sections 1, 2, 3 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">arch</code> again to fill sections 4, 5, 6, 7, 8 for that feature. Never start coding a feature without filling those first.</p>
     </div>
-      <p>Open a new chat, fire <code class="tkw">begin</code>, fill in what you want to learn and how much time you have. At the end, fire <code class="tkw">ready</code> to test yourself before closing. Don't move on without passing that test.</p>
-    </div>
+
     <div class="workflow">
-      <div class="workflow-title"><span class="dot"></span>You're stuck mid-build</div>
-      <p>Three levels depending on how stuck you are:</p>
+      <div class="workflow-title"><span class="dot"></span>Getting your build order</div>
+      <p>Once the architecture doc is complete, hand it to your <strong>Architect AI</strong>. It reads everything you planned and gives you the smallest possible tasks in the right order. Task 1 first — don't skip ahead.</p>
+    </div>
+
+    <div class="workflow">
+      <div class="workflow-title"><span class="dot teal"></span>You're stuck mid-build</div>
+      <p>Four levels depending on how stuck you are:</p>
       <div class="sub">
         <div class="sub-item"><code>stuck</code> — Slightly stuck, paste code, get a nudge, figure it out yourself</div>
         <div class="sub-item"><code>duck</code> — Really confused, talk through it out loud, AI asks questions back</div>
         <div class="sub-item"><code>fix</code> — Just need to move, no teaching, unblock and keep going</div>
+        <div class="sub-item" style="color:var(--teal)">Socratic AI — Genuinely wrestling with a concept, most patient version, keeps making you think</div>
       </div>
     </div>
+
     <div class="workflow">
-      <div class="workflow-title"><span class="dot"></span>Finishing a project</div>
-      <p>Don't just close the tab and start the next one. Fire <code class="tkw">reflect</code> and answer the AI's questions honestly. This is where the actual learning gets locked in. Takes 10 minutes and is worth more than 2 extra hours of building.</p>
+      <div class="workflow-title"><span class="dot coral"></span>Finishing something</div>
+      <p>Run <code class="tkw">review</code> for code quality — what a senior dev would change. Then go to your <strong>Reflector AI</strong> — it checks whether you actually understood what you built, not just whether it works. Expects a SOLID / SURFACE / SHAKY verdict. Take it seriously.</p>
+      <p>Then fire <code class="tkw">reflect</code> to close out the project and lock in lessons. Takes 10 minutes and is worth more than 2 extra hours of building.</p>
     </div>
-    <div class="workflow">
-      <div class="workflow-title"><span class="dot"></span>Code you're not sure about</div>
-      <p>Before calling something done, fire <code class="tkw">review</code> and paste it. The prompt specifically asks what a junior gets wrong — you'll catch patterns you keep repeating.</p>
-    </div>
+
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>When you feel lost or overwhelmed</div>
       <p>That's exactly <code class="tkw">breathe</code>. One thing to focus on, everything else to ignore, one 30-minute task to feel productive again. Use it without guilt — it's part of the process.</p>
     </div>
+
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Any Next.js question</div>
       <p>Fire <code class="tkw">next</code> before pasting code or asking a question. It locks the AI into App Router patterns, RSC, Shadcn semantic tokens, and TypeScript — so you don't get answers that use the wrong approach.</p>
@@ -242,7 +318,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <div class="page" id="page-snippets">
   <div class="cards">
 
-    <!-- ;;go — UPDATED -->
+    <div class="section-divider">Planning</div>
+
     <div class="card" onclick="toggleCard(this)">
       <div class="card-head">
         <code class="kw">go</code>
@@ -250,6 +327,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Starting a brand new project — sets context and asks the first planning question</div>
         <div class="prompt-box">
           <div class="tl">You are my coding mentor. I am a beginner learning web development with Next.js 15 (App Router), React, Shadcn UI, and TypeScript.</div>
           <div class="tl-gap"></div>
@@ -281,318 +359,6 @@ Nothing else. Wait for my answer.">Copy prompt</button>
       </div>
     </div>
 
-    <!-- ;;begin -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">begin</code>
-        <span class="cname">Session Start</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">How I work:</div>
-          <div class="tl">- Teach one thing at a time, wait for my response before continuing</div>
-          <div class="tl">- Default to guiding my thinking with questions, not giving me answers</div>
-          <div class="tl">- Only write code when I say 'show me', 'write this', or 'I'm stuck'</div>
-          <div class="tl">- Keep it conversational, not lecture-style</div>
-          <div class="tl-gap"></div>
-          <div class="tl">New session.</div>
-          <div class="tl">Today I want to: [what you want to do]</div>
-          <div class="tl">Time I have: [time]</div>
-          <div class="tl">What I already know about this: [context]</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Keep me focused. Don't let me rabbit-hole.</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.
-
-How I work:
-- Teach one thing at a time, wait for my response before continuing
-- Default to guiding my thinking with questions, not giving me answers
-- Only write code when I say 'show me', 'write this', or 'I'm stuck'
-- Keep it conversational, not lecture-style
-
-New session.
-Today I want to: [what you want to do]
-Time I have: [time]
-What I already know about this: [context]
-
-Keep me focused. Don't let me rabbit-hole.">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;learn -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">learn</code>
-        <span class="cname">Learn This Topic</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">I want to learn [TOPIC] in one focused session.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">1. Give me a 2-minute overview — what it is and why it exists</div>
-          <div class="tl">2. Show me the simplest possible example</div>
-          <div class="tl">3. Give me 2-3 exercises that build on each other</div>
-          <div class="tl">4. After I finish them, test me before we move on</div>
-          <div class="tl-gap"></div>
-          <div class="tl">One step at a time. Wait for me to respond before continuing.</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.
-
-I want to learn [TOPIC] in one focused session.
-
-1. Give me a 2-minute overview — what it is and why it exists
-2. Show me the simplest possible example
-3. Give me 2-3 exercises that build on each other
-4. After I finish them, test me before we move on
-
-One step at a time. Wait for me to respond before continuing.">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;stuck -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">stuck</code>
-        <span class="cname">I'm Stuck — Nudge Me</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">I'm stuck. Don't solve this for me or rewrite my code — just give me the right nudge. One hint at a time.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Here's what I'm trying to do and what's happening:</div>
-          <div class="tl">[explain / paste code]</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm stuck. Don't solve this for me or rewrite my code — just give me the right nudge. One hint at a time.
-
-Here's what I'm trying to do and what's happening:
-[explain / paste code]">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;duck -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">duck</code>
-        <span class="cname">Rubber Duck</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">Be my rubber duck. I'm going to explain what I'm trying to do and what's happening. Ask me questions to help me figure it out myself — don't solve it for me.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">[explain your situation]</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Be my rubber duck. I'm going to explain what I'm trying to do and what's happening. Ask me questions to help me figure it out myself — don't solve it for me.
-
-[explain your situation]">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;fix -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">fix</code>
-        <span class="cname">Just Unblock Me</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">I need the fastest way to unblock myself. Don't explain, don't teach — just tell me the minimal thing I need to move forward. I'll learn properly later.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">[situation / error / code]</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I need the fastest way to unblock myself. Don't explain, don't teach — just tell me the minimal thing I need to move forward. I'll learn properly later.
-
-[situation / error / code]">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;review -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">review</code>
-        <span class="cname">Review My Code</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">Review this code as a senior Next.js developer.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">1. What a junior would do differently vs what's actually good here</div>
-          <div class="tl">2. Anything that would fail in production — security, edge cases, performance</div>
-          <div class="tl">3. One thing to improve first, and why</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Don't rewrite it. Just tell me what to fix.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">[paste code]</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Review this code as a senior Next.js developer.
-
-1. What a junior would do differently vs what's actually good here
-2. Anything that would fail in production — security, edge cases, performance
-3. One thing to improve first, and why
-
-Don't rewrite it. Just tell me what to fix.
-
-[paste code]">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;ready -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">ready</code>
-        <span class="cname">Am I Ready to Move On</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">I just learned [TOPIC] and built [WHAT YOU BUILT].</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Test me properly before I move on:</div>
-          <div class="tl">- Ask me conceptual questions one at a time</div>
-          <div class="tl">- Give me a small coding challenge</div>
-          <div class="tl">- Check if I understand WHY, not just HOW</div>
-          <div class="tl-gap"></div>
-          <div class="tl">At the end tell me honestly: READY or NOT READY.</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I just learned [TOPIC] and built [WHAT YOU BUILT].
-
-Test me properly before I move on:
-- Ask me conceptual questions one at a time
-- Give me a small coding challenge
-- Check if I understand WHY, not just HOW
-
-At the end tell me honestly: READY or NOT READY.">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;reflect -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">reflect</code>
-        <span class="cname">Reflect on Project</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">I just finished building [PROJECT NAME] with Next.js.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Help me reflect:</div>
-          <div class="tl">1. Ask me to summarise what I built and what concepts I used</div>
-          <div class="tl">2. Tell me what I got right — including things I might not have noticed</div>
-          <div class="tl">3. Point out 1-2 things a senior dev would refactor, and why</div>
-          <div class="tl">4. Tell me what I'm now ready to learn next, and why it's the natural next step</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Be honest. Not harsh, not soft.</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I just finished building [PROJECT NAME] with Next.js.
-
-Help me reflect:
-1. Ask me to summarise what I built and what concepts I used
-2. Tell me what I got right — including things I might not have noticed
-3. Point out 1-2 things a senior dev would refactor, and why
-4. Tell me what I'm now ready to learn next, and why it's the natural next step
-
-Be honest. Not harsh, not soft.">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;breathe -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">breathe</code>
-        <span class="cname">Overwhelmed — Reset</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">I'm overwhelmed. Too much information, too many options, I don't know where to start.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">1. What is the ONE thing I should focus on right now?</div>
-          <div class="tl">2. What can I safely ignore for now?</div>
-          <div class="tl">3. Give me a simple 30-minute task to feel productive again.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Simplify everything.</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm overwhelmed. Too much information, too many options, I don't know where to start.
-
-1. What is the ONE thing I should focus on right now?
-2. What can I safely ignore for now?
-3. Give me a simple 30-minute task to feel productive again.
-
-Simplify everything.">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;build -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">build</code>
-        <span class="cname">Weekend Project</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">Suggest a weekend project based on what I know: [list what you've learned].</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Requirements:</div>
-          <div class="tl">- Challenging but actually finishable in a weekend</div>
-          <div class="tl">- Uses Next.js 15, React, Shadcn UI</div>
-          <div class="tl">- Something I'd be proud to show</div>
-          <div class="tl">- No major new technologies — build on what I have</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Suggest a weekend project based on what I know: [list what you've learned].
-
-Requirements:
-- Challenging but actually finishable in a weekend
-- Uses Next.js 15, React, Shadcn UI
-- Something I'd be proud to show
-- No major new technologies — build on what I have">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;next -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-head">
-        <code class="kw">next</code>
-        <span class="cname">Next.js Help</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="prompt-box">
-          <div class="tl">I'm building with Next.js 15 App Router, React, Shadcn UI, and TypeScript.</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Rules for your answer:</div>
-          <div class="tl">- Use App Router patterns (not Pages Router)</div>
-          <div class="tl">- Prefer React Server Components where it makes sense</div>
-          <div class="tl">- Shadcn semantic tokens only — bg-background, text-foreground, bg-card, text-muted-foreground, border — no hardcoded colors</div>
-          <div class="tl">- TypeScript throughout</div>
-          <div class="tl">- Modern practices only</div>
-          <div class="tl-gap"></div>
-          <div class="tl">[your question or paste code]</div>
-        </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm building with Next.js 15 App Router, React, Shadcn UI, and TypeScript.
-
-Rules for your answer:
-- Use App Router patterns (not Pages Router)
-- Prefer React Server Components where it makes sense
-- Shadcn semantic tokens only — bg-background, text-foreground, bg-card, text-muted-foreground, border — no hardcoded colors
-- TypeScript throughout
-- Modern practices only
-
-[your question or paste code]">Copy prompt</button>
-      </div>
-    </div>
-
-    <!-- ;;arch -->
     <div class="card" onclick="toggleCard(this)">
       <div class="card-head">
         <code class="kw">arch</code>
@@ -600,6 +366,7 @@ Rules for your answer:
         <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Filling your architecture doc before any code — paste the full document after this prompt</div>
         <div class="prompt-box">
           <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI and TypeScript.</div>
           <div class="tl-gap"></div>
@@ -647,10 +414,466 @@ Start by asking me Section 1.">Copy prompt</button>
       </div>
     </div>
 
+    <div class="section-divider">Session start</div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">begin</code>
+        <span class="cname">Session Start</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Starting a new chat session with a specific focus</div>
+        <div class="prompt-box">
+          <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">How I work:</div>
+          <div class="tl">- Teach one thing at a time, wait for my response before continuing</div>
+          <div class="tl">- Default to guiding my thinking with questions, not giving me answers</div>
+          <div class="tl">- Only write code when I say 'show me', 'write this', or 'I'm stuck'</div>
+          <div class="tl">- Keep it conversational, not lecture-style</div>
+          <div class="tl-gap"></div>
+          <div class="tl">New session.</div>
+          <div class="tl">Today I want to: [what you want to do]</div>
+          <div class="tl">Time I have: [time]</div>
+          <div class="tl">What I already know about this: [context]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Keep me focused. Don't let me rabbit-hole.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.
+
+How I work:
+- Teach one thing at a time, wait for my response before continuing
+- Default to guiding my thinking with questions, not giving me answers
+- Only write code when I say 'show me', 'write this', or 'I'm stuck'
+- Keep it conversational, not lecture-style
+
+New session.
+Today I want to: [what you want to do]
+Time I have: [time]
+What I already know about this: [context]
+
+Keep me focused. Don't let me rabbit-hole.">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">learn</code>
+        <span class="cname">Learn This Topic</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Want a full structured lesson on one concept</div>
+        <div class="prompt-box">
+          <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">I want to learn [TOPIC] in one focused session.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">1. Give me a 2-minute overview — what it is and why it exists</div>
+          <div class="tl">2. Show me the simplest possible example</div>
+          <div class="tl">3. Give me 2-3 exercises that build on each other</div>
+          <div class="tl">4. After I finish them, test me before we move on</div>
+          <div class="tl-gap"></div>
+          <div class="tl">One step at a time. Wait for me to respond before continuing.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.
+
+I want to learn [TOPIC] in one focused session.
+
+1. Give me a 2-minute overview — what it is and why it exists
+2. Show me the simplest possible example
+3. Give me 2-3 exercises that build on each other
+4. After I finish them, test me before we move on
+
+One step at a time. Wait for me to respond before continuing.">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="section-divider">When stuck</div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">stuck</code>
+        <span class="cname">I'm Stuck — Nudge Me</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Have code, need a nudge — not a solution</div>
+        <div class="prompt-box">
+          <div class="tl">I'm stuck. Don't solve this for me or rewrite my code — just give me the right nudge. One hint at a time.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Here's what I'm trying to do and what's happening:</div>
+          <div class="tl">[explain / paste code]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm stuck. Don't solve this for me or rewrite my code — just give me the right nudge. One hint at a time.
+
+Here's what I'm trying to do and what's happening:
+[explain / paste code]">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">duck</code>
+        <span class="cname">Rubber Duck</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Really confused — need to think out loud, want questions not answers</div>
+        <div class="prompt-box">
+          <div class="tl">Be my rubber duck. I'm going to explain what I'm trying to do and what's happening. Ask me questions to help me figure it out myself — don't solve it for me.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">[explain your situation]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Be my rubber duck. I'm going to explain what I'm trying to do and what's happening. Ask me questions to help me figure it out myself — don't solve it for me.
+
+[explain your situation]">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">fix</code>
+        <span class="cname">Just Unblock Me</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Just need to move — no teaching, no nudge, just unblock</div>
+        <div class="prompt-box">
+          <div class="tl">I need the fastest way to unblock myself. Don't explain, don't teach — just tell me the minimal thing I need to move forward. I'll learn properly later.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">[situation / error / code]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I need the fastest way to unblock myself. Don't explain, don't teach — just tell me the minimal thing I need to move forward. I'll learn properly later.
+
+[situation / error / code]">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="section-divider">After finishing</div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">review</code>
+        <span class="cname">Review My Code</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Want a senior dev perspective on code quality before calling it done</div>
+        <div class="prompt-box">
+          <div class="tl">Review this code as a senior Next.js developer.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">1. What a junior would do differently vs what's actually good here</div>
+          <div class="tl">2. Anything that would fail in production — security, edge cases, performance</div>
+          <div class="tl">3. One thing to improve first, and why</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Don't rewrite it. Just tell me what to fix.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">[paste code]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Review this code as a senior Next.js developer.
+
+1. What a junior would do differently vs what's actually good here
+2. Anything that would fail in production — security, edge cases, performance
+3. One thing to improve first, and why
+
+Don't rewrite it. Just tell me what to fix.
+
+[paste code]">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">ready</code>
+        <span class="cname">Am I Ready to Move On</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Think you've learned something — want a proper test before moving on</div>
+        <div class="prompt-box">
+          <div class="tl">I just learned [TOPIC] and built [WHAT YOU BUILT].</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Test me properly before I move on:</div>
+          <div class="tl">- Ask me conceptual questions one at a time</div>
+          <div class="tl">- Give me a small coding challenge</div>
+          <div class="tl">- Check if I understand WHY, not just HOW</div>
+          <div class="tl-gap"></div>
+          <div class="tl">At the end tell me honestly: READY or NOT READY.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I just learned [TOPIC] and built [WHAT YOU BUILT].
+
+Test me properly before I move on:
+- Ask me conceptual questions one at a time
+- Give me a small coding challenge
+- Check if I understand WHY, not just HOW
+
+At the end tell me honestly: READY or NOT READY.">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">reflect</code>
+        <span class="cname">Reflect on Project</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Finished a project — lock in lessons before starting the next one</div>
+        <div class="prompt-box">
+          <div class="tl">I just finished building [PROJECT NAME] with Next.js.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Help me reflect:</div>
+          <div class="tl">1. Ask me to summarise what I built and what concepts I used</div>
+          <div class="tl">2. Tell me what I got right — including things I might not have noticed</div>
+          <div class="tl">3. Point out 1-2 things a senior dev would refactor, and why</div>
+          <div class="tl">4. Tell me what I'm now ready to learn next, and why it's the natural next step</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Be honest. Not harsh, not soft.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I just finished building [PROJECT NAME] with Next.js.
+
+Help me reflect:
+1. Ask me to summarise what I built and what concepts I used
+2. Tell me what I got right — including things I might not have noticed
+3. Point out 1-2 things a senior dev would refactor, and why
+4. Tell me what I'm now ready to learn next, and why it's the natural next step
+
+Be honest. Not harsh, not soft.">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="section-divider">Anytime</div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">breathe</code>
+        <span class="cname">Overwhelmed — Reset</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Too much info, don't know where to start — cut through the noise</div>
+        <div class="prompt-box">
+          <div class="tl">I'm overwhelmed. Too much information, too many options, I don't know where to start.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">1. What is the ONE thing I should focus on right now?</div>
+          <div class="tl">2. What can I safely ignore for now?</div>
+          <div class="tl">3. Give me a simple 30-minute task to feel productive again.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Simplify everything.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm overwhelmed. Too much information, too many options, I don't know where to start.
+
+1. What is the ONE thing I should focus on right now?
+2. What can I safely ignore for now?
+3. Give me a simple 30-minute task to feel productive again.
+
+Simplify everything.">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">build</code>
+        <span class="cname">Weekend Project</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Need a project idea to build on what you know</div>
+        <div class="prompt-box">
+          <div class="tl">Suggest a weekend project based on what I know: [list what you've learned].</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Requirements:</div>
+          <div class="tl">- Challenging but actually finishable in a weekend</div>
+          <div class="tl">- Uses Next.js 15, React, Shadcn UI</div>
+          <div class="tl">- Something I'd be proud to show</div>
+          <div class="tl">- No major new technologies — build on what I have</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Suggest a weekend project based on what I know: [list what you've learned].
+
+Requirements:
+- Challenging but actually finishable in a weekend
+- Uses Next.js 15, React, Shadcn UI
+- Something I'd be proud to show
+- No major new technologies — build on what I have">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">next</code>
+        <span class="cname">Next.js Help</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Any Next.js question — locks the AI into correct patterns</div>
+        <div class="prompt-box">
+          <div class="tl">I'm building with Next.js 15 App Router, React, Shadcn UI, and TypeScript.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Rules for your answer:</div>
+          <div class="tl">- Use App Router patterns (not Pages Router)</div>
+          <div class="tl">- Prefer React Server Components where it makes sense</div>
+          <div class="tl">- Shadcn semantic tokens only — bg-background, text-foreground, bg-card, text-muted-foreground, border — no hardcoded colors</div>
+          <div class="tl">- TypeScript throughout</div>
+          <div class="tl">- Modern practices only</div>
+          <div class="tl-gap"></div>
+          <div class="tl">[your question or paste code]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm building with Next.js 15 App Router, React, Shadcn UI, and TypeScript.
+
+Rules for your answer:
+- Use App Router patterns (not Pages Router)
+- Prefer React Server Components where it makes sense
+- Shadcn semantic tokens only — bg-background, text-foreground, bg-card, text-muted-foreground, border — no hardcoded colors
+- TypeScript throughout
+- Modern practices only
+
+[your question or paste code]">Copy prompt</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- CLAUDE SYSTEM PROMPT -->
+<!-- 4 AI SYSTEM -->
+<div class="page" id="page-aisystem">
+  <div class="section">
+    <div class="section-title">What this is</div>
+    <p>Four dedicated Claude chats — one per role. Each has a single job and a permanent system prompt. Keep them open across your whole project. They build context over time, unlike one-off snippet chats.</p>
+    <p>The snippets handle quick structured moments. These AIs handle the thinking that runs alongside your entire build cycle.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">When to use each</div>
+    <table class="ref-table">
+      <thead><tr><th>AI</th><th>Use when</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--purple);font-weight:600;font-size:13px">Predictor</td><td>Before planning — stress-test your biggest decision first</td></tr>
+        <tr><td style="color:var(--amber);font-weight:600;font-size:13px">Architect</td><td>After planning — hand it the completed doc, get your build order</td></tr>
+        <tr><td style="color:var(--teal);font-weight:600;font-size:13px">Socratic</td><td>Mid-build, stuck on a concept — most patient version of ;;stuck</td></tr>
+        <tr><td style="color:var(--coral);font-weight:600;font-size:13px">Reflector</td><td>After finishing — checks understanding, not just whether it works</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The four prompts — paste each into a new Claude chat</div>
+
+    <div class="ai-card">
+      <div class="ai-card-head">
+        <div class="ai-card-top">
+          <span class="ai-badge purple">Predictor AI</span>
+          <span style="font-size:13px;color:var(--text-3)">New chat · use before planning</span>
+        </div>
+        <div class="ai-name">Stress-tests your thinking before you commit</div>
+      </div>
+      <div class="ai-card-body">
+        <div class="ai-prompt" id="ai-predictor">You are a "what if" thinking partner for a beginner web developer. Your job is not to teach me — it's to make me think harder before I write code.
+
+When I bring you a topic, a decision, or an approach, you must:
+- Ask "what if…" questions that make me predict outcomes I haven't considered
+- Never confirm my assumptions — always probe them
+- Make me explain what I think will happen before telling me if I'm right
+- If my prediction is wrong, don't correct me immediately — ask a follow-up that leads me to notice the flaw myself
+- Keep the conversation as questions for as long as possible
+- Only give a direct answer if I have genuinely exhausted my own thinking and explicitly ask for it
+
+You are allowed to say "interesting — what makes you think that?" more than anything else.
+
+I will give you a topic or decision. Start with one "what if" question.</div>
+        <button class="ai-copy" onclick="aiCopy(this,'ai-predictor')">Copy prompt</button>
+        <div class="ai-note">Give it one decision at a time — not the whole project. "I'm thinking of structuring the data this way…" and let it interrogate that.</div>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-card-head">
+        <div class="ai-card-top">
+          <span class="ai-badge amber">Architect AI</span>
+          <span style="font-size:13px;color:var(--text-3)">New chat · use after planning doc is complete</span>
+        </div>
+        <div class="ai-name">Turns your completed plan into a task-by-task build order</div>
+      </div>
+      <div class="ai-card-body">
+        <div class="ai-prompt" id="ai-architect">You are a senior web developer acting as my architect. I am a beginner learning by building — no tutorials, no docs unless absolutely necessary.
+
+When I give you a goal or a completed architecture plan, your job is to:
+1. Break it into the smallest possible build tasks, in the right order
+2. Tell me what to build first and exactly why that order matters
+3. For each task, tell me only what I need to know right now — not everything about the topic
+4. Use plain language. If you use a technical term, define it in one sentence immediately after
+5. Never build it for me. Describe what I need to make, not the code
+
+Format each task like:
+TASK [n]: [what to build]
+WHY NOW: [why this comes before the next thing]
+WHAT YOU NEED TO KNOW: [just enough context to attempt it]
+
+If my plan has a flaw, tell me before we start.</div>
+        <button class="ai-copy" onclick="aiCopy(this,'ai-architect')">Copy prompt</button>
+        <div class="ai-note">Paste this prompt, then paste your completed architecture doc in the same message. It reads everything and sequences your tasks from there.</div>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-card-head">
+        <div class="ai-card-top">
+          <span class="ai-badge teal">Socratic AI</span>
+          <span style="font-size:13px;color:var(--text-3)">Persistent chat · return whenever stuck</span>
+        </div>
+        <div class="ai-name">Never gives the answer — makes you find it yourself</div>
+      </div>
+      <div class="ai-card-body">
+        <div class="ai-prompt" id="ai-socratic">You are a Socratic tutor for a beginner learning web development by building — no tutorials, no spoon-feeding.
+
+Your rules:
+- Never give the answer directly
+- Give one small nudge at a time — the smallest hint that moves me forward
+- If I'm thinking in the wrong direction entirely, tell me that clearly, then ask what I think the right direction might be
+- Turn every explanation into a question that makes me figure out the next step
+- If I share code, ask me what I think it does before you say anything about it
+- If I've been stuck too long and am going in circles, you may give a slightly bigger hint — but frame it as a question
+- Never paste corrected code. If something is wrong, describe what kind of thing is wrong and where to look
+
+Start every response with what I got right before nudging me on what's off.</div>
+        <button class="ai-copy" onclick="aiCopy(this,'ai-socratic')">Copy prompt</button>
+        <div class="ai-note">Use this when you're genuinely wrestling with a concept — not just blocked on syntax. For syntax, use ;;fix. For thinking out loud, use ;;duck. This one is the most patient.</div>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-card-head">
+        <div class="ai-card-top">
+          <span class="ai-badge coral">Reflector AI</span>
+          <span style="font-size:13px;color:var(--text-3)">New chat per feature · use after finishing</span>
+        </div>
+        <div class="ai-name">Checks if you actually understood it — gives SOLID / SURFACE / SHAKY</div>
+      </div>
+      <div class="ai-card-body">
+        <div class="ai-prompt" id="ai-reflector">You are a Reflector for a beginner web developer learning by doing. Your job is to find out whether I actually understood what I just built — not whether it works.
+
+When I show you finished code or describe what I built:
+- Do not praise it
+- Ask me exactly 3 questions that reveal whether I understood the WHY, not just the HOW
+- At least one question must be "what would break if you changed X" style
+- At least one must be "why did you choose this over the alternative" style
+- If my answers show I was just copying patterns without understanding, tell me directly and ask what I think is actually happening
+- Only explain something yourself once I've tried to answer and gotten it wrong
+
+After I answer all 3, give me a one-line honest verdict:
+SOLID / SURFACE / SHAKY — and one sentence explaining why.
+
+Do not soften this. I need to know if I actually learned something.</div>
+        <button class="ai-copy" onclick="aiCopy(this,'ai-reflector')">Copy prompt</button>
+        <div class="ai-note">Run this after every feature, not just at the end of a project. SHAKY is useful feedback — it tells you to go back before moving on.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CLAUDE PROJECT PROMPT -->
 <div class="page" id="page-system">
   <div class="section">
     <div class="section-title">When to use this</div>
@@ -701,7 +924,7 @@ CODE MODE
 </div>
 
 <script>
-const TABS = ['how','workflows','snippets','system'];
+const TABS = ['how','workflows','snippets','aisystem','system'];
 function show(name) {
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TABS[i] === name));
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -716,6 +939,14 @@ function doCopy(e, btn) {
   e.stopPropagation();
   const raw = btn.getAttribute('data-text');
   const text = raw.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,"'").replace(/&quot;/g,'"');
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function aiCopy(btn, id) {
+  const text = document.getElementById(id).textContent;
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = 'Copied!';
     btn.classList.add('copied');
