@@ -17,3 +17,4 @@ OnlyLys.leaper
 marnix.peacock
 bradlc.vscode-tailwindcss
 christian-kohler.path-intellisense
+rangav.vscode-thunder-client
