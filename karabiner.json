@@ -1535,14 +1535,20 @@
                         "description": "System Controls",
                         "manipulators": [
                             {
-                                "description": "right_option+m = Mute",
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": { "mandatory": ["right_option"] }
-                                },
-                                "to": [{ "consumer_key_code": "mute" }],
-                                "type": "basic"
-                            },
+    "description": "right_option+m = Mute Mic + Speaker",
+    "from": {
+        "key_code": "m",
+        "modifiers": { "mandatory": ["right_option"] }
+    },
+    "to": [
+        { "consumer_key_code": "mute" },
+        {
+            "key_code": "m",
+            "modifiers": ["left_command", "left_shift"]
+        }
+    ],
+    "type": "basic"
+},
                             {
                                 "description": "right_option+9 = Volume Down",
                                 "from": {
