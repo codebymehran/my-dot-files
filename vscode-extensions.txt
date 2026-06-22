@@ -18,3 +18,5 @@ marnix.peacock
 bradlc.vscode-tailwindcss
 christian-kohler.path-intellisense
 rangav.vscode-thunder-client
+isitup.project-title-bar
+haugerbr.project-tasks
