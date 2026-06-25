@@ -77,6 +77,12 @@ mkdir -p "$HOME/Desktop/cheatsheets"
 mkdir -p "$HOME/Desktop/resources"
 
 # -----------------------------
+# Cleanup legacy files
+# (old names that were renamed -- remove so VS Code doesn't load stale duplicates)
+# -----------------------------
+rm -f "$HOME/Library/Application Support/Code/User/snippets/React Snippets.code-snippets"
+
+# -----------------------------
 # Copy files
 # -----------------------------
 echo "📂 Select files to copy (press Enter to confirm, n to skip):"
