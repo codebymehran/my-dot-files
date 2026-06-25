@@ -1247,6 +1247,19 @@
                                 "type": "basic"
                             },
                             {
+    "description": "equal_sign = equal_sign",
+    "from": {
+        "key_code": "equal_sign",
+        "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+    },
+    "to": [
+        {
+            "key_code": "equal_sign"
+        }
+    ],
+    "type": "basic"
+},
+                            {
                                 "description": "open_bracket = {",
                                 "from": {
                                     "key_code": "open_bracket",
