@@ -1246,15 +1246,16 @@
                                 ],
                                 "type": "basic"
                             },
-                            {
-    "description": "equal_sign = equal_sign",
+                   {
+    "description": "equal_sign = +",
     "from": {
         "key_code": "equal_sign",
         "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
     },
     "to": [
         {
-            "key_code": "equal_sign"
+            "key_code": "equal_sign",
+            "modifiers": ["left_shift"]
         }
     ],
     "type": "basic"
