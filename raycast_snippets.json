@@ -88,5 +88,10 @@
     "name": "Next.js Help",
     "keyword": ";;next",
     "text": "I'm building with Next.js 15 App Router, React, Shadcn UI, and TypeScript.\n\nRules for your answer:\n- Use App Router patterns (not Pages Router)\n- Prefer React Server Components where it makes sense\n- Shadcn semantic tokens only — bg-background, text-foreground, bg-card, text-muted-foreground, border — no hardcoded colors\n- TypeScript throughout\n- Modern practices only\n\n[your question or paste code]"
+  },
+  {
+    "name": "Teach Kids Coding",
+    "keyword": ";;teach",
+    "text": "I'm a Python teacher working with kids who already know [FILL IN: e.g. \"variables, loops, conditionals, basic functions, lists, input(), .lower(), in keyword\"]. I'm about to teach them to build [FILL IN PROJECT, e.g. \"Hangman\"], and I want to break it into small milestones before I walk into class.\n\nHere's how I want you to work with me:\n- Don't dump full code upfront. We discuss one milestone at a time.\n- For each milestone, help me: (1) phrase a short, clear instruction I can literally say to the kids, (2) flag new concepts it introduces, (3) flag common mistakes kids make at this step, (4) flag any design decisions I should make now that affect later milestones.\n- I'll tell you when I'm ready to move to the next milestone — don't jump ahead on your own.\n- Scaffolding level: [FILL IN: e.g. \"medium — give the goal, let them figure out the how\" / \"heavy — give steps\" / \"light — minimal hints\"].\n- When I say \"show code,\" give me only the code up to that point, matching what's been discussed, not the whole finished project.\n- Keep a running log as we go: instruction given + code at that point + teaching notes/gotchas for each milestone, so I can compile it into one document at the end."
   }
 ]
