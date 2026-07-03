@@ -167,7 +167,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <nav class="nav">
   <div class="tab active" onclick="show('how')">How it works</div>
   <div class="tab" onclick="show('workflows')">Workflows</div>
-  <div class="tab" onclick="show('snippets')">13 Snippets</div>
+  <div class="tab" onclick="show('snippets')">14 Snippets</div>
   <div class="tab" onclick="show('aisystem')">4 AI System</div>
   <div class="tab" onclick="show('system')">Claude Project Prompt</div>
 </nav>
@@ -175,9 +175,9 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <div class="hero">
   <div class="hero-badge">;; system</div>
   <h1>Your AI Mentor<br><span>Snippet System</span></h1>
-  <p>13 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
+  <p>14 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
   <div class="hero-stats">
-    <div><div class="stat-num">13</div><div class="stat-label">Snippets</div></div>
+    <div><div class="stat-num">14</div><div class="stat-label">Snippets</div></div>
     <div><div class="stat-num">4</div><div class="stat-label">Dedicated AIs</div></div>
     <div><div class="stat-num">1</div><div class="stat-label">Loop</div></div>
   </div>
@@ -231,6 +231,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <tr><td><code class="tkw">breathe</code></td><td>Overwhelmed, need someone to cut through the noise</td></tr>
         <tr><td><code class="tkw">build</code></td><td>Need a weekend project idea</td></tr>
         <tr><td><code class="tkw">next</code></td><td>Any Next.js question — enforces correct patterns</td></tr>
+        <tr><td><code class="tkw">teach</code></td><td>Prepping to teach a coding project to kids — milestone by milestone</td></tr>
       </tbody>
     </table>
     <div class="notice green" style="margin-top:12px">
@@ -730,6 +731,39 @@ Rules for your answer:
 - Modern practices only
 
 [your question or paste code]">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="section-divider">Teaching kids</div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw amber">teach</code>
+        <span class="cname">Teach Kids Coding</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Prepping to teach a coding project to kids — breaks it into milestones, one at a time, before you walk into class</div>
+        <div class="prompt-box">
+          <div class="tl">I'm a Python teacher working with kids who already know [FILL IN: e.g. "variables, loops, conditionals, basic functions, lists, input(), .lower(), in keyword"]. I'm about to teach them to build [FILL IN PROJECT, e.g. "Hangman"], and I want to break it into small milestones before I walk into class.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Here's how I want you to work with me:</div>
+          <div class="tl">- Don't dump full code upfront. We discuss one milestone at a time.</div>
+          <div class="tl">- For each milestone, help me: (1) phrase a short, clear instruction I can literally say to the kids, (2) flag new concepts it introduces, (3) flag common mistakes kids make at this step, (4) flag any design decisions I should make now that affect later milestones.</div>
+          <div class="tl">- I'll tell you when I'm ready to move to the next milestone — don't jump ahead on your own.</div>
+          <div class="tl">- Scaffolding level: [FILL IN: e.g. "medium — give the goal, let them figure out the how" / "heavy — give steps" / "light — minimal hints"].</div>
+          <div class="tl">- When I say "show code," give me only the code up to that point, matching what's been discussed, not the whole finished project.</div>
+          <div class="tl">- Keep a running log as we go: instruction given + code at that point + teaching notes/gotchas for each milestone, so I can compile it into one document at the end.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm a Python teacher working with kids who already know [FILL IN: e.g. &quot;variables, loops, conditionals, basic functions, lists, input(), .lower(), in keyword&quot;]. I'm about to teach them to build [FILL IN PROJECT, e.g. &quot;Hangman&quot;], and I want to break it into small milestones before I walk into class.
+
+Here's how I want you to work with me:
+- Don't dump full code upfront. We discuss one milestone at a time.
+- For each milestone, help me: (1) phrase a short, clear instruction I can literally say to the kids, (2) flag new concepts it introduces, (3) flag common mistakes kids make at this step, (4) flag any design decisions I should make now that affect later milestones.
+- I'll tell you when I'm ready to move to the next milestone — don't jump ahead on your own.
+- Scaffolding level: [FILL IN: e.g. &quot;medium — give the goal, let them figure out the how&quot; / &quot;heavy — give steps&quot; / &quot;light — minimal hints&quot;].
+- When I say &quot;show code,&quot; give me only the code up to that point, matching what's been discussed, not the whole finished project.
+- Keep a running log as we go: instruction given + code at that point + teaching notes/gotchas for each milestone, so I can compile it into one document at the end.">Copy prompt</button>
       </div>
     </div>
 
