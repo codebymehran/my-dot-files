@@ -4,6 +4,21 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Map dedicated Lock key next to F12 to Option+Delete (word delete)",
+                        "manipulators": [
+                            {
+                                "from": { "consumer_key_code": "al_terminal_lock_or_screensaver" },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Google Chrome Shortcuts",
                         "manipulators": [
                             {
@@ -1246,20 +1261,26 @@
                                 ],
                                 "type": "basic"
                             },
-                   {
-    "description": "equal_sign = =\"\"",
-    "from": {
-        "key_code": "equal_sign",
-        "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
-    },
-    "to": [
-        { "key_code": "equal_sign" },
-        { "key_code": "quote", "modifiers": ["left_shift"] },
-        { "key_code": "quote", "modifiers": ["left_shift"] },
-        { "key_code": "left_arrow" }
-    ],
-    "type": "basic"
-},
+                            {
+                                "description": "equal_sign = =\"\"",
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [
+                                    { "key_code": "equal_sign" },
+                                    {
+                                        "key_code": "quote",
+                                        "modifiers": ["left_shift"]
+                                    },
+                                    {
+                                        "key_code": "quote",
+                                        "modifiers": ["left_shift"]
+                                    },
+                                    { "key_code": "left_arrow" }
+                                ],
+                                "type": "basic"
+                            },
                             {
                                 "description": "open_bracket = {",
                                 "from": {
@@ -1535,20 +1556,20 @@
                         "description": "System Controls",
                         "manipulators": [
                             {
-    "description": "right_option+m = Mute Mic + Speaker",
-    "from": {
-        "key_code": "m",
-        "modifiers": { "mandatory": ["right_option"] }
-    },
-    "to": [
-        { "consumer_key_code": "mute" },
-        {
-            "key_code": "m",
-            "modifiers": ["left_command", "left_shift"]
-        }
-    ],
-    "type": "basic"
-},
+                                "description": "right_option+m = Mute Mic + Speaker",
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["right_option"] }
+                                },
+                                "to": [
+                                    { "consumer_key_code": "mute" },
+                                    {
+                                        "key_code": "m",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
                             {
                                 "description": "right_option+9 = Volume Down",
                                 "from": {
