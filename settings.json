@@ -605,7 +605,10 @@
     { "before": ["J"], "after": ["5", "j"] },
     { "before": ["K"], "after": ["5", "k"] },
     { "before": ["H"], "after": ["^"] },
-    { "before": ["L"], "after": ["$"] }
+    { "before": ["L"], "after": ["$"] },
+        // Y yanks to end of line, matching D/C behavior (vanilla Vim's
+    // Y is just yy, which is inconsistent — whole-line yank is still yy)
+    { "before": ["Y"], "after": ["y", "$"] }
   ],
 
   // ===========================================================
