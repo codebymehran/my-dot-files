@@ -463,7 +463,7 @@
       "commands": ["alternator.switch", "extension.vim_escape"]
     },
 { "before": ["<Esc>"], "after": ["<Esc>"], "commands": [":noh"] },
-    
+    { "before": ["p"], "after": ["\"", "0", "p"] },
 
     {
       "before": ["{"],
