@@ -464,7 +464,7 @@
     },
 { "before": ["<Esc>"], "after": ["<Esc>"], "commands": [":noh"] },
     { "before": ["p"], "after": ["\"", "0", "p"] },
-
+{ "before": ["<leader>", "1"], "after": ["\"", "1", "p"] },
     {
       "before": ["{"],
       "after": ["{", "z", "z"]
