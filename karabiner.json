@@ -4,6 +4,329 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Google Chrome Shortcuts",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+Y → Pinned Tab 1",
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "1",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+U → Pinned Tab 2",
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "2",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+I → Pinned Tab 3",
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "3",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+O → Pinned Tab 4",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "4",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+[ → Next Tab",
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+] → Previous Tab",
+                                "from": {
+                                    "key_code": "close_bracket",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+c → Toggle DevTools console",
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "j",
+                                        "modifiers": ["left_command", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+d → Duplicate tab (requires extension)",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": ["left_shift", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+f → Search the web",
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": ["left_option", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+g → Search Tabs",
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": {
+                                        "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+p → Toggle between last used tabs (CLUT)",
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+r → Reload page",
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": {
+                                        "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "r",
+                                        "modifiers": ["left_shift", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Hyper+t → Move tab to new window (requires extension)",
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Cmd+Hyper+6 → Socratic mentor prompt (Chrome only)",
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'set the clipboard to \"Mentor me Socratically: ask a guiding question before explaining, hint don'\\''t solve, prioritize reasoning over syntax/facts. Exception: give facts directly, and for errors ask what I think'\\''s wrong before helping debug. If I'\\''m stuck after 2 tries, shift to a smaller hint instead of repeating the question.\"' -e 'delay 0.15' -e 'tell application \"System Events\" to keystroke \"v\" using command down'" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Map dedicated Lock key next to F12 to Option+Delete (word delete)",
                         "manipulators": [
                             {
@@ -18,635 +341,6 @@
                             }
                         ]
                     },
-                   {
-    "description": "Google Chrome Shortcuts",
-    "manipulators": [
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+Y → Pinned Tab 1",
-            "from": {
-                "key_code": "y",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "1",
-                    "modifiers": ["left_command"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+U → Pinned Tab 2",
-            "from": {
-                "key_code": "u",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "2",
-                    "modifiers": ["left_command"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+I → Pinned Tab 3",
-            "from": {
-                "key_code": "i",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "3",
-                    "modifiers": ["left_command"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+O → Pinned Tab 4",
-            "from": {
-                "key_code": "o",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "4",
-                    "modifiers": ["left_command"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+[ → Next Tab",
-            "from": {
-                "key_code": "open_bracket",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "close_bracket",
-                    "modifiers": ["left_command", "left_shift"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+] → Previous Tab",
-            "from": {
-                "key_code": "close_bracket",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "open_bracket",
-                    "modifiers": ["left_command", "left_shift"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+c → Toggle DevTools console",
-            "from": {
-                "key_code": "c",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "j",
-                    "modifiers": ["left_command", "left_option"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+d → Duplicate tab (requires extension)",
-            "from": {
-                "key_code": "d",
-                "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-            },
-            "to": [
-                {
-                    "key_code": "d",
-                    "modifiers": ["left_shift", "left_option"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+f → Search the web",
-            "from": {
-                "key_code": "f",
-                "modifiers": {
-                    "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
-                    "optional": ["any"]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "f",
-                    "modifiers": ["left_option", "left_command"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+g → Search Tabs",
-            "from": {
-                "key_code": "g",
-                "modifiers": {
-                    "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
-                    "optional": ["any"]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "a",
-                    "modifiers": ["left_command", "left_shift"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+p → Toggle between last used tabs (CLUT)",
-            "from": {
-                "key_code": "p",
-                "modifiers": {
-                    "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
-                    "optional": ["any"]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "w",
-                    "modifiers": ["left_option"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+r → Reload page",
-            "from": {
-                "key_code": "r",
-                "modifiers": {
-                    "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
-                    "optional": ["any"]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "r",
-                    "modifiers": ["left_shift", "left_command"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Hyper+t → Move tab to new window (requires extension)",
-            "from": {
-                "key_code": "t",
-                "modifiers": {
-                    "mandatory": ["right_control", "right_shift", "right_command", "right_option"],
-                    "optional": ["any"]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "x",
-                    "modifiers": ["left_option"]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "description": "Cmd+Hyper+6 → Socratic mentor prompt (Chrome only)",
-            "from": {
-                "key_code": "6",
-                "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
-            },
-            "to": [
-                { "key_code": "m", "modifiers": ["left_shift"] },
-                { "key_code": "e" },
-                { "key_code": "n" },
-                { "key_code": "t" },
-                { "key_code": "o" },
-                { "key_code": "r" },
-                { "key_code": "spacebar" },
-                { "key_code": "m" },
-                { "key_code": "e" },
-                { "key_code": "spacebar" },
-                { "key_code": "s", "modifiers": ["left_shift"] },
-                { "key_code": "o" },
-                { "key_code": "c" },
-                { "key_code": "r" },
-                { "key_code": "a" },
-                { "key_code": "t" },
-                { "key_code": "i" },
-                { "key_code": "c" },
-                { "key_code": "a" },
-                { "key_code": "l" },
-                { "key_code": "l" },
-                { "key_code": "y" },
-                { "key_code": "semicolon", "modifiers": ["left_shift"] },
-                { "key_code": "spacebar" },
-                { "key_code": "a" },
-                { "key_code": "s" },
-                { "key_code": "k" },
-                { "key_code": "spacebar" },
-                { "key_code": "a" },
-                { "key_code": "spacebar" },
-                { "key_code": "g" },
-                { "key_code": "u" },
-                { "key_code": "i" },
-                { "key_code": "d" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "g" },
-                { "key_code": "spacebar" },
-                { "key_code": "q" },
-                { "key_code": "u" },
-                { "key_code": "e" },
-                { "key_code": "s" },
-                { "key_code": "t" },
-                { "key_code": "i" },
-                { "key_code": "o" },
-                { "key_code": "n" },
-                { "key_code": "spacebar" },
-                { "key_code": "b" },
-                { "key_code": "e" },
-                { "key_code": "f" },
-                { "key_code": "o" },
-                { "key_code": "r" },
-                { "key_code": "e" },
-                { "key_code": "spacebar" },
-                { "key_code": "e" },
-                { "key_code": "x" },
-                { "key_code": "p" },
-                { "key_code": "l" },
-                { "key_code": "a" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "g" },
-                { "key_code": "comma" },
-                { "key_code": "spacebar" },
-                { "key_code": "h" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "t" },
-                { "key_code": "spacebar" },
-                { "key_code": "d" },
-                { "key_code": "o" },
-                { "key_code": "n" },
-                { "key_code": "quote" },
-                { "key_code": "t" },
-                { "key_code": "spacebar" },
-                { "key_code": "s" },
-                { "key_code": "o" },
-                { "key_code": "l" },
-                { "key_code": "v" },
-                { "key_code": "e" },
-                { "key_code": "comma" },
-                { "key_code": "spacebar" },
-                { "key_code": "p" },
-                { "key_code": "r" },
-                { "key_code": "i" },
-                { "key_code": "o" },
-                { "key_code": "r" },
-                { "key_code": "i" },
-                { "key_code": "t" },
-                { "key_code": "i" },
-                { "key_code": "z" },
-                { "key_code": "e" },
-                { "key_code": "spacebar" },
-                { "key_code": "r" },
-                { "key_code": "e" },
-                { "key_code": "a" },
-                { "key_code": "s" },
-                { "key_code": "o" },
-                { "key_code": "n" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "g" },
-                { "key_code": "spacebar" },
-                { "key_code": "o" },
-                { "key_code": "v" },
-                { "key_code": "e" },
-                { "key_code": "r" },
-                { "key_code": "spacebar" },
-                { "key_code": "s" },
-                { "key_code": "y" },
-                { "key_code": "n" },
-                { "key_code": "t" },
-                { "key_code": "a" },
-                { "key_code": "x" },
-                { "key_code": "slash" },
-                { "key_code": "f" },
-                { "key_code": "a" },
-                { "key_code": "c" },
-                { "key_code": "t" },
-                { "key_code": "s" },
-                { "key_code": "period" },
-                { "key_code": "spacebar" },
-                { "key_code": "e", "modifiers": ["left_shift"] },
-                { "key_code": "x" },
-                { "key_code": "c" },
-                { "key_code": "e" },
-                { "key_code": "p" },
-                { "key_code": "t" },
-                { "key_code": "i" },
-                { "key_code": "o" },
-                { "key_code": "n" },
-                { "key_code": "semicolon", "modifiers": ["left_shift"] },
-                { "key_code": "spacebar" },
-                { "key_code": "g" },
-                { "key_code": "i" },
-                { "key_code": "v" },
-                { "key_code": "e" },
-                { "key_code": "spacebar" },
-                { "key_code": "f" },
-                { "key_code": "a" },
-                { "key_code": "c" },
-                { "key_code": "t" },
-                { "key_code": "s" },
-                { "key_code": "spacebar" },
-                { "key_code": "d" },
-                { "key_code": "i" },
-                { "key_code": "r" },
-                { "key_code": "e" },
-                { "key_code": "c" },
-                { "key_code": "t" },
-                { "key_code": "l" },
-                { "key_code": "y" },
-                { "key_code": "comma" },
-                { "key_code": "spacebar" },
-                { "key_code": "a" },
-                { "key_code": "n" },
-                { "key_code": "d" },
-                { "key_code": "spacebar" },
-                { "key_code": "f" },
-                { "key_code": "o" },
-                { "key_code": "r" },
-                { "key_code": "spacebar" },
-                { "key_code": "e" },
-                { "key_code": "r" },
-                { "key_code": "r" },
-                { "key_code": "o" },
-                { "key_code": "r" },
-                { "key_code": "s" },
-                { "key_code": "spacebar" },
-                { "key_code": "a" },
-                { "key_code": "s" },
-                { "key_code": "k" },
-                { "key_code": "spacebar" },
-                { "key_code": "w" },
-                { "key_code": "h" },
-                { "key_code": "a" },
-                { "key_code": "t" },
-                { "key_code": "spacebar" },
-                { "key_code": "i", "modifiers": ["left_shift"] },
-                { "key_code": "spacebar" },
-                { "key_code": "t" },
-                { "key_code": "h" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "k" },
-                { "key_code": "quote" },
-                { "key_code": "s" },
-                { "key_code": "spacebar" },
-                { "key_code": "w" },
-                { "key_code": "r" },
-                { "key_code": "o" },
-                { "key_code": "n" },
-                { "key_code": "g" },
-                { "key_code": "spacebar" },
-                { "key_code": "b" },
-                { "key_code": "e" },
-                { "key_code": "f" },
-                { "key_code": "o" },
-                { "key_code": "r" },
-                { "key_code": "e" },
-                { "key_code": "spacebar" },
-                { "key_code": "h" },
-                { "key_code": "e" },
-                { "key_code": "l" },
-                { "key_code": "p" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "g" },
-                { "key_code": "spacebar" },
-                { "key_code": "d" },
-                { "key_code": "e" },
-                { "key_code": "b" },
-                { "key_code": "u" },
-                { "key_code": "g" },
-                { "key_code": "period" },
-                { "key_code": "spacebar" },
-                { "key_code": "i", "modifiers": ["left_shift"] },
-                { "key_code": "f" },
-                { "key_code": "spacebar" },
-                { "key_code": "i", "modifiers": ["left_shift"] },
-                { "key_code": "quote" },
-                { "key_code": "m" },
-                { "key_code": "spacebar" },
-                { "key_code": "s" },
-                { "key_code": "t" },
-                { "key_code": "u" },
-                { "key_code": "c" },
-                { "key_code": "k" },
-                { "key_code": "spacebar" },
-                { "key_code": "a" },
-                { "key_code": "f" },
-                { "key_code": "t" },
-                { "key_code": "e" },
-                { "key_code": "r" },
-                { "key_code": "spacebar" },
-                { "key_code": "2" },
-                { "key_code": "spacebar" },
-                { "key_code": "t" },
-                { "key_code": "r" },
-                { "key_code": "i" },
-                { "key_code": "e" },
-                { "key_code": "s" },
-                { "key_code": "comma" },
-                { "key_code": "spacebar" },
-                { "key_code": "s" },
-                { "key_code": "h" },
-                { "key_code": "i" },
-                { "key_code": "f" },
-                { "key_code": "t" },
-                { "key_code": "spacebar" },
-                { "key_code": "t" },
-                { "key_code": "o" },
-                { "key_code": "spacebar" },
-                { "key_code": "a" },
-                { "key_code": "spacebar" },
-                { "key_code": "s" },
-                { "key_code": "m" },
-                { "key_code": "a" },
-                { "key_code": "l" },
-                { "key_code": "l" },
-                { "key_code": "e" },
-                { "key_code": "r" },
-                { "key_code": "spacebar" },
-                { "key_code": "h" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "t" },
-                { "key_code": "spacebar" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "s" },
-                { "key_code": "t" },
-                { "key_code": "e" },
-                { "key_code": "a" },
-                { "key_code": "d" },
-                { "key_code": "spacebar" },
-                { "key_code": "o" },
-                { "key_code": "f" },
-                { "key_code": "spacebar" },
-                { "key_code": "r" },
-                { "key_code": "e" },
-                { "key_code": "p" },
-                { "key_code": "e" },
-                { "key_code": "a" },
-                { "key_code": "t" },
-                { "key_code": "i" },
-                { "key_code": "n" },
-                { "key_code": "g" },
-                { "key_code": "spacebar" },
-                { "key_code": "t" },
-                { "key_code": "h" },
-                { "key_code": "e" },
-                { "key_code": "spacebar" },
-                { "key_code": "q" },
-                { "key_code": "u" },
-                { "key_code": "e" },
-                { "key_code": "s" },
-                { "key_code": "t" },
-                { "key_code": "i" },
-                { "key_code": "o" },
-                { "key_code": "n" },
-                { "key_code": "period" }
-            ],
-            "type": "basic"
-        }
-    ]
-},
-                   
                     {
                         "description": "VSCode - Snippet expansions",
                         "manipulators": [
