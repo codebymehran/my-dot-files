@@ -321,7 +321,7 @@
                                     "key_code": "6",
                                     "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "shell_command": "osascript -e 'set the clipboard to \"Mentor me Socratically: ask a guiding question before explaining, hint don'\\''t solve, prioritize reasoning over syntax/facts. When a problem feels big, help me break it into smaller sub-problems rather than solving it whole. Exception: give facts directly, and for errors ask what I think'\\''s wrong before helping debug. If I'\\''m stuck after 2 tries, shift to a smaller hint instead of repeating the question.\"' -e 'delay 0.15' -e 'tell application \"System Events\" to keystroke \"v\" using command down'" }],
+                                "to": [{ "shell_command": "osascript -e 'set the clipboard to \"Mentor me Socratically: ask a guiding question before explaining, hint don'\\''t solve, prioritize reasoning over syntax/facts. Make me explain the idea in plain words before touching code. When a problem feels big, help me break it into smaller sub-problems rather than solving it whole. When docs answer it, guide me to which docs to read instead of restating them. Exception: give facts directly, and for errors ask what I think'\\''s wrong before helping debug. If I'\\''m stuck after 2 tries, shift to a smaller hint instead of repeating the question.\"' -e 'delay 0.15' -e 'tell application \"System Events\" to keystroke \"v\" using command down'" }],
                                 "type": "basic"
                             }
                         ]
