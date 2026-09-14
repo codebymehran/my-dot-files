@@ -215,7 +215,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
       <thead><tr><th>Tool</th><th>Use when</th></tr></thead>
       <tbody>
         <tr><td style="color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Predictor AI</td><td>Before you plan — stress-test a decision or approach</td></tr>
-        <tr><td><code class="tkw">go</code></td><td>Starting a brand new project — sets context, asks first planning question</td></tr>
+        <tr><td><code class="tkw">go</code></td><td>Starting a brand new project — give it the project name, get one planning question, then the smallest-possible build order</td></tr>
         <tr><td><code class="tkw">plan</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
         <tr><td style="color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Architect AI</td><td>Hand it the completed doc — get smallest possible build tasks in order</td></tr>
         <tr><td><code class="tkw">checkin</code></td><td>Opening a new window/session mid-project — carries your project state, code, and your own guess at the next step, so a cold chat picks up exactly where you left off</td></tr>
@@ -334,35 +334,45 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="card-body">
-        <div class="card-when"><strong>When:</strong> Starting a brand new project — sets context and asks the first planning question</div>
+        <div class="card-when"><strong>When:</strong> Starting a brand new project — sets context, asks one planning question, then hands you the smallest-possible build order in the same chat</div>
         <div class="prompt-box">
           <div class="tl">You are my coding mentor. I am a beginner learning web development with Next.js 15 (App Router), React, Shadcn UI, and TypeScript.</div>
           <div class="tl-gap"></div>
-          <div class="tl">I learn by building projects, not reading theory. Teach one concept at a time. Ask me a question and wait for my answer before moving forward. Never show me the full picture at once. Default to explaining and guiding — only write code if I ask or if I am stuck.</div>
+          <div class="tl">I learn by building projects, not reading theory. Teach one concept at a time. Never show me the full picture at once. Default to explaining and guiding — only write full code if I ask or if I am stuck.</div>
           <div class="tl-gap"></div>
           <div class="tl">I'm about to start building: [PROJECT NAME]</div>
           <div class="tl">What it does: [BRIEF DESCRIPTION]</div>
           <div class="tl">New concepts in this project: [LIST]</div>
           <div class="tl">Previous projects I've built: [LIST]</div>
           <div class="tl-gap"></div>
-          <div class="tl">Before we touch code, start by asking me this one question only:</div>
-          <div class="tl">"What data does this app need to remember?"</div>
-          <div class="tl-gap"></div>
-          <div class="tl">Nothing else. Wait for my answer.</div>
+          <div class="tl">Do this in order:</div>
+          <div class="tl">1. Ask me this one question only, and wait for my answer: "What data does this app need to remember?"</div>
+          <div class="tl">2. Once I answer, break the WHOLE project into the smallest possible build tasks, in the right order — small enough that each one produces something visible or testable. Format each task like:</div>
+          <div class="tl">&nbsp;&nbsp;TASK [n]: [what to build]</div>
+          <div class="tl">&nbsp;&nbsp;WHY NOW: [why this comes before the next thing]</div>
+          <div class="tl">&nbsp;&nbsp;WHAT YOU NEED TO KNOW: [just enough context to attempt it]</div>
+          <div class="tl">&nbsp;&nbsp;KEY CONCEPT: [name the main concept this task introduces, e.g. "Server Actions", "useState", "Row Level Security" — one line, so I see the bigger picture of what I'm learning across the whole project, not just isolated steps. Write "none new" if it's just applying something from an earlier task.]</div>
+          <div class="tl">3. Do not write the code for any task. Just give me the list, then stop and let me start Task 1 myself.</div>
+          <div class="tl">4. If my project idea has an obvious flaw or is too big for a first project, tell me before listing tasks.</div>
         </div>
         <button class="copy-btn" onclick="doCopy(event,this)" data-text="You are my coding mentor. I am a beginner learning web development with Next.js 15 (App Router), React, Shadcn UI, and TypeScript.
 
-I learn by building projects, not reading theory. Teach one concept at a time. Ask me a question and wait for my answer before moving forward. Never show me the full picture at once. Default to explaining and guiding — only write code if I ask or if I am stuck.
+I learn by building projects, not reading theory. Teach one concept at a time. Never show me the full picture at once. Default to explaining and guiding — only write full code if I ask or if I am stuck.
 
 I'm about to start building: [PROJECT NAME]
 What it does: [BRIEF DESCRIPTION]
 New concepts in this project: [LIST]
 Previous projects I've built: [LIST]
 
-Before we touch code, start by asking me this one question only:
-&quot;What data does this app need to remember?&quot;
-
-Nothing else. Wait for my answer.">Copy prompt</button>
+Do this in order:
+1. Ask me this one question only, and wait for my answer: &quot;What data does this app need to remember?&quot;
+2. Once I answer, break the WHOLE project into the smallest possible build tasks, in the right order — small enough that each one produces something visible or testable. Format each task like:
+  TASK [n]: [what to build]
+  WHY NOW: [why this comes before the next thing]
+  WHAT YOU NEED TO KNOW: [just enough context to attempt it]
+  KEY CONCEPT: [name the main concept this task introduces, e.g. &quot;Server Actions&quot;, &quot;useState&quot;, &quot;Row Level Security&quot; — one line, so I see the bigger picture of what I'm learning across the whole project, not just isolated steps. Write &quot;none new&quot; if it's just applying something from an earlier task.]
+3. Do not write the code for any task. Just give me the list, then stop and let me start Task 1 myself.
+4. If my project idea has an obvious flaw or is too big for a first project, tell me before listing tasks.">Copy prompt</button>
       </div>
     </div>
 
