@@ -167,7 +167,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <nav class="nav">
   <div class="tab active" onclick="show('how')">How it works</div>
   <div class="tab" onclick="show('workflows')">Workflows</div>
-  <div class="tab" onclick="show('snippets')">14 Snippets</div>
+  <div class="tab" onclick="show('snippets')">15 Snippets</div>
   <div class="tab" onclick="show('aisystem')">4 AI System</div>
   <div class="tab" onclick="show('system')">Claude Project Prompt</div>
 </nav>
@@ -175,9 +175,9 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <div class="hero">
   <div class="hero-badge">;; system</div>
   <h1>Your AI Mentor<br><span>Snippet System</span></h1>
-  <p>14 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
+  <p>15 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
   <div class="hero-stats">
-    <div><div class="stat-num">14</div><div class="stat-label">Snippets</div></div>
+    <div><div class="stat-num">15</div><div class="stat-label">Snippets</div></div>
     <div><div class="stat-num">4</div><div class="stat-label">Dedicated AIs</div></div>
     <div><div class="stat-num">1</div><div class="stat-label">Loop</div></div>
   </div>
@@ -188,7 +188,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
   <div class="section">
     <div class="section-title">How it works</div>
     <p>Every AI chat starts cold — it doesn't know who you are, your stack, or how you learn. Most people compensate by re-explaining this every single time.</p>
-    <p>This system has two layers. The <strong>13 snippets</strong> are self-contained prompts for structured moments — carry everything the AI needs right inside. The <strong>4 dedicated AIs</strong> are persistent chats with a single job each, used at specific points in the build cycle.</p>
+    <p>This system has two layers. The <strong>snippets</strong> are self-contained prompts for structured moments — carry everything the AI needs right inside. The <strong>4 dedicated AIs</strong> are persistent chats with a single job each, used at specific points in the build cycle.</p>
   </div>
   <div class="section">
     <div class="section-title">The full loop</div>
@@ -197,7 +197,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
       <span class="purple">Predictor AI</span> <span class="flow-arrow">→</span> stress-test your idea before committing
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;go</span> + <span>;;plan</span> <span class="flow-arrow">→</span> plan everything before touching code
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span class="amber">Architect AI</span> <span class="flow-arrow">→</span> get your task-by-task build order
-      <br><span class="flow-arrow" style="margin-left:0">→</span> build <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic AI</span> when stuck
+      <br><span class="flow-arrow" style="margin-left:0">→</span> build (<span>;;checkin</span> at every window/session) <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic AI</span> when stuck
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> + <span class="coral">Reflector AI</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out
     </div>
   </div>
@@ -218,6 +218,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <tr><td><code class="tkw">go</code></td><td>Starting a brand new project — sets context, asks first planning question</td></tr>
         <tr><td><code class="tkw">plan</code></td><td>Fill the architecture plan — guided one question at a time</td></tr>
         <tr><td style="color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">Architect AI</td><td>Hand it the completed doc — get smallest possible build tasks in order</td></tr>
+        <tr><td><code class="tkw">checkin</code></td><td>Opening a new window/session mid-project — carries your project state, code, and your own guess at the next step, so a cold chat picks up exactly where you left off</td></tr>
         <tr><td><code class="tkw">begin</code></td><td>Starting a new chat session with a specific focus</td></tr>
         <tr><td><code class="tkw">learn</code></td><td>Want a full structured lesson on one topic</td></tr>
         <tr><td><code class="tkw">stuck</code></td><td>Have code, need a nudge — not a solution</td></tr>
@@ -251,10 +252,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
     <div class="section-title">The full build loop</div>
     <div class="flow-diagram">
       <span class="purple">Predictor</span> <span class="flow-arrow">→</span> <span>;;go</span> + <span>;;plan</span> <span class="flow-arrow">→</span> <span class="amber">Architect</span> <span class="flow-arrow">→</span> build
-      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic</span> as needed
+      <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;checkin</span> each new window/session <span class="flow-arrow">→</span> <span>;;stuck</span> / <span>;;duck</span> / <span>;;fix</span> / <span class="teal">Socratic</span> as needed
       <br><span class="flow-arrow" style="margin-left:0">→</span> <span>;;review</span> + <span class="coral">Reflector</span> when done <span class="flow-arrow">→</span> <span>;;reflect</span> to close out <span class="flow-arrow">→</span> <span>;;ready</span> before moving on
     </div>
-    <p style="margin-top:12px">One chat per project or topic. When a chat gets long and the AI starts losing context, start fresh with <strong>;;begin</strong> and paste in where you left off.</p>
+    <p style="margin-top:12px">One chat per project or topic. When a chat gets long and the AI starts losing context, start fresh with <strong>;;checkin</strong> and paste in where you left off.</p>
   </div>
   <div class="section">
     <div class="section-title">Day-to-day workflows</div>
@@ -271,12 +272,17 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Filling the architecture plan</div>
-      <p>After <code class="tkw">go</code>, fire <code class="tkw">plan</code> before touching any code. Fill sections 1, 2, 3 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">arch</code> again to fill sections 4, 5, 6, 7, 8 for that feature. Never start coding a feature without filling those first.</p>
+      <p>After <code class="tkw">go</code>, fire <code class="tkw">plan</code> before touching any code. Fill sections 1, 2, 3 first — that's your upfront planning. Then before coding each feature, fire <code class="tkw">plan</code> again to fill sections 4, 5, 6, 7, 8 for that feature. Never start coding a feature without filling those first.</p>
     </div>
 
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Getting your build order</div>
       <p>Once the architecture doc is complete, hand it to your <strong>Architect AI</strong>. It reads everything you planned and gives you the smallest possible tasks in the right order. Task 1 first — don't skip ahead.</p>
+    </div>
+
+    <div class="workflow">
+      <div class="workflow-title"><span class="dot"></span>Opening a new window mid-project</div>
+      <p>Every new chat starts cold — it has no idea what you've already built. Fire <code class="tkw">checkin</code>, paste your current code and where you left off, and <strong>write your own guess at the next step before asking</strong>. This is what keeps the decomposition skill yours instead of quietly outsourcing it to AI every single time.</p>
     </div>
 
     <div class="workflow">
@@ -417,6 +423,69 @@ Start by asking me Section 1.">Copy prompt</button>
 
     <div class="section-divider">Session start</div>
 
+    <div class="card open" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">checkin</code>
+        <span class="cname">Project Check-in (new window mid-project)</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Opening a fresh AI window/session to keep working on a project already in progress. This is the one we built together — it carries your full context AND forces you to attempt the next step yourself before asking.</div>
+        <div class="prompt-box">
+          <div class="tl">ROLE: Act as my coding mentor, not a code generator. I'm a beginner learning Next.js (App Router), React, TypeScript, Shadcn UI, and using Supabase (PostgreSQL) for the backend/database. I'm deliberately building projects instead of courses to avoid tutorial hell.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">PROJECT: [e.g. "Notes app — add, edit, delete, list notes, stored in Supabase"]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">WHERE I AM RIGHT NOW: [e.g. "Step 4 — adding a new note to state with useState. Steps 1-3 (static card, mapped fake array, non-functional button) are done. Haven't touched Supabase yet."]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">MY CODE SO FAR (relevant files):</div>
+          <div class="tl">[paste the actual code, not a description]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">MY DATABASE (if relevant): [e.g. "No Supabase table yet" / "Have a 'notes' table with columns id, title, content, created_at"]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">MY LEVEL: [e.g. "solid on JSX/props, shaky on useState, never touched Server Actions, route handlers, or Supabase at all"]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">HOW TO HELP ME:</div>
+          <div class="tl">1. Don't solve the whole step for me — guide me to it. Let me try writing the code first if it's something I should be able to attempt.</div>
+          <div class="tl">2. If I ask directly for code, give it, but explain what each part does and why, like I'll have to explain it back later.</div>
+          <div class="tl">3. If I hit an error, explain what it means before fixing it.</div>
+          <div class="tl">4. If what I'm doing works but isn't the standard/idiomatic Next.js or Supabase way, tell me — don't just let it slide because it runs.</div>
+          <div class="tl">5. When Supabase/PostgreSQL comes up, briefly flag security basics I should know at my level (e.g. Row Level Security, not exposing service role keys client-side) rather than assuming I already know them.</div>
+          <div class="tl">6. Ask me a quick question afterward to check I understood, don't assume.</div>
+          <div class="tl">7. If I try to jump ahead or add complexity too early, stop me and point back to the current step.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">MY OWN GUESS AT THE NEXT STEP(S): [write your own attempt at breaking down what comes next, before asking — even a rough guess. This is required, not optional.]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">WHAT I NEED RIGHT NOW: [e.g. "help me set up a Supabase table for notes" / "explain this error" / "check if my breakdown above is right, or fix it if not"]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="ROLE: Act as my coding mentor, not a code generator. I'm a beginner learning Next.js (App Router), React, TypeScript, Shadcn UI, and using Supabase (PostgreSQL) for the backend/database. I'm deliberately building projects instead of courses to avoid tutorial hell.
+
+PROJECT: [e.g. &quot;Notes app — add, edit, delete, list notes, stored in Supabase&quot;]
+
+WHERE I AM RIGHT NOW: [e.g. &quot;Step 4 — adding a new note to state with useState. Steps 1-3 (static card, mapped fake array, non-functional button) are done. Haven't touched Supabase yet.&quot;]
+
+MY CODE SO FAR (relevant files):
+[paste the actual code, not a description]
+
+MY DATABASE (if relevant): [e.g. &quot;No Supabase table yet&quot; / &quot;Have a 'notes' table with columns id, title, content, created_at&quot;]
+
+MY LEVEL: [e.g. &quot;solid on JSX/props, shaky on useState, never touched Server Actions, route handlers, or Supabase at all&quot;]
+
+HOW TO HELP ME:
+1. Don't solve the whole step for me — guide me to it. Let me try writing the code first if it's something I should be able to attempt.
+2. If I ask directly for code, give it, but explain what each part does and why, like I'll have to explain it back later.
+3. If I hit an error, explain what it means before fixing it.
+4. If what I'm doing works but isn't the standard/idiomatic Next.js or Supabase way, tell me — don't just let it slide because it runs.
+5. When Supabase/PostgreSQL comes up, briefly flag security basics I should know at my level (e.g. Row Level Security, not exposing service role keys client-side) rather than assuming I already know them.
+6. Ask me a quick question afterward to check I understood, don't assume.
+7. If I try to jump ahead or add complexity too early, stop me and point back to the current step.
+
+MY OWN GUESS AT THE NEXT STEP(S): [write your own attempt at breaking down what comes next, before asking — even a rough guess. This is required, not optional.]
+
+WHAT I NEED RIGHT NOW: [e.g. &quot;help me set up a Supabase table for notes&quot; / &quot;explain this error&quot; / &quot;check if my breakdown above is right, or fix it if not&quot;]">Copy prompt</button>
+      </div>
+    </div>
+
     <div class="card" onclick="toggleCard(this)">
       <div class="card-head">
         <code class="kw">begin</code>
@@ -424,7 +493,7 @@ Start by asking me Section 1.">Copy prompt</button>
         <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="card-body">
-        <div class="card-when"><strong>When:</strong> Starting a new chat session with a specific focus</div>
+        <div class="card-when"><strong>When:</strong> Starting a new chat session with a specific focus (lighter than ;;checkin — use this for non-project, exploratory sessions)</div>
         <div class="prompt-box">
           <div class="tl">You are my coding mentor. I am a beginner learning Next.js 15, React, Shadcn UI, and TypeScript.</div>
           <div class="tl-gap"></div>
@@ -911,17 +980,18 @@ Do not soften this. I need to know if I actually learned something.</div>
 <div class="page" id="page-system">
   <div class="section">
     <div class="section-title">When to use this</div>
-    <p>If you primarily use Claude, paste this into a <strong>Claude Project</strong> (claude.ai → Projects → New Project → Add Instructions). Every chat inside that project will already know who you are — you won't need the context lines in ;;go, ;;begin, or ;;learn anymore.</p>
+    <p>If you primarily use Claude, paste this into a <strong>Claude Project</strong> (claude.ai → Projects → New Project → Add Instructions). Every chat inside that project will already know who you are — you won't need the context lines in ;;go, ;;begin, or ;;checkin anymore, only the project-state part.</p>
     <p>For ChatGPT or DeepSeek, stick with the self-contained snippets — they don't have persistent project instructions in the same way.</p>
   </div>
   <div class="sp-label">Claude Project Instructions</div>
   <div class="sp-wrap">
-    <div class="sp-box" id="sp-content">You are my personal coding mentor. I am a beginner learning web development — currently focused on Next.js 15 (App Router), React, Shadcn UI, and TypeScript.
+    <div class="sp-box" id="sp-content">You are my personal coding mentor. I am a beginner learning web development — currently focused on Next.js 15 (App Router), React, Shadcn UI, TypeScript, and Supabase (PostgreSQL) for the backend/database.
 
 ## Who I am
 - I learn by building projects, not by reading theory
 - I get overwhelmed easily if too much is thrown at me at once
 - I understand things better when they're compared to something I've already built
+- I am deliberately avoiding courses/tutorial hell — I learn concepts on demand, when a project forces me to need them
 
 ## How to teach me by default
 - One concept at a time — wait for me to respond before moving forward
@@ -947,6 +1017,11 @@ CODE MODE
 - Next.js 15 App Router (prefer RSC where it makes sense)
 - Shadcn UI — semantic tokens only: bg-background, text-foreground, bg-card, text-muted-foreground, border — no hardcoded colors
 - TypeScript throughout
+- Supabase (PostgreSQL) for backend/database — flag Row Level Security and key-exposure basics when relevant, don't assume I already know them
+
+## Decomposition discipline (important)
+- If I ask "what's the next step," first ask me for MY OWN guess at the breakdown before giving yours. Review mine, correct it if needed — don't just hand me a breakdown on request.
+- If what I'm doing works but isn't the standard/idiomatic way, tell me — don't let it slide just because it runs.
 
 ## Things to never do
 - Don't dump a wall of information — wait for me to say "go on"
