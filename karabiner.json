@@ -37,15 +37,15 @@
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "Hyper+U → Pinned Tab 2",
+                                "description": "Hyper+U → Shift+J (Vimium C)",
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "2",
-                                        "modifiers": ["left_command"]
+                                        "key_code": "j",
+                                        "modifiers": ["left_shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -59,15 +59,15 @@
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "Hyper+I → Pinned Tab 3",
+                                "description": "Hyper+I → Shift+K (Vimium C)",
                                 "from": {
                                     "key_code": "i",
                                     "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "3",
-                                        "modifiers": ["left_command"]
+                                        "key_code": "k",
+                                        "modifiers": ["left_shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -81,15 +81,15 @@
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "Hyper+O → Pinned Tab 4",
+                                "description": "Hyper+O → Shift+T (Vimium C search tabs)",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "4",
-                                        "modifiers": ["left_command"]
+                                        "key_code": "t",
+                                        "modifiers": ["left_shift"]
                                     }
                                 ],
                                 "type": "basic"
