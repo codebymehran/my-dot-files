@@ -262,8 +262,8 @@
     <div class="card-body">
       <div class="section-label">Move</div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>H / L / J / K</kbd></div><span class="result">← → ↓ ↑</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>I</kbd></div><span class="result">home</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>O</kbd></div><span class="result">end</span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>I</kbd></div><span class="result">home <span class="scope-pill scope-unless">not Chrome</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>O</kbd></div><span class="result">end <span class="scope-pill scope-unless">not Chrome</span></span></div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>H / L</kbd></div><span class="result">word ← → <span class="scope-pill scope-unless">not VSCode</span></span></div>
       <div class="divider"></div>
       <div class="section-label">Select</div>
@@ -277,17 +277,20 @@
   <div class="card c2">
     <div class="card-header"><div class="card-dot"></div><div class="card-title">Deletion</div></div>
     <div class="card-body">
-      <div class="section-label">Word</div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">delete word before</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>N</kbd></div><span class="result">delete word after</span></div>
-      <div class="divider"></div>
       <div class="section-label">Character</div>
-      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">delete char before</span></div>
-      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>N</kbd></div><span class="result">delete char after</span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">delete char before</span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Backspace</kbd></div><span class="result">delete char after</span></div>
+      <div class="divider"></div>
+      <div class="section-label">Word</div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Backspace</kbd></div><span class="result">delete word before</span></div>
+      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">delete word before</span></div>
+      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Backspace</kbd></div><span class="result">delete word after</span></div>
       <div class="divider"></div>
       <div class="section-label">Line</div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">delete to line start</span></div>
-      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>N</kbd></div><span class="result">delete to line end</span></div>
+      <div class="divider"></div>
+      <div class="section-label">Hardware</div>
+      <div class="row"><div class="keys"><kbd>Lock</kbd><span class="desc">next to F12</span></div><span class="result">delete word before <span class="desc">Opt+Delete</span></span></div>
     </div>
   </div>
 
@@ -297,10 +300,10 @@
     <div class="card-body">
       <div class="section-label">Hyper + key</div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>-</kbd></div><span class="result code">_</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>=</kbd></div><span class="result code">=""│"</span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>=</kbd></div><span class="result code">="│"</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>'</kbd></div><span class="result code"> = </span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>;</kbd></div><span class="result code">:</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>[ / ]</kbd></div><span class="result code">{ }</span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>[ / ]</kbd></div><span class="result code">{ } <span class="scope-pill scope-unless">not Chrome</span></span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>,</kbd></div><span class="result code">&lt;</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>.</kbd></div><span class="result code">&gt;</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>/</kbd></div><span class="result code"> ? </span></div>
@@ -308,13 +311,15 @@
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>7</kbd></div><span class="result code">&amp;</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>8</kbd></div><span class="result code">*</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>9 / 0</kbd></div><span class="result code">( )</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>B</kbd></div><span class="result">%  <span class="desc">Vim bracket match</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>U / P</kbd></div><span class="result code">( ) <span class="scope-pill scope-unless">not Chrome</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>N</kbd></div><span class="result">%  <span class="desc">Vim bracket match</span></span></div>
       <div class="divider"></div>
       <div class="section-label">Cmd + Hyper</div>
       <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>=</kbd></div><span class="result code">~</span></div>
       <div class="divider"></div>
       <div class="section-label">Backslash</div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>\</kbd></div><span class="result code"> | </span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>\</kbd></div><span class="result code"> | │ </span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>\</kbd></div><span class="result code">^</span></div>
     </div>
   </div>
 
@@ -332,6 +337,7 @@
       <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>.</kbd></div><span class="result code">&lt;│&gt;</span></div>
       <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>O</kbd></div><span class="result code">?.</span></div>
       <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>P</kbd></div><span class="result code">...</span></div>
+      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>\</kbd></div><span class="result code"> || </span></div>
       <div class="divider"></div>
       <div class="section-label">Option + Hyper</div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>;</kbd></div><span class="result code"> !== </span></div>
@@ -340,6 +346,11 @@
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>'</kbd></div><span class="result code">!</span></div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>[</kbd></div><span class="result code">{│}</span></div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>,</kbd></div><span class="result code">({│})</span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>]</kbd></div><span class="result code">[│]</span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Q</kbd></div><span class="result code">&quot;│&quot;</span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>7</kbd></div><span class="result code"> &amp;&amp; </span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>.</kbd></div><span class="result code">&lt;&gt;│&lt;/&gt; <span class="desc">fragment</span></span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>/</kbd></div><span class="result code">{/* │ */} <span class="desc">JSX comment</span></span></div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Y</kbd></div><span class="result code"> ?? </span></div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>J</kbd></div><span class="result code">console.log(│)</span></div>
       <div class="row"><div class="keys"><kbd class="mod">Opt</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>U</kbd></div><span class="result code">console.error(│)</span></div>
@@ -358,18 +369,21 @@
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>P</kbd></div><span class="result">last used tab (CLUT)</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>D</kbd></div><span class="result">duplicate tab</span></div>
       <div class="divider"></div>
-      <div class="section-label">Pinned tabs</div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Y / U / I / O</kbd></div><span class="result">pinned 1–4</span></div>
+      <div class="section-label">Pinned tab / Vimium</div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Y</kbd></div><span class="result">pinned tab 1 <span class="desc">Cmd+1</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>U</kbd></div><span class="result">tab left <span class="desc">Vimium J</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>I</kbd></div><span class="result">tab right <span class="desc">Vimium K</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>O</kbd></div><span class="result">search tabs <span class="desc">Vimium T</span></span></div>
       <div class="divider"></div>
       <div class="section-label">Actions</div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>C</kbd></div><span class="result">toggle DevTools console</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>F</kbd></div><span class="result">search the web</span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>G</kbd></div><span class="result">search tabs</span></div>
-      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>R</kbd></div><span class="result">reload</span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>R</kbd></div><span class="result">hard reload <span class="desc">Cmd+Shift+R</span></span></div>
       <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>T</kbd></div><span class="result">tab to new window</span></div>
       <div class="divider"></div>
       <div class="section-label">AI Writing</div>
-      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>X</kbd></div><span class="result">mentor prompt</span></div>
+      <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>6</kbd></div><span class="result">mentor prompt</span></div>
     </div>
   </div>
 
@@ -430,10 +444,11 @@
       <div class="divider"></div>
       <div class="section-label">Tab / File Switching</div>
       <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>Tab</kbd></div><span class="result">next tab / recent file <span class="desc">Ctrl+Tab</span></span></div>
+      <div class="row"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Tab</kbd></div><span class="result">next tab / file <span class="desc">Ctrl+Tab</span></span></div>
       <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>Tab</kbd></div><span class="result">previous tab / file <span class="desc">Ctrl+Shift+Tab</span></span></div>
       <div class="divider"></div>
       <div class="section-label">Volume &amp; Brightness</div>
-      <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">mute</span></div>
+      <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>M</kbd></div><span class="result">mute <span class="desc">+ Cmd+Shift+M</span></span></div>
       <div class="row"><div class="keys"><kbd class="mod">Option</kbd><span class="plus">+</span><kbd>9 / 0</kbd></div><span class="result">volume ↓ ↑</span></div>
       <div class="row"><div class="keys"><kbd>Cmd</kbd><span class="plus">+</span><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>9 / 0</kbd></div><span class="result">brightness ↓ ↑</span></div>
     </div>
@@ -492,6 +507,13 @@
       <div class="section-label">Editors — VSCode only</div>
       <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>E</kbd></div><span class="result">next editor <span class="desc">Cmd+Opt+→</span></span></div>
       <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>W</kbd></div><span class="result">previous editor <span class="desc">Cmd+Opt+←</span></span></div>
+      <div class="divider"></div>
+      <div class="section-label">Actions — VSCode only</div>
+      <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>C</kbd></div><span class="result">toggle terminal <span class="desc">Ctrl+`</span></span></div>
+      <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>B</kbd></div><span class="result">toggle sidebar <span class="desc">Cmd+B</span></span></div>
+      <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>F</kbd></div><span class="result">format document <span class="desc">Shift+Opt+F</span></span></div>
+      <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>R</kbd></div><span class="result">rename symbol <span class="desc">F2</span></span></div>
+      <div class="row row-vscode"><div class="keys"><kbd class="hyper">Hyper</kbd><span class="plus">+</span><kbd>D</kbd></div><span class="result">go to definition <span class="desc">F12</span></span></div>
     </div>
   </div>
 
@@ -521,15 +543,15 @@
   <div class="panel-grid">
     <div>
       <div class="panel-item-title blue">Hyper (CapsLock hold)</div>
-      <div class="panel-item-body">The base layer. Navigation (hjkl), deletion (m/n), symbols, and global actions. Most frequently used shortcuts live here.</div>
+      <div class="panel-item-body">The base layer. Navigation (hjkl), deletion (m / backspace), symbols, and global actions. Most frequently used shortcuts live here.</div>
     </div>
     <div>
       <div class="panel-item-title blue">Cmd + Hyper</div>
-      <div class="panel-item-body">The extended layer. Selection, secondary actions, multi-char sequences like =&gt; and !==, and duplicate tab.</div>
+      <div class="panel-item-body">The extended layer. Selection, secondary actions, multi-char sequences like =&gt;, === and ||, ${} and React props.</div>
     </div>
     <div>
       <div class="panel-item-title blue">Option + Hyper</div>
-      <div class="panel-item-body">The coding layer. Template literals, JSX, console.log/error, arrow functions, ===, !==, ??, spread, optional chaining, and line-level deletion.</div>
+      <div class="panel-item-body">The coding layer. Template literals, JSX (fragments, comments), brackets, quotes, &amp;&amp;, console.log/error, arrow functions, ===, !==, ??, spread, optional chaining, and line-level deletion.</div>
     </div>
     <div>
       <div class="panel-item-title teal">Right Option alone</div>
@@ -553,21 +575,23 @@
     <div>
       <div class="panel-item-title blue" style="margin-bottom:8px;">Hyper free</div>
       <div style="display:flex;flex-wrap:wrap;gap:5px;">
-        <span class="tag tag-blue">5</span><span class="tag tag-blue">Q</span><span class="tag tag-blue">V</span><span class="tag tag-blue">X</span><span class="tag tag-blue">Z</span><span class="tag tag-blue">9</span><span class="tag tag-blue">0</span>
+        <span class="tag tag-blue">5</span><span class="tag tag-blue">Q</span><span class="tag tag-blue">V</span><span class="tag tag-blue">X</span><span class="tag tag-blue">Z</span>
       </div>
-      <div class="panel-item-body" style="margin-top:6px;">B is used for % (plain Hyper only). Cmd+Hyper+B and Opt+Hyper+B still free. C, F and G are used in Chrome only. Y/U/I/O free in Chrome (pinned tabs removed). E and W are used in VSCode only (next / previous editor).</div>
+      <div class="panel-item-body" style="margin-top:6px;">B is used only in VSCode (sidebar), so it is free elsewhere. C, D, F, G, P, R, T are used in Chrome only (C, D, F, R also in VSCode). E and W are VSCode only. Y is pinned tab 1 in Chrome and const in VSCode. U, I, O are Vimium in Chrome. N is %.</div>
     </div>
     <div>
       <div class="panel-item-title blue" style="margin-bottom:8px;">Cmd + Hyper free</div>
       <div style="display:flex;flex-wrap:wrap;gap:5px;">
-        <span class="tag tag-blue">-</span><span class="tag tag-blue">0</span><span class="tag tag-blue">5</span><span class="tag tag-blue">6</span><span class="tag tag-blue">7</span><span class="tag tag-blue">8</span><span class="tag tag-blue">B</span><span class="tag tag-blue">C</span><span class="tag tag-blue">E</span><span class="tag tag-blue">F</span><span class="tag tag-blue">G</span><span class="tag tag-blue">I</span><span class="tag tag-blue">Q</span><span class="tag tag-blue">R</span><span class="tag tag-blue">S</span><span class="tag tag-blue">T</span><span class="tag tag-blue">V</span><span class="tag tag-blue">W</span><span class="tag tag-blue">X</span><span class="tag tag-blue">Z</span>
+        <span class="tag tag-blue">-</span><span class="tag tag-blue">/</span><span class="tag tag-blue">5</span><span class="tag tag-blue">7</span><span class="tag tag-blue">8</span><span class="tag tag-blue">B</span><span class="tag tag-blue">C</span><span class="tag tag-blue">D</span><span class="tag tag-blue">E</span><span class="tag tag-blue">F</span><span class="tag tag-blue">G</span><span class="tag tag-blue">N</span><span class="tag tag-blue">Q</span><span class="tag tag-blue">R</span><span class="tag tag-blue">S</span><span class="tag tag-blue">T</span><span class="tag tag-blue">V</span><span class="tag tag-blue">W</span><span class="tag tag-blue">X</span><span class="tag tag-blue">Z</span>
       </div>
-      <div class="panel-item-body" style="margin-top:6px;">Y is VSCode only. U is used for =(&quot;&quot;).</div>
-      </div>
+      <div class="panel-item-body" style="margin-top:6px;">Y is VSCode only. 6 is Chrome only (mentor prompt). U is used for =(&quot;&quot;). \ is now ||.</div>
     </div>
     <div>
       <div class="panel-item-title blue" style="margin-bottom:8px;">Option + Hyper free</div>
-      <div class="panel-item-body">Taken: J, K, U, P, Y (sequences), ;, -, [, ', , (sequences/symbols). H and L are VSCode-only — free globally. \ now free (moved to Hyper layer). / now free. All other letters and numbers available.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="tag tag-blue">=</span><span class="tag tag-blue">0</span><span class="tag tag-blue">1</span><span class="tag tag-blue">2</span><span class="tag tag-blue">3</span><span class="tag tag-blue">4</span><span class="tag tag-blue">5</span><span class="tag tag-blue">6</span><span class="tag tag-blue">8</span><span class="tag tag-blue">9</span><span class="tag tag-blue">A</span><span class="tag tag-blue">B</span><span class="tag tag-blue">C</span><span class="tag tag-blue">D</span><span class="tag tag-blue">E</span><span class="tag tag-blue">F</span><span class="tag tag-blue">G</span><span class="tag tag-blue">I</span><span class="tag tag-blue">N</span><span class="tag tag-blue">O</span><span class="tag tag-blue">R</span><span class="tag tag-blue">S</span><span class="tag tag-blue">T</span><span class="tag tag-blue">V</span><span class="tag tag-blue">W</span><span class="tag tag-blue">X</span><span class="tag tag-blue">Z</span>
+      </div>
+      <div class="panel-item-body" style="margin-top:6px;">Taken: H and L (word nav, VSCode snippets), J K U P Y (sequences), M and Backspace (deletion), Return, and ; - [ ] ' , . / \ Q 7.</div>
     </div>
     <div>
       <div class="panel-item-title teal" style="margin-bottom:8px;">Right Option free</div>
