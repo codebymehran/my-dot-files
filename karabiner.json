@@ -2342,6 +2342,15 @@
                                 "type": "basic"
                             },
                             {
+                                "description": "Hyper+v → VS Code",
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                },
+                                "to": [{ "shell_command": "open -a 'Visual Studio Code'" }],
+                                "type": "basic"
+                            },
+                            {
                                 "description": "escape = capslock switch",
                                 "from": {
                                     "key_code": "escape",
