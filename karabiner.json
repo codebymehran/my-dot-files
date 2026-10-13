@@ -72,50 +72,6 @@
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "Hyper+I → Shift+K (Vimium C)",
-                                "from": {
-                                    "key_code": "i",
-                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "k",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.google\\.Chrome$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Hyper+O → Shift+T (Vimium C search tabs)",
-                                "from": {
-                                    "key_code": "o",
-                                    "modifiers": { "mandatory": ["right_control", "right_shift", "right_command", "right_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "t",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.google\\.Chrome$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
                                 "description": "Hyper+[ → Next Tab",
                                 "from": {
                                     "key_code": "open_bracket",
