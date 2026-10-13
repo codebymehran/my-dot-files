@@ -43,7 +43,7 @@ kbd.ctrl{background:var(--cb);border-color:var(--cbd);color:var(--ct);font-weigh
 <div class="meta"><span><kbd class="hyper">Hyper</kbd> hold Caps = R-Ctrl+R-Opt+R-Shift+R-Cmd</span><span><kbd class="mod">Opt</kbd> Right Option</span><span>Cmd = Left Command</span><span>│ = cursor</span></div></header>
 <div class="grid" id="g"></div>
 <div class="panel"><div class="pg">
-<div><div class="pt">Hyper free</div><span class="tag">Q</span><div class="pb">B is VSCode only. C D F G P R T are Chrome (C D F R also VSCode). E W VSCode. Y Chrome+VSCode. U I O Vimium. N is %. V X Z 5 and arrows are Raycast.</div></div>
+<div><div class="pt">Hyper free</div><span class="tag">Q</span><div class="pb">B is VSCode only. C D F G P R T are Chrome (C D F R also VSCode). E W VSCode. Y Chrome+VSCode. U I O Vimium. N is Chrome launcher. V is VS Code launcher. X Z 5 and arrows are Raycast.</div></div>
 <div><div class="pt">Cmd + Hyper free</div><span class="tag">-</span><span class="tag">/</span><span class="tag">5</span><span class="tag">7</span><span class="tag">8</span><span class="tag">B</span><span class="tag">C</span><span class="tag">D</span><span class="tag">E</span><span class="tag">F</span><span class="tag">G</span><span class="tag">N</span><span class="tag">Q</span><span class="tag">R</span><span class="tag">S</span><span class="tag">T</span><span class="tag">V</span><span class="tag">W</span><span class="tag">Z</span></div>
 <div><div class="pt">Option + Hyper free</div><span class="tag">=</span><span class="tag">0</span><span class="tag">1</span><span class="tag">2</span><span class="tag">3</span><span class="tag">4</span><span class="tag">5</span><span class="tag">6</span><span class="tag">8</span><span class="tag">9</span><span class="tag">A</span><span class="tag">B</span><span class="tag">C</span><span class="tag">D</span><span class="tag">E</span><span class="tag">F</span><span class="tag">G</span><span class="tag">I</span><span class="tag">N</span><span class="tag">O</span><span class="tag">R</span><span class="tag">S</span><span class="tag">T</span><span class="tag">V</span><span class="tag">W</span><span class="tag">X</span><span class="tag">Z</span></div>
 <div><div class="pt o">Right Option free</div><span class="tag o">Q</span><span class="tag o">X</span><span class="tag o">1</span><span class="tag o">2</span><span class="tag o">4</span><span class="tag o">5</span><span class="tag o">6</span><span class="tag o">7</span><span class="tag o">8</span><div class="pb">U is Raycast (append). M 9 0 system. Tab is Ctrl+Tab. Check X vs Raycast before use.</div></div>
@@ -59,7 +59,7 @@ const C=[
 ["Line",["Opt+Hyper+M :: delete to line start"]],
 ["Hardware",["Lock (next to F12) :: delete word before ~Opt+Delete"]]]],
 ["#c47f00","Symbols",0,[
-["Hyper + key",["Hyper+- :: `_","Hyper+= :: `=\"│\"","Hyper+' :: ` = ","Hyper+; :: `:","Hyper+[ / ] :: `{ } ^not Chrome","Hyper+, :: `<","Hyper+. :: `>","Hyper+/ :: ` ? ","Hyper+6 :: `^","Hyper+7 :: `&","Hyper+8 :: `*","Hyper+9 / 0 :: `( )","Hyper+U / P :: `( ) ^not Chrome","Hyper+N :: %"]],
+["Hyper + key",["Hyper+- :: `_","Hyper+= :: `=\"│\"","Hyper+' :: ` = ","Hyper+; :: `:","Hyper+[ / ] :: `{ } ^not Chrome","Hyper+, :: `<","Hyper+. :: `>","Hyper+/ :: ` ? ","Hyper+6 :: `^","Hyper+7 :: `&","Hyper+8 :: `*","Hyper+9 / 0 :: `( )","Hyper+U / P :: `( ) ^not Chrome"]],
 ["Other",["Cmd+Hyper+= :: `~","Hyper+\\ :: ` | │ ","Opt+Hyper+\\ :: `^"]]]],
 ["#d63060","Sequences",0,[
 ["Cmd + Hyper",["Cmd+Hyper+' :: ` => ","Cmd+Hyper+; :: ` === ","Cmd+Hyper+, :: `(│)","Cmd+Hyper+U :: `=(\"│\") ~Tab exits","Cmd+Hyper+[ :: `={│} ~React prop","Cmd+Hyper+] :: `${│}","Cmd+Hyper+. :: `<│>","Cmd+Hyper+O :: `?.","Cmd+Hyper+P :: `...","Cmd+Hyper+\\ :: ` || "]],
@@ -69,6 +69,7 @@ const C=[
 ["Pinned / Vimium",["Hyper+Y :: pinned tab 1 ~Cmd+1","Hyper+U :: tab left ~Vimium J","Hyper+I :: tab right ~Vimium K","Hyper+O :: search tabs ~Vimium T"]],
 ["Actions",["Hyper+C :: DevTools console","Hyper+F :: search the web","Hyper+G :: search tabs","Hyper+R :: hard reload","Hyper+T :: tab to new window","Cmd+Hyper+6 :: mentor prompt"]]]],
 ["#7c3aed","Quick Launch: AI & Web",0,[
+["Hyper + letter",["Hyper+V :: VS Code","Hyper+N :: Chrome"]],
 ["Hyper + number",["Hyper+1 :: Claude","Hyper+2 :: ChatGPT","Hyper+3 :: DeepSeek","Hyper+4 :: v0.dev"]],
 ["Cmd + Hyper + number",["Cmd+Hyper+1 :: GitHub","Cmd+Hyper+2 :: Gmail","Cmd+Hyper+3 :: Vercel","Cmd+Hyper+4 :: localhost:5173"]]]],
 ["#1a6fd4","Right Option: Apps & Folders",0,[
@@ -85,7 +86,7 @@ const C=[
 ["Volume & brightness",["Opt+M :: mute ~+ Cmd+Shift+M","Opt+9 / 0 :: volume ↓ ↑","Cmd+Hyper+9 / 0 :: brightness ↓ ↑"]]]],
 ["#0f9d97","CleanShot X",0,[["",["Hyper+A :: capture area ~Cmd+Shift+4","Cmd+Hyper+A :: restore last capture ~Ctrl+Shift+R","Hyper+S :: OCR / capture text ~Ctrl+Shift+O"]]]],
 ["#c47f00","Raycast",0,[
-["Hyper hotkeys",["Hyper+← :: left half","Hyper+→ :: right half","Hyper+↑ :: maximize","Hyper+↓ :: center","Hyper+X :: clipboard history","Cmd+Hyper+X :: prepend to clipboard","Hyper+V :: search snippets","Hyper+Z :: recent projects ~VS Code","Hyper+5 :: color picker"]],
+["Hyper hotkeys",["Hyper+← :: left half","Hyper+→ :: right half","Hyper+↑ :: maximize","Hyper+↓ :: center","Hyper+X :: clipboard history","Cmd+Hyper+X :: prepend to clipboard","Hyper+? :: search snippets ~choose your shortcut","Hyper+Z :: recent projects ~VS Code","Hyper+5 :: color picker"]],
 ["Right Option",["Opt+U :: append to clipboard"]],
 ["Window management",["Ctrl+Opt+← :: left half","Ctrl+Opt+→ :: right half","Ctrl+Opt+↑ :: top half","Ctrl+Opt+↓ :: bottom half","Ctrl+Opt+C :: center","Ctrl+Opt+Return :: maximize","Ctrl+Opt+U :: top-left sixth","Ctrl+Opt+J :: bottom-right sixth"]]]],
 ["#c47f00","VSCode ",2,[
