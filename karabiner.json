@@ -4,14 +4,14 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Right Command → Backspace",
+                        "description": "Cmd+Hyper+Space → Raycast",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_command",
-                                    "modifiers": { "optional": ["any"] }
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
                                 },
-                                "to": [{ "key_code": "delete_or_backspace" }],
+                                "to": [{ "shell_command": "open -a Raycast" }],
                                 "type": "basic"
                             }
                         ]
@@ -1807,9 +1807,9 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Right Option+r → npm search",
+                                "description": "Right Option+q → npm search",
                                 "from": {
-                                    "key_code": "r",
+                                    "key_code": "q",
                                     "modifiers": { "mandatory": ["right_option"] }
                                 },
                                 "to": [{ "shell_command": "q=$(osascript -e 'text returned of (display dialog \"npm:\" default answer \"\")') && [ -n \"$q\" ] && open -a 'Google Chrome' \"https://www.npmjs.com/search?q=$(printf %s \"$q\" | perl -pe 's/([^A-Za-z0-9])/sprintf(\"%%%02X\",ord($1))/seg')\"" }],
@@ -1882,7 +1882,6 @@
                     },
                     {
                         "description": "Hyper Deletion (Vim Minimal, Command-based)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "description": "Hyper+Backspace = delete word left",
@@ -2298,10 +2297,10 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Hyper+m → Chrome",
+                                "description": "Cmd+Hyper+n → Chrome",
                                 "from": {
-                                    "key_code": "m",
-                                    "modifiers": { "mandatory": ["right_command", "right_control", "right_shift", "right_option"] }
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["left_command", "right_command", "right_control", "right_shift", "right_option"] }
                                 },
                                 "to": [{ "shell_command": "open -a 'Google Chrome'" }],
                                 "type": "basic"
