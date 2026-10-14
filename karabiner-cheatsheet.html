@@ -42,23 +42,24 @@ kbd.ctrl{background:var(--cb);border-color:var(--cbd);color:var(--ct);font-weigh
 @media print{.card{break-inside:avoid}}
 </style></head><body>
 <header><h1>Karabiner <span>Cheat Sheet</span></h1>
-<div class="meta"><span><kbd class="hyper">Hyper</kbd> hold Caps = R-Ctrl+R-Opt+R-Shift+R-Cmd</span><span><kbd class="mod">Opt</kbd> Right Option</span><span>Cmd = Left Command</span><span>Right Cmd = Backspace</span><span>│ = cursor</span></div></header>
+<div class="meta"><span><kbd class="hyper">Hyper</kbd> hold Caps = R-Ctrl+R-Opt+R-Shift+R-Cmd</span><span><kbd class="mod">Opt</kbd> Right Option</span><span>Cmd = Left Command</span><span>│ = cursor</span></div></header>
 <div class="grid" id="g"></div>
 <div class="panel"><div class="pg">
-<div><div class="pt">Hyper free</div><span class="tag">Q</span><div class="pb">B is VSCode only. C D F G P R T are Chrome (C D F R also VSCode). E W VSCode. Y Chrome+VSCode. U I O Vimium. M is Chrome launcher. N is VS Code launcher. V X Z 5 and arrows are Raycast.</div></div>
-<div><div class="pt">Cmd + Hyper free</div><span class="tag">-</span><span class="tag">/</span><span class="tag">5</span><span class="tag">7</span><span class="tag">8</span><span class="tag">B</span><span class="tag">C</span><span class="tag">D</span><span class="tag">E</span><span class="tag">F</span><span class="tag">G</span><span class="tag">M*</span><span class="tag">N</span><span class="tag">Q</span><span class="tag">R</span><span class="tag">S</span><span class="tag">T</span><span class="tag">V</span><span class="tag">W</span><span class="tag">Z</span><div class="pb">* free while the Hyper deletion rule is disabled.</div></div>
-<div><div class="pt">Option + Hyper free</div><span class="tag">=</span><span class="tag">0</span><span class="tag">1</span><span class="tag">2</span><span class="tag">3</span><span class="tag">4</span><span class="tag">5</span><span class="tag">6</span><span class="tag">8</span><span class="tag">9</span><span class="tag">A</span><span class="tag">B</span><span class="tag">C</span><span class="tag">D</span><span class="tag">E</span><span class="tag">F</span><span class="tag">G</span><span class="tag">I</span><span class="tag">M*</span><span class="tag">N</span><span class="tag">O</span><span class="tag">R</span><span class="tag">S</span><span class="tag">T</span><span class="tag">V</span><span class="tag">W</span><span class="tag">X</span><span class="tag">Z</span><div class="pb">* free while the Hyper deletion rule is disabled.</div></div>
-<div><div class="pt o">Right Option free</div><span class="tag o">Q</span><span class="tag o">X</span><span class="tag o">1</span><span class="tag o">2</span><span class="tag o">4</span><span class="tag o">5</span><span class="tag o">6</span><span class="tag o">7</span><span class="tag o">8</span><div class="pb">U is Raycast (append). M 9 0 system. Tab is Ctrl+Tab. Check X vs Raycast before use.</div></div>
+<div><div class="pt">Hyper free</div><span class="tag">Q</span><div class="pb">B is VSCode only. C D F G P R T are Chrome (C D F R also VSCode). E W VSCode. Y Chrome+VSCode. U Vimium. I O home / end. M backspace. N is VS Code launcher. V X Z 5 and arrows are Raycast.</div></div>
+<div><div class="pt">Cmd + Hyper free</div><span class="tag">-</span><span class="tag">/</span><span class="tag">5</span><span class="tag">7</span><span class="tag">8</span><span class="tag">B</span><span class="tag">C</span><span class="tag">D</span><span class="tag">E</span><span class="tag">F</span><span class="tag">G</span><span class="tag">Q</span><span class="tag">R</span><span class="tag">S</span><span class="tag">T</span><span class="tag">V</span><span class="tag">W</span><span class="tag">Z</span></div>
+<div><div class="pt">Option + Hyper free</div><span class="tag">=</span><span class="tag">0</span><span class="tag">1</span><span class="tag">2</span><span class="tag">3</span><span class="tag">4</span><span class="tag">5</span><span class="tag">6</span><span class="tag">8</span><span class="tag">9</span><span class="tag">A</span><span class="tag">B</span><span class="tag">C</span><span class="tag">D</span><span class="tag">E</span><span class="tag">F</span><span class="tag">G</span><span class="tag">I</span><span class="tag">N</span><span class="tag">O</span><span class="tag">R</span><span class="tag">S</span><span class="tag">T</span><span class="tag">V</span><span class="tag">W</span><span class="tag">X</span><span class="tag">Z</span></div>
+<div><div class="pt o">Right Option free</div><span class="tag o">X</span><span class="tag o">1</span><span class="tag o">2</span><span class="tag o">4</span><span class="tag o">5</span><span class="tag o">6</span><span class="tag o">7</span><span class="tag o">8</span><div class="pb">U R are Raycast. M 9 0 system. Tab is Ctrl+Tab. Check X vs Raycast before use.</div></div>
 </div></div>
 <script>
 const C=[
 ["#1a6fd4","Navigation",0,[
-["Move",["Hyper+H / L / J / K :: ← → ↓ ↑","Hyper+I :: home ^not Chrome","Hyper+O :: end ^not Chrome","Opt+Hyper+H / L :: word ← → ^not VSCode"]],
+["Move",["Hyper+H / L / J / K :: ← → ↓ ↑","Hyper+I :: home","Hyper+O :: end","Opt+Hyper+H / L :: word ← → ^not VSCode"]],
 ["Select",["Cmd+Hyper+H / L / J / K :: select ← → ↓ ↑","Cmd+Hyper+I / O :: select to home / end","Cmd+Opt+Hyper+H / L :: select word ← →"]]]],
 ["#0f9d97","Deletion",0,[
-["Right Cmd",["Right Cmd :: backspace","Opt+Right Cmd :: delete word before ~Opt+Backspace","Cmd+Right Cmd :: delete to line start ~Cmd+Backspace"]],
-["Hardware",["Lock (next to F12) :: delete word before ~Opt+Delete"]],
-["Hyper deletion (rule disabled)",["Hyper+M :: delete char before !off","Hyper+Backspace :: delete word before !off","Cmd+Hyper+M :: delete word before !off","Opt+Hyper+M :: delete to line start !off","Opt+Hyper+Backspace :: delete char after !off","Cmd+Hyper+Backspace :: delete word after !off"]]]],
+["Character",["Hyper+M :: delete char before","Opt+Hyper+Backspace :: delete char after"]],
+["Word",["Hyper+Backspace :: delete word before","Cmd+Hyper+M :: delete word before","Cmd+Hyper+Backspace :: delete word after"]],
+["Line",["Opt+Hyper+M :: delete to line start"]],
+["Hardware",["Lock (next to F12) :: delete word before ~Opt+Delete"]]]],
 ["#c47f00","Symbols",0,[
 ["Hyper + key",["Hyper+- :: `_","Hyper+= :: `=\"│\"","Hyper+' :: ` = ","Hyper+; :: `:","Hyper+[ / ] :: `{ } ^not Chrome","Hyper+, :: `<","Hyper+. :: `>","Hyper+/ :: ` ? ","Hyper+6 :: `^","Hyper+7 :: `&","Hyper+8 :: `*","Hyper+9 / 0 :: `( )","Hyper+U / P :: `( ) ^not Chrome"]],
 ["Other",["Cmd+Hyper+= :: `~","Hyper+\\ :: ` | │ ","Opt+Hyper+\\ :: `^"]]]],
@@ -67,17 +68,17 @@ const C=[
 ["Option + Hyper",["Opt+Hyper+; :: ` !== ","Opt+Hyper+- :: ``│`","Opt+Hyper+P :: ``${│}`","Opt+Hyper+' :: `!","Opt+Hyper+[ :: `{│}","Opt+Hyper+, :: `({│})","Opt+Hyper+] :: `[│]","Opt+Hyper+Q :: `\"│\"","Opt+Hyper+7 :: ` && ","Opt+Hyper+. :: `<>│</> ~fragment","Opt+Hyper+/ :: `{/* │ */} ~JSX comment","Opt+Hyper+Y :: ` ?? ","Opt+Hyper+J :: `console.log(│)","Opt+Hyper+U :: `console.error(│)","Opt+Hyper+K :: `() => │","Opt+Hyper+L :: `async () => │ ^VSCode"]]]],
 ["#1a8a4a","Chrome ",1,[
 ["Tabs",["Hyper+[ :: next tab","Hyper+] :: prev tab","Hyper+P :: last used tab","Hyper+D :: duplicate tab"]],
-["Pinned / Vimium",["Hyper+Y :: pinned tab 1 ~Cmd+1","Hyper+U :: tab left ~Vimium J","Hyper+I :: tab right ~Vimium K","Hyper+O :: search tabs ~Vimium T"]],
+["Pinned / Vimium",["Hyper+Y :: pinned tab 1 ~Cmd+1","Hyper+U :: tab left ~Vimium J"]],
 ["Actions",["Hyper+C :: DevTools console","Hyper+F :: search the web","Hyper+G :: search tabs","Hyper+R :: hard reload","Hyper+T :: tab to new window","Cmd+Hyper+6 :: mentor prompt"]]]],
 ["#7c3aed","Quick Launch: AI & Web",0,[
-["Hyper + letter",["Hyper+M :: Chrome","Hyper+N :: VS Code"]],
+["Hyper + letter",["Hyper+N :: VS Code","Cmd+Hyper+N :: Chrome"]],
 ["Hyper + number",["Hyper+1 :: Claude","Hyper+2 :: ChatGPT","Hyper+3 :: DeepSeek","Hyper+4 :: v0.dev"]],
 ["Cmd + Hyper + number",["Cmd+Hyper+1 :: GitHub","Cmd+Hyper+2 :: Gmail","Cmd+Hyper+3 :: Vercel","Cmd+Hyper+4 :: localhost:5173"]]]],
 ["#1a6fd4","Right Option: Apps & Folders",0,[
 ["Apps",["Opt+C :: Chrome","Opt+G :: Chrome Incognito","Opt+D :: Chrome Dev (no CORS)","Opt+S :: Safari","Opt+I :: iTerm","Opt+W :: WezTerm","Opt+V :: VS Code","Opt+P :: Postman","Opt+F :: Finder","Opt+B :: ScreenBrush","Opt+O :: System Settings","Opt+Z :: emoji picker"]],
 ["Folders",["Opt+E :: Downloads","Opt+A :: ~/Code in Finder","Opt+L :: project picker ~opens in VS Code","Opt+3 :: localhost:3000"]]]],
 ["#d63060","Right Option: Search & AI",0,[
-["Prompt dialog",["Opt+/ :: Google","Opt+Y :: YouTube","Opt+H :: GitHub","Opt+N :: MDN","Opt+R :: npm","Opt+T :: Tailwind ~site: search"]],
+["Prompt dialog",["Opt+/ :: Google","Opt+Y :: YouTube","Opt+H :: GitHub","Opt+N :: MDN","Opt+Q :: npm","Opt+T :: Tailwind ~site: search"]],
 ["No dialog",["Opt+. :: Google clipboard ~copy first"]],
 ["New chat",["Opt+J :: Claude ~prompt prefilled","Opt+K :: ChatGPT ~prompt prefilled"]]]],
 ["#c47f00","System & Misc",0,[
@@ -88,7 +89,7 @@ const C=[
 ["#0f9d97","CleanShot X",0,[["",["Hyper+A :: capture area ~Cmd+Shift+4","Cmd+Hyper+A :: restore last capture ~Ctrl+Shift+R","Hyper+S :: OCR / capture text ~Ctrl+Shift+O"]]]],
 ["#c47f00","Raycast",0,[
 ["Hyper hotkeys",["Hyper+← :: left half","Hyper+→ :: right half","Hyper+↑ :: maximize","Hyper+↓ :: center","Hyper+X :: clipboard history","Cmd+Hyper+X :: prepend to clipboard","Hyper+V :: search snippets","Hyper+Z :: recent projects ~VS Code","Hyper+5 :: color picker"]],
-["Right Option",["Opt+U :: append to clipboard"]],
+["Right Option",["Opt+R :: open Raycast ~second shortcut","Opt+U :: append to clipboard"]],
 ["Window management",["Ctrl+Opt+← :: left half","Ctrl+Opt+→ :: right half","Ctrl+Opt+↑ :: top half","Ctrl+Opt+↓ :: bottom half","Ctrl+Opt+C :: center","Ctrl+Opt+Return :: maximize","Ctrl+Opt+U :: top-left sixth","Ctrl+Opt+J :: bottom-right sixth"]]]],
 ["#c47f00","VSCode ",2,[
 ["Sequences",["Hyper+Space :: alternator switch","Hyper+Y :: `const ","Cmd+Hyper+Y :: `function ","Opt+Hyper+H :: `() => {│}","Opt+Hyper+L :: `async () => │"]],
