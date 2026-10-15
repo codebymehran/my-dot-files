@@ -67,7 +67,7 @@
 
   // Inlay hints — literals only keeps it readable without cluttering every line
   // e.g. setTimeout(fn, /* ms */ 1000) instead of annotating every variable
-  "js/ts.inlayHints.parameterNames.enabled": "literals",
+  "js/ts.inlayHints.parameterNames.enabled": "none",
   "js/ts.inlayHints.variableTypes.enabled": false,
 
   // Shows "2 references" above functions — see what's using them without Find References
