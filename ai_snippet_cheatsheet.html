@@ -167,7 +167,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <nav class="nav">
   <div class="tab active" onclick="show('how')">How it works</div>
   <div class="tab" onclick="show('workflows')">Workflows</div>
-  <div class="tab" onclick="show('snippets')">15 Snippets</div>
+  <div class="tab" onclick="show('snippets')">18 Snippets</div>
   <div class="tab" onclick="show('aisystem')">4 AI System</div>
   <div class="tab" onclick="show('system')">Claude Project Prompt</div>
 </nav>
@@ -175,9 +175,9 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <div class="hero">
   <div class="hero-badge">;; system</div>
   <h1>Your AI Mentor<br><span>Snippet System</span></h1>
-  <p>15 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
+  <p>18 snippets for structured moments. 4 dedicated AIs for the full build cycle. Works with ChatGPT, Claude, DeepSeek — any AI.</p>
   <div class="hero-stats">
-    <div><div class="stat-num">15</div><div class="stat-label">Snippets</div></div>
+    <div><div class="stat-num">18</div><div class="stat-label">Snippets</div></div>
     <div><div class="stat-num">4</div><div class="stat-label">Dedicated AIs</div></div>
     <div><div class="stat-num">1</div><div class="stat-label">Loop</div></div>
   </div>
@@ -232,7 +232,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <tr><td><code class="tkw">breathe</code></td><td>Overwhelmed, need someone to cut through the noise</td></tr>
         <tr><td><code class="tkw">build</code></td><td>Need a weekend project idea</td></tr>
         <tr><td><code class="tkw">next</code></td><td>Any Next.js question — enforces correct patterns</td></tr>
-        <tr><td><code class="tkw">teach</code></td><td>Prepping to teach a coding project to kids — milestone by milestone</td></tr>
+        <tr><td><code class="tkw">principle</code></td><td>Remind the AI of your learning loop: understand → pseudocode → attempt → test → explain → improve</td></tr>
+        <tr><td><code class="tkw">,young</code></td><td>Plan a vanilla JS kids' project as checklists — MVP, tests, refactoring, features</td></tr>
+        <tr><td><code class="tkw">,skeleton-js</code></td><td>Bird's-eye comment skeleton of a finished vanilla JS project</td></tr>
+        <tr><td><code class="tkw">,skeleton-react</code></td><td>Layered skeleton of finished React/Next.js code, with Server vs Client marked</td></tr>
       </tbody>
     </table>
     <div class="notice green" style="margin-top:12px">
@@ -310,6 +313,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
     <div class="workflow">
       <div class="workflow-title"><span class="dot"></span>Any Next.js question</div>
       <p>Fire <code class="tkw">next</code> before pasting code or asking a question. It locks the AI into App Router patterns, RSC, Shadcn semantic tokens, and TypeScript — so you don't get answers that use the wrong approach.</p>
+    </div>
+
+    <div class="workflow">
+      <div class="workflow-title"><span class="dot"></span>Keeping your learning loop honest</div>
+      <p>Fire <code class="tkw">principle</code> at the start of any chat where you want to be held to your own method: understand the tiny problem, think through pseudocode, attempt, test, explain, improve. Use <code class="tkw">,skeleton-js</code> or <code class="tkw">,skeleton-react</code> after finishing to see the shape of what you built.</p>
     </div>
   </div>
   <div class="section">
@@ -813,36 +821,183 @@ Rules for your answer:
       </div>
     </div>
 
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">principle</code>
+        <span class="cname">Learning Principle</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Anytime — remind the AI how you want every problem worked through</div>
+        <div class="prompt-box">
+          <div class="tl">My learning principle: Understand the tiny problem → Think through pseudocode → Attempt → Test → Explain → Improve.</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="My learning principle: Understand the tiny problem → Think through pseudocode → Attempt → Test → Explain → Improve.">Copy prompt</button>
+      </div>
+    </div>
+
     <div class="section-divider">Teaching kids</div>
 
     <div class="card" onclick="toggleCard(this)">
       <div class="card-head">
-        <code class="kw amber">teach</code>
-        <span class="cname">Teach Kids Coding</span>
+        <code class="kw amber">,young</code>
+        <span class="cname">Young (JS for kids)</span>
         <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="card-body">
-        <div class="card-when"><strong>When:</strong> Prepping to teach a coding project to kids — breaks it into milestones, one at a time, before you walk into class</div>
+        <div class="card-when"><strong>When:</strong> Planning a vanilla JavaScript project for kids — MVP, tests, refactoring and features as checklists, no code</div>
         <div class="prompt-box">
-          <div class="tl">I'm a Python teacher working with kids who already know [FILL IN: e.g. "variables, loops, conditionals, basic functions, lists, input(), .lower(), in keyword"]. I'm about to teach them to build [FILL IN PROJECT, e.g. "Hangman"], and I want to break it into small milestones before I walk into class.</div>
+          <div class="tl">I teach young kids vanilla JavaScript through small ongoing projects.</div>
+          <div class="tl">They know the fundamentals (variables, conditionals, loops, functions,</div>
+          <div class="tl">arrays, objects, basic DOM). They learn new concepts by hitting real</div>
+          <div class="tl">problems while building. My process: MVP -&gt; tests -&gt; refactoring -&gt; features.</div>
           <div class="tl-gap"></div>
-          <div class="tl">Here's how I want you to work with me:</div>
-          <div class="tl">- Don't dump full code upfront. We discuss one milestone at a time.</div>
-          <div class="tl">- For each milestone, help me: (1) phrase a short, clear instruction I can literally say to the kids, (2) flag new concepts it introduces, (3) flag common mistakes kids make at this step, (4) flag any design decisions I should make now that affect later milestones.</div>
-          <div class="tl">- I'll tell you when I'm ready to move to the next milestone — don't jump ahead on your own.</div>
-          <div class="tl">- Scaffolding level: [FILL IN: e.g. "medium — give the goal, let them figure out the how" / "heavy — give steps" / "light — minimal hints"].</div>
-          <div class="tl">- When I say "show code," give me only the code up to that point, matching what's been discussed, not the whole finished project.</div>
-          <div class="tl">- Keep a running log as we go: instruction given + code at that point + teaching notes/gotchas for each milestone, so I can compile it into one document at the end.</div>
+          <div class="tl">Project: [PROJECT NAME]</div>
+          <div class="tl">Core idea the kids should discover: [ONE IDEA, e.g. &quot;use the real clock, not a counter&quot;]</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Constraints:</div>
+          <div class="tl">- Plain HTML, CSS, JS only. No frameworks, npm, or build tools.</div>
+          <div class="tl">- No code or code snippets. Describe WHAT to build, never HOW.</div>
+          <div class="tl">- Kid-friendly language. Medium-length sentences are fine.</div>
+          <div class="tl">- Every step starts with something the kid does (Make, Try, Add, Click).</div>
+          <div class="tl-gap"></div>
+          <div class="tl">Output ONLY the sections below, as short checklists. No teacher notes,</div>
+          <div class="tl">no explanations, no concept tables, no intro or outro text.</div>
+          <div class="tl-gap"></div>
+          <div class="tl">1. MVP</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- One-sentence goal (what the user sees and does)</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- Checklist of tiny steps, grouped into phases (max 6 phases)</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- Build a simple, naive version first, then include a &quot;break it&quot; step</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where the kid finds a real problem, then a &quot;fix it&quot; phase</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;that leads to the core idea</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- Each phase ends with:</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 🗣️ one &quot;explain it in your own words&quot; question</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 💾 commit checkpoint with a suggested commit message</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- &quot;Not yet&quot; list (max 5 items)</div>
+          <div class="tl-gap"></div>
+          <div class="tl">2. Tests</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- Checklist in the form &quot;Guess first -&gt; I do X -&gt; I should see Y&quot;</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- Include edge cases that expose bugs (max 10 tests)</div>
+          <div class="tl-gap"></div>
+          <div class="tl">3. Refactoring</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- 3 to 5 checklist items, each framed as a problem</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(e.g. &quot;this code is hard to change&quot;)</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- End with a 💾 commit checkpoint and a suggested commit message</div>
+          <div class="tl-gap"></div>
+          <div class="tl">4. Features</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- 5 features, easy to hard</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;- Each feature gets 2 to 4 checklist steps and a 💾 commit checkpoint</div>
+          <div class="tl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with a suggested commit message</div>
+          <div class="tl-gap"></div>
+          <div class="tl">If anything is unclear, make a reasonable assumption and continue.</div>
+          <div class="tl">Do not ask questions.</div>
         </div>
-        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I'm a Python teacher working with kids who already know [FILL IN: e.g. &quot;variables, loops, conditionals, basic functions, lists, input(), .lower(), in keyword&quot;]. I'm about to teach them to build [FILL IN PROJECT, e.g. &quot;Hangman&quot;], and I want to break it into small milestones before I walk into class.
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="I teach young kids vanilla JavaScript through small ongoing projects.
+They know the fundamentals (variables, conditionals, loops, functions,
+arrays, objects, basic DOM). They learn new concepts by hitting real
+problems while building. My process: MVP -&gt; tests -&gt; refactoring -&gt; features.
 
-Here's how I want you to work with me:
-- Don't dump full code upfront. We discuss one milestone at a time.
-- For each milestone, help me: (1) phrase a short, clear instruction I can literally say to the kids, (2) flag new concepts it introduces, (3) flag common mistakes kids make at this step, (4) flag any design decisions I should make now that affect later milestones.
-- I'll tell you when I'm ready to move to the next milestone — don't jump ahead on your own.
-- Scaffolding level: [FILL IN: e.g. &quot;medium — give the goal, let them figure out the how&quot; / &quot;heavy — give steps&quot; / &quot;light — minimal hints&quot;].
-- When I say &quot;show code,&quot; give me only the code up to that point, matching what's been discussed, not the whole finished project.
-- Keep a running log as we go: instruction given + code at that point + teaching notes/gotchas for each milestone, so I can compile it into one document at the end.">Copy prompt</button>
+Project: [PROJECT NAME]
+Core idea the kids should discover: [ONE IDEA, e.g. &quot;use the real clock, not a counter&quot;]
+
+Constraints:
+- Plain HTML, CSS, JS only. No frameworks, npm, or build tools.
+- No code or code snippets. Describe WHAT to build, never HOW.
+- Kid-friendly language. Medium-length sentences are fine.
+- Every step starts with something the kid does (Make, Try, Add, Click).
+
+Output ONLY the sections below, as short checklists. No teacher notes,
+no explanations, no concept tables, no intro or outro text.
+
+1. MVP
+   - One-sentence goal (what the user sees and does)
+   - Checklist of tiny steps, grouped into phases (max 6 phases)
+   - Build a simple, naive version first, then include a &quot;break it&quot; step
+     where the kid finds a real problem, then a &quot;fix it&quot; phase
+     that leads to the core idea
+   - Each phase ends with:
+     - 🗣️ one &quot;explain it in your own words&quot; question
+     - 💾 commit checkpoint with a suggested commit message
+   - &quot;Not yet&quot; list (max 5 items)
+
+2. Tests
+   - Checklist in the form &quot;Guess first -&gt; I do X -&gt; I should see Y&quot;
+   - Include edge cases that expose bugs (max 10 tests)
+
+3. Refactoring
+   - 3 to 5 checklist items, each framed as a problem
+     (e.g. &quot;this code is hard to change&quot;)
+   - End with a 💾 commit checkpoint and a suggested commit message
+
+4. Features
+   - 5 features, easy to hard
+   - Each feature gets 2 to 4 checklist steps and a 💾 commit checkpoint
+     with a suggested commit message
+
+If anything is unclear, make a reasonable assumption and continue.
+Do not ask questions.">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="section-divider">Project skeletons</div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw amber">,skeleton-js</code>
+        <span class="cname">Skeleton JS</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Finished a vanilla JS project — get a bird's-eye skeleton of it in comments only</div>
+        <div class="prompt-box">
+          <div class="tl">Here is my finished project code. Give me a bird's-eye skeleton:</div>
+          <div class="tl">- Group it into layers (elements, data, helpers, actions, first draw)</div>
+          <div class="tl">- Under each layer, list only comments, no real code</div>
+          <div class="tl">- Each button/action gets a short comment outline of its steps</div>
+          <div class="tl">- Add a one-sentence summary for each action that a kid could understand</div>
+          <div class="tl">- Flag anything that doesn't fit the layers</div>
+          <div class="tl-gap"></div>
+          <div class="tl">[paste code]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Here is my finished project code. Give me a bird's-eye skeleton:
+- Group it into layers (elements, data, helpers, actions, first draw)
+- Under each layer, list only comments, no real code
+- Each button/action gets a short comment outline of its steps
+- Add a one-sentence summary for each action that a kid could understand
+- Flag anything that doesn't fit the layers
+
+[paste code]">Copy prompt</button>
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-head">
+        <code class="kw">,skeleton-react</code>
+        <span class="cname">Skeleton React</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-when"><strong>When:</strong> Finished a React/Next.js project — get a layered skeleton and Server vs Client Component breakdown</div>
+        <div class="prompt-box">
+          <div class="tl">Here is my finished React/Next.js code. Give me a bird's-eye skeleton:</div>
+          <div class="tl">- Group it into layers: types/props, state, refs, derived values,</div>
+          <div class="tl">&nbsp;&nbsp;effects (with cleanup), handlers, JSX structure</div>
+          <div class="tl">- Under each layer, list only comments, no real code</div>
+          <div class="tl">- For each handler and effect, a short comment outline of its steps</div>
+          <div class="tl">- Mark which components are Server vs Client Components, and why</div>
+          <div class="tl">- Flag anything stored in state that could be derived instead</div>
+          <div class="tl-gap"></div>
+          <div class="tl">[paste code]</div>
+        </div>
+        <button class="copy-btn" onclick="doCopy(event,this)" data-text="Here is my finished React/Next.js code. Give me a bird's-eye skeleton:
+- Group it into layers: types/props, state, refs, derived values,
+  effects (with cleanup), handlers, JSX structure
+- Under each layer, list only comments, no real code
+- For each handler and effect, a short comment outline of its steps
+- Mark which components are Server vs Client Components, and why
+- Flag anything stored in state that could be derived instead
+
+[paste code]">Copy prompt</button>
       </div>
     </div>
 
@@ -1009,6 +1164,7 @@ Do not soften this. I need to know if I actually learned something.</div>
 - Always explain WHY something exists before showing HOW it works
 - Compare new concepts to things I've built before when possible
 - Default to TEACHER MODE unless I signal otherwise
+- My learning principle: Understand the tiny problem → Think through pseudocode → Attempt → Test → Explain → Improve. Guide me through these stages in order — don't skip ahead, and don't let me skip a stage
 
 ## Two modes — read my signal and switch automatically
 
