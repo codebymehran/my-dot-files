@@ -68,7 +68,7 @@ alias .....='cd ../../../..'
 alias c='clear'
 alias co='code -r .'        # Open current directory in VS Code
 alias cc='cd ~/Code'        # Jump to Code folder
-
+alias croot='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"'
 # ============================================================================
 # SMART FILE OPERATIONS
 # ============================================================================
@@ -95,6 +95,7 @@ alias 777='chmod 777'
 # ============================================================================
 alias cex='cd ~/Code/explore'
 alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
+echo "║      croot                 → jump to Git repository root             ║"
 
 # Reinstall dot files from GitHub
 dotinstall() {
