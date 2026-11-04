@@ -95,7 +95,7 @@ alias 777='chmod 777'
 # ============================================================================
 alias cex='cd ~/Code/explore'
 alias cdf='cd ~/my-dot-files'  # go to dotfiles repo
-echo "║      croot                 → jump to Git repository root             ║"
+
 
 # Reinstall dot files from GitHub
 dotinstall() {
@@ -580,6 +580,7 @@ shortcuts() {
   echo "║      gl                    → log (last 10, graph)                    ║"
   echo "║      gacp "msg"            → add + commit + push                     ║"
   echo "║                                                                      ║"
+    echo "║      croot                 → jump to git repo root                   ║"
   echo "║    NPM                                                               ║"
   echo "║      ni / nrd / nrb        → install / dev / build                   ║"
   echo "║      killport <port>       → kill process on port                    ║"
